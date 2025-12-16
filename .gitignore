@@ -131,3 +131,14 @@ dist
 
 # Replit debugger
 .breakpoints
+
+# Replit specific
+.replit
+.upm/
+.local/
+attached_assets/
+*.zip
+
+# IDE
+.idea/
+.vscode/
