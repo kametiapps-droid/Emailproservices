@@ -10,21 +10,23 @@ async function fetchEmailContent(emailId: string): Promise<{ text: string; html:
   }
 
   try {
-    const response = await fetch(`https://api.resend.com/emails/${emailId}`, {
+    // Use the correct Resend API endpoint for receiving/inbound emails
+    const response = await fetch(`https://api.resend.com/emails/receiving/${emailId}`, {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
       },
     });
 
     if (!response.ok) {
-      console.log('Failed to fetch email from Resend:', response.status);
+      const errorText = await response.text();
+      console.log('Failed to fetch email content:', response.status, errorText);
       return null;
     }
 
     const data = await response.json();
     console.log('Fetched email content from Resend:', JSON.stringify(data, null, 2));
     return {
-      text: data.text || '',
+      text: data.text || data.body || '',
       html: data.html || '',
     };
   } catch (error) {
