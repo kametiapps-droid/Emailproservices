@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ['*.replit.dev', '*.repl.co'],
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['*'],
+    },
+  },
   async headers() {
     return [
       {
