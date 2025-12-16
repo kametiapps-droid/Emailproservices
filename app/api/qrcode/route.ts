@@ -1,11 +1,8 @@
-export const dynamic = "force-dynamic";
-
+export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
 import QRCode from 'qrcode';
-
-export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
