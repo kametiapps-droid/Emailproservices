@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
 import crypto from 'crypto';
 
+export const dynamic = 'force-dynamic';
+
 async function fetchEmailContent(emailId: string): Promise<{ text: string; html: string } | null> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
