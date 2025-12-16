@@ -1,0 +1,411 @@
+'use client';
+
+import { useState, useEffect, useCallback } from 'react';
+
+interface Email {
+  id: string;
+  email: string;
+  createdAt: string;
+  expiresAt: string;
+}
+
+interface Message {
+  id: string;
+  sender: string;
+  subject: string;
+  content: string;
+  receivedAt: string;
+  isRead: boolean;
+}
+
+export default function Home() {
+  const [email, setEmail] = useState<Email | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showQR, setShowQR] = useState(false);
+  const [qrCode, setQrCode] = useState('');
+  const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
+  const [timeLeft, setTimeLeft] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  const generateEmail = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/email', { method: 'POST' });
+      const data = await response.json();
+      if (data.success) {
+        setEmail(data.data);
+        localStorage.setItem('tempEmail', JSON.stringify(data.data));
+        setMessages([]);
+      }
+    } catch (error) {
+      console.error('Error generating email:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchInbox = useCallback(async () => {
+    if (!email?.id) return;
+    try {
+      const response = await fetch(`/api/inbox?emailId=${email.id}`);
+      const data = await response.json();
+      if (data.success) {
+        setMessages(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching inbox:', error);
+    }
+  }, [email?.id]);
+
+  const checkExistingEmail = async (storedEmail: Email) => {
+    try {
+      const response = await fetch(`/api/email?id=${storedEmail.id}`);
+      const data = await response.json();
+      if (data.success) {
+        setEmail(data.data);
+        return true;
+      }
+    } catch (error) {
+      console.error('Error checking email:', error);
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    const init = async () => {
+      const stored = localStorage.getItem('tempEmail');
+      if (stored) {
+        const storedEmail = JSON.parse(stored);
+        const isValid = await checkExistingEmail(storedEmail);
+        if (!isValid) {
+          localStorage.removeItem('tempEmail');
+          await generateEmail();
+        }
+      } else {
+        await generateEmail();
+      }
+      setLoading(false);
+    };
+    init();
+  }, []);
+
+  useEffect(() => {
+    if (email?.id) {
+      fetchInbox();
+      const interval = setInterval(fetchInbox, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [email?.id, fetchInbox]);
+
+  useEffect(() => {
+    if (!email?.expiresAt) return;
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const expiry = new Date(email.expiresAt).getTime();
+      const diff = expiry - now;
+
+      if (diff <= 0) {
+        setTimeLeft('Expired');
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      setTimeLeft(`${hours}h ${minutes}m remaining`);
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 60000);
+    return () => clearInterval(interval);
+  }, [email?.expiresAt]);
+
+  const copyEmail = () => {
+    if (email?.email) {
+      navigator.clipboard.writeText(email.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const showQRCode = async () => {
+    if (!email?.id) return;
+    try {
+      const response = await fetch(`/api/qrcode?id=${email.id}`);
+      const data = await response.json();
+      if (data.success) {
+        setQrCode(data.qrCode);
+        setShowQR(true);
+      }
+    } catch (error) {
+      console.error('Error generating QR:', error);
+    }
+  };
+
+  const deleteEmail = async () => {
+    if (!email?.id || !confirm('Are you sure you want to delete this email?')) return;
+    try {
+      await fetch(`/api/email?id=${email.id}`, { method: 'DELETE' });
+      localStorage.removeItem('tempEmail');
+      await generateEmail();
+    } catch (error) {
+      console.error('Error deleting email:', error);
+    }
+  };
+
+  const openMessage = async (message: Message) => {
+    setSelectedMessage(message);
+    if (!message.isRead && email?.id) {
+      await fetch('/api/inbox', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ emailId: email.id, messageId: message.id }),
+      });
+      setMessages(prev =>
+        prev.map(m => (m.id === message.id ? { ...m, isRead: true } : m))
+      );
+    }
+  };
+
+  const formatTime = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    
+    if (diff < 60000) return 'Just now';
+    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
+    if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
+    return date.toLocaleDateString();
+  };
+
+  if (loading && !email) {
+    return (
+      <div className="loading" style={{ height: '100vh' }}>
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <header>
+        <div className="container header-content">
+          <div className="logo">My-Mailer.Pro</div>
+          <div className="refresh-indicator">
+            <span className="refresh-dot"></span>
+            Auto-refresh active
+          </div>
+        </div>
+      </header>
+
+      <section className="hero">
+        <div className="container">
+          <h1>Secure Temporary Email</h1>
+          <p>Protect your privacy with instant disposable email addresses. No registration required. Emails expire in 24 hours.</p>
+        </div>
+      </section>
+
+      <div className="container">
+        <div className="email-box">
+          <div className="email-display">
+            <span className="email-address">{email?.email || 'Loading...'}</span>
+            <button className="copy-btn" onClick={copyEmail}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              {copied ? 'Copied!' : 'Copy'}
+            </button>
+          </div>
+
+          <div className="timer">
+            <span className="timer-icon">⏱️</span>
+            <span className="timer-text">{timeLeft}</span>
+          </div>
+
+          <div className="action-buttons">
+            <button className="action-btn" onClick={fetchInbox}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+              </svg>
+              Refresh
+            </button>
+            <button className="action-btn" onClick={showQRCode}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+              </svg>
+              QR Code
+            </button>
+            <button className="action-btn" onClick={generateEmail}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+              New Email
+            </button>
+            <button className="action-btn danger" onClick={deleteEmail}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section className="inbox-section">
+        <div className="inbox-header">
+          <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+              <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+            </svg>
+            Inbox
+          </h2>
+          <span className="message-count">{messages.length} messages</span>
+        </div>
+
+        <div className="inbox-list">
+          {messages.length === 0 ? (
+            <div className="inbox-empty">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+                <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+              </svg>
+              <h3>Your inbox is empty</h3>
+              <p>Emails sent to your temporary address will appear here. Auto-refresh is active every 10 seconds.</p>
+            </div>
+          ) : (
+            messages.map(message => (
+              <div
+                key={message.id}
+                className={`message-item ${!message.isRead ? 'message-unread' : ''}`}
+                onClick={() => openMessage(message)}
+              >
+                <div className="message-header">
+                  <span className="message-sender">{message.sender}</span>
+                  <span className="message-time">{formatTime(message.receivedAt)}</span>
+                </div>
+                <div className="message-subject">{message.subject}</div>
+                <div className="message-preview">{message.content.substring(0, 100)}...</div>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
+
+      <section className="features">
+        <div className="container">
+          <h2>Why Choose My-Mailer.Pro?</h2>
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <h3>Instant Generation</h3>
+              <p>Get a new temporary email address instantly with just one click. No registration needed.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <h3>Privacy Protected</h3>
+              <p>Your real email stays private. Use disposable addresses for signups and verifications.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <h3>24-Hour Validity</h3>
+              <p>Emails are automatically deleted after 24 hours for enhanced security.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21.5 2v6h-6M2.5 22v-6h6"/>
+                  <path d="M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+                </svg>
+              </div>
+              <h3>Auto Refresh</h3>
+              <p>Inbox automatically refreshes every 10 seconds so you never miss an email.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M9 21V9"/>
+                </svg>
+              </div>
+              <h3>QR Code Sharing</h3>
+              <p>Share your temporary email via QR code for easy access on other devices.</p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3>Spam Protection</h3>
+              <p>Keep your main inbox clean from spam and promotional emails.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div className="container">
+          <p>My-Mailer.Pro - Free Temporary Email Service</p>
+        </div>
+      </footer>
+
+      {showQR && (
+        <div className="modal-overlay" onClick={() => setShowQR(false)}>
+          <div className="modal qr-modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>QR Code</h3>
+              <button className="modal-close" onClick={() => setShowQR(false)}>&times;</button>
+            </div>
+            <div className="modal-body">
+              <div className="qr-code">
+                {qrCode && <img src={qrCode} alt="QR Code" />}
+              </div>
+              <p style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
+                Scan this QR code to copy the email address
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedMessage && (
+        <div className="modal-overlay" onClick={() => setSelectedMessage(null)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>{selectedMessage.subject}</h3>
+              <button className="modal-close" onClick={() => setSelectedMessage(null)}>&times;</button>
+            </div>
+            <div className="modal-body">
+              <div className="message-meta">
+                <p><strong>From:</strong> {selectedMessage.sender}</p>
+                <p><strong>Date:</strong> {new Date(selectedMessage.receivedAt).toLocaleString()}</p>
+              </div>
+              <div className="message-content">{selectedMessage.content}</div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
