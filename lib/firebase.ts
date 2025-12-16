@@ -33,20 +33,30 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
     try {
       let parsedKey: ServiceAccountKey;
       
-      if (serviceAccountKey.startsWith('{')) {
-        parsedKey = JSON.parse(serviceAccountKey);
+      // Clean the key - remove control characters that break JSON parsing
+      let cleanedKey = serviceAccountKey.trim();
+      
+      // Try to parse as JSON first
+      if (cleanedKey.startsWith('{')) {
+        // Replace actual newlines/returns in the JSON with escaped versions for parsing
+        cleanedKey = cleanedKey.replace(/\r?\n/g, '\\n').replace(/\t/g, '\\t');
+        parsedKey = JSON.parse(cleanedKey);
       } else {
-        const decoded = Buffer.from(serviceAccountKey, 'base64').toString('utf-8');
+        // Try base64 decoding
+        const decoded = Buffer.from(cleanedKey, 'base64').toString('utf-8');
         parsedKey = JSON.parse(decoded);
       }
 
       console.log('Initializing Firebase with project:', parsedKey.project_id);
 
+      // Fix: Replace escaped newlines with actual newlines in private key
+      const privateKey = parsedKey.private_key.replace(/\\n/g, '\n');
+
       app = initializeApp({
         credential: cert({
           projectId: parsedKey.project_id,
           clientEmail: parsedKey.client_email,
-          privateKey: parsedKey.private_key,
+          privateKey: privateKey,
         }),
         projectId: parsedKey.project_id,
       });
