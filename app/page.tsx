@@ -427,7 +427,7 @@ export default function Home() {
         <div className="container">
           <h2>Why Choose Temp Mail Pro?</h2>
           <div className="features-grid">
-            <div className="feature-card">
+            <div className="feature-card card-lightning">
               <div className="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -436,7 +436,7 @@ export default function Home() {
               <h3>Instant Generation</h3>
               <p>Get a new temporary email address instantly with just one click. No registration needed.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card card-privacy">
               <div className="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -446,7 +446,7 @@ export default function Home() {
               <h3>Privacy Protected</h3>
               <p>Your real email stays private. Use disposable addresses for signups and verifications.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card card-clock">
               <div className="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/>
@@ -456,7 +456,7 @@ export default function Home() {
               <h3>24-Hour Validity</h3>
               <p>Emails are automatically deleted after 24 hours for enhanced security.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card card-refresh">
               <div className="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21.5 2v6h-6M2.5 22v-6h6"/>
@@ -466,7 +466,7 @@ export default function Home() {
               <h3>Auto Refresh</h3>
               <p>Inbox automatically refreshes every 10 seconds so you never miss an email.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card card-qr">
               <div className="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -476,7 +476,7 @@ export default function Home() {
               <h3>QR Code Sharing</h3>
               <p>Share your temporary email via QR code for easy access on other devices.</p>
             </div>
-            <div className="feature-card">
+            <div className="feature-card card-shield">
               <div className="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
