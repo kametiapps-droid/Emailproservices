@@ -189,6 +189,10 @@ export default function Home() {
   };
 
   const openMessage = async (message: Message) => {
+    if (selectedMessage?.id === message.id) {
+      setSelectedMessage(null);
+      return;
+    }
     setSelectedMessage(message);
     if (!message.isRead && email?.id) {
       await fetch('/api/inbox', {
@@ -338,10 +342,9 @@ export default function Home() {
               messages.map(message => (
                 <div
                   key={message.id}
-                  className={`message-item ${!message.isRead ? 'message-unread' : ''} ${selectedMessage?.id === message.id ? 'message-selected' : ''}`}
-                  onClick={() => openMessage(message)}
+                  className={`message-item ${!message.isRead ? 'message-unread' : ''} ${selectedMessage?.id === message.id ? 'message-expanded' : ''}`}
                 >
-                  <div className="message-item-content">
+                  <div className="message-item-content" onClick={() => openMessage(message)}>
                     <div className="message-avatar">
                       {message.sender.charAt(0).toUpperCase()}
                     </div>
@@ -351,103 +354,78 @@ export default function Home() {
                         <span className="message-time">{formatTime(message.receivedAt)}</span>
                       </div>
                       <div className="message-subject">{message.subject}</div>
-                      <div className="message-preview">
-                        {message.content.replace(/<[^>]*>/g, '').substring(0, 60)}...
+                      {selectedMessage?.id !== message.id && (
+                        <div className="message-preview">
+                          {message.content.replace(/<[^>]*>/g, '').substring(0, 60)}...
+                        </div>
+                      )}
+                    </div>
+                    <div className="message-actions">
+                      <button 
+                        className="message-delete-btn"
+                        onClick={(e) => deleteMessage(message.id, e)}
+                        title="Delete message"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                      </button>
+                      <svg 
+                        className={`expand-icon ${selectedMessage?.id === message.id ? 'expanded' : ''}`}
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="16" 
+                        height="16" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2"
+                      >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {selectedMessage?.id === message.id && (
+                    <div className="message-expanded-content">
+                      <div className="expanded-meta">
+                        <span className="expanded-date">{new Date(message.receivedAt).toLocaleString()}</span>
+                        <span className="expanded-to">to: {email?.email}</span>
+                      </div>
+                      
+                      {message.attachments && message.attachments.length > 0 && (
+                        <div className="expanded-attachments">
+                          <div className="attachments-label">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                            </svg>
+                            {message.attachments.length} attachment{message.attachments.length > 1 ? 's' : ''}
+                          </div>
+                          <div className="attachments-inline">
+                            {message.attachments.map((att, idx) => (
+                              <span key={idx} className="attachment-chip">
+                                {att.filename} ({formatFileSize(att.size)})
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="expanded-body">
+                        <iframe
+                          ref={selectedMessage?.id === message.id ? iframeRef : null}
+                          title="Email Content"
+                          sandbox="allow-same-origin"
+                          className="inline-email-iframe"
+                        />
                       </div>
                     </div>
-                    <button 
-                      className="message-delete-btn"
-                      onClick={(e) => deleteMessage(message.id, e)}
-                      title="Delete message"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                      </svg>
-                    </button>
-                  </div>
+                  )}
                 </div>
               ))
             )}
           </div>
 
-          {selectedMessage && (
-            <div className="email-viewer">
-              <div className="email-viewer-header">
-                <button className="back-btn" onClick={() => setSelectedMessage(null)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                  </svg>
-                  Back
-                </button>
-                <button 
-                  className="delete-btn"
-                  onClick={(e) => deleteMessage(selectedMessage.id, e)}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="3 6 5 6 21 6"></polyline>
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                  </svg>
-                  Delete
-                </button>
-              </div>
-
-              <div className="email-viewer-meta">
-                <div className="email-sender-info">
-                  <div className="sender-avatar-large">
-                    {selectedMessage.sender.charAt(0).toUpperCase()}
-                  </div>
-                  <div className="sender-details">
-                    <div className="sender-name">{selectedMessage.sender}</div>
-                    <div className="sender-email">to: {email?.email}</div>
-                  </div>
-                </div>
-                <div className="email-date">
-                  {new Date(selectedMessage.receivedAt).toLocaleString()}
-                </div>
-              </div>
-
-              <div className="email-subject-bar">
-                <h2>{selectedMessage.subject}</h2>
-              </div>
-
-              {selectedMessage.attachments && selectedMessage.attachments.length > 0 && (
-                <div className="email-attachments">
-                  <div className="attachments-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
-                    </svg>
-                    {selectedMessage.attachments.length} Attachment{selectedMessage.attachments.length > 1 ? 's' : ''}
-                  </div>
-                  <div className="attachments-list">
-                    {selectedMessage.attachments.map((att, idx) => (
-                      <div key={idx} className="attachment-item">
-                        <div className="attachment-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                          </svg>
-                        </div>
-                        <div className="attachment-info">
-                          <span className="attachment-name">{att.filename}</span>
-                          <span className="attachment-size">{formatFileSize(att.size)}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="email-content-frame">
-                <iframe
-                  ref={iframeRef}
-                  title="Email Content"
-                  sandbox="allow-same-origin"
-                  className="email-iframe"
-                />
-              </div>
-            </div>
-          )}
         </div>
       </section>
 

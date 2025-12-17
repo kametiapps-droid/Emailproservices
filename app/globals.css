@@ -208,9 +208,7 @@ header {
 }
 
 .inbox-container {
-  display: flex;
-  gap: 20px;
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .inbox-list {
@@ -218,15 +216,8 @@ header {
   border-radius: 16px;
   border: 1px solid var(--border);
   overflow: hidden;
-  flex: 1;
-  max-height: 600px;
+  max-height: none;
   overflow-y: auto;
-  transition: all 0.3s ease;
-}
-
-.inbox-list-narrow {
-  flex: 0 0 350px;
-  max-width: 350px;
 }
 
 .inbox-empty {
@@ -336,6 +327,96 @@ header {
 .message-selected {
   background: var(--surface-light);
   border-left: 3px solid var(--primary);
+}
+
+.message-expanded {
+  background: var(--surface-light);
+  border-left: 3px solid var(--primary);
+}
+
+.message-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expand-icon {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+}
+
+.expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.message-expanded-content {
+  padding: 15px 15px 20px 67px;
+  border-top: 1px solid var(--border);
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+.expanded-meta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.expanded-attachments {
+  margin-bottom: 12px;
+  padding: 10px;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.attachments-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--secondary);
+  margin-bottom: 8px;
+}
+
+.attachments-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.attachment-chip {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.expanded-body {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.inline-email-iframe {
+  width: 100%;
+  min-height: 250px;
+  border: none;
+  background: white;
 }
 
 .message-delete-btn {
@@ -758,39 +839,16 @@ footer p {
     grid-template-columns: 1fr;
   }
 
-  .inbox-container {
+  .message-expanded-content {
+    padding: 15px 10px 20px 10px;
+  }
+
+  .expanded-meta {
     flex-direction: column;
+    gap: 5px;
   }
 
-  .inbox-list-narrow {
-    flex: 1;
-    max-width: 100%;
-  }
-
-  .email-viewer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
-    border-radius: 0;
-    max-height: 100vh;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
-
-  .email-viewer-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .email-date {
-    align-self: flex-end;
-  }
-
-  .back-btn {
-    display: flex;
+  .inline-email-iframe {
+    min-height: 200px;
   }
 }

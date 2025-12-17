@@ -60,7 +60,9 @@ npm run start
   - Configured for Next.js 15 with React 19
   - Set up Replit workflow and deployment configuration
   - App runs on port 5000
+  - Changed inbox to expand emails inline (accordion style) instead of opening in separate panel
 
 ## User Preferences
 - Dark theme UI design
 - Auto-refresh inbox every 10 seconds
+- Emails open inline within inbox (accordion style expansion)
