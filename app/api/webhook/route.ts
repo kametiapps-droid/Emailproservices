@@ -12,7 +12,7 @@ async function fetchEmailContent(emailId: string): Promise<{ text: string; html:
   }
 
   try {
-    const response = await fetch(`https://api.resend.com/emails/${emailId}`, {
+    const response = await fetch(`https://api.resend.com/emails/receiving/${emailId}`, {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
