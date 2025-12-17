@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'My-Mailer.Pro - Temporary Email Service',
+  title: 'TEMP MAIL PRO - Temporary Email Service',
   description: 'Free temporary email service. Protect your privacy with disposable email addresses that expire in 24 hours.',
 };
 
