@@ -366,6 +366,9 @@ header {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  max-height: 600px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .email-viewer-header {
@@ -539,7 +542,8 @@ header {
   flex: 1;
   background: white;
   border-radius: 0 0 16px 16px;
-  overflow: hidden;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .email-iframe {
@@ -773,6 +777,7 @@ footer p {
     border-radius: 0;
     max-height: 100vh;
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .email-viewer-meta {
