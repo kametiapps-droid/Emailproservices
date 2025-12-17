@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
   try {
     const db = getDb();
     const body = await request.json();
-    const { emailId, sender, subject, content } = body;
+    const { emailId, sender, subject, content, htmlContent, attachments } = body;
 
     if (!emailId || !sender || !subject) {
       return NextResponse.json(
@@ -79,6 +79,8 @@ export async function POST(request: NextRequest) {
       sender,
       subject,
       content: content || '',
+      htmlContent: htmlContent || '',
+      attachments: attachments || [],
       receivedAt: new Date().toISOString(),
       isRead: false,
     };

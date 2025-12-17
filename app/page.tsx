@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 interface Email {
   id: string;
@@ -9,11 +9,20 @@ interface Email {
   expiresAt: string;
 }
 
+interface Attachment {
+  filename: string;
+  contentType: string;
+  size: number;
+  url?: string;
+}
+
 interface Message {
   id: string;
   sender: string;
   subject: string;
   content: string;
+  htmlContent?: string;
+  attachments?: Attachment[];
   receivedAt: string;
   isRead: boolean;
 }
@@ -27,6 +36,7 @@ export default function Home() {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [timeLeft, setTimeLeft] = useState('');
   const [copied, setCopied] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const generateEmail = async () => {
     try {
@@ -37,6 +47,7 @@ export default function Home() {
         setEmail(data.data);
         localStorage.setItem('tempEmail', JSON.stringify(data.data));
         setMessages([]);
+        setSelectedMessage(null);
       }
     } catch (error) {
       console.error('Error generating email:', error);
@@ -121,6 +132,29 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [email?.expiresAt]);
 
+  useEffect(() => {
+    if (selectedMessage && iframeRef.current) {
+      const iframe = iframeRef.current;
+      const doc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (doc) {
+        const htmlContent = selectedMessage.htmlContent || `
+          <html>
+            <head>
+              <style>
+                body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 20px; line-height: 1.6; color: #333; background: #fff; }
+                pre { white-space: pre-wrap; word-wrap: break-word; }
+              </style>
+            </head>
+            <body>${selectedMessage.content.replace(/\n/g, '<br>')}</body>
+          </html>
+        `;
+        doc.open();
+        doc.write(htmlContent);
+        doc.close();
+      }
+    }
+  }, [selectedMessage]);
+
   const copyEmail = () => {
     if (email?.email) {
       navigator.clipboard.writeText(email.email);
@@ -168,6 +202,20 @@ export default function Home() {
     }
   };
 
+  const deleteMessage = async (messageId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!email?.id || !confirm('Delete this message?')) return;
+    try {
+      await fetch(`/api/inbox?emailId=${email.id}&messageId=${messageId}`, { method: 'DELETE' });
+      setMessages(prev => prev.filter(m => m.id !== messageId));
+      if (selectedMessage?.id === messageId) {
+        setSelectedMessage(null);
+      }
+    } catch (error) {
+      console.error('Error deleting message:', error);
+    }
+  };
+
   const formatTime = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
@@ -177,6 +225,12 @@ export default function Home() {
     if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
     if (diff < 86400000) return `${Math.floor(diff / 3600000)}h ago`;
     return date.toLocaleDateString();
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
   if (loading && !email) {
@@ -269,31 +323,130 @@ export default function Home() {
           <span className="message-count">{messages.length} messages</span>
         </div>
 
-        <div className="inbox-list">
-          {messages.length === 0 ? (
-            <div className="inbox-empty">
-              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
-                <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
-              </svg>
-              <h3>Your inbox is empty</h3>
-              <p>Emails sent to your temporary address will appear here. Auto-refresh is active every 10 seconds.</p>
-            </div>
-          ) : (
-            messages.map(message => (
-              <div
-                key={message.id}
-                className={`message-item ${!message.isRead ? 'message-unread' : ''}`}
-                onClick={() => openMessage(message)}
-              >
-                <div className="message-header">
-                  <span className="message-sender">{message.sender}</span>
-                  <span className="message-time">{formatTime(message.receivedAt)}</span>
-                </div>
-                <div className="message-subject">{message.subject}</div>
-                <div className="message-preview">{message.content.substring(0, 100)}...</div>
+        <div className="inbox-container">
+          <div className={`inbox-list ${selectedMessage ? 'inbox-list-narrow' : ''}`}>
+            {messages.length === 0 ? (
+              <div className="inbox-empty">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+                  <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+                </svg>
+                <h3>Your inbox is empty</h3>
+                <p>Emails sent to your temporary address will appear here.</p>
               </div>
-            ))
+            ) : (
+              messages.map(message => (
+                <div
+                  key={message.id}
+                  className={`message-item ${!message.isRead ? 'message-unread' : ''} ${selectedMessage?.id === message.id ? 'message-selected' : ''}`}
+                  onClick={() => openMessage(message)}
+                >
+                  <div className="message-item-content">
+                    <div className="message-avatar">
+                      {message.sender.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="message-info">
+                      <div className="message-header">
+                        <span className="message-sender">{message.sender}</span>
+                        <span className="message-time">{formatTime(message.receivedAt)}</span>
+                      </div>
+                      <div className="message-subject">{message.subject}</div>
+                      <div className="message-preview">
+                        {message.content.replace(/<[^>]*>/g, '').substring(0, 60)}...
+                      </div>
+                    </div>
+                    <button 
+                      className="message-delete-btn"
+                      onClick={(e) => deleteMessage(message.id, e)}
+                      title="Delete message"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {selectedMessage && (
+            <div className="email-viewer">
+              <div className="email-viewer-header">
+                <button className="back-btn" onClick={() => setSelectedMessage(null)}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                  </svg>
+                  Back
+                </button>
+                <button 
+                  className="delete-btn"
+                  onClick={(e) => deleteMessage(selectedMessage.id, e)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  Delete
+                </button>
+              </div>
+
+              <div className="email-viewer-meta">
+                <div className="email-sender-info">
+                  <div className="sender-avatar-large">
+                    {selectedMessage.sender.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="sender-details">
+                    <div className="sender-name">{selectedMessage.sender}</div>
+                    <div className="sender-email">to: {email?.email}</div>
+                  </div>
+                </div>
+                <div className="email-date">
+                  {new Date(selectedMessage.receivedAt).toLocaleString()}
+                </div>
+              </div>
+
+              <div className="email-subject-bar">
+                <h2>{selectedMessage.subject}</h2>
+              </div>
+
+              {selectedMessage.attachments && selectedMessage.attachments.length > 0 && (
+                <div className="email-attachments">
+                  <div className="attachments-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                    </svg>
+                    {selectedMessage.attachments.length} Attachment{selectedMessage.attachments.length > 1 ? 's' : ''}
+                  </div>
+                  <div className="attachments-list">
+                    {selectedMessage.attachments.map((att, idx) => (
+                      <div key={idx} className="attachment-item">
+                        <div className="attachment-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                          </svg>
+                        </div>
+                        <div className="attachment-info">
+                          <span className="attachment-name">{att.filename}</span>
+                          <span className="attachment-size">{formatFileSize(att.size)}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="email-content-frame">
+                <iframe
+                  ref={iframeRef}
+                  title="Email Content"
+                  sandbox="allow-same-origin"
+                  className="email-iframe"
+                />
+              </div>
+            </div>
           )}
         </div>
       </section>
@@ -384,24 +537,6 @@ export default function Home() {
               <p style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
                 Scan this QR code to copy the email address
               </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {selectedMessage && (
-        <div className="modal-overlay" onClick={() => setSelectedMessage(null)}>
-          <div className="modal" onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>{selectedMessage.subject}</h3>
-              <button className="modal-close" onClick={() => setSelectedMessage(null)}>&times;</button>
-            </div>
-            <div className="modal-body">
-              <div className="message-meta">
-                <p><strong>From:</strong> {selectedMessage.sender}</p>
-                <p><strong>Date:</strong> {new Date(selectedMessage.receivedAt).toLocaleString()}</p>
-              </div>
-              <div className="message-content">{selectedMessage.content}</div>
             </div>
           </div>
         </div>
