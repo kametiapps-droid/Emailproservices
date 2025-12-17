@@ -6,7 +6,7 @@ A secure temporary email service built with Next.js and Firebase Firestore. User
 ## Project Architecture
 
 ### Tech Stack
-- **Frontend/Backend**: Next.js 16 with Turbopack
+- **Frontend/Backend**: Next.js 15
 - **Database**: Firebase Firestore
 - **Language**: TypeScript/React
 
@@ -57,9 +57,9 @@ npm run start
 
 ## Recent Changes
 - **December 17, 2025**: 
-  - Upgraded to Next.js 16 with Turbopack for better performance
-  - Configured allowedDevOrigins for Replit environment
-  - Set up deployment configuration
+  - Configured for Next.js 15 with React 19
+  - Set up Replit workflow and deployment configuration
+  - App runs on port 5000
 
 ## User Preferences
 - Dark theme UI design
