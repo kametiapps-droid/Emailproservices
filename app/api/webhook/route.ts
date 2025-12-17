@@ -4,7 +4,29 @@ import crypto from 'crypto';
 
 export const dynamic = 'force-dynamic';
 
-async function fetchEmailContent(emailId: string): Promise<{ text: string; html: string } | null> {
+interface ResendEmailContent {
+  object: string;
+  id: string;
+  to: string[];
+  from: string;
+  subject: string;
+  html: string | null;
+  text: string | null;
+  headers: Record<string, string>;
+  bcc: string[];
+  cc: string[];
+  reply_to: string[];
+  message_id: string;
+  attachments: Array<{
+    id: string;
+    filename: string;
+    content_type: string;
+    content_disposition: string;
+    content_id?: string;
+  }>;
+}
+
+async function fetchEmailContent(emailId: string): Promise<{ text: string; html: string; subject?: string; from?: string } | null> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.log('RESEND_API_KEY not set, cannot fetch email content');
@@ -12,7 +34,9 @@ async function fetchEmailContent(emailId: string): Promise<{ text: string; html:
   }
 
   try {
+    console.log('Fetching email content from Resend API for email_id:', emailId);
     const response = await fetch(`https://api.resend.com/emails/receiving/${emailId}`, {
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
@@ -21,18 +45,24 @@ async function fetchEmailContent(emailId: string): Promise<{ text: string; html:
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.log('Failed to fetch email content:', response.status, errorText);
+      console.error('Failed to fetch email content from Resend:', response.status, errorText);
       return null;
     }
 
-    const data = await response.json();
-    console.log('Fetched email content from Resend:', JSON.stringify(data, null, 2));
+    const data: ResendEmailContent = await response.json();
+    console.log('Successfully fetched email content from Resend API');
+    console.log('Email subject:', data.subject);
+    console.log('Email text length:', data.text?.length || 0);
+    console.log('Email html length:', data.html?.length || 0);
+    
     return {
-      text: data.text || data.body || '',
+      text: data.text || '',
       html: data.html || '',
+      subject: data.subject,
+      from: data.from,
     };
   } catch (error) {
-    console.error('Error fetching email content:', error);
+    console.error('Error fetching email content from Resend:', error);
     return null;
   }
 }
@@ -98,15 +128,20 @@ export async function POST(request: NextRequest) {
     
     console.log('Parsed email - To:', to, 'From:', from, 'Subject:', subject, 'Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
 
-    // Always try to fetch full content from Resend API to get HTML
-    if (body.data?.email_id) {
-      console.log('Fetching full email content from Resend API with email_id:', body.data.email_id);
-      const content = await fetchEmailContent(body.data.email_id);
+    // Always fetch full content from Resend API since webhooks don't include body
+    const emailId = body.data?.email_id || body.data?.id || body.email_id;
+    if (emailId) {
+      console.log('Fetching full email content from Resend API with email_id:', emailId);
+      const content = await fetchEmailContent(emailId);
       if (content) {
-        if (content.text) textBody = content.text;
-        if (content.html) htmlBody = content.html;
-        console.log('Fetched text length:', textBody?.length || 0, 'html length:', htmlBody?.length || 0);
+        textBody = content.text || textBody;
+        htmlBody = content.html || htmlBody;
+        if (content.subject) subject = content.subject;
+        if (content.from) from = content.from;
+        console.log('After Resend API fetch - Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
       }
+    } else {
+      console.log('No email_id found in webhook payload - cannot fetch full content');
     }
 
     if (!to || !from) {
