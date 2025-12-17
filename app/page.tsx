@@ -246,19 +246,13 @@ export default function Home() {
   }
 
   return (
-    <>
-      <header>
-        <div className="container header-content">
-          <div className="logo">My-Mailer.Pro</div>
-          <div className="refresh-indicator">
+    <div className="page-container">
+      <section className="hero">
+        <div className="container">
+          <div className="refresh-indicator" style={{ justifyContent: 'center', marginBottom: '20px' }}>
             <span className="refresh-dot"></span>
             Auto-refresh active
           </div>
-        </div>
-      </header>
-
-      <section className="hero">
-        <div className="container">
           <h1>Secure Temporary Email</h1>
           <p>Protect your privacy with instant disposable email addresses. No registration required. Emails expire in 24 hours.</p>
         </div>
@@ -431,7 +425,7 @@ export default function Home() {
 
       <section className="features">
         <div className="container">
-          <h2>Why Choose My-Mailer.Pro?</h2>
+          <h2>Why Choose Temp Mail Pro?</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">
@@ -495,12 +489,6 @@ export default function Home() {
         </div>
       </section>
 
-      <footer>
-        <div className="container">
-          <p>My-Mailer.Pro - Free Temporary Email Service</p>
-        </div>
-      </footer>
-
       {showQR && (
         <div className="modal-overlay" onClick={() => setShowQR(false)}>
           <div className="modal qr-modal" onClick={e => e.stopPropagation()}>
@@ -519,6 +507,6 @@ export default function Home() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
