@@ -71,7 +71,8 @@ export async function POST(request: NextRequest) {
     let to: string;
     let from: string;
     let subject: string;
-    let emailBody: string;
+    let textBody: string = '';
+    let htmlBody: string = '';
 
     console.log('Webhook received payload:', JSON.stringify(body, null, 2));
 
@@ -79,28 +80,32 @@ export async function POST(request: NextRequest) {
       to = body.data.to?.[0] || body.data.to;
       from = body.data.from;
       subject = body.data.subject || '(No Subject)';
-      emailBody = body.data.text || body.data.html || body.data.body || body.data.content || '';
+      textBody = body.data.text || body.data.body || body.data.content || '';
+      htmlBody = body.data.html || '';
     } else if (body.data) {
       to = body.data.to?.[0] || body.data.to || body.to;
       from = body.data.from || body.from;
       subject = body.data.subject || body.subject || '(No Subject)';
-      emailBody = body.data.text || body.data.html || body.data.body || body.data.content || body.body || body.text || body.html || '';
+      textBody = body.data.text || body.data.body || body.data.content || body.body || body.text || '';
+      htmlBody = body.data.html || body.html || '';
     } else {
       to = body.to;
       from = body.from;
       subject = body.subject || '(No Subject)';
-      emailBody = body.body || body.text || body.html || body.content || '';
+      textBody = body.body || body.text || body.content || '';
+      htmlBody = body.html || '';
     }
     
-    console.log('Parsed email - To:', to, 'From:', from, 'Subject:', subject, 'Body length:', emailBody?.length || 0);
+    console.log('Parsed email - To:', to, 'From:', from, 'Subject:', subject, 'Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
 
     // If body is empty, try to fetch from Resend API
-    if (!emailBody && body.data?.email_id) {
+    if (!textBody && !htmlBody && body.data?.email_id) {
       console.log('Body empty, fetching from Resend API with email_id:', body.data.email_id);
       const content = await fetchEmailContent(body.data.email_id);
       if (content) {
-        emailBody = content.text || content.html || '';
-        console.log('Fetched body length:', emailBody.length);
+        textBody = content.text || '';
+        htmlBody = content.html || '';
+        console.log('Fetched text length:', textBody.length, 'html length:', htmlBody.length);
       }
     }
 
@@ -143,7 +148,8 @@ export async function POST(request: NextRequest) {
       id: messageRef.id,
       sender: from,
       subject: subject,
-      content: emailBody,
+      content: textBody || htmlBody,
+      htmlContent: htmlBody,
       receivedAt: new Date().toISOString(),
       isRead: false,
     });
