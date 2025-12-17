@@ -12,10 +12,10 @@ async function fetchEmailContent(emailId: string): Promise<{ text: string; html:
   }
 
   try {
-    // Use the correct Resend API endpoint for receiving/inbound emails
-    const response = await fetch(`https://api.resend.com/emails/receiving/${emailId}`, {
+    const response = await fetch(`https://api.resend.com/emails/${emailId}`, {
       headers: {
         'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
       },
     });
 
@@ -98,14 +98,14 @@ export async function POST(request: NextRequest) {
     
     console.log('Parsed email - To:', to, 'From:', from, 'Subject:', subject, 'Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
 
-    // If body is empty, try to fetch from Resend API
-    if (!textBody && !htmlBody && body.data?.email_id) {
-      console.log('Body empty, fetching from Resend API with email_id:', body.data.email_id);
+    // Always try to fetch full content from Resend API to get HTML
+    if (body.data?.email_id) {
+      console.log('Fetching full email content from Resend API with email_id:', body.data.email_id);
       const content = await fetchEmailContent(body.data.email_id);
       if (content) {
-        textBody = content.text || '';
-        htmlBody = content.html || '';
-        console.log('Fetched text length:', textBody.length, 'html length:', htmlBody.length);
+        if (content.text) textBody = content.text;
+        if (content.html) htmlBody = content.html;
+        console.log('Fetched text length:', textBody?.length || 0, 'html length:', htmlBody?.length || 0);
       }
     }
 
