@@ -29,13 +29,30 @@ export default function ContactPage() {
     }
 
     setLoading(true);
-    // Simulate sending email
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        alert(`Error: ${data.error || 'Failed to send message'}`);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error sending message. Please try again.');
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   return (
