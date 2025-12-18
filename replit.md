@@ -76,23 +76,23 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Vote limiting: One vote per poll using localStorage
 
 ### Recent Changes (Dec 18, 2025)
-**Mobile Responsiveness - Complete**
-- **Container padding** - Desktop 24px → Tablet 16px → Mobile 8px
-- **Inbox section padding** - Desktop 24px → Tablet 12px → Mobile 4px (maximum width!)
-- **Message items** - Reduced padding, smaller gaps on mobile
-- **Email box** - 800px desktop → Full width on mobile/tablet
-- **Email display** - Stacks vertically on mobile, full-width copy button
-- **Email content** - 900px max-height, 500px iframe, responsive on all screens
+**Mobile Optimization - Complete**
+- **Button sizing** - Reduced padding 30%, icons 18% smaller, compact on mobile
+- **Container padding** - Desktop 24px → Tablet 16px → Mobile 8px (max width)
+- **Inbox section** - Desktop 24px → Tablet 12px → Mobile 4px padding
+- **Email box** - 800px desktop → 100% on mobile/tablet
+- **Email display** - Vertical stacking on mobile, full-width copy button
+- **Email content** - 900px max-height, 500px iframe, responsive layout
 
-**Links & Images**
-- ✅ Links open in new tabs (target="_blank", rel="noopener noreferrer")
-- ✅ Iframe sandbox allows popups (allow-popups, allow-popups-to-escape-sandbox)
+**Links & Functionality**
+- ✅ Links open in new tabs + rel="noopener noreferrer"
+- ✅ Iframe sandbox: allow-popups enabled
 - ✅ Logo optimized with next/image component
 
-**Performance**
-- ✅ Critical CSS inlined for above-fold content
+**Performance & Design**
+- ✅ Critical CSS inlined for above-fold rendering
 - ✅ CSS variables extracted (--link-color, --border-radius-*)
-- ✅ Proper cache control headers enabled
+- ✅ Cache control headers: no-store, no-cache, must-revalidate
 
 ### AdSense Compliance (Dec 18, 2025)
 ✅ Privacy Policy page - Complete data collection and usage disclosure

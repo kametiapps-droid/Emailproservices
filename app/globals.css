@@ -761,8 +761,8 @@ main {
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.06) 100%);
   border: 1px solid rgba(37, 99, 235, 0.3);
   color: var(--text-muted);
-  padding: 18px 14px;
-  border-radius: 14px;
+  padding: 12px 10px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -770,8 +770,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 0.8rem;
+  gap: 6px;
+  font-size: 0.75rem;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
   position: relative;
   overflow: hidden;
@@ -791,7 +791,7 @@ main {
   border-color: var(--primary-light);
   color: var(--primary-light);
   box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .action-btn:active {
@@ -806,8 +806,21 @@ main {
 }
 
 .action-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 600px) {
+  .action-btn {
+    padding: 10px 8px;
+    gap: 4px;
+    font-size: 0.7rem;
+  }
+  
+  .action-btn svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .inbox-section {
