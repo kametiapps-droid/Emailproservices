@@ -52,9 +52,12 @@ A secure temporary email service built with Next.js and Firebase Firestore. User
 ## Configuration
 
 ### Environment Variables (Secrets)
-- `FIREBASE_SERVICE_ACCOUNT_KEY` or `FIREBASE_SERVICES_KEY`: Firebase service account JSON key (required)
-- `RESEND_API_KEY`: For email sending functionality (optional)
-- `SESSION_SECRET`: Session management secret (optional)
+- `FIREBASE_SERVICES_KEY`: Firebase service account JSON key (required)
+
+### Email Service
+- **Provider**: Cloudflare Email Routing
+- **Setup**: Configure Cloudflare Email Routing to forward to your Cloudflare Worker
+- **Worker**: Deploy `cloudflare-worker.js` to Cloudflare Workers with `WEBHOOK_URL` environment variable
 
 ### Development
 Run the development server:
@@ -83,7 +86,15 @@ npm run start
 6. **Reviews** (`/reviews`) - User reviews with ratings
 
 ## Recent Changes
-- **December 17, 2025 (Latest)**:
+- **December 18, 2025 (Latest)**:
+  - Removed Resend email service completely
+  - Integrated Cloudflare Email Routing
+  - Simplified webhook to handle only Cloudflare emails
+  - Added `cloudflare-worker.js` for email forwarding
+  - Cleaner, dependency-free email handling
+  - Enhanced button styles with gradients and animations
+
+- **December 17, 2025**:
   - Complete layout redesign with modern, minimal, corporate style
   - New blue/indigo color scheme replacing purple/cyan
   - Glassmorphism effects on cards and buttons

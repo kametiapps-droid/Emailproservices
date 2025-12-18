@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
-import crypto from 'crypto';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,99 +11,10 @@ interface CloudflareEmail {
   raw: string;
 }
 
-interface ResendEmailContent {
-  object: string;
-  id: string;
-  to: string[];
-  from: string;
-  subject: string;
-  html: string | null;
-  text: string | null;
-  headers: Record<string, string>;
-  bcc: string[];
-  cc: string[];
-  reply_to: string[];
-  message_id: string;
-  attachments: Array<{
-    id: string;
-    filename: string;
-    content_type: string;
-    content_disposition: string;
-    content_id?: string;
-  }>;
-}
-
-async function fetchEmailContent(emailId: string): Promise<{ text: string; html: string; subject?: string; from?: string } | null> {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.log('RESEND_API_KEY not set, cannot fetch email content');
-    return null;
-  }
-
-  try {
-    console.log('Fetching email content from Resend API for email_id:', emailId);
-    const response = await fetch(`https://api.resend.com/emails/receiving/${emailId}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Failed to fetch email content from Resend:', response.status, errorText);
-      return null;
-    }
-
-    const data: ResendEmailContent = await response.json();
-    console.log('Successfully fetched email content from Resend API');
-    console.log('Email subject:', data.subject);
-    console.log('Email text length:', data.text?.length || 0);
-    console.log('Email html length:', data.html?.length || 0);
-    
-    return {
-      text: data.text || '',
-      html: data.html || '',
-      subject: data.subject,
-      from: data.from,
-    };
-  } catch (error) {
-    console.error('Error fetching email content from Resend:', error);
-    return null;
-  }
-}
-
-function verifyResendWebhook(payload: string, signature: string, secret: string): boolean {
-  try {
-    const expectedSignature = crypto
-      .createHmac('sha256', secret)
-      .update(payload)
-      .digest('hex');
-    return crypto.timingSafeEqual(
-      Buffer.from(signature),
-      Buffer.from(expectedSignature)
-    );
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
     const db = getDb();
-    const rawBody = await request.text();
-    const signature = request.headers.get('svix-signature') || request.headers.get('resend-signature') || '';
-    const webhookSecret = process.env.RESEND_WEBHOOK_SECRET;
-
-    if (webhookSecret && signature) {
-      const isValid = verifyResendWebhook(rawBody, signature, webhookSecret);
-      if (!isValid) {
-        console.log('Webhook signature verification failed, but continuing...');
-      }
-    }
-
-    const body = JSON.parse(rawBody);
+    const body = await request.json();
     
     let to: string;
     let from: string;
@@ -112,79 +22,48 @@ export async function POST(request: NextRequest) {
     let textBody: string = '';
     let htmlBody: string = '';
 
-    console.log('Webhook received payload:', JSON.stringify(body, null, 2));
+    console.log('📨 Webhook received from Cloudflare');
 
-    // Check if this is a Cloudflare email
-    if (body.to && body.from && body.raw && !body.type) {
-      console.log('Processing Cloudflare email...');
-      const cfEmail: CloudflareEmail = body;
-      to = cfEmail.to;
-      from = cfEmail.from;
-      subject = cfEmail.subject || '(No Subject)';
-      
-      // Parse raw email content
-      try {
-        const rawEmail = cfEmail.raw;
-        const lines = rawEmail.split('\n');
-        let bodyStarted = false;
-        let currentBody = '';
+    // Parse Cloudflare email
+    const cfEmail: CloudflareEmail = body;
+    to = cfEmail.to;
+    from = cfEmail.from;
+    subject = cfEmail.subject || '(No Subject)';
+    
+    // Parse raw email content
+    try {
+      const rawEmail = cfEmail.raw;
+      const lines = rawEmail.split('\n');
+      let bodyStarted = false;
+      let currentBody = '';
 
-        for (const line of lines) {
-          if (!bodyStarted) {
-            if (line === '' || line === '\r') {
-              bodyStarted = true;
-              continue;
-            }
-            // Extract subject from headers if not set
-            if (line.toLowerCase().startsWith('subject:')) {
-              subject = line.substring(8).trim() || subject;
-            }
-          } else {
-            currentBody += line + '\n';
+      for (const line of lines) {
+        if (!bodyStarted) {
+          if (line === '' || line === '\r') {
+            bodyStarted = true;
+            continue;
           }
+          // Extract subject from headers if not set
+          if (line.toLowerCase().startsWith('subject:')) {
+            subject = line.substring(8).trim() || subject;
+          }
+        } else {
+          currentBody += line + '\n';
         }
-        
-        textBody = currentBody.trim() || '(No email content)';
-        htmlBody = '';
-      } catch (parseError) {
-        console.error('Error parsing raw email:', parseError);
-        textBody = cfEmail.raw || '(Failed to parse email)';
       }
-    } else if (body.type === 'email.received' && body.data) {
-      to = body.data.to?.[0] || body.data.to;
-      from = body.data.from;
-      subject = body.data.subject || '(No Subject)';
-      textBody = body.data.text || body.data.body || body.data.content || '';
-      htmlBody = body.data.html || '';
-    } else if (body.data) {
-      to = body.data.to?.[0] || body.data.to || body.to;
-      from = body.data.from || body.from;
-      subject = body.data.subject || body.subject || '(No Subject)';
-      textBody = body.data.text || body.data.body || body.data.content || body.body || body.text || '';
-      htmlBody = body.data.html || body.html || '';
-    } else {
-      to = body.to;
-      from = body.from;
-      subject = body.subject || '(No Subject)';
-      textBody = body.body || body.text || body.content || '';
-      htmlBody = body.html || '';
+      
+      textBody = currentBody.trim() || '(No email content)';
+      htmlBody = '';
+    } catch (parseError) {
+      console.error('Error parsing raw email:', parseError);
+      textBody = cfEmail.raw || '(Failed to parse email)';
     }
     
-    console.log('Parsed email - To:', to, 'From:', from, 'Subject:', subject, 'Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
-
-    // Only fetch from Resend API if we have an email_id (Resend-specific)
-    const emailId = body.data?.email_id || body.data?.id || body.email_id;
-    if (emailId && body.type === 'email.received') {
-      console.log('Fetching full email content from Resend API with email_id:', emailId);
-      const content = await fetchEmailContent(emailId);
-      if (content) {
-        textBody = content.text || textBody;
-        htmlBody = content.html || htmlBody;
-        if (content.subject) subject = content.subject;
-        if (content.from) from = content.from;
-        console.log('After Resend API fetch - Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
-      }
-    }
+    console.log('📩 EMAIL RECEIVED');
+    console.log('Inbox:', to.split('@')[0]);
+    console.log('From:', from);
+    console.log('Subject:', subject);
+    console.log('Size:', textBody.length);
 
     if (!to || !from) {
       return NextResponse.json(
@@ -195,6 +74,7 @@ export async function POST(request: NextRequest) {
 
     const emailAddress = Array.isArray(to) ? to[0] : to;
 
+    // Check if email exists
     const emailsSnapshot = await db
       .collection('temp_emails')
       .where('email', '==', emailAddress)
@@ -202,7 +82,7 @@ export async function POST(request: NextRequest) {
       .get();
 
     if (emailsSnapshot.empty) {
-      console.log('Email address not found:', emailAddress);
+      console.log('⚠️ Email address not found:', emailAddress);
       return NextResponse.json(
         { success: false, error: 'Email address not found' },
         { status: 404 }
@@ -212,13 +92,16 @@ export async function POST(request: NextRequest) {
     const emailDoc = emailsSnapshot.docs[0];
     const emailData = emailDoc.data();
 
+    // Check if expired
     if (new Date(emailData.expiresAt) < new Date()) {
+      console.log('⏰ Email has expired:', emailAddress);
       return NextResponse.json(
         { success: false, error: 'Email has expired' },
         { status: 404 }
       );
     }
 
+    // Store message in Firebase
     const messageRef = emailDoc.ref.collection('messages').doc();
 
     await messageRef.set({
@@ -231,10 +114,10 @@ export async function POST(request: NextRequest) {
       isRead: false,
     });
 
-    console.log('Email received and stored successfully for:', emailAddress);
+    console.log('✅ Email received and stored successfully');
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Webhook receive error:', error);
+    console.error('❌ Webhook receive error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to receive email' },
       { status: 500 }
