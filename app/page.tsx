@@ -479,7 +479,7 @@ export default function Home() {
                         <iframe
                           ref={selectedMessage?.id === message.id ? iframeRef : null}
                           title="Email Content"
-                          sandbox="allow-same-origin"
+                          sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
                           className="inline-email-iframe"
                         />
                       </div>
