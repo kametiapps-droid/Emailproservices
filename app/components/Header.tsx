@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,6 +35,13 @@ export default function Header() {
     <header className="site-header">
       <div className="container header-content">
         <Link href="/" className="logo" onClick={closeMenu}>
+          <Image 
+            src="/favicon.png" 
+            alt="Temp Mail Pro Logo" 
+            width={28} 
+            height={28}
+            style={{ borderRadius: '8px' }}
+          />
           Temp Mail Pro
         </Link>
 

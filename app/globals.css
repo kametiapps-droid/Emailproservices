@@ -134,11 +134,10 @@ main {
   gap: 8px;
 }
 
-.site-header .logo::before {
-  content: '';
+.site-header .logo img {
+  display: block;
   width: 28px;
   height: 28px;
-  background: var(--gradient-primary);
   border-radius: 8px;
 }
 
