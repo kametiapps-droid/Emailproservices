@@ -17,9 +17,6 @@ export async function POST(request: NextRequest) {
   try {
     const db = getDb();
     const body = await request.json();
-    
-    console.log('📨 Webhook received from Cloudflare');
-    console.log('📦 Payload keys:', Object.keys(body));
 
     const cfEmail: CloudflareEmail = body;
     const to = cfEmail.to;
@@ -41,7 +38,6 @@ export async function POST(request: NextRequest) {
         
         // Check if we found the section (case-insensitive)
         if (!foundSection && new RegExp(`Content-Type:\\s*${contentType}`, 'i').test(line)) {
-          console.log(`✅ Found ${contentType} section at line ${i}`);
           foundSection = true;
           inHeaders = true;
           continue;
@@ -59,7 +55,6 @@ export async function POST(request: NextRequest) {
           
           // Stop at boundary (line starts with --)
           if (line.trim().startsWith('--')) {
-            console.log(`🛑 Found boundary at line ${i}, ending ${contentType} extraction`);
             break;
           }
           
@@ -71,7 +66,6 @@ export async function POST(request: NextRequest) {
       let text = result.join('\n').trim();
       // Clean up quoted-printable encoding (=\n means soft line break)
       text = text.replace(/=\r?\n/g, '');
-      console.log(`📊 Extracted ${contentType}: ${text.length} bytes`);
       return text;
     };
     
@@ -99,15 +93,6 @@ export async function POST(request: NextRequest) {
     if (!htmlBody && !textBody) {
       textBody = 'Email received (no content available)';
     }
-    
-    console.log('✅ Using parsed text/html fields');
-
-    console.log('📩 EMAIL RECEIVED');
-    console.log('📬 To:', to);
-    console.log('📧 From:', from);
-    console.log('📋 Subject:', subject);
-    console.log('📝 Text length:', textBody.length);
-    console.log('🌐 HTML length:', htmlBody.length);
 
     if (!to || !from) {
       return NextResponse.json(

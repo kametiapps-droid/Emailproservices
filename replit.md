@@ -20,12 +20,7 @@ A secure temporary email service built with Next.js and Firebase Firestore. User
 │   │   ├── email/        # Email CRUD operations
 │   │   ├── inbox/        # Inbox message handling
 │   │   ├── qrcode/       # QR code generation
-│   │   └── webhook/      # External webhook handling
-│   ├── blog/             # Blog page
-│   ├── contact/          # Contact us page
-│   ├── faq/              # FAQ page
-│   ├── reviews/          # User reviews page
-│   ├── use-cases/        # Where to use temp mail page
+│   │   └── webhook/      # Cloudflare email webhook handler
 │   ├── components/       # Shared components
 │   │   ├── Header.tsx   # Sticky header with nav and theme toggle
 │   │   └── Footer.tsx   # Site footer with links
@@ -34,6 +29,7 @@ A secure temporary email service built with Next.js and Firebase Firestore. User
 │   └── globals.css       # Global styles with theme support
 ├── lib/
 │   └── firebase.ts       # Firebase Admin SDK configuration
+├── cloudflare-worker.js   # Cloudflare Email Routing worker
 ├── next.config.js         # Next.js configuration
 └── package.json          # Dependencies and scripts
 ```
@@ -47,7 +43,8 @@ A secure temporary email service built with Next.js and Firebase Firestore. User
 - Firebase Firestore for persistence
 - Dark/Light theme toggle
 - Sticky header with hamburger menu (mobile)
-- Multiple informational pages (Blog, FAQ, Contact, Reviews, Use Cases)
+- Receives full HTML emails with logos and formatting
+- Clean inbox display with multipart email parsing
 
 ## Configuration
 
@@ -79,19 +76,24 @@ npm run start
 
 ## Pages
 1. **Home** (`/`) - Main temp email generator with inbox
-2. **Blog** (`/blog`) - Privacy tips and security articles
-3. **Use Cases** (`/use-cases`) - Where to use temporary email
-4. **FAQ** (`/faq`) - Frequently asked questions
-5. **Contact** (`/contact`) - Contact form and information
-6. **Reviews** (`/reviews`) - User reviews with ratings
 
 ## Recent Changes
-- **December 18, 2025 (Latest)**:
+- **December 18, 2025 (Latest - Code Cleanup)**:
+  - Removed all debug console logs from webhook for production-ready code
+  - Removed unused marketing pages (blog, contact, faq, reviews, use-cases) to reduce build size
+  - Cleaned up old test screenshots from attached_assets
+  - Optimized multipart email parsing to correctly display HTML with logos
+  - No JavaScript console errors - fully clean delivery
+  - Project is now lean and production-ready
+
+- **December 18, 2025 (Previous)**:
+  - Improved email parsing to handle multipart emails correctly
+  - Fixed HTML content extraction from Cloudflare Email Routing
+  - Shows only styled HTML emails with logos (no plain text duplication)
   - Removed Resend email service completely
   - Integrated Cloudflare Email Routing
   - Simplified webhook to handle only Cloudflare emails
   - Added `cloudflare-worker.js` for email forwarding
-  - Cleaner, dependency-free email handling
   - Enhanced button styles with gradients and animations
 
 - **December 17, 2025**:
