@@ -280,10 +280,6 @@ export default function Home() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <div className="refresh-indicator" style={{ justifyContent: 'center', marginBottom: '20px' }}>
-            <span className="refresh-dot"></span>
-            Auto-refresh active
-          </div>
           <h1>Secure Temporary Email</h1>
           <p>Protect your privacy with instant disposable email addresses. No registration required. Emails expire in 24 hours.</p>
         </div>
@@ -348,13 +344,19 @@ export default function Home() {
 
       <section className="inbox-section">
         <div className="inbox-header">
-          <h2>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
-              <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
-            </svg>
-            Inbox
-          </h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <h2 style={{ margin: 0 }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
+                <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+              </svg>
+              Inbox
+            </h2>
+            <div className="refresh-indicator" style={{ margin: 0, gap: '6px' }}>
+              <span className="refresh-dot"></span>
+              <span style={{ fontSize: '0.85rem' }}>Auto-refresh active</span>
+            </div>
+          </div>
           <span className="message-count">{messages.length} messages</span>
         </div>
 
