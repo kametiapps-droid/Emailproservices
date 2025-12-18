@@ -1,78 +1,77 @@
 /**
  * Cloudflare Email Routing Worker
- * Handles incoming emails and forwards them to your Temp Mail Pro webhook
+ * Simple, working version for Temp Mail Pro
  */
 
 export default {
   async email(message) {
-    const webhookUrl = env.WEBHOOK_URL;
+    console.log('📧 Email received');
     
-    if (!webhookUrl) {
-      console.error('WEBHOOK_URL not configured');
-      message.setReject('Webhook URL not configured');
+    const webhookUrl = 'WEBHOOK_URL_HERE';
+    
+    if (!webhookUrl || webhookUrl === 'WEBHOOK_URL_HERE') {
+      console.error('❌ Please set WEBHOOK_URL in worker environment variables');
+      message.setReject('Webhook not configured');
       return;
     }
 
     try {
+      // Extract email details
       const to = message.to;
       const from = message.from;
       const subject = message.headers.get('subject') || '(No Subject)';
       
-      // Read raw email content properly
-      let raw = '';
-      const reader = message.raw.getReader();
-      const decoder = new TextDecoder();
-      
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        raw += decoder.decode(value, { stream: true });
-      }
+      console.log(`✉️ From: ${from}`);
+      console.log(`📬 To: ${to}`);
+      console.log(`📋 Subject: ${subject}`);
 
-      console.log('📩 EMAIL RECEIVED');
-      console.log('To:', to);
-      console.log('From:', from);
-      console.log('Subject:', subject);
-      console.log('Size:', raw.length);
+      // Read the email body
+      const rawEmail = await streamToString(message.raw);
 
-      // Forward to webhook
-      let webhookResponse;
-      try {
-        webhookResponse = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            to,
-            from,
-            subject,
-            raw,
-          }),
-        });
-      } catch (fetchError) {
-        console.error('Fetch error:', fetchError);
-        message.setReject('Could not reach webhook');
-        return;
-      }
+      // Send to your Next.js webhook
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to,
+          from,
+          subject,
+          raw: rawEmail,
+          timestamp: new Date().toISOString(),
+        }),
+      });
 
-      if (!webhookResponse.ok) {
-        console.error('Webhook error:', webhookResponse.status);
-        message.setReject('Webhook returned error');
-        return;
-      }
-
-      const result = await webhookResponse.json();
-      
-      if (result.success) {
-        console.log('✅ Email processed successfully');
+      if (response.ok) {
+        console.log('✅ Email sent to webhook successfully');
       } else {
-        console.warn('Webhook error:', result.error);
-        message.setReject(result.error || 'Processing failed');
+        const error = await response.text();
+        console.error('❌ Webhook error:', response.status, error);
+        message.setReject('Webhook processing failed');
       }
     } catch (error) {
-      console.error('Error:', error);
-      message.setReject('Failed to process');
+      console.error('❌ Worker error:', error.message || error);
+      message.setReject('Email processing failed');
     }
   },
 };
+
+// Helper function to convert stream to string
+async function streamToString(stream) {
+  const reader = stream.getReader();
+  let result = '';
+  
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      result += new TextDecoder().decode(value, { stream: true });
+    }
+    result += new TextDecoder().decode();
+  } finally {
+    reader.releaseLock();
+  }
+  
+  return result;
+}
