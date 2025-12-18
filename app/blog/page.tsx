@@ -20,7 +20,7 @@ const blogPosts: BlogPost[] = [
     title: "The Ultimate Guide to Protecting Your Privacy Online",
     excerpt: "Learn how temporary email addresses can be your first line of defense against spam and data breaches.",
     category: "Privacy",
-    author: "Sarah Chen",
+    author: "Temp Mail Pro Team",
     date: "December 15, 2024",
     readTime: 8,
     content: `In today's digital age, your email address has become one of your most valuable assets. It's the key to your social media accounts, online shopping profiles, banking services, and countless subscriptions. But with this power comes a significant vulnerability: every time you sign up for a new service or download an app, you're giving out information that could be sold to marketers, stolen by hackers, or used for spam.
@@ -68,7 +68,7 @@ Whether you're a privacy advocate, a security-conscious professional, or simply 
     title: "How Scammers Use Email: A Complete Protection Guide",
     excerpt: "Understand the tactics used by scammers and how temporary email can protect you from becoming their next victim.",
     category: "Security",
-    author: "Michael Rodriguez",
+    author: "Temp Mail Pro Team",
     date: "December 12, 2024",
     readTime: 10,
     content: `Email-based attacks have evolved dramatically over the past decade. What started with simple Nigerian prince schemes has transformed into sophisticated, targeted campaigns that exploit human psychology and technical vulnerabilities. Understanding these tactics is your best defense against becoming a victim.
@@ -126,7 +126,7 @@ Understanding how scammers operate is empowering. You're no longer a passive vic
     title: "Spam: Where It Comes From and How to Stop It",
     excerpt: "The complete origin story of spam and practical strategies to keep your inbox clean and organized.",
     category: "Tips",
-    author: "Jessica Wu",
+    author: "Temp Mail Pro Team",
     date: "December 10, 2024",
     readTime: 7,
     content: `Spam has become so prevalent that most of us barely notice it anymore. It arrives constantly, quietly cluttering our inboxes and distracting us from important messages. But where does it actually come from, and more importantly, what can you do about it?
@@ -184,7 +184,7 @@ Your inbox should be a tool that serves you, not a source of stress. By being in
     title: "Why Companies Want Your Email Address (And What They'll Do With It)",
     excerpt: "Explore the data economy and discover how your email address is bought, sold, and used.",
     category: "Privacy",
-    author: "David Thompson",
+    author: "Temp Mail Pro Team",
     date: "December 8, 2024",
     readTime: 9,
     content: `If you've ever wondered why every website and app demands your email address, the answer is simple: your email is valuable. It's not just contact information; it's a key that unlocks your entire digital identity. Understanding this ecosystem is crucial to protecting yourself in the modern internet.
@@ -246,7 +246,7 @@ Your email address is your most valuable piece of personal information in the di
     title: "The Psychology of Strong Passwords and Why They Matter",
     excerpt: "Deep dive into password security and how temporary email can complement your password strategy.",
     category: "Security",
-    author: "Emily Martinez",
+    author: "Temp Mail Pro Team",
     date: "December 6, 2024",
     readTime: 8,
     content: `Passwords are the keys to our digital kingdoms, yet most people treat them carelessly. We reuse them, we make them predictable, we write them on sticky notes. Understanding why passwords matter and how to manage them properly is fundamental to protecting yourself online.
@@ -314,7 +314,7 @@ For less critical accounts, use temporary email addresses when possible to reduc
     title: "Data Breaches: What Happens When Your Email Gets Exposed",
     excerpt: "Learn how to respond when your email appears in a data breach and minimize the damage.",
     category: "Security",
-    author: "Robert Chen",
+    author: "Temp Mail Pro Team",
     date: "December 4, 2024",
     readTime: 9,
     content: `Data breaches are inevitable in the modern internet. Major companies experience them regularly. Your personal information is likely already exposed in several breaches. Understanding what happens when your email gets exposed and how to respond is crucial for protecting yourself.
@@ -386,7 +386,7 @@ Use unique passwords for important accounts. Use temporary email for low-trust s
     title: "Online Shopping and Privacy: Protecting Yourself While Browsing",
     excerpt: "Essential tips for maintaining privacy and security while shopping online in 2024.",
     category: "Tips",
-    author: "Lisa Anderson",
+    author: "Temp Mail Pro Team",
     date: "December 2, 2024",
     readTime: 7,
     content: `Online shopping has become ubiquitous, yet many people don't realize how much of their privacy they're surrendering with every purchase. Between tracking pixels, cookies, and data sharing agreements, online retailers know far more about you than you might realize.
@@ -454,7 +454,7 @@ Your purchasing power gives you leverage. Companies that respect privacy are wor
     title: "Free Trials, Subscriptions, and the Hidden Costs of Free",
     excerpt: "Navigate free trials and subscription services without falling into common traps.",
     category: "Tips",
-    author: "Mark Johnson",
+    author: "Temp Mail Pro Team",
     date: "November 30, 2024",
     readTime: 8,
     content: `The free trial has become one of the internet's most insidious marketing tactics. Companies offer one month free, knowing many users will forget to cancel before being charged. The business model is built on anticipated forgetfulness and inertia.
@@ -520,7 +520,7 @@ Your attention and data are valuable. Free services trade those for access to th
     title: "GDPR, Privacy Laws, and Your Rights as an Internet User",
     excerpt: "Understand your privacy rights and how new regulations are changing the internet landscape.",
     category: "Privacy",
-    author: "Elena Rodriguez",
+    author: "Temp Mail Pro Team",
     date: "November 28, 2024",
     readTime: 10,
     content: `For most of the internet's history, companies could collect and use personal data with minimal restriction. The Wild West era of data collection is gradually ending, replaced by regulatory frameworks that give users rights over their personal information.
@@ -596,7 +596,7 @@ The internet's relationship with privacy is being fundamentally renegotiated. Fo
     title: "Building Your Digital Privacy Strategy: A Practical Framework",
     excerpt: "A comprehensive guide to creating a sustainable personal privacy strategy for the modern internet.",
     category: "Tips",
-    author: "Thomas White",
+    author: "Temp Mail Pro Team",
     date: "November 26, 2024",
     readTime: 11,
     content: `Privacy isn't a destination; it's a practice. You don't achieve perfect privacy and then maintain it effortlessly. Instead, you develop strategies, habits, and tools that collectively reduce your risk to acceptable levels.
