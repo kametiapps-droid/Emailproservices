@@ -77,24 +77,25 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 
 ### Recent Changes (Dec 18, 2025)
 **Mobile Optimization - Complete**
-- **Copy button** - Moved to separate section, 100% width, easier to tap
+- **Copy button** - Icon-only (18px), compact inline with email, hover effects
+- **Email display** - Improved spacing: 18px padding, proper gaps, icon on right
 - **Action buttons** - Ultra-compact: 8px 6px padding, 16px icons, 0.65rem font
 - **Container padding** - Desktop 24px → Tablet 16px → Mobile 8px (max width)
 - **Inbox section** - Desktop 24px → Tablet 12px → Mobile 4px padding
-- **Email box** - 800px desktop → 100% on mobile/tablet
-- **Email display** - Simplified to show address only, copy button separate
-- **Email content** - 900px max-height, 500px iframe on desktop, 500px on mobile
+- **Email box** - 800px desktop → 100% responsive on mobile/tablet
+- **Email content** - 900px max-height, 500px iframe with smooth animations
 
 **Links & Functionality**
-- ✅ Links open in new tabs (target="_blank", rel="noopener noreferrer")
-- ✅ Iframe sandbox allows popups and navigation
+- ✅ Links open in new tabs with rel="noopener noreferrer"
+- ✅ Iframe sandbox: allow-popups, allow-popups-to-escape-sandbox
 - ✅ Logo optimized with next/image component
+- ✅ Copy button tooltip on hover
 
 **Performance & Design**
 - ✅ Critical CSS inlined for above-fold rendering
 - ✅ CSS variables: --link-color, --border-radius-* for consistency
-- ✅ Cache control: no-store, no-cache, must-revalidate headers
-- ✅ Full responsive design: Desktop, Tablet (768px), Mobile (600px)
+- ✅ Cache headers: no-store, no-cache, must-revalidate
+- ✅ Full responsive: Desktop (1200px) → Tablet (768px) → Mobile (600px)
 
 ### AdSense Compliance (Dec 18, 2025)
 ✅ Privacy Policy page - Complete data collection and usage disclosure
