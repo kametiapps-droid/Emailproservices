@@ -4,6 +4,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Script from 'next/script';
 
+const criticalCSS = `
+body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%); color: #ffffff; }
+.site-header { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 20px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.15); }
+.hero { text-align: center; padding: 56px 0 40px; background: linear-gradient(180deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%); }
+.hero h1 { font-size: 2.75rem; margin-bottom: 16px; font-weight: 700; letter-spacing: -0.03em; }
+.email-box { background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%); border-radius: 20px; padding: 40px; margin: 40px auto; max-width: 560px; border: 1px solid rgba(255, 255, 255, 0.1); }
+`;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mytempmail.pro'),
   title: {
@@ -244,6 +252,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         <link rel="canonical" href="https://www.mytempmail.pro" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />

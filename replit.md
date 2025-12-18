@@ -75,16 +75,14 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Reviews: No reply buttons on feedback cards
 - Vote limiting: One vote per poll using localStorage
 
-### Recent Changes
-- Added 5 new legal pages for AdSense compliance (Privacy, Terms, Disclaimer, About, Copyright)
-- Updated Footer with links to all legal pages
-- Configured deployment settings (autoscale, npm build & start scripts)
-- Installed all npm dependencies
-- Added sticky header with glass morphism
-- Integrated Firebase for contact form storage
-- Optimized navigation speed with prefetching
-- Repositioned auto-refresh indicator to inbox section
-- Updated contact email to Contact@mytempmail.pro
+### Recent Changes (Dec 18, 2025)
+- **Fixed inbox email content box width** - Increased from 700px to 900px max-height, 500px iframe height for better readability
+- **Fixed links to open in new tab** - Added regex to inject target="_blank" and rel="noopener noreferrer" to email links
+- **Optimized images** - Using next/image for logo in Header component
+- **Added critical CSS** - Inlined above-fold styles for hero, header, and email-box sections
+- **Extracted CSS variables** - Added --link-color, --border-radius-* variables for consistency
+- **Improved UI classes** - Refactored inbox header into .inbox-header-left and .inbox-title for better structure
+- **Added email-loading-indicator class** - Removed inline styles from loading state
 
 ### AdSense Compliance (Dec 18, 2025)
 ✅ Privacy Policy page - Complete data collection and usage disclosure
@@ -121,8 +119,17 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - FAQPage (common questions)
 - BreadcrumbList (navigation)
 
+### Optimization Notes
+- Critical CSS inlined in layout.tsx for above-fold performance
+- Email iframe height increased from 400px to 500px (400px on mobile)
+- Message expanded content max-height increased from 700px to 900px
+- CSS variables now available for border-radius and link colors
+- Links in emails automatically open in new tab for better UX
+
 ### Next Steps (Optional Enhancements)
 - Email notifications when contact form is submitted
 - Admin dashboard for viewing contact messages
 - Message search and filtering
 - Email verification for temporary addresses
+- Lighthouse performance optimization
+- Service worker for offline support

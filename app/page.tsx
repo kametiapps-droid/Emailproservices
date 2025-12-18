@@ -174,11 +174,12 @@ export default function Home() {
                   body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 20px; line-height: 1.6; color: #333; background: #fff; margin: 0; }
                   img { max-width: 100%; height: auto; }
                   a { color: #0066cc; text-decoration: none; }
+                  a:hover { text-decoration: underline; }
                   table { max-width: 100%; border-collapse: collapse; }
                   pre { white-space: pre-wrap; word-wrap: break-word; background: #f5f5f5; padding: 10px; border-radius: 5px; }
                 </style>
               </head>
-              <body>${selectedMessage.htmlContent}</body>
+              <body>${selectedMessage.htmlContent?.replace(/<a\s+(?![^>]*target=)([^>]*?)>/g, '<a target="_blank" rel="noopener noreferrer" $1>')}</body>
             </html>
           `
           : `
@@ -186,6 +187,8 @@ export default function Home() {
               <head>
                 <style>
                   body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 20px; line-height: 1.6; color: #333; background: #fff; margin: 0; }
+                  a { color: #0066cc; text-decoration: none; }
+                  a:hover { text-decoration: underline; }
                   pre { white-space: pre-wrap; word-wrap: break-word; }
                 </style>
               </head>
@@ -314,11 +317,11 @@ export default function Home() {
       </section>
 
       <div className="container">
-        <div className="email-box" style={{ position: 'relative' }}>
+        <div className="email-box">
           {loading && !email && (
-            <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(10, 14, 39, 0.3)', borderRadius: '20px', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 10, backdropFilter: 'blur(4px)' }}>
-              <div className="spinner" style={{ width: '16px', height: '16px' }}></div>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', margin: 0 }}>Generating...</p>
+            <div className="email-loading-indicator">
+              <div className="spinner"></div>
+              <p>Generating...</p>
             </div>
           )}
           <div className="email-display">
@@ -372,17 +375,17 @@ export default function Home() {
 
       <section className="inbox-section">
         <div className="inbox-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <h2 style={{ margin: 0 }}>
+          <div className="inbox-header-left">
+            <h2 className="inbox-title">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 12h-6l-2 3h-4l-2-3H2"/>
                 <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
               </svg>
               Inbox
             </h2>
-            <div className="refresh-indicator" style={{ margin: 0, gap: '6px' }}>
+            <div className="refresh-indicator">
               <span className="refresh-dot"></span>
-              <span style={{ fontSize: '0.85rem' }}>Auto-refresh active</span>
+              <span>Auto-refresh active</span>
             </div>
           </div>
           <span className="message-count">{messages.length} messages</span>
