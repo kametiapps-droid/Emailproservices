@@ -28,33 +28,15 @@ interface Message {
 }
 
 export default function Home() {
-  // Initialize email from localStorage to avoid loading state on refresh
-  const [email, setEmail] = useState<Email | null>(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const stored = localStorage.getItem('tempEmail');
-        if (stored) {
-          return JSON.parse(stored);
-        }
-      } catch (e) {
-        console.error('Error reading from localStorage:', e);
-      }
-    }
-    return null;
-  });
+  const [email, setEmail] = useState<Email | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(() => {
-    // Only show loading if no stored email exists
-    if (typeof window !== 'undefined') {
-      return !localStorage.getItem('tempEmail');
-    }
-    return true;
-  });
+  const [loading, setLoading] = useState(true);
   const [showQR, setShowQR] = useState(false);
   const [qrCode, setQrCode] = useState('');
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [timeLeft, setTimeLeft] = useState('');
   const [copied, setCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const generateEmail = async () => {
@@ -103,6 +85,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Mark component as mounted to avoid hydration mismatch
+    setMounted(true);
+    
     const init = async () => {
       // Pre-warm Firebase connection
       fetch('/api/init').catch(() => {});
@@ -112,22 +97,30 @@ export default function Home() {
         try {
           const storedEmail = JSON.parse(stored);
           setEmail(storedEmail);
+          setLoading(false);
           // Check if valid in background
-          checkExistingEmail(storedEmail).then(isValid => {
+          checkExistingEmail(storedEmail).then(async (isValid) => {
             if (!isValid) {
               localStorage.removeItem('tempEmail');
               generateEmail();
+            } else {
+              // Valid, fetch inbox
+              const response = await fetch(`/api/inbox?emailId=${storedEmail.id}`);
+              const data = await response.json();
+              if (data.success) {
+                setMessages(data.data);
+              }
             }
           });
         } catch {
           localStorage.removeItem('tempEmail');
+          setLoading(false);
           generateEmail();
         }
       } else {
         // Generate email in background
         generateEmail();
       }
-      setLoading(false);
     };
     init();
   }, []);
