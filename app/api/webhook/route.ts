@@ -4,6 +4,14 @@ import crypto from 'crypto';
 
 export const dynamic = 'force-dynamic';
 
+interface CloudflareEmail {
+  to: string;
+  from: string;
+  subject?: string;
+  headers?: Record<string, string>;
+  raw: string;
+}
+
 interface ResendEmailContent {
   object: string;
   id: string;
@@ -106,7 +114,43 @@ export async function POST(request: NextRequest) {
 
     console.log('Webhook received payload:', JSON.stringify(body, null, 2));
 
-    if (body.type === 'email.received' && body.data) {
+    // Check if this is a Cloudflare email
+    if (body.to && body.from && body.raw && !body.type) {
+      console.log('Processing Cloudflare email...');
+      const cfEmail: CloudflareEmail = body;
+      to = cfEmail.to;
+      from = cfEmail.from;
+      subject = cfEmail.subject || '(No Subject)';
+      
+      // Parse raw email content
+      try {
+        const rawEmail = cfEmail.raw;
+        const lines = rawEmail.split('\n');
+        let bodyStarted = false;
+        let currentBody = '';
+
+        for (const line of lines) {
+          if (!bodyStarted) {
+            if (line === '' || line === '\r') {
+              bodyStarted = true;
+              continue;
+            }
+            // Extract subject from headers if not set
+            if (line.toLowerCase().startsWith('subject:')) {
+              subject = line.substring(8).trim() || subject;
+            }
+          } else {
+            currentBody += line + '\n';
+          }
+        }
+        
+        textBody = currentBody.trim() || '(No email content)';
+        htmlBody = '';
+      } catch (parseError) {
+        console.error('Error parsing raw email:', parseError);
+        textBody = cfEmail.raw || '(Failed to parse email)';
+      }
+    } else if (body.type === 'email.received' && body.data) {
       to = body.data.to?.[0] || body.data.to;
       from = body.data.from;
       subject = body.data.subject || '(No Subject)';
@@ -128,9 +172,9 @@ export async function POST(request: NextRequest) {
     
     console.log('Parsed email - To:', to, 'From:', from, 'Subject:', subject, 'Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
 
-    // Always fetch full content from Resend API since webhooks don't include body
+    // Only fetch from Resend API if we have an email_id (Resend-specific)
     const emailId = body.data?.email_id || body.data?.id || body.email_id;
-    if (emailId) {
+    if (emailId && body.type === 'email.received') {
       console.log('Fetching full email content from Resend API with email_id:', emailId);
       const content = await fetchEmailContent(emailId);
       if (content) {
@@ -140,8 +184,6 @@ export async function POST(request: NextRequest) {
         if (content.from) from = content.from;
         console.log('After Resend API fetch - Text length:', textBody?.length || 0, 'HTML length:', htmlBody?.length || 0);
       }
-    } else {
-      console.log('No email_id found in webhook payload - cannot fetch full content');
     }
 
     if (!to || !from) {
