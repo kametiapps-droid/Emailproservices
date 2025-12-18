@@ -76,14 +76,15 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Vote limiting: One vote per poll using localStorage
 
 ### Recent Changes (Dec 18, 2025)
-- **Widened email box** - Increased max-width from 560px to 800px for better display
-- **Fixed inbox email content** - Increased max-height to 900px, iframe height to 500px (400px mobile)
-- **Fixed links in emails** - Added iframe sandbox permissions (allow-popups, allow-popups-to-escape-sandbox)
-- **Links now open in new tab** - Injected target="_blank" and rel="noopener noreferrer" via regex
+- **Mobile responsive email box** - Full width on tablets (768px), optimized padding on mobile (600px)
+- **Widened email box** - Max-width 800px on desktop, 100% on mobile/tablet
+- **Fixed inbox email content** - Max-height 900px, iframe 500px (400px mobile), full width display
+- **Fixed links in emails** - Iframe sandbox: allow-popups, allow-popups-to-escape-sandbox enabled
+- **Links open in new tab** - Injected target="_blank" and rel="noopener noreferrer" via regex
 - **Optimized images** - Using next/image for logo with proper sizing
-- **Added critical CSS** - Inlined above-fold styles (hero, header, email-box)
+- **Added critical CSS** - Inlined above-fold styles for performance
 - **Extracted CSS variables** - Added --link-color, --border-radius-* for consistency
-- **Improved UI structure** - Refactored inbox header with dedicated CSS classes
+- **Mobile UI stacking** - Email display stacks vertically on mobile, full-width copy button
 
 ### AdSense Compliance (Dec 18, 2025)
 ✅ Privacy Policy page - Complete data collection and usage disclosure

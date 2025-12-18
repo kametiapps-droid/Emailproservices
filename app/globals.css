@@ -604,6 +604,21 @@ main {
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 768px) {
+  .email-box {
+    max-width: 100%;
+    padding: 24px;
+    margin: 24px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .email-box {
+    padding: 20px;
+    margin: 20px 12px;
+  }
+}
+
 .email-display {
   background: var(--glass);
   border-radius: 12px;
@@ -614,6 +629,15 @@ main {
   gap: 16px;
   margin-bottom: 20px;
   border: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .email-display {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
 }
 
 .email-address {
@@ -623,6 +647,13 @@ main {
   word-break: break-all;
   flex: 1;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+}
+
+@media (max-width: 600px) {
+  .email-address {
+    font-size: 0.95rem;
+    width: 100%;
+  }
 }
 
 .copy-btn {
@@ -637,11 +668,19 @@ main {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   white-space: nowrap;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .copy-btn {
+    width: 100%;
+    padding: 14px 16px;
+  }
 }
 
 .copy-btn::before {
