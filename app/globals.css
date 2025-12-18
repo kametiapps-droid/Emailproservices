@@ -637,19 +637,10 @@ main {
   padding: 20px 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   border: 1px solid var(--border);
-  flex-wrap: wrap;
-}
-
-@media (max-width: 600px) {
-  .email-display {
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-  }
 }
 
 .email-address {
@@ -662,26 +653,35 @@ main {
 }
 
 @media (max-width: 600px) {
+  .email-display {
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+
   .email-address {
-    font-size: 0.95rem;
-    width: 100%;
+    font-size: 0.9rem;
   }
 }
 
+.copy-section {
+  margin-bottom: 20px;
+}
+
 .copy-btn {
+  width: 100%;
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
   border: none;
-  padding: 12px 22px;
+  padding: 14px 20px;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   white-space: nowrap;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
   position: relative;
@@ -690,8 +690,8 @@ main {
 
 @media (max-width: 600px) {
   .copy-btn {
-    width: 100%;
-    padding: 14px 16px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
   }
 }
 
