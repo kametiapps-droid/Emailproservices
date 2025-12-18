@@ -32,31 +32,58 @@ export async function POST(request: NextRequest) {
     
     // Parse raw email content
     try {
-      const rawEmail = cfEmail.raw;
-      const lines = rawEmail.split('\n');
-      let bodyStarted = false;
-      let currentBody = '';
+      const rawEmail = cfEmail.raw || '';
+      
+      if (!rawEmail) {
+        console.warn('⚠️ No raw email content received');
+        textBody = '(No email content)';
+        htmlBody = '';
+      } else {
+        const lines = rawEmail.split('\n');
+        let bodyStarted = false;
+        let currentBody = '';
+        let isHtml = false;
 
-      for (const line of lines) {
-        if (!bodyStarted) {
-          if (line === '' || line === '\r') {
-            bodyStarted = true;
-            continue;
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          
+          if (!bodyStarted) {
+            // Look for empty line that marks end of headers
+            if (line.trim() === '') {
+              bodyStarted = true;
+              continue;
+            }
+            
+            // Extract headers
+            if (line.toLowerCase().startsWith('subject:')) {
+              subject = line.substring(8).trim() || subject;
+            }
+            if (line.toLowerCase().startsWith('content-type:') && line.toLowerCase().includes('text/html')) {
+              isHtml = true;
+            }
+          } else {
+            // Skip boundary lines for multipart emails
+            if (line.startsWith('--')) {
+              continue;
+            }
+            currentBody += line + '\n';
           }
-          // Extract subject from headers if not set
-          if (line.toLowerCase().startsWith('subject:')) {
-            subject = line.substring(8).trim() || subject;
-          }
+        }
+        
+        const cleanBody = currentBody.trim();
+        
+        if (isHtml) {
+          htmlBody = cleanBody || '(No email content)';
+          textBody = cleanBody || '(No email content)';
         } else {
-          currentBody += line + '\n';
+          textBody = cleanBody || '(No email content)';
+          htmlBody = '';
         }
       }
-      
-      textBody = currentBody.trim() || '(No email content)';
-      htmlBody = '';
     } catch (parseError) {
       console.error('Error parsing raw email:', parseError);
-      textBody = cfEmail.raw || '(Failed to parse email)';
+      textBody = '(Failed to parse email)';
+      htmlBody = '';
     }
     
     console.log('📩 EMAIL RECEIVED');
