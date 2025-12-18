@@ -28,9 +28,28 @@ interface Message {
 }
 
 export default function Home() {
-  const [email, setEmail] = useState<Email | null>(null);
+  // Initialize email from localStorage to avoid loading state on refresh
+  const [email, setEmail] = useState<Email | null>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('tempEmail');
+        if (stored) {
+          return JSON.parse(stored);
+        }
+      } catch (e) {
+        console.error('Error reading from localStorage:', e);
+      }
+    }
+    return null;
+  });
   const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    // Only show loading if no stored email exists
+    if (typeof window !== 'undefined') {
+      return !localStorage.getItem('tempEmail');
+    }
+    return true;
+  });
   const [showQR, setShowQR] = useState(false);
   const [qrCode, setQrCode] = useState('');
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
