@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
       id: messageRef.id,
       sender: from,
       subject: subject,
-      content: textBody || htmlBody || 'No content',
+      content: htmlBody || textBody || 'No content',
       htmlContent: htmlBody,
       receivedAt: new Date().toISOString(),
       isRead: false,
