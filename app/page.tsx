@@ -137,8 +137,10 @@ export default function Home() {
       const iframe = iframeRef.current;
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
       if (doc) {
-        // Always use HTML content if available, otherwise show plain text
-        const htmlContent = selectedMessage.htmlContent 
+        // Use HTML content ONLY if it contains actual HTML tags, otherwise show plain text
+        const hasHtmlTags = selectedMessage.htmlContent && selectedMessage.htmlContent.trim() !== '' && /<[^>]+>/.test(selectedMessage.htmlContent);
+        
+        const htmlContent = hasHtmlTags
           ? `
             <html>
               <head>
