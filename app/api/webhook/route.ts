@@ -30,40 +30,73 @@ export async function POST(request: NextRequest) {
     let textBody = '';
     let htmlBody = '';
     
-    // Try to use direct HTML field first
-    if (cfEmail.html && cfEmail.html.trim().length > 0 && /<[^>]+>/.test(cfEmail.html)) {
+    const parseMultipartSection = (content: string, contentType: string): string => {
+      const lines = content.split('\n');
+      let foundSection = false;
+      let inHeaders = false;
+      let result: string[] = [];
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        
+        // Check if we found the section (case-insensitive)
+        if (!foundSection && new RegExp(`Content-Type:\\s*${contentType}`, 'i').test(line)) {
+          console.log(`✅ Found ${contentType} section at line ${i}`);
+          foundSection = true;
+          inHeaders = true;
+          continue;
+        }
+        
+        if (foundSection) {
+          // Skip headers until blank line
+          if (inHeaders) {
+            if (line.trim() === '') {
+              inHeaders = false;
+              continue;
+            }
+            continue;
+          }
+          
+          // Stop at boundary (line starts with --)
+          if (line.trim().startsWith('--')) {
+            console.log(`🛑 Found boundary at line ${i}, ending ${contentType} extraction`);
+            break;
+          }
+          
+          // Add content
+          result.push(line);
+        }
+      }
+      
+      let text = result.join('\n').trim();
+      // Clean up quoted-printable encoding (=\n means soft line break)
+      text = text.replace(/=\r?\n/g, '');
+      console.log(`📊 Extracted ${contentType}: ${text.length} bytes`);
+      return text;
+    };
+    
+    // Try to extract HTML first
+    if (cfEmail.text) {
+      htmlBody = parseMultipartSection(cfEmail.text, 'text/html');
+    }
+    
+    // Fallback to cfEmail.html if multipart extraction didn't work
+    if (!htmlBody && cfEmail.html && cfEmail.html.trim().length > 0 && /<[^>]+>/.test(cfEmail.html)) {
       htmlBody = cfEmail.html;
     }
     
-    // If no direct HTML, parse the text field which may contain multipart
+    // If no HTML, try plain text
     if (!htmlBody && cfEmail.text) {
-      const content = cfEmail.text;
-      
-      // Extract HTML part from multipart email
-      const htmlMatch = content.match(/Content-Type:\s*text\/html[^\n]*\n(?:[^\n]*\n)*\n([\s\S]*?)(?=\n--|\Z)/i);
-      if (htmlMatch && htmlMatch[1]) {
-        htmlBody = htmlMatch[1].trim();
-        // Clean up HTML - remove quoted-printable encoding artifacts
-        htmlBody = htmlBody.replace(/=\r?\n/g, '').replace(/=3D/g, '=');
-      }
+      textBody = parseMultipartSection(cfEmail.text, 'text/plain');
     }
     
-    // If still no HTML, extract plain text part
-    if (!htmlBody && cfEmail.text) {
-      const content = cfEmail.text;
-      
-      // Extract plain text part from multipart email
-      const textMatch = content.match(/Content-Type:\s*text\/plain[^\n]*\n(?:[^\n]*\n)*\n([\s\S]*?)(?=\n--|\Z)/i);
-      if (textMatch && textMatch[1]) {
-        textBody = textMatch[1].trim();
-      } else {
-        // If no multipart structure, use whole content
-        textBody = content.replace(/^--.*?\n/gm, '').replace(/Content-Type:[^\n]*\n/g, '').trim();
-      }
+    // If still nothing, use raw cfEmail.text
+    if (!htmlBody && !textBody && cfEmail.text) {
+      textBody = cfEmail.text;
     }
     
     // Final fallback
-    if (!textBody && !htmlBody) {
+    if (!htmlBody && !textBody) {
       textBody = 'Email received (no content available)';
     }
     
