@@ -595,29 +595,6 @@ export default function ReviewsPage() {
                   >
                     👍 Helpful
                   </button>
-                  <button
-                    style={{
-                      background: 'transparent',
-                      border: '1px solid rgba(59, 130, 246, 0.2)',
-                      color: 'var(--text-secondary)',
-                      padding: '6px 12px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      transition: 'all 0.2s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
-                      e.currentTarget.style.color = 'var(--text-primary)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                    }}
-                  >
-                    💬 Reply
-                  </button>
                 </div>
               </div>
             ))}
