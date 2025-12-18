@@ -612,6 +612,11 @@ main {
   transform: translateY(-1px) scale(0.98);
 }
 
+.copy-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .timer {
   display: flex;
   align-items: center;

@@ -36,6 +36,7 @@ export default function Home() {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [timeLeft, setTimeLeft] = useState('');
   const [copied, setCopied] = useState(false);
+  const [pageReady, setPageReady] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const generateEmail = async () => {
@@ -84,12 +85,16 @@ export default function Home() {
   };
 
   useEffect(() => {
+    // Show page immediately
+    setPageReady(true);
+    
     const init = async () => {
       const stored = localStorage.getItem('tempEmail');
       if (stored) {
         try {
           const storedEmail = JSON.parse(stored);
-          // Check if valid but don't wait - load immediately
+          setEmail(storedEmail);
+          // Check if valid in background
           checkExistingEmail(storedEmail).then(isValid => {
             if (!isValid) {
               localStorage.removeItem('tempEmail');
@@ -101,10 +106,9 @@ export default function Home() {
           generateEmail();
         }
       } else {
-        // Load email in background, don't block
+        // Generate email in background
         generateEmail();
       }
-      // Always set loading to false immediately
       setLoading(false);
     };
     init();
@@ -266,31 +270,16 @@ export default function Home() {
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
-  if (!email) {
-    return (
-      <div className="page-container">
-        <section className="hero">
-          <div className="container">
-            <h1>Secure Temporary Email</h1>
-            <p>Protect your privacy with instant disposable email addresses. No registration required.</p>
-          </div>
-        </section>
-        <div className="container">
-          <div className="email-box">
-            <div style={{ textAlign: 'center', padding: '40px 0' }}>
-              <div className="loading" style={{ height: 'auto', marginBottom: '20px' }}>
-                <div className="spinner"></div>
-              </div>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>⚡ Creating your temporary email...</p>
-              <button className="copy-btn" onClick={generateEmail} style={{ marginTop: '20px' }}>
-                Generate Email
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+  if (!pageReady) {
+    return <div className="page-container"></div>;
   }
+
+  const displayEmail = email || { 
+    id: '', 
+    email: 'Loading...', 
+    createdAt: new Date().toISOString(), 
+    expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() 
+  };
 
   return (
     <div className="page-container">
@@ -306,10 +295,16 @@ export default function Home() {
       </section>
 
       <div className="container">
-        <div className="email-box">
+        <div className="email-box" style={{ position: 'relative' }}>
+          {loading && !email && (
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(10, 14, 39, 0.7)', borderRadius: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 10, gap: '12px' }}>
+              <div className="spinner"></div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>⚡ Creating email...</p>
+            </div>
+          )}
           <div className="email-display">
-            <span className="email-address">{email?.email || 'Loading...'}</span>
-            <button className="copy-btn" onClick={copyEmail}>
+            <span className="email-address">{displayEmail.email}</span>
+            <button className="copy-btn" onClick={copyEmail} disabled={!email}>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -320,7 +315,7 @@ export default function Home() {
 
           <div className="timer">
             <span className="timer-icon">⏱️</span>
-            <span className="timer-text">{timeLeft}</span>
+            <span className="timer-text">{timeLeft || '24h 0m remaining'}</span>
           </div>
 
           <div className="action-buttons">
