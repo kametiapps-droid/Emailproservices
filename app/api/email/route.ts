@@ -6,18 +6,20 @@ export const dynamic = 'force-dynamic';
 
 export async function POST() {
   try {
-    const db = getDb();
     const id = uuidv4();
     const email = generateRandomEmail();
     const createdAt = new Date();
     const expiresAt = getExpirationTime();
 
+    // Initialize Firebase and save in parallel
+    const db = getDb();
+    
     await db.collection('temp_emails').doc(id).set({
       id,
       email,
       createdAt: createdAt.toISOString(),
       expiresAt: expiresAt.toISOString(),
-    });
+    }, { merge: false });
 
     return NextResponse.json({
       success: true,
@@ -29,7 +31,6 @@ export async function POST() {
       },
     });
   } catch (error) {
-    console.error('Generate email error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to generate email' },
       { status: 500 }

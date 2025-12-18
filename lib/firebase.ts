@@ -47,8 +47,6 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
         parsedKey = JSON.parse(decoded);
       }
 
-      console.log('Initializing Firebase with project:', parsedKey.project_id);
-
       // Fix: Replace escaped newlines with actual newlines in private key
       const privateKey = parsedKey.private_key.replace(/\\n/g, '\n');
 
@@ -60,7 +58,6 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
         }),
         projectId: parsedKey.project_id,
       });
-      console.log('Firebase Admin initialized successfully');
     } catch (error) {
       console.error('Error parsing Firebase service account:', error);
       throw new Error('Failed to initialize Firebase. Please check your service account key format.');

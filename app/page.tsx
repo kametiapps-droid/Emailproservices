@@ -281,7 +281,7 @@ export default function Home() {
               <div className="loading" style={{ height: 'auto', marginBottom: '20px' }}>
                 <div className="spinner"></div>
               </div>
-              <p style={{ color: 'var(--text-muted)' }}>Creating your temporary email...</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>⚡ Creating your temporary email...</p>
               <button className="copy-btn" onClick={generateEmail} style={{ marginTop: '20px' }}>
                 Generate Email
               </button>
