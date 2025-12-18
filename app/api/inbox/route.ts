@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
+import { 
+  isBlockedDomain, 
+  calculateSpamScore, 
+  containsIllegalContent, 
+  sanitizeMessage,
+  logSecurityEvent,
+  SECURITY_HEADERS 
+} from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,10 +48,36 @@ export async function GET(request: NextRequest) {
       .orderBy('receivedAt', 'desc')
       .get();
 
-    const messages = messagesSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    // Filter and sanitize messages
+    const messages = messagesSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      
+      // Check for blocked domains
+      if (isBlockedDomain(data.sender)) {
+        logSecurityEvent('BLOCKED_DOMAIN', { sender: data.sender, emailId });
+        return null;
+      }
+      
+      // Check for illegal content
+      if (containsIllegalContent(data.content || '') || containsIllegalContent(data.subject || '')) {
+        logSecurityEvent('ILLEGAL_CONTENT', { sender: data.sender, subject: data.subject, emailId });
+        return null;
+      }
+      
+      // Calculate spam score
+      const spamCheck = calculateSpamScore(data.subject || '', data.content || '');
+      
+      // Sanitize HTML content
+      const sanitizedHtml = data.htmlContent ? sanitizeMessage(data.htmlContent) : '';
+      
+      return {
+        id: doc.id,
+        ...data,
+        htmlContent: sanitizedHtml,
+        isSpam: spamCheck.isSpam,
+        spamScore: spamCheck.score,
+      };
+    }).filter(Boolean); // Remove blocked messages
 
     return NextResponse.json({ success: true, data: messages });
   } catch (error) {
@@ -67,6 +101,26 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    
+    // Security checks for incoming messages
+    if (isBlockedDomain(sender)) {
+      logSecurityEvent('BLOCKED_INCOMING', { sender, subject, emailId });
+      return NextResponse.json(
+        { success: false, error: 'Sender is blocked' },
+        { status: 403 }
+      );
+    }
+    
+    if (containsIllegalContent(content || '') || containsIllegalContent(subject)) {
+      logSecurityEvent('ILLEGAL_CONTENT_BLOCKED', { sender, subject, emailId });
+      return NextResponse.json(
+        { success: false, error: 'Content violates policy' },
+        { status: 403 }
+      );
+    }
+    
+    // Calculate spam score
+    const spamCheck = calculateSpamScore(subject, content || '');
 
     const messageRef = db
       .collection('temp_emails')
@@ -79,10 +133,12 @@ export async function POST(request: NextRequest) {
       sender,
       subject,
       content: content || '',
-      htmlContent: htmlContent || '',
+      htmlContent: htmlContent ? sanitizeMessage(htmlContent) : '',
       attachments: attachments || [],
       receivedAt: new Date().toISOString(),
       isRead: false,
+      isSpam: spamCheck.isSpam,
+      spamScore: spamCheck.score,
     };
 
     await messageRef.set(message);
