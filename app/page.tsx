@@ -36,7 +36,6 @@ export default function Home() {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [timeLeft, setTimeLeft] = useState('');
   const [copied, setCopied] = useState(false);
-  const [pageReady, setPageReady] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const generateEmail = async () => {
@@ -85,9 +84,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Show page immediately
-    setPageReady(true);
-    
     const init = async () => {
       const stored = localStorage.getItem('tempEmail');
       if (stored) {
@@ -269,10 +265,6 @@ export default function Home() {
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
-
-  if (!pageReady) {
-    return <div className="page-container"></div>;
-  }
 
   const displayEmail = email || { 
     id: '', 
