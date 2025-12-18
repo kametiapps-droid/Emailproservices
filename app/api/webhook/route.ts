@@ -26,74 +26,22 @@ export async function POST(request: NextRequest) {
     const from = cfEmail.from;
     const subject = cfEmail.subject || '(No Subject)';
     
-    // Function to clean MIME content - preserve HTML, remove only MIME envelope
-    const cleanMimeContent = (content: string): string => {
-      if (!content) return '';
-      
-      const lines = content.split('\n');
-      const cleanedLines: string[] = [];
-      let inHeaders = true;
-      let headerEndIndex = 0;
-      
-      // Find where headers end (first blank line)
-      for (let i = 0; i < lines.length; i++) {
-        if (lines[i].trim() === '') {
-          inHeaders = false;
-          headerEndIndex = i + 1;
-          break;
-        }
-      }
-      
-      // Extract everything after headers
-      const bodyLines = lines.slice(headerEndIndex);
-      
-      // Remove only MIME boundaries, keep HTML content intact
-      for (const line of bodyLines) {
-        const trimmed = line.trim();
-        
-        // Skip lines that are pure MIME boundaries (just dashes and optional text)
-        if (trimmed.startsWith('--') && (trimmed.includes('Part') || trimmed.includes('boundary') || trimmed.endsWith('--'))) {
-          continue;
-        }
-        
-        // Skip lines that start with Content- or MIME- (these are sub-part headers)
-        if (line.startsWith('Content-') || line.startsWith('MIME-')) {
-          continue;
-        }
-        
-        // Keep all other content (including HTML, images, etc)
-        if (trimmed) {
-          cleanedLines.push(line);
-        }
-      }
-      
-      return cleanedLines.join('\n').trim();
-    };
-
-    // Get content - prefer text/html fields from postal-mime parsed email
+    // Get content from Cloudflare parsed email
     let textBody = '';
     let htmlBody = '';
     
-    if (cfEmail.text) {
-      // New format: postal-mime parsed content (but may contain MIME artifacts)
-      textBody = cleanMimeContent(cfEmail.text);
-      htmlBody = cfEmail.html ? cleanMimeContent(cfEmail.html) : '';
-      console.log('✅ Using parsed text/html fields');
-    } else if (cfEmail.raw) {
-      // Legacy format: raw email content
-      console.log('📄 Using raw email field, parsing...');
-      try {
-        const rawEmail = cfEmail.raw;
-        textBody = cleanMimeContent(rawEmail) || 'Email received (content not extracted)';
-      } catch (parseError) {
-        console.error('Error parsing raw email:', parseError);
-        textBody = 'Failed to parse email content';
-      }
+    if (cfEmail.html && cfEmail.html.trim().length > 0 && /<[^>]+>/.test(cfEmail.html)) {
+      // Prefer HTML if it contains actual HTML tags
+      htmlBody = cfEmail.html;
+    } else if (cfEmail.text && cfEmail.text.trim().length > 0) {
+      // Otherwise use plain text
+      textBody = cfEmail.text;
     } else {
-      // No content available
-      console.warn('⚠️ No email content received');
+      // Fallback
       textBody = 'Email received (no content available)';
     }
+    
+    console.log('✅ Using parsed text/html fields');
 
     console.log('📩 EMAIL RECEIVED');
     console.log('📬 To:', to);
