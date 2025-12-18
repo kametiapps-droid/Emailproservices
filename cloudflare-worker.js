@@ -1,13 +1,6 @@
 /**
- * Cloudflare Email Worker
- * 
- * This worker handles incoming emails from Cloudflare Email Routing
- * and forwards them to your Temp Mail Pro webhook.
- * 
- * Setup Instructions:
- * 1. Deploy this worker to Cloudflare Workers
- * 2. Set the WEBHOOK_URL environment variable to your webhook endpoint
- * 3. Configure Cloudflare Email Routing to point to this worker
+ * Cloudflare Email Routing Worker
+ * Handles incoming emails and forwards them to your Temp Mail Pro webhook
  */
 
 export default {
@@ -21,35 +14,30 @@ export default {
     }
 
     try {
-      // Extract email headers
       const to = message.to;
       const from = message.from;
       const subject = message.headers.get('subject') || '(No Subject)';
       
-      // Read the raw email content
+      // Read raw email content
       let raw = '';
-      const reader = message.raw.getReader();
-      const decoder = new TextDecoder();
       
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          raw += decoder.decode(value, { stream: true });
+      // For Cloudflare Workers, message.raw is an AsyncIterable
+      if (message.raw && typeof message.raw[Symbol.asyncIterator] === 'function') {
+        const decoder = new TextDecoder();
+        for await (const chunk of message.raw) {
+          raw += decoder.decode(chunk, { stream: true });
         }
-        // Final flush
-        raw += decoder.decode();
-      } catch (error) {
-        console.error('Error reading email stream:', error);
-        message.setReject('Failed to read email content');
-        return;
+        raw += decoder.decode(); // Final flush
+      } else if (message.raw) {
+        // Fallback if raw is a string
+        raw = String(message.raw);
       }
 
       console.log('📩 EMAIL RECEIVED');
-      console.log('Inbox:', to.split('@')[0]);
+      console.log('To:', to);
       console.log('From:', from);
       console.log('Subject:', subject);
-      console.log('Size:', raw.length);
+      console.log('Raw size:', raw.length, 'bytes');
 
       // Send to webhook
       const response = await fetch(webhookUrl, {
@@ -69,20 +57,20 @@ export default {
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Webhook error:', response.status, errorText);
-        message.setReject(`Webhook failed with status ${response.status}`);
+        message.setReject(`Webhook failed: ${response.status}`);
         return;
       }
 
       const result = await response.json();
       
       if (result.success) {
-        console.log('✅ Email forwarded successfully to webhook');
+        console.log('✅ Email forwarded successfully');
       } else {
-        console.warn('⚠️ Webhook returned error:', result.error);
-        message.setReject(result.error || 'Webhook processing failed');
+        console.warn('⚠️ Webhook error:', result.error);
+        message.setReject(result.error || 'Processing failed');
       }
     } catch (error) {
-      console.error('❌ Error processing email:', error);
+      console.error('❌ Worker error:', error.message);
       message.setReject('Failed to process email');
     }
   },
