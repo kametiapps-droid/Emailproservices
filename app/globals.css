@@ -5,32 +5,33 @@
 }
 
 :root {
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --primary-light: #60a5fa;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
   --secondary: #10b981;
   --accent: #8b5cf6;
-  --background: #030712;
+  --background: #0a0e27;
   --surface: #111827;
   --surface-light: #1f2937;
   --surface-elevated: #374151;
-  --text: #f9fafb;
-  --text-muted: #9ca3af;
-  --text-dim: #6b7280;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.12);
+  --text: #ffffff;
+  --text-muted: #d1d5db;
+  --text-dim: #9ca3af;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.15);
   --danger: #ef4444;
   --success: #22c55e;
   --warning: #f59e0b;
-  --header-bg: rgba(3, 7, 18, 0.8);
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  --gradient-subtle: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 60px rgba(59, 130, 246, 0.1);
+  --header-bg: rgba(10, 14, 39, 0.85);
+  --gradient-primary: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+  --gradient-subtle: linear-gradient(180deg, rgba(37, 99, 235, 0.15) 0%, transparent 100%);
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(37, 99, 235, 0.15);
+  --shadow-lg: 0 16px 48px rgba(37, 99, 235, 0.2);
+  --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.15);
 }
 
 [data-theme="light"] {
@@ -58,12 +59,13 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--background);
+  background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
+  will-change: auto;
 }
 
 main {
@@ -475,8 +477,22 @@ main {
 
 .hero {
   text-align: center;
-  padding: 48px 0 32px;
-  background: var(--gradient-subtle);
+  padding: 56px 0 40px;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .hero h1 {
@@ -522,13 +538,14 @@ main {
 }
 
 .email-box {
-  background: var(--surface);
-  border-radius: 16px;
-  padding: 32px;
-  margin: 32px auto;
-  max-width: 520px;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 560px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 12px 48px rgba(37, 99, 235, 0.12);
+  backdrop-filter: blur(10px);
 }
 
 .email-display {
@@ -629,21 +646,21 @@ main {
 }
 
 .action-btn {
-  background: linear-gradient(135deg, var(--glass) 0%, rgba(255,255,255,0.02) 100%);
-  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.06) 100%);
+  border: 1px solid rgba(37, 99, 235, 0.3);
   color: var(--text-muted);
-  padding: 16px 12px;
-  border-radius: 12px;
+  padding: 18px 14px;
+  border-radius: 14px;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
   font-size: 0.8rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -658,11 +675,11 @@ main {
 }
 
 .action-btn:hover {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
-  border-color: var(--primary);
-  color: var(--primary);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
-  transform: translateY(-3px);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(124, 58, 237, 0.12) 100%);
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+  transform: translateY(-4px);
 }
 
 .action-btn:active {
@@ -1001,17 +1018,17 @@ main {
 }
 
 .feature-card {
-  background: var(--glass);
-  border-radius: 14px;
-  padding: 28px;
-  border: 1px solid var(--border);
-  transition: all 0.25s ease;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.03) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-light);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.2);
 }
 
 .card-lightning .feature-icon { background: linear-gradient(135deg, #fbbf24, #f59e0b); }

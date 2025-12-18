@@ -103,8 +103,10 @@ export default function Home() {
 
   useEffect(() => {
     if (email?.id) {
+      // Fetch immediately on mount
       fetchInbox();
-      const interval = setInterval(fetchInbox, 10000);
+      // Then set up interval - use 15 seconds instead of 10 for better performance
+      const interval = setInterval(fetchInbox, 15000);
       return () => clearInterval(interval);
     }
   }, [email?.id, fetchInbox]);

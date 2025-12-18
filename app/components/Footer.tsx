@@ -44,7 +44,6 @@ export default function Footer() {
           
           <div className="footer-bottom">
             <p>&copy; {new Date().getFullYear()} Temp Mail Pro. All rights reserved.</p>
-            <p className="footer-domain">www.mytempmail.pro</p>
           </div>
         </div>
       </div>
