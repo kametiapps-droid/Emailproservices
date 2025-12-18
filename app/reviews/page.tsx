@@ -94,6 +94,19 @@ export default function ReviewsPage() {
   });
 
   const [showForm, setShowForm] = useState(false);
+  const [userVotes, setUserVotes] = useState<Set<string>>(new Set());
+
+  // Load user votes from localStorage on mount
+  useEffect(() => {
+    const savedVotes = localStorage.getItem('tempmail_poll_votes');
+    if (savedVotes) {
+      try {
+        setUserVotes(new Set(JSON.parse(savedVotes)));
+      } catch (error) {
+        console.error('Error loading votes:', error);
+      }
+    }
+  }, []);
 
   const handleSubmitFeedback = (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,6 +130,13 @@ export default function ReviewsPage() {
   };
 
   const handleVotePoll = (pollId: string, optionIndex: number) => {
+    // Check if user already voted on this poll
+    if (userVotes.has(pollId)) {
+      alert('You have already voted on this poll! One vote per user allowed.');
+      return;
+    }
+
+    // Update polls
     setPolls(polls.map(poll => {
       if (poll.id === pollId) {
         const newOptions = [...poll.options];
@@ -129,7 +149,15 @@ export default function ReviewsPage() {
       }
       return poll;
     }));
+
+    // Save vote to localStorage
+    const newVotes = new Set(userVotes);
+    newVotes.add(pollId);
+    setUserVotes(newVotes);
+    localStorage.setItem('tempmail_poll_votes', JSON.stringify(Array.from(newVotes)));
   };
+
+  const hasUserVoted = (pollId: string) => userVotes.has(pollId);
 
   const getAverageRating = () => {
     if (feedbacks.length === 0) return 0;
@@ -156,7 +184,10 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <div className="container">
+      <div className="container" style={{
+        paddingTop: '60px',
+        paddingBottom: '80px'
+      }}>
         {/* Stats Section */}
         <div style={{
           display: 'grid',
@@ -370,12 +401,30 @@ export default function ReviewsPage() {
                   background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
                   borderRadius: '12px',
                   border: '1px solid rgba(59, 130, 246, 0.2)',
-                  padding: '24px'
+                  padding: '24px',
+                  opacity: hasUserVoted(poll.id) ? 0.85 : 1
                 }}
               >
                 <h3 style={{ fontSize: '18px', marginBottom: '20px', color: 'var(--text-primary)' }}>
                   {poll.question}
                 </h3>
+
+                {hasUserVoted(poll.id) && (
+                  <div style={{
+                    background: 'rgba(34, 197, 94, 0.15)',
+                    border: '1px solid rgba(34, 197, 94, 0.3)',
+                    borderRadius: '8px',
+                    padding: '12px',
+                    marginBottom: '16px',
+                    color: 'rgba(34, 197, 94, 1)',
+                    fontSize: '13px',
+                    fontWeight: '600',
+                    textAlign: 'center'
+                  }}>
+                    ✓ You have already voted on this poll
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {poll.options.map((option, idx) => {
                     const percentage = (option.votes / poll.totalVotes) * 100;
@@ -408,29 +457,41 @@ export default function ReviewsPage() {
                         </div>
                         <button
                           onClick={() => handleVotePoll(poll.id, idx)}
+                          disabled={hasUserVoted(poll.id)}
                           style={{
                             marginTop: '8px',
-                            background: 'rgba(59, 130, 246, 0.15)',
-                            border: '1px solid rgba(59, 130, 246, 0.3)',
-                            color: 'rgba(59, 130, 246, 1)',
+                            background: hasUserVoted(poll.id)
+                              ? 'rgba(107, 114, 128, 0.1)'
+                              : 'rgba(59, 130, 246, 0.15)',
+                            border: hasUserVoted(poll.id)
+                              ? '1px solid rgba(107, 114, 128, 0.2)'
+                              : '1px solid rgba(59, 130, 246, 0.3)',
+                            color: hasUserVoted(poll.id)
+                              ? 'rgba(107, 114, 128, 1)'
+                              : 'rgba(59, 130, 246, 1)',
                             padding: '8px 16px',
                             borderRadius: '6px',
-                            cursor: 'pointer',
+                            cursor: hasUserVoted(poll.id) ? 'not-allowed' : 'pointer',
                             fontSize: '12px',
                             fontWeight: '600',
                             transition: 'all 0.3s ease',
-                            width: '100%'
+                            width: '100%',
+                            opacity: hasUserVoted(poll.id) ? 0.6 : 1
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.background = 'rgba(59, 130, 246, 0.25)';
-                            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
+                            if (!hasUserVoted(poll.id)) {
+                              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.25)';
+                              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
+                            }
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
-                            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                            if (!hasUserVoted(poll.id)) {
+                              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
+                              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                            }
                           }}
                         >
-                          Vote for this option
+                          {hasUserVoted(poll.id) ? '✓ Already Voted' : 'Vote for this option'}
                         </button>
                       </div>
                     );
