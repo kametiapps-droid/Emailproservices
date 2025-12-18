@@ -111,7 +111,6 @@ export async function POST(request: NextRequest) {
       .get();
 
     if (emailsSnapshot.empty) {
-      console.log('⚠️ Email address not found:', emailAddress);
       return NextResponse.json(
         { success: false, error: 'Email address not found' },
         { status: 404 }
@@ -123,7 +122,6 @@ export async function POST(request: NextRequest) {
 
     // Check if expired
     if (new Date(emailData.expiresAt) < new Date()) {
-      console.log('⏰ Email has expired:', emailAddress);
       return NextResponse.json(
         { success: false, error: 'Email has expired' },
         { status: 404 }
@@ -143,10 +141,8 @@ export async function POST(request: NextRequest) {
       isRead: false,
     });
 
-    console.log('✅ Email stored successfully with ID:', messageRef.id);
     return NextResponse.json({ success: true, messageId: messageRef.id });
   } catch (error) {
-    console.error('❌ Webhook error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to receive email' },
       { status: 500 }
