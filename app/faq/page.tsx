@@ -13,98 +13,98 @@ const faqData: FAQItem[] = [
   {
     id: '1',
     category: 'Getting Started',
-    question: 'کیا میں Temp Mail Pro استعمال کرنے کے لیے رجسٹریشن کروں گا؟',
-    answer: 'نہیں! Temp Mail Pro بالکل مفت ہے اور کوئی رجسٹریشن کی ضرورت نہیں۔ بس ہماری ویب سائٹ پر جائیں اور فوری طور پر ایک عارضی ای میل ایڈریس حاصل کریں۔'
+    question: 'Do I need to register to use Temp Mail Pro?',
+    answer: 'No! Temp Mail Pro is completely free and requires no registration. Simply visit our website and instantly get a temporary email address.'
   },
   {
     id: '2',
     category: 'Getting Started',
-    question: 'میں کتنی جلدی ای میل ایڈریس حاصل کر سکتا ہوں؟',
-    answer: 'فوری! صرف ایک کلک کے ساتھ، آپ کو ایک نیا، منفرد عارضی ای میل ایڈریس ملے گا۔ یہ پہلے سے تیار ہے اور استعمال کے لیے تیار ہے۔'
+    question: 'How quickly can I get an email address?',
+    answer: 'Instantly! With just one click, you will get a new, unique temporary email address. It\'s ready to use immediately.'
   },
   {
     id: '3',
     category: 'Getting Started',
-    question: 'کیا میں اپنا موجودہ ای میل سے ای میلز فارورڈ کر سکتا ہوں؟',
-    answer: 'ہاں، آپ Temp Mail Pro کے ذریعے موصول ہونے والی تمام ای میلز دیکھ سکتے ہیں۔ انبکس میں براہ راست تمام پیغامات دیکھیں اور انہیں اپنے اصل ای میل پر ای میل بھیج سکتے ہیں۔'
+    question: 'Can I forward emails from my current email?',
+    answer: 'Yes, you can view all emails received through Temp Mail Pro. See all messages directly in the inbox and forward them to your real email if needed.'
   },
   {
     id: '4',
     category: 'Security & Privacy',
-    question: 'کیا Temp Mail Pro محفوظ ہے؟',
-    answer: 'بالکل! ہم آپ کی رازداری کی حفاظت کو بہت سنجیدگی سے لیتے ہیں۔ تمام ای میلز منشفر شدہ ہیں، اور ہم کبھی آپ کی ذاتی معلومات بیچتے یا شیئر نہیں کرتے۔ ہمارا سرور سب سے ماڈرن سیکیورٹی پروٹوکول استعمال کرتے ہیں۔'
+    question: 'Is Temp Mail Pro secure?',
+    answer: 'Absolutely! We take your privacy protection very seriously. All emails are encrypted, and we never sell or share your personal information. Our servers use the most modern security protocols.'
   },
   {
     id: '5',
     category: 'Security & Privacy',
-    question: 'کیا میری ای میلز نجی ہیں؟',
-    answer: 'ہاں، تمام ای میلز بالکل نجی ہیں۔ کوئی دوسرا شخص آپ کے عارضی ای میل ایڈریس تک رسائی حاصل نہیں کر سکتا۔ صرف آپ کی بھیجی گئی ای میلز دیکھ سکتے ہیں۔'
+    question: 'Are my emails private?',
+    answer: 'Yes, all emails are completely private. No one else can access your temporary email address. Only you can see the emails you receive.'
   },
   {
     id: '6',
     category: 'Security & Privacy',
-    question: 'کیا اسپیم اور میلویئر سے محفوظ ہوں؟',
-    answer: 'ہمارے پاس اعلیٰ سطح کی فلٹرنگ ہے جو اسپیم اور میلویئر کو روکتی ہے۔ اگر آپ کو کوئی مشکوک ای میل ملے تو بلاک کر سکتے ہیں۔'
+    question: 'Are you protected against spam and malware?',
+    answer: 'We have advanced filtering that blocks spam and malware. If you receive any suspicious email, you can block it immediately.'
   },
   {
     id: '7',
     category: 'Email Usage',
-    question: 'میرا عارضی ای میل ایڈریس کتنی دیر تک کام کرے گا؟',
-    answer: '24 گھنٹے! آپ کا عارضی ای میل ایڈریس 24 گھنٹے کے بعد خود بخود حذف ہو جاتا ہے۔ اگر آپ کو مزید وقت کی ضرورت ہے تو آپ اسے بڑھا سکتے ہیں یا نیا بنا سکتے ہیں۔'
+    question: 'How long will my temporary email address work?',
+    answer: '24 hours! Your temporary email address is automatically deleted after 24 hours. If you need more time, you can extend it or create a new one.'
   },
   {
     id: '8',
     category: 'Email Usage',
-    question: 'کیا میں اپنا ای میل ایڈریس تبدیل کر سکتا ہوں؟',
-    answer: 'ہاں! جب بھی آپ چاہیں، آپ ایک نیا عارضی ای میل ایڈریس حاصل کر سکتے ہیں۔ بس "نئی ای میل" بٹن پر کلک کریں۔'
+    question: 'Can I change my email address?',
+    answer: 'Yes! You can get a new temporary email address whenever you want. Just click the "New Email" button.'
   },
   {
     id: '9',
     category: 'Email Usage',
-    question: 'کیا میں ای میلز بھیج سکتا ہوں؟',
-    answer: 'Temp Mail Pro بنیادی طور پر صرف انبکس کے لیے ہے۔ آپ ای میلز موصول کر سکتے ہیں، لیکن براہ راست ای میلز بھیج نہیں سکتے۔ تاہم، ای میلز کو اپنے اصل ای میل پر بھیج سکتے ہیں۔'
+    question: 'Can I send emails?',
+    answer: 'Temp Mail Pro is primarily for receiving emails. You can receive emails, but you cannot send directly from the temporary email. However, you can forward emails to your real email.'
   },
   {
     id: '10',
     category: 'Technical',
-    question: 'کیا میں موبائل فون پر Temp Mail Pro استعمال کر سکتا ہوں؟',
-    answer: 'بالکل! Temp Mail Pro مکمل طور پر موبائل دوست ہے۔ iOS اور Android دونوں پر بغیر کسی مسئلے کے کام کرتا ہے۔'
+    question: 'Can I use Temp Mail Pro on mobile?',
+    answer: 'Absolutely! Temp Mail Pro is fully mobile-friendly. It works seamlessly on both iOS and Android.'
   },
   {
     id: '11',
     category: 'Technical',
-    question: 'کیا مسئلہ ہو تو میں کیا کروں؟',
-    answer: 'اگر کوئی مسئلہ پیش آئے تو براہ کرم ہمارے "رابطہ" صفحے پر جائیں۔ ہمارے ٹیم سے رابطہ کریں اور ہم جلد از جلد مدد کریں گے۔'
+    question: 'What should I do if I have an issue?',
+    answer: 'If you encounter any problems, please visit our Contact page. Our team will help you as soon as possible.'
   },
   {
     id: '12',
     category: 'Technical',
-    question: 'کیا Temp Mail Pro کے لیے کوئی API ہے؟',
-    answer: 'ہاں! ہمارے پاس ایک طاقتور API ہے جو آپ اپنی ایپلیکیشنز میں استعمال کر سکتے ہیں۔ API دستاویزات کے لیے API Docs صفحہ دیکھیں۔'
+    question: 'Is there an API for Temp Mail Pro?',
+    answer: 'Yes! We have a powerful API that you can use in your applications. Check the API Docs page for documentation.'
   },
   {
     id: '13',
     category: 'Pricing & Plans',
-    question: 'کیا یہ بالکل مفت ہے؟',
-    answer: 'ہاں! Temp Mail Pro مکمل طور پر مفت ہے۔ کوئی پوشیدہ اخراجات یا سبسکریپشن نہیں۔ آپ جتنا چاہیں استعمال کر سکتے ہیں۔'
+    question: 'Is this completely free?',
+    answer: 'Yes! Temp Mail Pro is completely free. No hidden costs, no subscriptions. Use it as much as you want.'
   },
   {
     id: '14',
     category: 'Pricing & Plans',
-    question: 'کیا کوئی پریمیم ورژن ہے؟',
-    answer: 'فی الوقت نہیں، لیکن ہم مستقبل میں پریمیم فیچرز شامل کر سکتے ہیں۔ موجودہ وقت میں تمام فیچرز مفت ہیں۔'
+    question: 'Is there a premium version?',
+    answer: 'Not currently, but we may add premium features in the future. All features are free right now.'
   },
   {
     id: '15',
     category: 'Use Cases',
-    question: 'Temp Mail Pro کب استعمال کریں؟',
-    answer: 'اسے استعمال کریں: آن لائن خریداری، مفت ٹرائلز، ویب سائٹوں میں سائن اپ، اسپام سے بچنے کے لیے، اور جب آپ اپنی اصل ای میل شیئر نہیں کرنا چاہتے۔'
+    question: 'When should I use Temp Mail Pro?',
+    answer: 'Use it for: online shopping, free trials, website signups, avoiding spam, and when you don\'t want to share your real email.'
   },
   {
     id: '16',
     category: 'Use Cases',
-    question: 'کیا یہ غیر قانونی ہے؟',
-    answer: 'نہیں! Temp Mail Pro بالکل قانونی ہے۔ اسے ذاتی نجی پن کی حفاظت کے لیے استعمال کریں۔ تاہم، فراڈ یا نقصان دہ سرگرمیوں کے لیے استعمال کریں تو غلط ہے۔'
+    question: 'Is this illegal?',
+    answer: 'No! Temp Mail Pro is completely legal. Use it for privacy protection. However, it\'s wrong to use it for fraud or harmful activities.'
   },
 ];
 
@@ -126,8 +126,8 @@ export default function FAQPage() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>اکثر پوچھے جانے والے سوالات</h1>
-          <p>Temp Mail Pro کے بارے میں آپ جو کچھ جاننا چاہتے ہیں</p>
+          <h1>Frequently Asked Questions</h1>
+          <p>Everything you need to know about Temp Mail Pro</p>
         </div>
       </section>
 
@@ -140,7 +140,7 @@ export default function FAQPage() {
         }}>
           <input
             type="text"
-            placeholder="سوالات تلاش کریں..."
+            placeholder="Search questions..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{
@@ -217,7 +217,7 @@ export default function FAQPage() {
               }
             }}
           >
-            تمام زمرہ جات
+            All Categories
           </button>
           {categories.map(category => (
             <button
@@ -287,14 +287,13 @@ export default function FAQPage() {
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       gap: '16px',
-                      textAlign: 'right'
+                      textAlign: 'left'
                     }}
                   >
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '12px',
-                      order: -1
+                      gap: '12px'
                     }}>
                       <div style={{
                         background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
@@ -327,7 +326,8 @@ export default function FAQPage() {
                         height: '20px',
                         color: 'rgba(59, 130, 246, 0.6)',
                         transform: expandedId === item.id ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.3s ease'
+                        transition: 'transform 0.3s ease',
+                        flexShrink: 0
                       }}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -383,9 +383,9 @@ export default function FAQPage() {
                 marginBottom: '8px',
                 color: 'var(--text-primary)'
               }}>
-                کوئی نتیجہ نہیں ملا
+                No results found
               </h3>
-              <p>اپنی تلاش میں تبدیلی کریں یا دوسری زمرہ کو آزمائیں</p>
+              <p>Try changing your search or select a different category</p>
             </div>
           )}
         </div>
@@ -399,10 +399,10 @@ export default function FAQPage() {
           borderTop: '1px solid rgba(59, 130, 246, 0.1)'
         }}>
           <h2 style={{ fontSize: '20px', marginBottom: '16px' }}>
-            کیا آپ کو مزید مدد چاہیے؟
+            Need more help?
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
-            اگر آپ کو یہاں اپنا سوال نہیں ملا تو براہ کرم ہمارے سے رابطہ کریں
+            If you didn\'t find your answer here, please contact us
           </p>
           <a
             href="/contact"
@@ -422,7 +422,7 @@ export default function FAQPage() {
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            ہمسے رابطہ کریں
+            Contact Us
           </a>
         </div>
       </div>

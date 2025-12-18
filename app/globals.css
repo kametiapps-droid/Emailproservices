@@ -4,6 +4,24 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture {
+  display: block;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
@@ -65,8 +83,9 @@ body {
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  will-change: auto;
+  will-change: transform;
   transition: background 0.3s ease, color 0.3s ease;
+  contain: layout style;
 }
 
 [data-theme="light"] body {
@@ -904,6 +923,22 @@ main {
 @keyframes slideDown {
   from { opacity: 0; max-height: 0; }
   to { opacity: 1; max-height: 1000px; }
+}
+
+/* Performance optimizations */
+button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+a {
+  backface-visibility: hidden;
+}
+
+.nav-menu, .hamburger {
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .expanded-meta {

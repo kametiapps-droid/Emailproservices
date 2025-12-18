@@ -35,6 +35,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="canonical" href="https://www.mytempmail.pro" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0a0e27" />
       </head>
       <body>
         <Header />
