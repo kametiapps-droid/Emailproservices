@@ -26,38 +26,57 @@ export async function POST(request: NextRequest) {
     const from = cfEmail.from;
     const subject = cfEmail.subject || '(No Subject)';
     
+    // Function to clean MIME content
+    const cleanMimeContent = (content: string): string => {
+      if (!content) return '';
+      
+      const lines = content.split('\n');
+      let cleanedLines: string[] = [];
+      let skipUntilNextBoundary = false;
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        
+        // Skip MIME boundaries
+        if (line.trim().startsWith('--')) {
+          skipUntilNextBoundary = true;
+          continue;
+        }
+        
+        // Skip Content-Type, Content-Transfer-Encoding and other headers
+        if (line.startsWith('Content-') || line.startsWith('MIME-') || line.match(/^[A-Za-z-]+:\s/)) {
+          continue;
+        }
+        
+        // Skip empty lines that separate headers from body
+        if (skipUntilNextBoundary && line.trim() === '') {
+          skipUntilNextBoundary = false;
+          continue;
+        }
+        
+        if (!skipUntilNextBoundary && line.trim()) {
+          cleanedLines.push(line);
+        }
+      }
+      
+      return cleanedLines.join('\n').trim();
+    };
+
     // Get content - prefer text/html fields from postal-mime parsed email
     let textBody = '';
     let htmlBody = '';
     
     if (cfEmail.text) {
-      // New format: postal-mime parsed content
-      textBody = cfEmail.text;
-      htmlBody = cfEmail.html || '';
+      // New format: postal-mime parsed content (but may contain MIME artifacts)
+      textBody = cleanMimeContent(cfEmail.text);
+      htmlBody = cfEmail.html ? cleanMimeContent(cfEmail.html) : '';
       console.log('✅ Using parsed text/html fields');
     } else if (cfEmail.raw) {
       // Legacy format: raw email content
       console.log('📄 Using raw email field, parsing...');
       try {
         const rawEmail = cfEmail.raw;
-        const lines = rawEmail.split('\n');
-        let bodyStarted = false;
-        let currentBody = '';
-
-        for (const line of lines) {
-          if (!bodyStarted) {
-            if (line.trim() === '' || line === '\r') {
-              bodyStarted = true;
-              continue;
-            }
-          } else {
-            if (!line.startsWith('--') && !line.startsWith('Content-')) {
-              currentBody += line + '\n';
-            }
-          }
-        }
-        
-        textBody = currentBody.trim() || 'Email received (content not extracted)';
+        textBody = cleanMimeContent(rawEmail) || 'Email received (content not extracted)';
       } catch (parseError) {
         console.error('Error parsing raw email:', parseError);
         textBody = 'Failed to parse email content';
