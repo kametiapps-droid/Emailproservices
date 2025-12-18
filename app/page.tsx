@@ -87,15 +87,24 @@ export default function Home() {
     const init = async () => {
       const stored = localStorage.getItem('tempEmail');
       if (stored) {
-        const storedEmail = JSON.parse(stored);
-        const isValid = await checkExistingEmail(storedEmail);
-        if (!isValid) {
+        try {
+          const storedEmail = JSON.parse(stored);
+          // Check if valid but don't wait - load immediately
+          checkExistingEmail(storedEmail).then(isValid => {
+            if (!isValid) {
+              localStorage.removeItem('tempEmail');
+              generateEmail();
+            }
+          });
+        } catch {
           localStorage.removeItem('tempEmail');
-          await generateEmail();
+          generateEmail();
         }
       } else {
-        await generateEmail();
+        // Load email in background, don't block
+        generateEmail();
       }
+      // Always set loading to false immediately
       setLoading(false);
     };
     init();
@@ -257,10 +266,28 @@ export default function Home() {
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
-  if (loading && !email) {
+  if (!email) {
     return (
-      <div className="loading" style={{ height: '100vh' }}>
-        <div className="spinner"></div>
+      <div className="page-container">
+        <section className="hero">
+          <div className="container">
+            <h1>Secure Temporary Email</h1>
+            <p>Protect your privacy with instant disposable email addresses. No registration required.</p>
+          </div>
+        </section>
+        <div className="container">
+          <div className="email-box">
+            <div style={{ textAlign: 'center', padding: '40px 0' }}>
+              <div className="loading" style={{ height: 'auto', marginBottom: '20px' }}>
+                <div className="spinner"></div>
+              </div>
+              <p style={{ color: 'var(--text-muted)' }}>Creating your temporary email...</p>
+              <button className="copy-btn" onClick={generateEmail} style={{ marginTop: '20px' }}>
+                Generate Email
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
