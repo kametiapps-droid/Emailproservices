@@ -25,6 +25,11 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 4. **FAQ** (/faq) - 16 FAQs with search functionality
 5. **Reviews** (/reviews) - Customer feedback with voting (one vote per poll via localStorage)
 6. **Contact** (/contact) - Contact form with Firebase storage
+7. **Privacy Policy** (/privacy) - AdSense-compliant privacy disclosure
+8. **Terms and Conditions** (/terms) - Legal terms for service usage
+9. **Disclaimer** (/disclaimer) - Legal disclaimer and liability limitations
+10. **About Us** (/about) - Company mission and information
+11. **Copyright** (/copyright) - Copyright and intellectual property information
 
 ### Key Features
 - ✅ Sticky header with glass morphism effect
@@ -71,11 +76,24 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Vote limiting: One vote per poll using localStorage
 
 ### Recent Changes
+- Added 5 new legal pages for AdSense compliance (Privacy, Terms, Disclaimer, About, Copyright)
+- Updated Footer with links to all legal pages
+- Configured deployment settings (autoscale, npm build & start scripts)
+- Installed all npm dependencies
 - Added sticky header with glass morphism
 - Integrated Firebase for contact form storage
 - Optimized navigation speed with prefetching
 - Repositioned auto-refresh indicator to inbox section
 - Updated contact email to Contact@mytempmail.pro
+
+### AdSense Compliance (Dec 18, 2025)
+✅ Privacy Policy page - Complete data collection and usage disclosure
+✅ Terms and Conditions - Legal framework for service usage
+✅ Disclaimer page - Liability limitations and prohibited uses
+✅ About Us page - Company mission and service information
+✅ Copyright Disclaimer - Intellectual property and DMCA compliance
+✅ Footer updated with links to all legal pages
+✅ Deployment configured for production
 
 ### Next Steps (Optional Enhancements)
 - Email notifications when contact form is submitted

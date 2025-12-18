@@ -35,8 +35,17 @@ export default function Footer() {
               <div className="footer-nav-group">
                 <h4>Legal</h4>
                 <ul>
-                  <li><Link href="/faq">Privacy</Link></li>
-                  <li><Link href="/faq">Terms</Link></li>
+                  <li><Link href="/privacy">Privacy Policy</Link></li>
+                  <li><Link href="/terms">Terms & Conditions</Link></li>
+                  <li><Link href="/disclaimer">Disclaimer</Link></li>
+                  <li><Link href="/copyright">Copyright</Link></li>
+                </ul>
+              </div>
+              
+              <div className="footer-nav-group">
+                <h4>Company</h4>
+                <ul>
+                  <li><Link href="/about">About Us</Link></li>
                 </ul>
               </div>
             </div>
