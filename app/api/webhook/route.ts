@@ -26,43 +26,43 @@ export async function POST(request: NextRequest) {
     const from = cfEmail.from;
     const subject = cfEmail.subject || '(No Subject)';
     
-    // Function to clean MIME content
+    // Function to clean MIME content - preserve HTML, remove only MIME envelope
     const cleanMimeContent = (content: string): string => {
       if (!content) return '';
       
       const lines = content.split('\n');
       const cleanedLines: string[] = [];
-      let skipMode = false;
+      let inHeaders = true;
+      let headerEndIndex = 0;
       
-      for (const line of lines) {
+      // Find where headers end (first blank line)
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].trim() === '') {
+          inHeaders = false;
+          headerEndIndex = i + 1;
+          break;
+        }
+      }
+      
+      // Extract everything after headers
+      const bodyLines = lines.slice(headerEndIndex);
+      
+      // Remove only MIME boundaries, keep HTML content intact
+      for (const line of bodyLines) {
         const trimmed = line.trim();
         
-        // Skip MIME boundaries
-        if (trimmed.startsWith('--')) {
-          skipMode = true;
+        // Skip lines that are pure MIME boundaries (just dashes and optional text)
+        if (trimmed.startsWith('--') && (trimmed.includes('Part') || trimmed.includes('boundary') || trimmed.endsWith('--'))) {
           continue;
         }
         
-        // Skip email headers and MIME metadata
-        if (line.startsWith('Content-') || 
-            line.startsWith('MIME-') || 
-            line.startsWith('charset') ||
-            line.startsWith('boundary') ||
-            line.match(/^[A-Z][A-Za-z-]*:\s/) ||
-            line.startsWith('<!DOCTYPE') ||
-            line.startsWith('<html') ||
-            line.startsWith('<head') ||
-            line.startsWith('</head>') ||
-            line.startsWith('<body') ||
-            line.startsWith('</body>') ||
-            line.startsWith('</html>') ||
-            (skipMode && trimmed === '')) {
-          if (skipMode && trimmed === '') skipMode = false;
+        // Skip lines that start with Content- or MIME- (these are sub-part headers)
+        if (line.startsWith('Content-') || line.startsWith('MIME-')) {
           continue;
         }
         
-        // Only include actual content lines
-        if (trimmed && !line.startsWith(' ') && !line.startsWith('\t')) {
+        // Keep all other content (including HTML, images, etc)
+        if (trimmed) {
           cleanedLines.push(line);
         }
       }
