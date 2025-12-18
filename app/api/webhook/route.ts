@@ -31,30 +31,38 @@ export async function POST(request: NextRequest) {
       if (!content) return '';
       
       const lines = content.split('\n');
-      let cleanedLines: string[] = [];
-      let skipUntilNextBoundary = false;
+      const cleanedLines: string[] = [];
+      let skipMode = false;
       
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+      for (const line of lines) {
+        const trimmed = line.trim();
         
         // Skip MIME boundaries
-        if (line.trim().startsWith('--')) {
-          skipUntilNextBoundary = true;
+        if (trimmed.startsWith('--')) {
+          skipMode = true;
           continue;
         }
         
-        // Skip Content-Type, Content-Transfer-Encoding and other headers
-        if (line.startsWith('Content-') || line.startsWith('MIME-') || line.match(/^[A-Za-z-]+:\s/)) {
+        // Skip email headers and MIME metadata
+        if (line.startsWith('Content-') || 
+            line.startsWith('MIME-') || 
+            line.startsWith('charset') ||
+            line.startsWith('boundary') ||
+            line.match(/^[A-Z][A-Za-z-]*:\s/) ||
+            line.startsWith('<!DOCTYPE') ||
+            line.startsWith('<html') ||
+            line.startsWith('<head') ||
+            line.startsWith('</head>') ||
+            line.startsWith('<body') ||
+            line.startsWith('</body>') ||
+            line.startsWith('</html>') ||
+            (skipMode && trimmed === '')) {
+          if (skipMode && trimmed === '') skipMode = false;
           continue;
         }
         
-        // Skip empty lines that separate headers from body
-        if (skipUntilNextBoundary && line.trim() === '') {
-          skipUntilNextBoundary = false;
-          continue;
-        }
-        
-        if (!skipUntilNextBoundary && line.trim()) {
+        // Only include actual content lines
+        if (trimmed && !line.startsWith(' ') && !line.startsWith('\t')) {
           cleanedLines.push(line);
         }
       }
