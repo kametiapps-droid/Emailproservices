@@ -76,15 +76,23 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Vote limiting: One vote per poll using localStorage
 
 ### Recent Changes (Dec 18, 2025)
-- **Mobile responsive email box** - Full width on tablets (768px), optimized padding on mobile (600px)
-- **Widened email box** - Max-width 800px on desktop, 100% on mobile/tablet
-- **Fixed inbox email content** - Max-height 900px, iframe 500px (400px mobile), full width display
-- **Fixed links in emails** - Iframe sandbox: allow-popups, allow-popups-to-escape-sandbox enabled
-- **Links open in new tab** - Injected target="_blank" and rel="noopener noreferrer" via regex
-- **Optimized images** - Using next/image for logo with proper sizing
-- **Added critical CSS** - Inlined above-fold styles for performance
-- **Extracted CSS variables** - Added --link-color, --border-radius-* for consistency
-- **Mobile UI stacking** - Email display stacks vertically on mobile, full-width copy button
+**Mobile Responsiveness - Complete**
+- **Container padding** - Desktop 24px → Tablet 16px → Mobile 8px
+- **Inbox section padding** - Desktop 24px → Tablet 12px → Mobile 4px (maximum width!)
+- **Message items** - Reduced padding, smaller gaps on mobile
+- **Email box** - 800px desktop → Full width on mobile/tablet
+- **Email display** - Stacks vertically on mobile, full-width copy button
+- **Email content** - 900px max-height, 500px iframe, responsive on all screens
+
+**Links & Images**
+- ✅ Links open in new tabs (target="_blank", rel="noopener noreferrer")
+- ✅ Iframe sandbox allows popups (allow-popups, allow-popups-to-escape-sandbox)
+- ✅ Logo optimized with next/image component
+
+**Performance**
+- ✅ Critical CSS inlined for above-fold content
+- ✅ CSS variables extracted (--link-color, --border-radius-*)
+- ✅ Proper cache control headers enabled
 
 ### AdSense Compliance (Dec 18, 2025)
 ✅ Privacy Policy page - Complete data collection and usage disclosure

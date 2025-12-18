@@ -109,6 +109,18 @@ main {
   padding: 0 24px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 8px;
+  }
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -804,6 +816,20 @@ main {
   padding: 0 24px;
 }
 
+@media (max-width: 768px) {
+  .inbox-section {
+    padding: 0 12px;
+    margin: 0 auto 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .inbox-section {
+    padding: 0 4px;
+    margin: 0 auto 32px;
+  }
+}
+
 .inbox-header {
   display: flex;
   justify-content: space-between;
@@ -888,6 +914,12 @@ main {
   transition: background 0.15s ease;
 }
 
+@media (max-width: 600px) {
+  .message-item {
+    padding: 12px 12px;
+  }
+}
+
 .message-item:hover {
   background: var(--glass);
 }
@@ -900,6 +932,12 @@ main {
   display: flex;
   align-items: flex-start;
   gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .message-item-content {
+    gap: 10px;
+  }
 }
 
 .message-avatar {
@@ -999,6 +1037,13 @@ main {
   width: 100%;
 }
 
+@media (max-width: 600px) {
+  .message-expanded-content {
+    padding: 12px 8px;
+    gap: 12px;
+  }
+}
+
 @keyframes slideDown {
   from { opacity: 0; max-height: 0; }
   to { opacity: 1; max-height: 1000px; }
@@ -1085,9 +1130,15 @@ a {
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  .inline-email-iframe {
+    height: 450px;
+  }
+}
+
 @media (max-width: 600px) {
   .inline-email-iframe {
-    height: 400px;
+    height: 500px;
   }
 }
 
