@@ -26,18 +26,44 @@ export async function POST(request: NextRequest) {
     const from = cfEmail.from;
     const subject = cfEmail.subject || '(No Subject)';
     
-    // Get content from Cloudflare parsed email
+    // Parse multipart email content
     let textBody = '';
     let htmlBody = '';
     
+    // Try to use direct HTML field first
     if (cfEmail.html && cfEmail.html.trim().length > 0 && /<[^>]+>/.test(cfEmail.html)) {
-      // Prefer HTML if it contains actual HTML tags
       htmlBody = cfEmail.html;
-    } else if (cfEmail.text && cfEmail.text.trim().length > 0) {
-      // Otherwise use plain text
-      textBody = cfEmail.text;
-    } else {
-      // Fallback
+    }
+    
+    // If no direct HTML, parse the text field which may contain multipart
+    if (!htmlBody && cfEmail.text) {
+      const content = cfEmail.text;
+      
+      // Extract HTML part from multipart email
+      const htmlMatch = content.match(/Content-Type:\s*text\/html[^\n]*\n(?:[^\n]*\n)*\n([\s\S]*?)(?=\n--|\Z)/i);
+      if (htmlMatch && htmlMatch[1]) {
+        htmlBody = htmlMatch[1].trim();
+        // Clean up HTML - remove quoted-printable encoding artifacts
+        htmlBody = htmlBody.replace(/=\r?\n/g, '').replace(/=3D/g, '=');
+      }
+    }
+    
+    // If still no HTML, extract plain text part
+    if (!htmlBody && cfEmail.text) {
+      const content = cfEmail.text;
+      
+      // Extract plain text part from multipart email
+      const textMatch = content.match(/Content-Type:\s*text\/plain[^\n]*\n(?:[^\n]*\n)*\n([\s\S]*?)(?=\n--|\Z)/i);
+      if (textMatch && textMatch[1]) {
+        textBody = textMatch[1].trim();
+      } else {
+        // If no multipart structure, use whole content
+        textBody = content.replace(/^--.*?\n/gm, '').replace(/Content-Type:[^\n]*\n/g, '').trim();
+      }
+    }
+    
+    // Final fallback
+    if (!textBody && !htmlBody) {
       textBody = 'Email received (no content available)';
     }
     
