@@ -137,17 +137,33 @@ export default function Home() {
       const iframe = iframeRef.current;
       const doc = iframe.contentDocument || iframe.contentWindow?.document;
       if (doc) {
-        const htmlContent = selectedMessage.htmlContent || `
-          <html>
-            <head>
-              <style>
-                body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 20px; line-height: 1.6; color: #333; background: #fff; }
-                pre { white-space: pre-wrap; word-wrap: break-word; }
-              </style>
-            </head>
-            <body>${selectedMessage.content.replace(/\n/g, '<br>')}</body>
-          </html>
-        `;
+        // Always use HTML content if available, otherwise show plain text
+        const htmlContent = selectedMessage.htmlContent 
+          ? `
+            <html>
+              <head>
+                <style>
+                  body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 20px; line-height: 1.6; color: #333; background: #fff; margin: 0; }
+                  img { max-width: 100%; height: auto; }
+                  a { color: #0066cc; text-decoration: none; }
+                  table { max-width: 100%; border-collapse: collapse; }
+                  pre { white-space: pre-wrap; word-wrap: break-word; background: #f5f5f5; padding: 10px; border-radius: 5px; }
+                </style>
+              </head>
+              <body>${selectedMessage.htmlContent}</body>
+            </html>
+          `
+          : `
+            <html>
+              <head>
+                <style>
+                  body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 20px; line-height: 1.6; color: #333; background: #fff; margin: 0; }
+                  pre { white-space: pre-wrap; word-wrap: break-word; }
+                </style>
+              </head>
+              <body>${selectedMessage.content.replace(/\n/g, '<br>')}</body>
+            </html>
+          `;
         doc.open();
         doc.write(htmlContent);
         doc.close();
