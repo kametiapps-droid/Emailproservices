@@ -5,65 +5,75 @@ export default {
       const from = message.from;
       const subject = message.headers.get('subject') || 'No Subject';
 
-      console.log('📧 Email from:', from);
+      console.log('📧 Received email from:', from);
       console.log('📬 To:', to);
       console.log('📋 Subject:', subject);
 
-      // Read full raw email content
-      let rawContent = '';
-      try {
-        const reader = message.raw.getReader();
-        const decoder = new TextDecoder();
-        
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          rawContent += decoder.decode(value, { stream: true });
+      // Get the full email content
+      // Cloudflare provides message.raw as a ReadableStream
+      let emailContent = '';
+      
+      // Try to read the stream if it exists
+      if (message.raw) {
+        try {
+          const reader = message.raw.getReader();
+          const decoder = new TextDecoder();
+          
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            emailContent += decoder.decode(value, { stream: true });
+          }
+          // Final flush
+          emailContent += decoder.decode();
+        } catch (streamError) {
+          console.error('❌ Stream error:', streamError.message);
         }
-        rawContent += decoder.decode(); // Flush remaining
-      } catch (readError) {
-        console.error('❌ Error reading stream:', readError);
-        rawContent = '';
       }
 
-      console.log('📊 Raw content size:', rawContent.length);
+      console.log('📊 Email size:', emailContent.length, 'bytes');
 
-      // Get webhook URL
-      const webhookUrl = env.WEBHOOK_URL || '';
-      
+      // Ensure we have webhook URL
+      const webhookUrl = env.WEBHOOK_URL;
       if (!webhookUrl) {
-        console.error('❌ WEBHOOK_URL not configured');
-        message.setReject('Webhook URL not configured');
+        console.error('❌ WEBHOOK_URL not set in environment');
+        message.setReject('Webhook not configured');
         return;
       }
 
-      // Send to webhook
-      try {
-        const response = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            to,
-            from,
-            subject,
-            raw: rawContent,
-          }),
-        });
+      // Send the email to our webhook
+      const payload = {
+        to,
+        from,
+        subject,
+        raw: emailContent,
+        timestamp: new Date().toISOString(),
+      };
 
-        if (response.ok) {
-          console.log('✅ Email forwarded to webhook successfully');
-        } else {
-          const errorText = await response.text();
-          console.error('❌ Webhook error:', response.status, errorText);
-          message.setReject('Webhook processing failed');
-        }
-      } catch (fetchError) {
-        console.error('❌ Fetch error:', fetchError);
-        message.setReject('Could not reach webhook');
+      console.log('🚀 Sending to webhook...');
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'Cloudflare-Email-Worker/1.0',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        console.log('✅ Successfully forwarded to webhook');
+        const result = await response.json();
+        console.log('📝 Webhook response:', result);
+      } else {
+        const errorBody = await response.text();
+        console.error('❌ Webhook returned error:', response.status);
+        console.error('📄 Error body:', errorBody);
+        message.setReject('Webhook processing failed');
       }
-    } catch (err) {
-      console.error('❌ Worker error:', err.message || err);
-      message.setReject('Email processing failed');
+    } catch (error) {
+      console.error('❌ Worker error:', error.message || String(error));
+      message.setReject('Failed to process email');
     }
   },
 };

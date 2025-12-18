@@ -34,57 +34,76 @@ export async function POST(request: NextRequest) {
     try {
       const rawEmail = cfEmail.raw || '';
       
-      if (!rawEmail) {
-        console.warn('⚠️ No raw email content received');
-        textBody = '(No email content)';
+      if (!rawEmail || rawEmail.trim().length === 0) {
+        console.warn('⚠️ No raw email content received from worker');
+        console.warn('Raw value:', rawEmail);
+        console.warn('Raw length:', rawEmail.length);
+        // Set generic content placeholder
+        textBody = 'Email received (content extraction pending)';
         htmlBody = '';
       } else {
         const lines = rawEmail.split('\n');
         let bodyStarted = false;
         let currentBody = '';
         let isHtml = false;
+        let inQuotedPrintable = false;
 
         for (let i = 0; i < lines.length; i++) {
           const line = lines[i];
           
           if (!bodyStarted) {
             // Look for empty line that marks end of headers
-            if (line.trim() === '') {
+            if (line.trim() === '' || line === '\r') {
               bodyStarted = true;
               continue;
             }
             
-            // Extract headers
+            // Extract subject from headers if not set
             if (line.toLowerCase().startsWith('subject:')) {
               subject = line.substring(8).trim() || subject;
             }
-            if (line.toLowerCase().startsWith('content-type:') && line.toLowerCase().includes('text/html')) {
-              isHtml = true;
+            if (line.toLowerCase().startsWith('content-type:')) {
+              if (line.toLowerCase().includes('text/html')) {
+                isHtml = true;
+              }
+              if (line.toLowerCase().includes('quoted-printable')) {
+                inQuotedPrintable = true;
+              }
             }
           } else {
-            // Skip boundary lines for multipart emails
-            if (line.startsWith('--')) {
+            // Skip boundary markers
+            if (line.startsWith('--') && line.includes('boundary')) {
               continue;
             }
-            currentBody += line + '\n';
+            // Skip charset and other metadata lines
+            if (line.startsWith('Content-')) {
+              continue;
+            }
+            // Add content
+            if (line.trim().length > 0) {
+              currentBody += line + '\n';
+            }
           }
         }
         
         const cleanBody = currentBody.trim();
         
-        if (isHtml) {
-          htmlBody = cleanBody || '(No email content)';
-          textBody = cleanBody || '(No email content)';
+        if (cleanBody && cleanBody !== '') {
+          textBody = cleanBody;
+          htmlBody = isHtml ? cleanBody : '';
         } else {
-          textBody = cleanBody || '(No email content)';
+          textBody = 'Email received (no extractable content)';
           htmlBody = '';
         }
       }
     } catch (parseError) {
       console.error('Error parsing raw email:', parseError);
-      textBody = '(Failed to parse email)';
+      textBody = 'Failed to parse email content';
       htmlBody = '';
     }
+    
+    console.log('📋 Parsed text body length:', textBody.length);
+    console.log('📋 Is HTML:', htmlBody.length > 0);
     
     console.log('📩 EMAIL RECEIVED');
     console.log('Inbox:', to.split('@')[0]);
