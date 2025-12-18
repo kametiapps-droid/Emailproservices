@@ -7,8 +7,10 @@ interface CloudflareEmail {
   to: string;
   from: string;
   subject?: string;
-  headers?: Record<string, string>;
-  raw: string;
+  text?: string;
+  html?: string;
+  raw?: string;
+  timestamp?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -16,111 +18,73 @@ export async function POST(request: NextRequest) {
     const db = getDb();
     const body = await request.json();
     
-    let to: string;
-    let from: string;
-    let subject: string;
-    let textBody: string = '';
-    let htmlBody: string = '';
-
     console.log('📨 Webhook received from Cloudflare');
+    console.log('📦 Payload keys:', Object.keys(body));
 
-    // Parse Cloudflare email
     const cfEmail: CloudflareEmail = body;
-    to = cfEmail.to;
-    from = cfEmail.from;
-    subject = cfEmail.subject || '(No Subject)';
+    const to = cfEmail.to;
+    const from = cfEmail.from;
+    const subject = cfEmail.subject || '(No Subject)';
     
-    // Parse raw email content
-    try {
-      const rawEmail = cfEmail.raw || '';
-      
-      if (!rawEmail || rawEmail.trim().length === 0) {
-        console.warn('⚠️ No raw email content received from worker');
-        console.warn('Raw value:', rawEmail);
-        console.warn('Raw length:', rawEmail.length);
-        // Set generic content placeholder
-        textBody = 'Email received (content extraction pending)';
-        htmlBody = '';
-      } else {
+    // Get content - prefer text/html fields from postal-mime parsed email
+    let textBody = '';
+    let htmlBody = '';
+    
+    if (cfEmail.text) {
+      // New format: postal-mime parsed content
+      textBody = cfEmail.text;
+      htmlBody = cfEmail.html || '';
+      console.log('✅ Using parsed text/html fields');
+    } else if (cfEmail.raw) {
+      // Legacy format: raw email content
+      console.log('📄 Using raw email field, parsing...');
+      try {
+        const rawEmail = cfEmail.raw;
         const lines = rawEmail.split('\n');
         let bodyStarted = false;
         let currentBody = '';
-        let isHtml = false;
-        let inQuotedPrintable = false;
 
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i];
-          
+        for (const line of lines) {
           if (!bodyStarted) {
-            // Look for empty line that marks end of headers
             if (line.trim() === '' || line === '\r') {
               bodyStarted = true;
               continue;
             }
-            
-            // Extract subject from headers if not set
-            if (line.toLowerCase().startsWith('subject:')) {
-              subject = line.substring(8).trim() || subject;
-            }
-            if (line.toLowerCase().startsWith('content-type:')) {
-              if (line.toLowerCase().includes('text/html')) {
-                isHtml = true;
-              }
-              if (line.toLowerCase().includes('quoted-printable')) {
-                inQuotedPrintable = true;
-              }
-            }
           } else {
-            // Skip boundary markers
-            if (line.startsWith('--') && line.includes('boundary')) {
-              continue;
-            }
-            // Skip charset and other metadata lines
-            if (line.startsWith('Content-')) {
-              continue;
-            }
-            // Add content
-            if (line.trim().length > 0) {
+            if (!line.startsWith('--') && !line.startsWith('Content-')) {
               currentBody += line + '\n';
             }
           }
         }
         
-        const cleanBody = currentBody.trim();
-        
-        if (cleanBody && cleanBody !== '') {
-          textBody = cleanBody;
-          htmlBody = isHtml ? cleanBody : '';
-        } else {
-          textBody = 'Email received (no extractable content)';
-          htmlBody = '';
-        }
+        textBody = currentBody.trim() || 'Email received (content not extracted)';
+      } catch (parseError) {
+        console.error('Error parsing raw email:', parseError);
+        textBody = 'Failed to parse email content';
       }
-    } catch (parseError) {
-      console.error('Error parsing raw email:', parseError);
-      textBody = 'Failed to parse email content';
-      htmlBody = '';
+    } else {
+      // No content available
+      console.warn('⚠️ No email content received');
+      textBody = 'Email received (no content available)';
     }
-    
-    console.log('📋 Parsed text body length:', textBody.length);
-    console.log('📋 Is HTML:', htmlBody.length > 0);
-    
+
     console.log('📩 EMAIL RECEIVED');
-    console.log('Inbox:', to.split('@')[0]);
-    console.log('From:', from);
-    console.log('Subject:', subject);
-    console.log('Size:', textBody.length);
+    console.log('📬 To:', to);
+    console.log('📧 From:', from);
+    console.log('📋 Subject:', subject);
+    console.log('📝 Text length:', textBody.length);
+    console.log('🌐 HTML length:', htmlBody.length);
 
     if (!to || !from) {
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { success: false, error: 'Missing required fields (to/from)' },
         { status: 400 }
       );
     }
 
     const emailAddress = Array.isArray(to) ? to[0] : to;
 
-    // Check if email exists
+    // Check if email exists in database
     const emailsSnapshot = await db
       .collection('temp_emails')
       .where('email', '==', emailAddress)
@@ -154,16 +118,16 @@ export async function POST(request: NextRequest) {
       id: messageRef.id,
       sender: from,
       subject: subject,
-      content: textBody || htmlBody,
+      content: textBody || htmlBody || 'No content',
       htmlContent: htmlBody,
       receivedAt: new Date().toISOString(),
       isRead: false,
     });
 
-    console.log('✅ Email received and stored successfully');
-    return NextResponse.json({ success: true });
+    console.log('✅ Email stored successfully with ID:', messageRef.id);
+    return NextResponse.json({ success: true, messageId: messageRef.id });
   } catch (error) {
-    console.error('❌ Webhook receive error:', error);
+    console.error('❌ Webhook error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to receive email' },
       { status: 500 }
