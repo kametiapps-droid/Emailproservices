@@ -1,17 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, generateRandomEmail, getExpirationTime } from '@/lib/firebase';
+import { initializeFirebase } from '@/lib/firebaseInit';
 import { v4 as uuidv4 } from 'uuid';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST() {
   try {
+    await initializeFirebase();
+    
     const id = uuidv4();
     const email = generateRandomEmail();
     const createdAt = new Date();
     const expiresAt = getExpirationTime();
 
-    // Initialize Firebase and save in parallel
     const db = getDb();
     
     await db.collection('temp_emails').doc(id).set({
@@ -40,6 +42,7 @@ export async function POST() {
 
 export async function GET(request: NextRequest) {
   try {
+    await initializeFirebase();
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('id');
@@ -82,6 +85,7 @@ export async function GET(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    await initializeFirebase();
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('id');
