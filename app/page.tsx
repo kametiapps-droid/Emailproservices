@@ -289,9 +289,9 @@ export default function Home() {
       <div className="container">
         <div className="email-box" style={{ position: 'relative' }}>
           {loading && !email && (
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(10, 14, 39, 0.7)', borderRadius: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 10, gap: '12px' }}>
-              <div className="spinner"></div>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>⚡ Creating email...</p>
+            <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(10, 14, 39, 0.3)', borderRadius: '20px', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 10, backdropFilter: 'blur(4px)' }}>
+              <div className="spinner" style={{ width: '16px', height: '16px' }}></div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', margin: 0 }}>Generating...</p>
             </div>
           )}
           <div className="email-display">
