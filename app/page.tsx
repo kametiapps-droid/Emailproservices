@@ -281,9 +281,25 @@ export default function Home() {
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
+  // Try to get stored email for display even before useEffect completes
+  const getStoredEmail = (): string => {
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('tempEmail');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          return parsed.email || 'Loading...';
+        }
+      } catch (e) {
+        console.error('Error reading stored email:', e);
+      }
+    }
+    return 'Loading...';
+  };
+
   const displayEmail = email || { 
     id: '', 
-    email: 'Loading...', 
+    email: mounted ? getStoredEmail() : 'Loading...', 
     createdAt: new Date().toISOString(), 
     expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() 
   };
