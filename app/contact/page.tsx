@@ -85,7 +85,7 @@ export default function ContactPage() {
               Reach us via email for inquiries
             </p>
             <a
-              href="mailto:support@tempmail.pro"
+              href="mailto:Contact@mytempmail.pro"
               style={{
                 color: 'rgba(59, 130, 246, 1)',
                 textDecoration: 'none',
@@ -93,7 +93,7 @@ export default function ContactPage() {
                 fontSize: '14px'
               }}
             >
-              support@tempmail.pro
+              Contact@mytempmail.pro
             </a>
           </div>
 

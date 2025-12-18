@@ -1,63 +1,84 @@
-# Temp Mail Pro - Temporary Disposable Email Service
+# Temp Mail Pro - Temporary Email Service
 
-## Project Status: ✅ READY FOR PRODUCTION
+## Project Overview
+Temp Mail Pro is a modern temporary disposable email service built with Next.js 15, React 19, and TypeScript. Users can instantly generate disposable email addresses that expire in 24 hours, protecting their privacy. All features are fast, beautiful, and fully responsive.
 
-### Overview
-A Next.js 15 application providing free temporary disposable email addresses that expire in 24 hours. Built with React, TypeScript, Firebase Firestore, and deployed on Replit.
+## Site Information
+- **Site Name:** Temp Mail Pro
+- **Domain:** https://www.mytempmail.pro/
+- **Contact Email:** Contact@mytempmail.pro
+- **Language:** English only
+
+## Project Architecture
+
+### Technology Stack
+- Frontend: Next.js 15, React 19, TypeScript
+- Backend: Next.js API routes
+- Database: Firebase Firestore
+- Styling: CSS3 with glassmorphism effects
+- UI Theme: Dark mode (primary), Light mode (full support)
+
+### Pages & Features
+1. **Home Page** (/) - Email generator, inbox, message reading
+2. **Use Cases** (/use-cases) - 8 different use cases
+3. **Blog** (/blog) - 10 articles with category filtering
+4. **FAQ** (/faq) - 16 FAQs with search functionality
+5. **Reviews** (/reviews) - Customer feedback with voting (one vote per poll via localStorage)
+6. **Contact** (/contact) - Contact form with Firebase storage
 
 ### Key Features
-- ✅ Instant email generation with 4 domains (kameti.online, giftofhope.online, mytoolhub.store, playgamesonline.space)
-- ✅ 24-hour email expiration
-- ✅ Real-time inbox with message reading
-- ✅ QR code generation for email sharing
-- ✅ Copy-to-clipboard functionality
-- ✅ Auto-refresh inbox every 15 seconds
-- ✅ Mobile-optimized UI with responsive design
-- ✅ Dark theme with gradient styling
+- ✅ Sticky header with glass morphism effect
+- ✅ Logo display (envelope icon from favicon.png)
+- ✅ Auto-refresh indicator next to Inbox heading
+- ✅ Lightning-fast navigation (prefetching enabled)
+- ✅ Hamburger menu with 0.1s animations
+- ✅ Dark/Light theme toggle with localStorage
+- ✅ Contact form submissions stored in Firebase Firestore
+- ✅ Fully responsive design
+- ✅ Optimized performance with GPU acceleration
 
-### Recent Optimizations (Dec 18, 2025)
-1. **Firebase Pre-initialization**: Added `lib/firebaseInit.ts` module to cache Firebase connection
-2. **Loading State UX**: Placeholder "Loading..." email shows immediately, subtle "Generating..." indicator in corner
-3. **Page Load Performance**: Instant UI display - no blocking overlays
-4. **Email Generation Speed**: Optimized to ~1-2 seconds with Firebase warming
+### API Endpoints
+- `POST /api/email` - Generate new email
+- `GET /api/inbox?emailId={id}` - Fetch messages
+- `DELETE /api/email?id={id}` - Delete email
+- `DELETE /api/message` - Delete message
+- `POST /api/contact` - Submit contact form (stores in Firebase)
+- `GET /api/contact` - Retrieve all contact messages
 
-### Technical Stack
-- **Frontend**: Next.js 15.5.9, React 19, TypeScript
-- **Backend**: Next.js API Routes
-- **Database**: Firebase Firestore
-- **Deployment**: Replit (Port 5000)
-- **Package Manager**: npm
+### Database Collections (Firebase Firestore)
+- **contact_messages** - Contact form submissions
+  - Fields: name, email, subject, message, createdAt, status, read
 
-### Project Structure
-```
-app/
-  ├── api/
-  │   ├── email/route.ts      # Email generation, retrieval, deletion
-  │   ├── inbox/route.ts      # Fetch messages for email
-  │   └── init/route.ts       # Firebase warm-up endpoint
-  ├── components/
-  │   ├── Header.tsx
-  │   └── Footer.tsx
-  ├── page.tsx                # Main email interface
-  ├── layout.tsx
-  └── globals.css
-lib/
-  ├── firebase.ts             # Firebase initialization and utilities
-  └── firebaseInit.ts         # Firebase connection caching
-```
+### Performance Optimizations
+- Route prefetching on all navigation links
+- CSS transitions optimized (0.1s animations)
+- GPU acceleration with will-change and backface-visibility
+- Sticky positioning for header (not fixed)
+- Blur effects and glass morphism for modern UI
+
+### Design System
+- **Color Scheme:** Dark blue (#0a0e27) to (#1a1f3a)
+- **Accents:** Blue (#3B82F6) and Purple (#A855F7) gradients
+- **Typography:** Inter font family
+- **Borders:** Subtle blue borders with 0.15-0.3 opacity
+- **Shadows:** Soft shadows for depth
 
 ### User Preferences
-- Communicates in Urdu/Hindi - use simple, conversational language
-- Expects lightning-fast page loads and visual feedback
-- Values clean, uncluttered UI without blocking overlays
+- All content in English (converted from Urdu)
+- Dark theme as default with light mode option
+- Blog author: "Temp Mail Pro Team" (no fake names)
+- Reviews: No reply buttons on feedback cards
+- Vote limiting: One vote per poll using localStorage
 
-### Known Configuration
-- Replit environment with Node.js
-- Firebase Admin SDK for backend operations
-- Next.js dev server bound to 0.0.0.0:5000
-- localStorage for email persistence across sessions
+### Recent Changes
+- Added sticky header with glass morphism
+- Integrated Firebase for contact form storage
+- Optimized navigation speed with prefetching
+- Repositioned auto-refresh indicator to inbox section
+- Updated contact email to Contact@mytempmail.pro
 
-### Deployment
-- Run: `npm run dev`
-- Build: `npm run build`
-- Production ready - can publish to custom domain via Replit
+### Next Steps (Optional Enhancements)
+- Email notifications when contact form is submitted
+- Admin dashboard for viewing contact messages
+- Message search and filtering
+- Email verification for temporary addresses
