@@ -697,17 +697,15 @@ main {
   }
 
   .email-address {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    line-height: 1.2;
-    flex: 0 1 calc(100% - 44px);
+    line-height: 1.3;
+    flex: 1 1 auto;
     max-width: calc(100% - 44px);
     min-width: 0;
-    word-break: break-all;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    color: var(--primary-light);
   }
 
   .copy-btn-icon {
