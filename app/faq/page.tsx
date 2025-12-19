@@ -147,20 +147,20 @@ export default function FAQPage() {
               width: '100%',
               padding: '16px 20px',
               borderRadius: '12px',
-              border: '1px solid rgba(59, 130, 246, 0.3)',
-              background: 'rgba(15, 23, 42, 0.5)',
+              border: '1px solid var(--border-light)',
+              background: 'var(--surface-light)',
               color: 'var(--text)',
               fontSize: '16px',
               outline: 'none',
               transition: 'all 0.3s ease'
             }}
             onFocus={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
-              e.currentTarget.style.background = 'rgba(15, 23, 42, 0.8)';
+              e.currentTarget.style.borderColor = 'var(--primary)';
+              e.currentTarget.style.background = 'var(--surface)';
             }}
             onBlur={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-              e.currentTarget.style.background = 'rgba(15, 23, 42, 0.5)';
+              e.currentTarget.style.borderColor = 'var(--border-light)';
+              e.currentTarget.style.background = 'var(--surface-light)';
             }}
           />
           <svg
@@ -171,7 +171,7 @@ export default function FAQPage() {
               transform: 'translateY(-50%)',
               width: '20px',
               height: '20px',
-              color: 'rgba(59, 130, 246, 0.5)',
+              color: 'var(--text-dim)',
               pointerEvents: 'none'
             }}
             xmlns="http://www.w3.org/2000/svg"
@@ -196,9 +196,9 @@ export default function FAQPage() {
             style={{
               padding: '10px 20px',
               borderRadius: '8px',
-              border: selectedCategory === null ? '2px solid rgba(59, 130, 246, 0.8)' : '1px solid rgba(59, 130, 246, 0.2)',
-              background: selectedCategory === null ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
-              color: selectedCategory === null ? 'rgba(59, 130, 246, 1)' : 'var(--text-secondary)',
+              border: selectedCategory === null ? '2px solid var(--primary)' : '1px solid var(--border)',
+              background: selectedCategory === null ? 'var(--glass)' : 'transparent',
+              color: selectedCategory === null ? 'var(--primary)' : 'var(--text-muted)',
               cursor: 'pointer',
               fontSize: '14px',
               fontWeight: '600',
@@ -226,9 +226,9 @@ export default function FAQPage() {
               style={{
                 padding: '10px 20px',
                 borderRadius: '8px',
-                border: selectedCategory === category ? '2px solid rgba(59, 130, 246, 0.8)' : '1px solid rgba(59, 130, 246, 0.2)',
-                background: selectedCategory === category ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
-                color: selectedCategory === category ? 'rgba(59, 130, 246, 1)' : 'var(--text-secondary)',
+                border: selectedCategory === category ? '2px solid var(--primary)' : '1px solid var(--border)',
+                background: selectedCategory === category ? 'var(--glass)' : 'transparent',
+                color: selectedCategory === category ? 'var(--primary)' : 'var(--text-muted)',
                 cursor: 'pointer',
                 fontSize: '14px',
                 fontWeight: '600',
@@ -313,7 +313,7 @@ export default function FAQPage() {
                       </h3>
                       <p style={{
                         fontSize: '12px',
-                        color: 'rgba(59, 130, 246, 0.8)',
+                        color: 'var(--text-muted)',
                         margin: '6px 0 0 0',
                         fontWeight: '500'
                       }}>
@@ -324,7 +324,7 @@ export default function FAQPage() {
                       style={{
                         width: '20px',
                         height: '20px',
-                        color: 'rgba(59, 130, 246, 0.6)',
+                        color: 'var(--text-dim)',
                         transform: expandedId === item.id ? 'rotate(180deg)' : 'rotate(0deg)',
                         transition: 'transform 0.3s ease',
                         flexShrink: 0
