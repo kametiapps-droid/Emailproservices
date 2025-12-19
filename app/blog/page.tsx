@@ -1008,6 +1008,17 @@ export default function BlogPage() {
                     </div>
                   </div>
                 </div>
+                <div style={{
+                  marginTop: '16px',
+                  paddingTop: '16px',
+                  borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+                  fontSize: '14px',
+                  color: 'var(--text-muted)',
+                  fontStyle: 'italic'
+                }}>
+                  Written by Temp Mail Pro Team<br />
+                  Experts in digital privacy and secure email solutions.
+                </div>
               </div>
             </article>
           </>
