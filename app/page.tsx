@@ -475,7 +475,7 @@ export default function Home() {
 
       <section className="features">
         <div className="container">
-          <h2>Why Choose Temp Mail Pro?</h2>
+          <h2 style={{ color: 'var(--text)' }}>Why Choose Temp Mail Pro?</h2>
           <div className="features-grid">
             <div className="feature-card card-lightning">
               <div className="feature-icon">

@@ -342,10 +342,10 @@ export default function UseCasesPage() {
           padding: '60px 20px',
           borderTop: '1px solid rgba(59, 130, 246, 0.1)'
         }}>
-          <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '24px', marginBottom: '16px', color: 'var(--text)' }}>
             Get Started Now
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
             Protect your privacy with just one click
           </p>
           <a

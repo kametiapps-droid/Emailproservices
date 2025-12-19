@@ -388,7 +388,7 @@ export default function ReviewsPage() {
 
         {/* Live Polls Section */}
         <div style={{ marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '28px', marginBottom: '24px' }}>Live Polls</h2>
+          <h2 style={{ fontSize: '28px', marginBottom: '24px', color: 'var(--text)' }}>Live Polls</h2>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
@@ -514,7 +514,7 @@ export default function ReviewsPage() {
 
         {/* Feedback Section */}
         <div>
-          <h2 style={{ fontSize: '28px', marginBottom: '24px' }}>Recent Feedback ({feedbacks.length})</h2>
+          <h2 style={{ fontSize: '28px', marginBottom: '24px', color: 'var(--text)' }}>Recent Feedback ({feedbacks.length})</h2>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',

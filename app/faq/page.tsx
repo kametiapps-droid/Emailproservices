@@ -398,7 +398,7 @@ export default function FAQPage() {
           paddingTop: '60px',
           borderTop: '1px solid rgba(59, 130, 246, 0.1)'
         }}>
-          <h2 style={{ fontSize: '20px', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--text)' }}>
             Need more help?
           </h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
