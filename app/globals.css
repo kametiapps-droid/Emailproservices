@@ -662,6 +662,7 @@ main {
   margin-bottom: 20px;
   border: 1px solid var(--border);
   min-height: 60px;
+  flex-wrap: nowrap;
 }
 
 .email-address {
@@ -671,9 +672,9 @@ main {
   word-break: break-word;
   overflow-wrap: break-word;
   flex: 1;
+  min-width: 0;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
   line-height: 1.4;
-  max-width: calc(100% - 50px);
 }
 
 @media (max-width: 600px) {
@@ -685,12 +686,26 @@ main {
   .email-display {
     padding: 16px 16px;
     gap: 10px;
-    min-height: 50px;
+    min-height: 60px;
+    flex-wrap: nowrap;
   }
 
   .email-address {
-    font-size: 0.9rem;
-    max-width: calc(100% - 45px);
+    font-size: 0.85rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .copy-btn-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .copy-btn-icon svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
