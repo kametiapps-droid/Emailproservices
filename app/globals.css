@@ -846,15 +846,20 @@ main {
 }
 
 @media (max-width: 600px) {
+  .action-buttons {
+    gap: 12px;
+  }
+
   .action-btn {
-    padding: 12px 8px;
-    gap: 6px;
-    font-size: 0.75rem;
+    padding: 20px 12px;
+    gap: 10px;
+    font-size: 0.9rem;
+    min-height: 90px;
   }
   
   .action-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
   }
 }
 
