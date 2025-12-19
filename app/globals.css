@@ -847,14 +847,14 @@ main {
 
 @media (max-width: 600px) {
   .action-btn {
-    padding: 7px 5px;
-    gap: 3px;
-    font-size: 0.6rem;
+    padding: 12px 8px;
+    gap: 6px;
+    font-size: 0.75rem;
   }
   
   .action-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
   }
 }
 
