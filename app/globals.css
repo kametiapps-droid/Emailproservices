@@ -655,14 +655,13 @@ main {
   background: var(--glass);
   border-radius: 12px;
   padding: 18px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 12px;
   margin-bottom: 20px;
   border: 1px solid var(--border);
   min-height: 60px;
-  flex-wrap: nowrap;
+  align-items: center;
 }
 
 .email-address {
@@ -684,24 +683,16 @@ main {
   }
 
   .email-display {
-    padding: 8px 8px;
-    gap: 4px;
+    padding: 10px 8px;
+    gap: 6px;
     min-height: 48px;
-    max-height: 48px;
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    overflow: hidden;
+    grid-template-columns: 1fr 36px;
   }
 
   .email-address {
     font-size: 0.7rem;
     font-weight: 600;
     line-height: 1.3;
-    flex: 1 1 auto;
-    max-width: calc(100% - 44px);
     min-width: 0;
     word-break: break-word;
     overflow-wrap: break-word;
@@ -709,13 +700,9 @@ main {
   }
 
   .copy-btn-icon {
-    flex: 0 0 32px;
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
-    max-width: 32px !important;
+    width: 36px;
+    height: 36px;
     padding: 6px;
-    margin-left: auto;
   }
 
   .copy-btn-icon svg {
