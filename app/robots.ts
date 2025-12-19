@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',
-          '/api-docs',
+          '/api-docs/',
           '/inbox/',
           '/mail/',
           '/webhook/',
@@ -34,7 +34,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',
-          '/api-docs',
+          '/api-docs/',
           '/inbox/',
           '/mail/',
           '/webhook/',
