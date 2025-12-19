@@ -421,6 +421,7 @@ main {
   .footer-nav {
     justify-content: center;
     gap: 40px;
+    width: 100%;
   }
 
   .footer-nav-group {
@@ -430,6 +431,31 @@ main {
   .footer-bottom {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding: 32px 0 20px;
+  }
+
+  .footer-nav {
+    gap: 24px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-nav-group h4 {
+    margin-bottom: 12px;
+    font-size: 0.75rem;
+  }
+
+  .footer-nav-group ul {
+    gap: 8px;
+  }
+
+  .footer-nav-group a {
+    font-size: 0.85rem;
   }
 }
 
