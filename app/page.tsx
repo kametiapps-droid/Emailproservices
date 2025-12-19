@@ -324,6 +324,7 @@ export default function Home() {
               <p>Generating...</p>
             </div>
           )}
+          <div className="email-header-label">Your Temporary Email</div>
           <div className="email-display">
             <span className="email-address">{displayEmail.email}</span>
             <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
