@@ -1,54 +1,50 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // ✅ Allow real search engines (Blog + Pages)
       {
-        userAgent: ["Googlebot", "Bingbot", "DuckDuckBot", "YandexBot"],
-        allow: ["/"],
+        userAgent: ['Googlebot', 'Bingbot', 'DuckDuckBot', 'YandexBot'],
+        allow: '/',
         disallow: [
-          "/api/",
-          "/api-docs",
-          "/inbox/",
-          "/mail/",
-          "/webhook/",
-          "/admin/",
-          "/dashboard/",
+          '/api/',
+          '/api-docs',
+          '/inbox/',
+          '/mail/',
+          '/webhook/',
+          '/admin/',
+          '/dashboard/',
+          '/private/',
         ],
       },
-
-      // ❌ Block AI training & scraping bots
       {
         userAgent: [
-          "GPTBot",
-          "ChatGPT-User",
-          "ClaudeBot",
-          "CCBot",
-          "Google-Extended",
-          "Amazonbot",
-          "Applebot-Extended",
+          'GPTBot',
+          'ChatGPT-User',
+          'ClaudeBot',
+          'CCBot',
+          'Google-Extended',
+          'Amazonbot',
+          'Applebot-Extended',
         ],
-        disallow: ["/"],
+        disallow: '/',
       },
-
-      // ❌ Default rule for unknown bots & scripts
       {
-        userAgent: "*",
+        userAgent: '*',
+        allow: '/',
         disallow: [
-          "/api/",
-          "/api-docs",
-          "/inbox/",
-          "/mail/",
-          "/webhook/",
-          "/admin/",
-          "/dashboard/",
-          "/private/",
+          '/api/',
+          '/api-docs',
+          '/inbox/',
+          '/mail/',
+          '/webhook/',
+          '/admin/',
+          '/dashboard/',
+          '/private/',
         ],
       },
     ],
-
-    sitemap: "https://www.mytempmail.pro/sitemap.xml",
-    host: "https://www.mytempmail.pro",
+    sitemap: 'https://www.mytempmail.pro/sitemap.xml',
+    host: 'https://www.mytempmail.pro',
   };
 }
