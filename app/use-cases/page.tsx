@@ -158,9 +158,9 @@ export default function UseCasesPage() {
             style={{
               padding: '10px 20px',
               borderRadius: '8px',
-              border: selectedCategory === null ? '2px solid rgba(59, 130, 246, 0.8)' : '1px solid rgba(59, 130, 246, 0.2)',
-              background: selectedCategory === null ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
-              color: selectedCategory === null ? 'rgba(59, 130, 246, 1)' : 'var(--text-secondary)',
+              border: selectedCategory === null ? '2px solid var(--primary)' : '1px solid var(--border)',
+              background: selectedCategory === null ? 'var(--glass)' : 'transparent',
+              color: selectedCategory === null ? 'var(--primary)' : 'var(--text-muted)',
               cursor: 'pointer',
               fontSize: '14px',
               fontWeight: '600',
@@ -188,9 +188,9 @@ export default function UseCasesPage() {
               style={{
                 padding: '10px 20px',
                 borderRadius: '8px',
-                border: selectedCategory === category ? '2px solid rgba(59, 130, 246, 0.8)' : '1px solid rgba(59, 130, 246, 0.2)',
-                background: selectedCategory === category ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
-                color: selectedCategory === category ? 'rgba(59, 130, 246, 1)' : 'var(--text-secondary)',
+                border: selectedCategory === category ? '2px solid var(--primary)' : '1px solid var(--border)',
+                background: selectedCategory === category ? 'var(--glass)' : 'transparent',
+                color: selectedCategory === category ? 'var(--primary)' : 'var(--text-muted)',
                 cursor: 'pointer',
                 fontSize: '14px',
                 fontWeight: '600',
@@ -253,13 +253,13 @@ export default function UseCasesPage() {
                 fontSize: '20px',
                 fontWeight: '700',
                 marginBottom: '12px',
-                color: 'var(--text-primary)'
+                color: 'var(--text)'
               }}>
                 {useCase.title}
               </h3>
 
               <p style={{
-                color: 'var(--text-secondary)',
+                color: 'var(--text-muted)',
                 fontSize: '14px',
                 lineHeight: '1.6',
                 marginBottom: '20px'
@@ -275,7 +275,7 @@ export default function UseCasesPage() {
                 <p style={{
                   fontSize: '12px',
                   fontWeight: '600',
-                  color: 'rgba(59, 130, 246, 0.8)',
+                  color: 'var(--primary)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
                   margin: '0 0 12px 0'
@@ -299,7 +299,7 @@ export default function UseCasesPage() {
                       ✓
                     </span>
                     <span style={{
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-dim)',
                       fontSize: '13px',
                       lineHeight: '1.5'
                     }}>
@@ -316,16 +316,16 @@ export default function UseCasesPage() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                color: 'rgba(59, 130, 246, 0.8)',
+                color: 'var(--primary)',
                 fontSize: '12px',
                 fontWeight: '600'
               }}>
                 <span>Category:</span>
                 <span style={{
-                  background: 'rgba(59, 130, 246, 0.1)',
+                  background: 'var(--glass)',
                   padding: '4px 12px',
                   borderRadius: '12px',
-                  color: 'rgba(59, 130, 246, 1)'
+                  color: 'var(--primary)'
                 }}>
                   {useCase.category}
                 </span>

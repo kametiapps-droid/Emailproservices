@@ -81,7 +81,7 @@ export default function ContactPage() {
           }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>📧</div>
             <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Email</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
               Reach us via email for inquiries
             </p>
             <a
@@ -106,7 +106,7 @@ export default function ContactPage() {
           }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>💬</div>
             <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Live Chat</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
               Chat with our support team
             </p>
             <button
@@ -142,7 +142,7 @@ export default function ContactPage() {
           }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>⏱️</div>
             <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Response Time</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
               We typically respond within 24 hours
             </p>
             <p style={{
@@ -187,7 +187,7 @@ export default function ContactPage() {
 
             <form onSubmit={handleSubmit}>
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px', fontWeight: '600' }}>
                   Name
                 </label>
                 <input
@@ -202,7 +202,7 @@ export default function ContactPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -220,7 +220,7 @@ export default function ContactPage() {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px', fontWeight: '600' }}>
                   Email
                 </label>
                 <input
@@ -235,7 +235,7 @@ export default function ContactPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -253,7 +253,7 @@ export default function ContactPage() {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px', fontWeight: '600' }}>
                   Subject
                 </label>
                 <select
@@ -266,7 +266,7 @@ export default function ContactPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -284,7 +284,7 @@ export default function ContactPage() {
               </div>
 
               <div style={{ marginBottom: '24px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px', fontWeight: '600' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px', fontWeight: '600' }}>
                   Message
                 </label>
                 <textarea
@@ -299,7 +299,7 @@ export default function ContactPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -363,7 +363,7 @@ export default function ContactPage() {
           <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>
             Didn't find an answer?
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
             Check our FAQ page or contact us directly
           </p>
           <a

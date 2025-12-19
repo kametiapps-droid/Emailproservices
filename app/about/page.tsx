@@ -9,16 +9,16 @@ export default function AboutPage() {
       </section>
 
       <div className="container" style={{ paddingTop: '60px', paddingBottom: '80px', maxWidth: '900px' }}>
-        <div style={{ lineHeight: '1.8', color: 'var(--text-secondary)' }}>
+        <div style={{ lineHeight: '1.8', color: 'var(--text-muted)' }}>
           
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Our Mission
           </h2>
           <p style={{ marginBottom: '24px' }}>
             At Temp Mail Pro, our mission is to empower users with a simple, secure, and reliable solution for protecting their privacy online. We believe everyone deserves the right to privacy when browsing the web, signing up for services, or accessing content without compromising their personal information.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             What We Do
           </h2>
           <p style={{ marginBottom: '24px' }}>
@@ -32,7 +32,7 @@ export default function AboutPage() {
             <li style={{ marginBottom: '12px' }}>Test email functionality</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Why Choose Temp Mail Pro?
           </h2>
           <div style={{
@@ -43,24 +43,24 @@ export default function AboutPage() {
             marginBottom: '24px'
           }}>
             <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text-primary)', marginBottom: '8px' }}>⚡ Instant Creation</h3>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⚡ Instant Creation</h3>
               <p>Generate temporary email addresses instantly without registration</p>
             </div>
             <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text-primary)', marginBottom: '8px' }}>🔒 Secure & Private</h3>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🔒 Secure & Private</h3>
               <p>Your privacy is protected with end-to-end encrypted communications</p>
             </div>
             <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text-primary)', marginBottom: '8px' }}>⏰ Automatic Expiration</h3>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⏰ Automatic Expiration</h3>
               <p>Temporary addresses automatically expire after 24 hours</p>
             </div>
             <div>
-              <h3 style={{ fontSize: '18px', color: 'var(--text-primary)', marginBottom: '8px' }}>🎯 Easy to Use</h3>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🎯 Easy to Use</h3>
               <p>Simple, intuitive interface that works on all devices</p>
             </div>
           </div>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Our Commitment
           </h2>
           <p style={{ marginBottom: '24px' }}>
@@ -74,7 +74,7 @@ export default function AboutPage() {
             <li style={{ marginBottom: '12px' }}>Being transparent about our policies and practices</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Legal Compliance
           </h2>
           <p style={{ marginBottom: '24px' }}>
@@ -87,7 +87,7 @@ export default function AboutPage() {
             <li style={{ marginBottom: '12px' }}>Actively prevent misuse of our service</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Get In Touch
           </h2>
           <p style={{ marginBottom: '24px' }}>

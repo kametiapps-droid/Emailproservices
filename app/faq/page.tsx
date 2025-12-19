@@ -149,7 +149,7 @@ export default function FAQPage() {
               borderRadius: '12px',
               border: '1px solid rgba(59, 130, 246, 0.3)',
               background: 'rgba(15, 23, 42, 0.5)',
-              color: 'var(--text-primary)',
+              color: 'var(--text)',
               fontSize: '16px',
               outline: 'none',
               transition: 'all 0.3s ease'
@@ -281,7 +281,7 @@ export default function FAQPage() {
                       padding: '20px',
                       background: 'none',
                       border: 'none',
-                      color: 'var(--text-primary)',
+                      color: 'var(--text)',
                       cursor: 'pointer',
                       display: 'flex',
                       justifyContent: 'space-between',
@@ -307,7 +307,7 @@ export default function FAQPage() {
                         fontSize: '16px',
                         fontWeight: '600',
                         margin: 0,
-                        color: 'var(--text-primary)'
+                        color: 'var(--text)'
                       }}>
                         {item.question}
                       </h3>
@@ -345,7 +345,7 @@ export default function FAQPage() {
                       animation: 'slideDown 0.3s ease-out'
                     }}>
                       <p style={{
-                        color: 'var(--text-secondary)',
+                        color: 'var(--text-muted)',
                         lineHeight: '1.8',
                         fontSize: '15px',
                         margin: 0
@@ -381,7 +381,7 @@ export default function FAQPage() {
                 fontSize: '18px',
                 fontWeight: '600',
                 marginBottom: '8px',
-                color: 'var(--text-primary)'
+                color: 'var(--text)'
               }}>
                 No results found
               </h3>
@@ -401,7 +401,7 @@ export default function FAQPage() {
           <h2 style={{ fontSize: '20px', marginBottom: '16px' }}>
             Need more help?
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
             If you didn\'t find your answer here, please contact us
           </p>
           <a

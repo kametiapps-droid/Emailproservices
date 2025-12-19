@@ -9,25 +9,25 @@ export default function PrivacyPage() {
       </section>
 
       <div className="container" style={{ paddingTop: '60px', paddingBottom: '80px', maxWidth: '900px' }}>
-        <div style={{ lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-          <p style={{ marginBottom: '24px', fontWeight: '500', color: 'var(--text-primary)' }}>
+        <div style={{ lineHeight: '1.8', color: 'var(--text-muted)' }}>
+          <p style={{ marginBottom: '24px', fontWeight: '500', color: 'var(--text)' }}>
             Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             1. Introduction
           </h2>
           <p style={{ marginBottom: '24px' }}>
             Temp Mail Pro ("we," "us," "our," or "Company") operates the Service. This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             2. Information Collection and Use
           </h2>
           <p style={{ marginBottom: '16px' }}>
             We collect different types of information for various purposes to provide and improve our Service to you.
           </p>
-          <h3 style={{ fontSize: '18px', marginTop: '24px', marginBottom: '12px', color: 'var(--text-primary)' }}>
+          <h3 style={{ fontSize: '18px', marginTop: '24px', marginBottom: '12px', color: 'var(--text)' }}>
             Types of Data Collected:
           </h3>
           <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
             <li style={{ marginBottom: '12px' }}><strong>Cookies:</strong> We use cookies and similar tracking technologies to track activity on our Service and hold certain information.</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             3. Use of Data
           </h2>
           <p style={{ marginBottom: '12px' }}>Temp Mail Pro uses the collected data for various purposes:</p>
@@ -65,14 +65,14 @@ export default function PrivacyPage() {
             <li style={{ marginBottom: '12px' }}>To provide customer support</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             4. Security of Data
           </h2>
           <p style={{ marginBottom: '24px' }}>
             The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             5. Contact Us
           </h2>
           <p style={{ marginBottom: '24px' }}>
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
             <li style={{ marginBottom: '8px' }}>Website: www.mytempmail.pro</li>
           </ul>
 
-          <p style={{ marginTop: '60px', paddingTop: '24px', borderTop: '1px solid rgba(59, 130, 246, 0.1)', fontSize: '14px', color: 'var(--text-secondary)' }}>
+          <p style={{ marginTop: '60px', paddingTop: '24px', borderTop: '1px solid rgba(59, 130, 246, 0.1)', fontSize: '14px', color: 'var(--text-muted)' }}>
             This Privacy Policy is effective as of the date of last update and will remain in effect except with respect to any changes in its provisions in the future, which will be in effect immediately after being posted on the Service.
           </p>
         </div>

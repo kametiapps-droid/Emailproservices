@@ -9,26 +9,26 @@ export default function DisclaimerPage() {
       </section>
 
       <div className="container" style={{ paddingTop: '60px', paddingBottom: '80px', maxWidth: '900px' }}>
-        <div style={{ lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-          <p style={{ marginBottom: '24px', fontWeight: '500', color: 'var(--text-primary)' }}>
+        <div style={{ lineHeight: '1.8', color: 'var(--text-muted)' }}>
+          <p style={{ marginBottom: '24px', fontWeight: '500', color: 'var(--text)' }}>
             Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             General Disclaimer
           </h2>
           <p style={{ marginBottom: '24px' }}>
             The information provided by Temp Mail Pro ("we," "us," "our," or "Company") on www.mytempmail.pro (the "Site") and our mobile application is for general informational purposes only. All information on the Site and our mobile application is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site or mobile application.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             No Professional Advice
           </h2>
           <p style={{ marginBottom: '24px' }}>
             UNDER NO CIRCUMSTANCE SHALL TEMP MAIL PRO HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR OUR MOBILE APPLICATION OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE AND MOBILE APPLICATION. YOUR USE OF THE SITE AND OUR MOBILE APPLICATION AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE AND MOBILE APPLICATION IS SOLELY AT YOUR OWN RISK.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Temporary Email Addresses
           </h2>
           <p style={{ marginBottom: '24px' }}>
@@ -41,7 +41,7 @@ export default function DisclaimerPage() {
             <li style={{ marginBottom: '12px' }}>Data loss</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Prohibited Uses
           </h2>
           <p style={{ marginBottom: '12px' }}>
@@ -58,28 +58,28 @@ export default function DisclaimerPage() {
             <li style={{ marginBottom: '12px' }}>To distribute malware or harmful code</li>
           </ul>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             External Links Disclaimer
           </h2>
           <p style={{ marginBottom: '24px' }}>
             The Site and mobile application may contain links to external websites. We are not responsible for and assume no liability for the content, accuracy, privacy policies, or practices of any external websites, products, or services. Your use of third-party websites is at your own risk and subject to their terms and conditions.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Service Availability
           </h2>
           <p style={{ marginBottom: '24px' }}>
             Temp Mail Pro is provided on an "as is" basis. We do not guarantee that the Service will be uninterrupted, error-free, or secure. We reserve the right to modify or discontinue the Service at any time without notice.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Limitation of Liability
           </h2>
           <p style={{ marginBottom: '24px' }}>
             IN NO EVENT SHALL TEMP MAIL PRO, ITS DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES WHATSOEVER RESULTING FROM ANY ERRORS, OMISSIONS, OR DELAYS IN OR RELATING TO THE CONTENT, GRAPHICS, INFORMATION OR OTHER MATERIALS ON THE SITE OR MOBILE APPLICATION.
           </p>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text-primary)' }}>
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Contact Us
           </h2>
           <p style={{ marginBottom: '24px' }}>

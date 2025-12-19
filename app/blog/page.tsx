@@ -750,7 +750,7 @@ export default function BlogPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '16px',
                     outline: 'none'
                   }}
@@ -766,7 +766,7 @@ export default function BlogPage() {
                     borderRadius: '20px',
                     border: !selectedCategory ? '2px solid rgba(59, 130, 246, 1)' : '1px solid rgba(59, 130, 246, 0.3)',
                     background: !selectedCategory ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     cursor: 'pointer',
                     fontSize: '14px',
                     transition: 'all 0.3s ease'
@@ -783,7 +783,7 @@ export default function BlogPage() {
                       borderRadius: '20px',
                       border: selectedCategory === category ? '2px solid rgba(59, 130, 246, 1)' : '1px solid rgba(59, 130, 246, 0.3)',
                       background: selectedCategory === category ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
-                      color: 'var(--text-primary)',
+                      color: 'var(--text)',
                       cursor: 'pointer',
                       fontSize: '14px',
                       transition: 'all 0.3s ease'
@@ -846,13 +846,13 @@ export default function BlogPage() {
                     fontWeight: '700', 
                     marginBottom: '12px',
                     lineHeight: '1.4',
-                    color: 'var(--text-primary)'
+                    color: 'var(--text)'
                   }}>
                     {post.title}
                   </h3>
 
                   <p style={{
-                    color: 'var(--text-secondary)',
+                    color: 'var(--text-muted)',
                     fontSize: '14px',
                     lineHeight: '1.6',
                     marginBottom: '16px',
@@ -894,7 +894,7 @@ export default function BlogPage() {
               style={{
                 background: 'transparent',
                 border: '1px solid rgba(59, 130, 246, 0.3)',
-                color: 'var(--text-primary)',
+                color: 'var(--text)',
                 padding: '10px 16px',
                 borderRadius: '6px',
                 cursor: 'pointer',
@@ -929,7 +929,7 @@ export default function BlogPage() {
                   fontWeight: '700',
                   lineHeight: '1.2',
                   marginBottom: '20px',
-                  color: 'var(--text-primary)'
+                  color: 'var(--text)'
                 }}>
                   {selectedPost.title}
                 </h1>
@@ -942,7 +942,7 @@ export default function BlogPage() {
                   borderBottom: '1px solid rgba(59, 130, 246, 0.1)'
                 }}>
                   <div>
-                    <div style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: '500' }}>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '14px', fontWeight: '500' }}>
                       {selectedPost.author}
                     </div>
                     <div style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
@@ -955,7 +955,7 @@ export default function BlogPage() {
               <div style={{
                 fontSize: '16px',
                 lineHeight: '1.8',
-                color: 'var(--text-secondary)',
+                color: 'var(--text-muted)',
                 marginBottom: '40px'
               }}>
                 {selectedPost.content.split('\n\n').map((paragraph, idx) => {
@@ -966,7 +966,7 @@ export default function BlogPage() {
                         fontWeight: '700',
                         marginTop: '30px',
                         marginBottom: '15px',
-                        color: 'var(--text-primary)',
+                        color: 'var(--text)',
                         borderLeft: '3px solid rgba(59, 130, 246, 0.5)',
                         paddingLeft: '15px'
                       }}>
@@ -1000,10 +1000,10 @@ export default function BlogPage() {
                 <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
                   <span style={{ fontSize: '20px' }}>👤</span>
                   <div>
-                    <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '4px' }}>
+                    <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '4px' }}>
                       {selectedPost.author}
                     </div>
-                    <div style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
+                    <div style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
                       Privacy & security expert at Temp Mail Pro. Passionate about helping users protect their digital identity.
                     </div>
                   </div>

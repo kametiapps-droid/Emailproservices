@@ -206,7 +206,7 @@ export default function ReviewsPage() {
             <div style={{ fontSize: '32px', fontWeight: '700', color: 'rgba(34, 197, 94, 1)', marginBottom: '8px' }}>
               {getAverageRating()}★
             </div>
-            <div style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+            <div style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
               Average Rating
             </div>
             <div style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '4px' }}>
@@ -224,7 +224,7 @@ export default function ReviewsPage() {
             <div style={{ fontSize: '32px', fontWeight: '700', color: 'rgba(34, 197, 94, 1)', marginBottom: '8px' }}>
               {stats.positive}
             </div>
-            <div style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+            <div style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
               Positive Reviews
             </div>
             <div style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '4px' }}>
@@ -242,7 +242,7 @@ export default function ReviewsPage() {
             <div style={{ fontSize: '32px', fontWeight: '700', color: 'rgba(59, 130, 246, 1)', marginBottom: '8px' }}>
               {polls.reduce((acc, p) => acc + p.totalVotes, 0)}
             </div>
-            <div style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+            <div style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
               Total Poll Votes
             </div>
             <div style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '4px' }}>
@@ -260,7 +260,7 @@ export default function ReviewsPage() {
             <div style={{ fontSize: '32px', fontWeight: '700', color: 'rgba(168, 85, 247, 1)', marginBottom: '8px' }}>
               {stats.neutral + stats.negative}
             </div>
-            <div style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+            <div style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
               Neutral/Negative
             </div>
             <div style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '4px' }}>
@@ -303,7 +303,7 @@ export default function ReviewsPage() {
             <h3 style={{ marginBottom: '24px', fontSize: '20px' }}>Leave Your Feedback</h3>
             <form onSubmit={handleSubmitFeedback}>
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
                   Your Name
                 </label>
                 <input
@@ -317,7 +317,7 @@ export default function ReviewsPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box'
@@ -326,7 +326,7 @@ export default function ReviewsPage() {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
                   Rating: {newFeedback.rating} ★
                 </label>
                 <input
@@ -340,7 +340,7 @@ export default function ReviewsPage() {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '14px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
                   Your Feedback
                 </label>
                 <textarea
@@ -354,7 +354,7 @@ export default function ReviewsPage() {
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
                     background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--text)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -405,7 +405,7 @@ export default function ReviewsPage() {
                   opacity: hasUserVoted(poll.id) ? 0.85 : 1
                 }}
               >
-                <h3 style={{ fontSize: '18px', marginBottom: '20px', color: 'var(--text-primary)' }}>
+                <h3 style={{ fontSize: '18px', marginBottom: '20px', color: 'var(--text)' }}>
                   {poll.question}
                 </h3>
 
@@ -431,7 +431,7 @@ export default function ReviewsPage() {
                     return (
                       <div key={idx}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                          <span style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>
+                          <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
                             {option.text}
                           </span>
                           <span style={{ color: 'rgba(59, 130, 246, 1)', fontSize: '14px', fontWeight: '600' }}>
@@ -541,7 +541,7 @@ export default function ReviewsPage() {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
                   <div>
-                    <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '4px' }}>
+                    <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '4px' }}>
                       {feedback.name}
                     </div>
                     <div style={{ color: 'var(--text-muted)', fontSize: '12px' }}>
@@ -561,7 +561,7 @@ export default function ReviewsPage() {
                 </div>
 
                 <p style={{
-                  color: 'var(--text-secondary)',
+                  color: 'var(--text-muted)',
                   fontSize: '14px',
                   lineHeight: '1.6',
                   margin: 0
