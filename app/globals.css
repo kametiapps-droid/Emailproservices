@@ -1336,9 +1336,13 @@ a {
   background: var(--surface);
   border-radius: 16px;
   width: 100%;
-  max-width: 400px;
+  max-width: 320px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
+}
+
+.qr-modal {
+  max-width: 280px;
 }
 
 .modal-header {

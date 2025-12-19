@@ -75,8 +75,16 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Reviews: No reply buttons on feedback cards
 - Vote limiting: One vote per poll using localStorage
 
-### Recent Changes (Dec 18, 2025)
-**Mobile Optimization - Complete**
+### Recent Changes (Dec 19, 2025)
+**Mobile UI Refinements - Final**
+- **Email display** - CSS Grid layout (1fr auto) for fixed copy button positioning
+- **Email text** - Single-line display with ellipsis overflow (no wrapping)
+- **Copy button** - Fixed to right side of email box, never wraps
+- **QR code modal** - Reduced from 400px to 280px max-width for compact display
+- **Hydration errors** - Removed to fix loading state consistency
+- **Mobile breakpoint** - 600px and below with optimized spacing
+
+**Previous Mobile Optimization (Dec 18, 2025)**
 - **Copy button** - Icon-only (18px), compact inline with email, hover effects
 - **Email display** - Improved spacing: 18px padding, proper gaps, icon on right
 - **Action buttons** - Ultra-compact: 8px 6px padding, 16px icons, 0.65rem font
