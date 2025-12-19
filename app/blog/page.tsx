@@ -1014,10 +1014,19 @@ export default function BlogPage() {
                   borderTop: '1px solid rgba(59, 130, 246, 0.1)',
                   fontSize: '14px',
                   color: 'var(--text-muted)',
-                  fontStyle: 'italic'
+                  lineHeight: '1.6'
                 }}>
-                  Written by Temp Mail Pro Team<br />
-                  Experts in digital privacy and secure email solutions.
+                  <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '8px' }}>
+                    Temp Mail Pro Team
+                  </div>
+                  <div style={{ marginBottom: '12px' }}>
+                    Privacy & security experts at Temp Mail Pro.<br />
+                    Passionate about helping users protect their digital identity.
+                  </div>
+                  <div style={{ fontStyle: 'italic', fontSize: '13px' }}>
+                    We publish research-based articles to help users understand
+                    privacy-friendly email practices and online safety.
+                  </div>
                 </div>
               </div>
             </article>
