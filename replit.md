@@ -77,6 +77,16 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 
 ### Recent Changes (Dec 20, 2025)
 
+**Improved Footer for Mobile View**
+- ✅ Optimized footer layout for mobile screens (600px and below)
+- ✅ Reduced padding and margins for compact mobile display (32px → 24px)
+- ✅ Social media icons visible and properly sized (36px) on mobile
+- ✅ Improved spacing between footer sections with smaller gaps (16px)
+- ✅ Better typography sizing for mobile (smaller fonts, optimized line-height)
+- ✅ Social icons centered and responsive with "Share with us:" label
+- ✅ Footer navigation stacked vertically with proper mobile spacing
+- ✅ All sections now responsive and mobile-friendly
+
 **Removed "Help Others Discover" Section**
 - ✅ Deleted the "Help Others Discover Temp Mail Pro" section from home page
 - ✅ Removed duplicate social media buttons that were on the page
