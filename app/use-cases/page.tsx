@@ -334,6 +334,55 @@ export default function UseCasesPage() {
           ))}
         </div>
 
+        {/* Email Suggestions & Newsletters Section */}
+        <div style={{
+          maxWidth: '800px',
+          margin: '80px auto',
+          padding: '50px',
+          background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(236, 72, 153, 0.04) 100%)',
+          borderRadius: '16px',
+          border: '1px solid rgba(236, 72, 153, 0.2)',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '24px' }}>💌</div>
+          <h2 style={{
+            fontSize: '28px',
+            fontWeight: '700',
+            marginBottom: '16px',
+            color: 'var(--text)'
+          }}>
+            Get Personalized Email Suggestions
+          </h2>
+          <p style={{
+            color: 'var(--text-muted)',
+            fontSize: '15px',
+            lineHeight: '1.8',
+            marginBottom: '32px'
+          }}>
+            Subscribe to our newsletters and get handpicked recommendations for keeping your inbox clean and organized. Stay updated with privacy tips and email management best practices.
+          </p>
+          <a
+            href="/"
+            style={{
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%)',
+              border: 'none',
+              color: 'white',
+              padding: '14px 40px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            Subscribe to Newsletters
+          </a>
+        </div>
+
         {/* Center CTA */}
         <div style={{
           display: 'flex',
