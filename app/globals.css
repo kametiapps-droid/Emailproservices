@@ -359,7 +359,7 @@ main {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--text-dim);
+  color: var(--text);
   margin-bottom: 16px;
   font-weight: 600;
 }
