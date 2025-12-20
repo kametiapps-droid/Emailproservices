@@ -209,16 +209,13 @@ export default function Home() {
   const showQRCode = async () => {
     if (!email?.id) return;
     try {
-      // Get button position only on desktop (> 600px)
-      if (qrButtonRef.current && window.innerWidth > 600) {
+      // Get button position - CSS media query will handle mobile centering
+      if (qrButtonRef.current) {
         const rect = qrButtonRef.current.getBoundingClientRect();
         setPopupPosition({
           top: rect.bottom + 10,
           left: rect.left + rect.width / 2
         });
-      } else {
-        // Reset position for mobile (CSS will center it)
-        setPopupPosition({ top: 0, left: 0 });
       }
       const response = await fetch(`/api/qrcode?id=${email.id}`);
       const data = await response.json();
