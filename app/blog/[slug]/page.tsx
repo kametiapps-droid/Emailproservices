@@ -198,7 +198,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             })}
           </div>
 
-          <BlogFAQ />
+          <BlogFAQ items={post.faqItems} />
 
           <div
             style={{
