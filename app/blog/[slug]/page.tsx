@@ -6,16 +6,41 @@ import BlogFAQ from '@/app/components/BlogFAQ';
 import Script from 'next/script';
 
 function renderContentWithLinks(text: string) {
-  const parts = text.split(/(Temp Mail)/g);
-  return parts.map((part, idx) => {
-    if (part === 'Temp Mail') {
-      return (
-        <Link key={idx} href="/" style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '500' }}>
-          Temp Mail
-        </Link>
-      );
+  // Handle both [text](url) markdown style links and Temp Mail
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)|Temp Mail/g;
+  const parts: (string | { type: 'link' | 'text'; text: string; href?: string })[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (lastIndex < match.index) {
+      parts.push(text.substring(lastIndex, match.index));
     }
-    return <span key={idx}>{part}</span>;
+
+    if (match[1] && match[2]) {
+      // Markdown link [text](url)
+      parts.push({ type: 'link', text: match[1], href: match[2] });
+    } else if (match[0] === 'Temp Mail') {
+      // Temp Mail link
+      parts.push({ type: 'link', text: 'Temp Mail', href: '/' });
+    }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.map((part, idx) => {
+    if (typeof part === 'string') {
+      return <span key={idx}>{part}</span>;
+    }
+    return (
+      <Link key={idx} href={part.href!} style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '500' }}>
+        {part.text}
+      </Link>
+    );
   });
 }
 
