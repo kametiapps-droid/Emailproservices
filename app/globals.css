@@ -660,7 +660,7 @@ main {
 }
 
 .refresh-indicator {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -672,12 +672,20 @@ main {
   color: var(--secondary);
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  white-space: nowrap;
 }
 
 [data-theme="light"] .refresh-indicator {
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
   border: 1.5px solid rgba(16, 185, 129, 0.3);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+
+@media (max-width: 768px) {
+  .refresh-indicator {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
 }
 
 .email-loading-indicator {
@@ -1060,7 +1068,15 @@ main {
 
 @media (max-width: 768px) {
   .inbox-header {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .inbox-header-left {
+    flex-direction: row;
+    width: auto;
   }
 }
 
@@ -1101,6 +1117,8 @@ main {
 @media (max-width: 768px) {
   .message-count {
     position: static;
+    padding: 6px 12px;
+    font-size: 0.75rem;
   }
 }
 
