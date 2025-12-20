@@ -247,19 +247,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
-        <link rel="canonical" href="https://mytempmail.pro" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0a0e27" />
         <meta name="msapplication-TileColor" content="#0a0e27" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Temp Mail" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        
+        <link rel="canonical" href="https://mytempmail.pro" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        
+        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body>
         <Script
