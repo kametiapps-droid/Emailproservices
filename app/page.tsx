@@ -871,19 +871,11 @@ export default function Home() {
       </section>
 
       {showQR && (
-        <div className="modal-overlay" onClick={() => setShowQR(false)}>
-          <div className="modal qr-modal" onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>QR Code</h3>
-              <button className="modal-close" onClick={() => setShowQR(false)}>&times;</button>
-            </div>
-            <div className="modal-body">
-              <div className="qr-code">
-                {qrCode && <img src={qrCode} alt="QR Code" />}
-              </div>
-              <p style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                Scan this QR code to copy the email address
-              </p>
+        <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
+          <div className="qr-popup" onClick={e => e.stopPropagation()}>
+            <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
+            <div className="qr-popup-content">
+              {qrCode && <img src={qrCode} alt="QR Code" />}
             </div>
           </div>
         </div>

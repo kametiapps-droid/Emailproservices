@@ -1769,6 +1769,61 @@ a {
   border-radius: 12px;
 }
 
+.qr-popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1100;
+}
+
+.qr-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  z-index: 1101;
+  padding: 16px;
+  max-width: 240px;
+}
+
+.qr-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-popup-close:hover {
+  color: var(--text);
+}
+
+.qr-popup-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-popup-content img {
+  border-radius: 8px;
+  max-width: 200px;
+  height: auto;
+}
+
 .loading {
   display: flex;
   align-items: center;
