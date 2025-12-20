@@ -398,14 +398,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: white;
-}
-
-.social-link svg {
-  display: block;
-  width: 18px;
-  height: 18px;
-  color: currentColor;
+  line-height: 1;
 }
 
 .footer-nav {
