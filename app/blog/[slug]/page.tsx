@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const url = post ? `https://www.mytempmail.pro/blog/${post.slug}` : 'https://www.mytempmail.pro/blog';
+  const url = post ? `https://mytempmail.pro/blog/${post.slug}` : 'https://mytempmail.pro/blog';
   
   return {
     title: `${post.title} | Temp Mail Pro Blog`,
@@ -67,25 +67,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "Article",
     "headline": post.title,
     "description": post.excerpt,
-    "image": "https://www.mytempmail.pro/logo.png",
+    "image": "https://mytempmail.pro/logo.png",
     "datePublished": post.date,
     "dateModified": post.date,
     "author": {
       "@type": "Organization",
       "name": post.author,
-      "url": "https://www.mytempmail.pro"
+      "url": "https://mytempmail.pro"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Temp Mail Pro",
+      "name": "Temp Mail",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.mytempmail.pro/logo.png"
+        "url": "https://mytempmail.pro/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.mytempmail.pro/blog/${post.slug}`
+      "@id": `https://mytempmail.pro/blog/${post.slug}`
     }
   });
 
@@ -213,3 +213,5 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
       </div>
     </div>
+  );
+}
