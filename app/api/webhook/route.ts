@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
-import { validateWebhookSecret, SECURITY_HEADERS } from '@/lib/security';
+import { validateWebhookSecret, SECURITY_HEADERS, checkRateLimit, getClientIP } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +16,16 @@ interface CloudflareEmail {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting (100 per hour - webhook endpoint)
+    const clientIP = getClientIP(request.headers);
+    const rateCheck = checkRateLimit(clientIP, 'QR_CODE');
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { success: false, error: rateCheck.reason || 'Too many requests' },
+        { status: 429, headers: SECURITY_HEADERS }
+      );
+    }
+
     console.log('📧 Webhook request received');
     console.log('Headers:', Object.fromEntries(request.headers.entries()));
     

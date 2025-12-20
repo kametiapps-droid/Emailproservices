@@ -60,6 +60,16 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    // Rate limiting (30 per hour)
+    const clientIP = getClientIP(request.headers);
+    const rateCheck = checkRateLimit(clientIP, 'EMAILS');
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { success: false, error: rateCheck.reason || 'Too many requests' },
+        { status: 429, headers: SECURITY_HEADERS }
+      );
+    }
+
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('id');
@@ -67,7 +77,7 @@ export async function GET(request: NextRequest) {
     if (!emailId) {
       return NextResponse.json(
         { success: false, error: 'Email ID is required' },
-        { status: 400 }
+        { status: 400, headers: SECURITY_HEADERS }
       );
     }
 
@@ -101,6 +111,16 @@ export async function GET(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    // Rate limiting (5 per hour - stricter for deletion)
+    const clientIP = getClientIP(request.headers);
+    const rateCheck = checkRateLimit(clientIP, 'CONTACTS');
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { success: false, error: rateCheck.reason || 'Too many requests' },
+        { status: 429, headers: SECURITY_HEADERS }
+      );
+    }
+
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('id');
@@ -108,7 +128,7 @@ export async function DELETE(request: NextRequest) {
     if (!emailId) {
       return NextResponse.json(
         { success: false, error: 'Email ID is required' },
-        { status: 400 }
+        { status: 400, headers: SECURITY_HEADERS }
       );
     }
 
