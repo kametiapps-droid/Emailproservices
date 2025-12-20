@@ -103,8 +103,8 @@ const faqData: FAQItem[] = [
   {
     id: '16',
     category: 'Use Cases',
-    question: 'Is this illegal?',
-    answer: 'No! Temp Mail Pro is completely legal. Use it for privacy protection. However, it\'s wrong to use it for fraud or harmful activities.'
+    question: 'Is this legal?',
+    answer: 'Yes! Temp Mail Pro is completely legal. Use it for privacy protection and testing. However, always comply with website terms of service and applicable laws when using the service.'
   },
 ];
 

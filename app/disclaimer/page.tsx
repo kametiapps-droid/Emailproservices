@@ -50,10 +50,10 @@ export default function DisclaimerPage() {
           <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
             <li style={{ marginBottom: '12px' }}>For any illegal purpose or in violation of any laws</li>
             <li style={{ marginBottom: '12px' }}>To send spam, phishing, or malicious content</li>
-            <li style={{ marginBottom: '12px' }}>To create multiple accounts for fraudulent purposes</li>
-            <li style={{ marginBottom: '12px' }}>To bypass security measures or authentication systems</li>
+            <li style={{ marginBottom: '12px' }}>To create multiple accounts for unauthorized or abusive purposes</li>
+            <li style={{ marginBottom: '12px' }}>To circumvent platform security or terms of service</li>
             <li style={{ marginBottom: '12px' }}>To harass, abuse, or threaten other users</li>
-            <li style={{ marginBottom: '12px' }}>To engage in any form of fraudulent activity</li>
+            <li style={{ marginBottom: '12px' }}>To engage in unauthorized account access</li>
             <li style={{ marginBottom: '12px' }}>To violate intellectual property rights</li>
             <li style={{ marginBottom: '12px' }}>To distribute malware or harmful code</li>
           </ul>

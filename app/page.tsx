@@ -287,8 +287,8 @@ export default function Home() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>Secure Temporary Email</h1>
-          <p>Protect your privacy with instant disposable email addresses. No registration required. Emails expire in 24 hours.</p>
+          <h1>Privacy-Focused Temporary Email</h1>
+          <p>Protect your privacy with instant disposable email addresses for testing and signup verification. No registration required. Emails expire in 24 hours.</p>
         </div>
       </section>
 

@@ -48,7 +48,7 @@ const useCases: UseCase[] = [
     benefits: [
       'No spam from websites',
       'Avoid data tracking',
-      'Multiple accounts easily',
+      'Multiple test accounts',
       'Complete privacy'
     ],
     icon: '📝',
@@ -501,7 +501,7 @@ export default function UseCasesPage() {
             lineHeight: '1.8',
             margin: '0'
           }}>
-            Temp Mail Pro is designed for privacy protection, testing, and inbox management. The service must not be used for illegal activities, spam, fraud, abuse, or to bypass the terms of any platform. Users are responsible for complying with all applicable laws and website policies.
+            Temp Mail Pro is designed for privacy protection, testing, and inbox management. The service must not be used for illegal activities, spam, abuse, or to violate the terms of any platform. Users are responsible for complying with all applicable laws and website policies.
           </p>
         </div>
       </div>

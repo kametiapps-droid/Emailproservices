@@ -42,7 +42,7 @@ Hackers use sophisticated tools to scrape email addresses from websites, forums,
 
 Temporary email services create disposable email addresses that function exactly like regular emails but with a crucial difference: they expire. You can receive emails sent to your temporary address, read the content, verify your account, or confirm your subscription. After 24 hours, the email address disappears completely, along with all messages associated with it.
 
-This simple yet powerful mechanism creates a buffer between your real identity and the services you're testing or the websites you don't fully trust. It's like having a dedicated throwaway phone number, except for email.
+This simple yet powerful mechanism creates a buffer between your real identity and the services you're testing or the websites you don't fully trust. It's like having a dedicated disposable phone number, except for email.
 
 ### The Technology Behind It
 
