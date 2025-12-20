@@ -1790,6 +1790,14 @@ a {
   transform: translateX(-50%);
 }
 
+@media (max-width: 600px) {
+  .qr-popup {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .qr-popup-close {
   position: absolute;
   top: 8px;
