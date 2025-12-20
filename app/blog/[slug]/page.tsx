@@ -4,6 +4,20 @@ import Link from 'next/link';
 import { getBlogPostBySlug, getAllBlogSlugs } from '@/lib/blogData';
 import Script from 'next/script';
 
+function renderContentWithLinks(text: string) {
+  const parts = text.split(/(Temp Mail)/g);
+  return parts.map((part, idx) => {
+    if (part === 'Temp Mail') {
+      return (
+        <Link key={idx} href="/" style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '500' }}>
+          Temp Mail
+        </Link>
+      );
+    }
+    return <span key={idx}>{part}</span>;
+  });
+}
+
 export async function generateStaticParams() {
   const slugs = getAllBlogSlugs();
   return slugs.map(slug => ({ slug }));
@@ -164,20 +178,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       paddingLeft: '15px'
                     }}
                   >
-                    {paragraph.replace('## ', '')}
+                    {renderContentWithLinks(paragraph.replace('## ', ''))}
                   </h2>
                 );
               }
               if (paragraph.startsWith('**')) {
                 return (
                   <p key={idx} style={{ marginBottom: '15px', fontWeight: '600' }}>
-                    {paragraph.replace(/\*\*/g, '')}
+                    {renderContentWithLinks(paragraph.replace(/\*\*/g, ''))}
                   </p>
                 );
               }
               return (
                 <p key={idx} style={{ marginBottom: '15px' }}>
-                  {paragraph}
+                  {renderContentWithLinks(paragraph)}
                 </p>
               );
             })}
