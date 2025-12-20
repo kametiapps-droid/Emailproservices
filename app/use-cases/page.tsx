@@ -369,6 +369,34 @@ export default function UseCasesPage() {
             Get Email Now
           </a>
         </div>
+
+        {/* Disclaimer Section */}
+        <div style={{
+          maxWidth: '700px',
+          margin: '60px auto 0',
+          padding: '40px',
+          background: 'rgba(59, 130, 246, 0.05)',
+          borderRadius: '12px',
+          border: '1px solid rgba(59, 130, 246, 0.1)',
+          marginBottom: '40px'
+        }}>
+          <h3 style={{
+            fontSize: '18px',
+            fontWeight: '700',
+            marginBottom: '16px',
+            color: 'var(--text)'
+          }}>
+            Responsible Use Notice
+          </h3>
+          <p style={{
+            color: 'var(--text-muted)',
+            fontSize: '14px',
+            lineHeight: '1.8',
+            margin: '0'
+          }}>
+            Temp Mail Pro is designed for privacy protection, testing, and inbox management. The service must not be used for illegal activities, spam, fraud, abuse, or to bypass the terms of any platform. Users are responsible for complying with all applicable laws and website policies.
+          </p>
+        </div>
       </div>
     </div>
   );
