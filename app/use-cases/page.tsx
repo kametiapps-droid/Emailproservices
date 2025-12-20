@@ -218,7 +218,8 @@ export default function UseCasesPage() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-          gap: '24px'
+          gap: '24px',
+          justifyItems: 'center'
         }}>
           {filteredUseCases.map(useCase => (
             <div
