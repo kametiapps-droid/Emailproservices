@@ -493,10 +493,6 @@ main {
     letter-spacing: 0.12em;
     font-weight: 700;
     color: var(--text);
-    background: linear-gradient(135deg, #3B82F6, #A855F7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   .footer-nav-group ul {
