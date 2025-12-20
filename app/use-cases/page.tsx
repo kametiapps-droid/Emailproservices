@@ -401,7 +401,7 @@ export default function UseCasesPage() {
               onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
               onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
-              Subscribe Now
+              Get Your Email Now
             </a>
           </div>
         </div>
