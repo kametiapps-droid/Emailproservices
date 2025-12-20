@@ -336,13 +336,13 @@ export default function UseCasesPage() {
 
         {/* Newsletter CTA Card */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-          gap: '24px',
-          margin: '24px 0'
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '48px 0'
         }}>
           <div
             style={{
+              maxWidth: '450px',
               background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%)',
               borderRadius: '16px',
               border: '2px solid rgba(236, 72, 153, 0.3)',
@@ -552,7 +552,7 @@ export default function UseCasesPage() {
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            Create Temporary Email Now
+            Get Email Now
           </a>
         </div>
 
@@ -565,7 +565,7 @@ export default function UseCasesPage() {
           borderTop: '1px solid rgba(59, 130, 246, 0.1)'
         }}>
           <h2 style={{ fontSize: '24px', marginBottom: '16px', color: 'var(--text)' }}>
-            Get Started Now
+            Start Using Temporary Email – Free & Secure
           </h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
             Protect your privacy with just one click
