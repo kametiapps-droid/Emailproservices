@@ -660,16 +660,24 @@ main {
 }
 
 .refresh-indicator {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 20px;
-  font-size: 0.85rem;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.4);
+  border-radius: 24px;
+  font-size: 0.9rem;
   color: var(--secondary);
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+[data-theme="light"] .refresh-indicator {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
 
 .email-loading-indicator {
@@ -1016,6 +1024,7 @@ main {
   max-width: 1000px;
   margin: 0 auto 56px;
   padding: 0 24px;
+  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -1034,15 +1043,25 @@ main {
 
 .inbox-header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 12px;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .inbox-header-left {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .inbox-header {
+    flex-direction: column;
+  }
 }
 
 .inbox-title {
@@ -1067,6 +1086,9 @@ main {
   border-radius: 16px;
   font-size: 0.8rem;
   font-weight: 500;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 [data-theme="light"] .message-count {
@@ -1074,6 +1096,12 @@ main {
   border: 1px solid rgba(59, 130, 246, 0.2);
   color: var(--text);
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .message-count {
+    position: static;
+  }
 }
 
 .inbox-container {
