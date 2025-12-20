@@ -39,7 +39,9 @@ export default function Home() {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
   const [timeLeft, setTimeLeft] = useState('');
   const [copied, setCopied] = useState(false);
+  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const qrButtonRef = useRef<HTMLButtonElement>(null);
 
   const generateEmail = async () => {
     try {
@@ -207,6 +209,14 @@ export default function Home() {
   const showQRCode = async () => {
     if (!email?.id) return;
     try {
+      // Get button position
+      if (qrButtonRef.current) {
+        const rect = qrButtonRef.current.getBoundingClientRect();
+        setPopupPosition({
+          top: rect.bottom + 10,
+          left: rect.left + rect.width / 2
+        });
+      }
       const response = await fetch(`/api/qrcode?id=${email.id}`);
       const data = await response.json();
       if (data.success) {
@@ -325,7 +335,7 @@ export default function Home() {
               </svg>
               Refresh
             </button>
-            <button className="action-btn" onClick={showQRCode}>
+            <button className="action-btn" ref={qrButtonRef} onClick={showQRCode}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="3" width="7" height="7"></rect>
                 <rect x="14" y="3" width="7" height="7"></rect>
@@ -872,7 +882,7 @@ export default function Home() {
 
       {showQR && (
         <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
-          <div className="qr-popup" onClick={e => e.stopPropagation()}>
+          <div className="qr-popup" style={{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }} onClick={e => e.stopPropagation()}>
             <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
             <div className="qr-popup-content">
               {qrCode && <img src={qrCode} alt="QR Code" />}

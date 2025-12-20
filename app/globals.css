@@ -1780,9 +1780,6 @@ a {
 
 .qr-popup {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: var(--surface);
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -1790,6 +1787,7 @@ a {
   z-index: 1101;
   padding: 16px;
   max-width: 240px;
+  transform: translateX(-50%);
 }
 
 .qr-popup-close {
