@@ -882,7 +882,7 @@ export default function Home() {
 
       {showQR && (
         <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
-          <div className="qr-popup" style={{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }} onClick={e => e.stopPropagation()}>
+          <div className="qr-popup" onClick={e => e.stopPropagation()}>
             <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
             <div className="qr-popup-content">
               {qrCode && <img src={qrCode} alt="QR Code" />}
