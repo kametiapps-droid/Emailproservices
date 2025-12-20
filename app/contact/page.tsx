@@ -72,13 +72,7 @@ export default function ContactPage() {
           marginBottom: '60px'
         }}>
           {/* Contact Info Cards */}
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-            borderRadius: '16px',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            padding: '32px',
-            textAlign: 'center'
-          }}>
+          <div className="contact-info-card">
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>📧</div>
             <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Email</h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
@@ -97,13 +91,7 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-            borderRadius: '16px',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            padding: '32px',
-            textAlign: 'center'
-          }}>
+          <div className="contact-info-card">
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>⏱️</div>
             <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Response Time</h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
@@ -124,12 +112,7 @@ export default function ContactPage() {
           maxWidth: '700px',
           margin: '0 auto'
         }}>
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%)',
-            borderRadius: '16px',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            padding: '40px'
-          }}>
+          <div className="contact-form-container">
             <h2 style={{ fontSize: '24px', marginBottom: '24px', textAlign: 'center' }}>
               Send us a Message
             </h2>

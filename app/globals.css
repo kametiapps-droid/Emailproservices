@@ -1838,6 +1838,31 @@ a {
   line-height: 1.7;
 }
 
+.contact-info-card {
+  background: linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 32px;
+  text-align: center;
+}
+
+[data-theme="light"] .contact-info-card {
+  background: linear-gradient(135deg, rgba(243, 244, 246, 0.8) 0%, rgba(219, 234, 254, 0.6) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.contact-form-container {
+  background: linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 40px;
+}
+
+[data-theme="light"] .contact-form-container {
+  background: linear-gradient(135deg, rgba(243, 244, 246, 0.9) 0%, rgba(219, 234, 254, 0.7) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2rem;
