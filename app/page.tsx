@@ -474,36 +474,150 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ padding: '80px 0', background: 'var(--surface)' }}>
+      <section style={{ 
+        padding: '100px 0', 
+        background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(59, 130, 246, 0.03) 100%)',
+        borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+        borderBottom: '1px solid rgba(59, 130, 246, 0.1)'
+      }}>
         <div className="container">
-          <h2 style={{ color: 'var(--text)', marginBottom: '48px', textAlign: 'center' }}>Understanding Temporary Email</h2>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '40px',
-            maxWidth: '1000px',
-            margin: '0 auto'
-          }}>
-            <div>
-              <h3 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '20px', fontWeight: '600' }}>What is Temp Mail?</h3>
-              <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                Temporary email, or disposable email, is a short-lived email address that exists for a limited time. Instead of using your real email for every online signup, registration, or verification, you can use a temporary address that automatically expires after 24 hours. This keeps your primary inbox clean and protects your personal email from being sold or shared with third parties. Temp Mail Pro makes this process effortless—generate a new address in seconds without any registration or complicated setup.
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <div style={{ marginBottom: '80px', textAlign: 'center' }}>
+              <h2 style={{ 
+                color: 'var(--text)', 
+                marginBottom: '16px',
+                fontSize: '42px',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Understanding Temporary Email</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '16px', marginTop: '12px' }}>
+                Learn how our service protects your privacy and why it matters in today's digital world
               </p>
             </div>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '32px',
+              marginBottom: '20px'
+            }}>
+              <div style={{
+                background: 'rgba(59, 130, 246, 0.05)',
+                border: '1px solid rgba(59, 130, 246, 0.15)',
+                borderRadius: '16px',
+                padding: '40px 32px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-8px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}>
+                <div style={{
+                  width: '52px',
+                  height: '52px',
+                  background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '24px'
+                }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M2 6l10 7 10-7"/>
+                  </svg>
+                </div>
+                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>What is Temp Mail?</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                  Temporary email, or disposable email, is a short-lived email address that exists for a limited time. Instead of using your real email for every signup, you can use a temporary address that automatically expires after 24 hours. This keeps your primary inbox clean and protects your personal email from being sold or shared with third parties.
+                </p>
+              </div>
 
-            <div>
-              <h3 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '20px', fontWeight: '600' }}>Why Privacy Matters</h3>
-              <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                Your email address is a gateway to your identity and personal information. Companies collect email addresses to build marketing profiles, sell your data to advertisers, and track your online behavior. Every signup exposes you to spam, phishing attempts, and data breaches. By using temporary emails for non-essential accounts, you create a barrier between your real identity and corporate data collection. Protecting your email is one of the most effective ways to maintain your digital privacy, reduce unwanted contact, and prevent identity theft.
-              </p>
-            </div>
+              <div style={{
+                background: 'rgba(168, 85, 247, 0.05)',
+                border: '1px solid rgba(168, 85, 247, 0.15)',
+                borderRadius: '16px',
+                padding: '40px 32px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(168, 85, 247, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-8px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(168, 85, 247, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.15)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}>
+                <div style={{
+                  width: '52px',
+                  height: '52px',
+                  background: 'linear-gradient(135deg, #A855F7 0%, #D946EF 100%)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '24px'
+                }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Why Privacy Matters</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                  Your email address is a gateway to your identity. Companies collect emails to build marketing profiles and sell your data. Every signup exposes you to spam and data breaches. By using temporary emails, you create a barrier between your real identity and corporate data collection. Protecting your email is one of the most effective ways to maintain digital privacy.
+                </p>
+              </div>
 
-            <div>
-              <h3 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '20px', fontWeight: '600' }}>Legal & Ethical Usage</h3>
-              <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                Temporary emails are completely legal and widely accepted. They're perfect for testing, protecting privacy, avoiding spam, and accessing services without sharing your personal details. However, using fake emails to commit fraud, evade security measures, or violate terms of service is illegal and unethical. Temp Mail Pro is designed for legitimate privacy protection—use it responsibly to safeguard your information while respecting the rules and regulations of websites and services you visit.
-              </p>
+              <div style={{
+                background: 'rgba(34, 197, 94, 0.05)',
+                border: '1px solid rgba(34, 197, 94, 0.15)',
+                borderRadius: '16px',
+                padding: '40px 32px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-8px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.15)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}>
+                <div style={{
+                  width: '52px',
+                  height: '52px',
+                  background: 'linear-gradient(135deg, #22C55E 0%, #4ADE80 100%)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '24px'
+                }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Legal & Ethical</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                  Temporary emails are completely legal and widely accepted. Perfect for testing, protecting privacy, and avoiding spam. However, using fake emails to commit fraud or violate terms of service is illegal. Temp Mail Pro is designed for legitimate privacy protection—use it responsibly.
+                </p>
+              </div>
             </div>
           </div>
         </div>
