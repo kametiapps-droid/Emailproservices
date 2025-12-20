@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
+import { validateWebhookSecret, SECURITY_HEADERS } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,24 @@ interface CloudflareEmail {
 
 export async function POST(request: NextRequest) {
   try {
+    // Validate webhook secret
+    const secret = request.headers.get('x-webhook-secret');
+    if (!validateWebhookSecret(secret)) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401, headers: SECURITY_HEADERS }
+      );
+    }
+
+    // Limit request body size (10MB)
+    const contentLength = parseInt(request.headers.get('content-length') || '0');
+    if (contentLength > 10 * 1024 * 1024) {
+      return NextResponse.json(
+        { success: false, error: 'Request too large' },
+        { status: 413, headers: SECURITY_HEADERS }
+      );
+    }
+
     const db = getDb();
     const body = await request.json();
 
@@ -141,11 +160,11 @@ export async function POST(request: NextRequest) {
       isRead: false,
     });
 
-    return NextResponse.json({ success: true, messageId: messageRef.id });
+    return NextResponse.json({ success: true, messageId: messageRef.id }, { headers: SECURITY_HEADERS });
   } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to receive email' },
-      { status: 500 }
+      { status: 500, headers: SECURITY_HEADERS }
     );
   }
 }

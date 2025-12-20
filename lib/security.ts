@@ -202,11 +202,18 @@ export function cleanupRateLimits(): void {
   }
 }
 
+// Webhook secret validation
+export function validateWebhookSecret(providedSecret: string | null): boolean {
+  const secret = process.env.WEBHOOK_SECRET || process.env.CLOUDFLARE_WEBHOOK_SECRET;
+  if (!secret) return false;
+  return providedSecret === secret;
+}
+
 // Security headers for API responses
 export const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'X-XSS-Protection': '1; mode=block',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'",
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'",
 };

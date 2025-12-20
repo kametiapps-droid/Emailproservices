@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDb, generateRandomEmail, getExpirationTime } from '@/lib/firebase';
 import { initializeFirebase } from '@/lib/firebaseInit';
 import { v4 as uuidv4 } from 'uuid';
-import { checkRateLimit, getClientIP, logSecurityEvent, SECURITY_HEADERS } from '@/lib/security';
+import { checkRateLimit, getClientIP, SECURITY_HEADERS } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
     const rateCheck = checkRateLimit(clientIP);
     
     if (!rateCheck.allowed) {
-      logSecurityEvent('RATE_LIMIT_EXCEEDED', { ip: clientIP });
       return NextResponse.json(
         { success: false, error: rateCheck.reason },
         { status: 429, headers: SECURITY_HEADERS }

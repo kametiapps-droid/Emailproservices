@@ -5,7 +5,6 @@ import {
   calculateSpamScore, 
   containsIllegalContent, 
   sanitizeMessage,
-  logSecurityEvent,
   SECURITY_HEADERS 
 } from '@/lib/security';
 
@@ -54,13 +53,11 @@ export async function GET(request: NextRequest) {
       
       // Check for blocked domains
       if (isBlockedDomain(data.sender)) {
-        logSecurityEvent('BLOCKED_DOMAIN', { sender: data.sender, emailId });
         return null;
       }
       
       // Check for illegal content
       if (containsIllegalContent(data.content || '') || containsIllegalContent(data.subject || '')) {
-        logSecurityEvent('ILLEGAL_CONTENT', { sender: data.sender, subject: data.subject, emailId });
         return null;
       }
       
@@ -103,7 +100,6 @@ export async function POST(request: NextRequest) {
     
     // Security checks for incoming messages
     if (isBlockedDomain(sender)) {
-      logSecurityEvent('BLOCKED_INCOMING', { sender, subject, emailId });
       return NextResponse.json(
         { success: false, error: 'Sender is blocked' },
         { status: 403 }
@@ -111,7 +107,6 @@ export async function POST(request: NextRequest) {
     }
     
     if (containsIllegalContent(content || '') || containsIllegalContent(subject)) {
-      logSecurityEvent('ILLEGAL_CONTENT_BLOCKED', { sender, subject, emailId });
       return NextResponse.json(
         { success: false, error: 'Content violates policy' },
         { status: 403 }
