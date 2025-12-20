@@ -1059,32 +1059,48 @@ main {
 
 .inbox-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   margin-bottom: 16px;
-  text-align: center;
+  text-align: left;
+  flex-wrap: wrap;
 }
 
 .inbox-header-left {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 12px;
-  width: 100%;
+  width: auto;
 }
 
 @media (max-width: 768px) {
   .inbox-header {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     text-align: left;
+    gap: 8px;
   }
   
   .inbox-header-left {
     flex-direction: row;
     width: auto;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .inbox-header {
+    gap: 8px;
+    padding: 0 4px;
+  }
+  
+  .inbox-header-left {
+    gap: 8px;
+    flex-wrap: wrap;
   }
 }
 
@@ -1096,6 +1112,7 @@ main {
   font-weight: 600;
   color: var(--text);
   margin: 0;
+  white-space: nowrap;
 }
 
 .inbox-title svg {
@@ -1110,9 +1127,8 @@ main {
   border-radius: 16px;
   font-size: 0.8rem;
   font-weight: 500;
-  position: absolute;
-  right: 0;
-  top: 0;
+  position: static;
+  white-space: nowrap;
 }
 
 [data-theme="light"] .message-count {
@@ -1124,9 +1140,15 @@ main {
 
 @media (max-width: 768px) {
   .message-count {
-    position: static;
     padding: 6px 12px;
     font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .message-count {
+    padding: 6px 10px;
+    font-size: 0.7rem;
   }
 }
 
