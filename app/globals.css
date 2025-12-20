@@ -399,12 +399,9 @@ main {
   align-items: center;
   justify-content: center;
   line-height: 1;
-}
-
-.social-icon svg {
-  width: 18px;
-  height: 18px;
-  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
 }
 
 .footer-nav {
