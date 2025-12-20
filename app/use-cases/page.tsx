@@ -140,7 +140,7 @@ export default function UseCasesPage() {
       <section className="hero">
         <div className="container">
           <h1>Use Cases</h1>
-          <p>Discover when and how to use Temp Mail Pro</p>
+          <p>Temp Mail Pro offers secure temporary email solutions for everyday online activities. Explore common use cases including shopping, free trials, testing, and privacy protection.</p>
         </div>
       </section>
 
