@@ -395,12 +395,17 @@ main {
 }
 
 .social-icon {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  line-height: 1;
-  letter-spacing: 0.5px;
+}
+
+.social-link svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
 }
 
 .footer-nav {
