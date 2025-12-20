@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { blogPosts } from '@/lib/blogData';
 
 export default function BlogPage() {
@@ -113,7 +114,7 @@ export default function BlogPage() {
             >
               <article
                 style={{
-                  padding: '24px',
+                  padding: 0,
                   borderRadius: '12px',
                   border: '1px solid rgba(59, 130, 246, 0.2)',
                   background: 'rgba(15, 23, 42, 0.4)',
@@ -121,7 +122,8 @@ export default function BlogPage() {
                   transition: 'all 0.3s',
                   display: 'flex',
                   flexDirection: 'column',
-                  height: '100%'
+                  height: '100%',
+                  overflow: 'hidden'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
@@ -132,30 +134,43 @@ export default function BlogPage() {
                   e.currentTarget.style.background = 'rgba(15, 23, 42, 0.4)';
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
-                  <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text)', margin: 0 }}>
-                    {post.title}
-                  </h2>
-                  <span
+                {post.featuredImage && (
+                  <img 
+                    src={post.featuredImage} 
+                    alt={post.imageAlt || post.title}
                     style={{
-                      fontSize: '12px',
-                      padding: '4px 8px',
-                      borderRadius: '4px',
-                      background: 'rgba(59, 130, 246, 0.15)',
-                      color: 'rgb(59, 130, 246)',
-                      whiteSpace: 'nowrap',
-                      marginLeft: '8px'
+                      width: '100%',
+                      height: '180px',
+                      objectFit: 'cover'
                     }}
-                  >
-                    {post.category}
-                  </span>
-                </div>
-                <p style={{ fontSize: '14px', color: 'var(--text-muted)', margin: '0 0 16px 0', flex: 1 }}>
-                  {post.excerpt}
-                </p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px', color: 'var(--text-muted)' }}>
-                  <span>{post.date}</span>
-                  <span>{post.readTime} min read</span>
+                  />
+                )}
+                <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
+                    <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text)', margin: 0 }}>
+                      {post.title}
+                    </h2>
+                    <span
+                      style={{
+                        fontSize: '12px',
+                        padding: '4px 8px',
+                        borderRadius: '4px',
+                        background: 'rgba(59, 130, 246, 0.15)',
+                        color: 'rgb(59, 130, 246)',
+                        whiteSpace: 'nowrap',
+                        marginLeft: '8px'
+                      }}
+                    >
+                      {post.category}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '14px', color: 'var(--text-muted)', margin: '0 0 16px 0', flex: 1 }}>
+                    {post.excerpt}
+                  </p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '12px', color: 'var(--text-muted)' }}>
+                    <span>{post.date}</span>
+                    <span>{post.readTime} min read</span>
+                  </div>
                 </div>
               </article>
             </Link>

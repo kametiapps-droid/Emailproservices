@@ -8,6 +8,8 @@ export interface BlogPost {
   date: string;
   category: string;
   readTime: number;
+  featuredImage?: string;
+  imageAlt?: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -20,6 +22,8 @@ export const blogPosts: BlogPost[] = [
     author: "Temp Mail Pro Team",
     date: "December 15, 2024",
     readTime: 12,
+    featuredImage: "/blog-images/mytempmailpro.webp",
+    imageAlt: "Padlock and security shield symbolizing online privacy protection and data security",
     content: `In today's digital age, your email address has become one of your most valuable assets. It's the key to your social media accounts, online shopping profiles, banking services, and countless subscriptions. But with this power comes a significant vulnerability: every time you sign up for a new service or download an app, you're giving out information that could be sold to marketers, stolen by hackers, or used for spam.
 
 This is where temporary email addresses come into play, offering a revolutionary solution to an age-old problem. By using disposable email addresses for sign-ups, verifications, and untrusted websites, you can maintain your privacy while still enjoying the services you love. At Temp Mail Pro, we've built a service that makes this easier than ever.
@@ -117,6 +121,8 @@ Whether you're a privacy advocate, a security-conscious professional, or simply 
     author: "Temp Mail Pro Team",
     date: "December 12, 2024",
     readTime: 14,
+    featuredImage: "/blog-images/securmail.webp",
+    imageAlt: "Phishing scam warning and email security concept with alert icons and warning symbols",
     content: `Email-based attacks have evolved dramatically over the past decade. What started with simple Nigerian prince schemes has transformed into sophisticated, targeted campaigns that exploit human psychology and technical vulnerabilities. Understanding these tactics is your best defense against becoming a victim. The FBI reports that email fraud costs Americans over $1.2 billion annually, making it one of the most profitable crimes in the digital age.
 
 ## The Psychology of Email Scams
@@ -206,6 +212,8 @@ Your email inbox is a gateway to your digital life. Protect it like you'd protec
     author: "Temp Mail Pro Team",
     date: "December 8, 2024",
     readTime: 11,
+    featuredImage: "/blog-images/mailpro.webp",
+    imageAlt: "Developer testing software code on computer screen with programming interface",
     content: `For software developers, temporary email is more than just a privacy tool – it's a productivity multiplier. Whether you're testing user authentication flows, API integrations, or email notification systems, temporary email provides a clean, efficient solution. Professional development teams at major tech companies use temporary email extensively in their testing infrastructure.
 
 ## The Developer's Dilemma
@@ -317,6 +325,8 @@ If you haven't integrated temporary email into your testing process, you might b
     author: "Temp Mail Pro Team",
     date: "December 1, 2024",
     readTime: 13,
+    featuredImage: "/blog-images/mytempmail-pro.webp",
+    imageAlt: "Digital freedom and privacy rights represented by a locked document and shield icon",
     content: `Privacy isn't a luxury – it's a fundamental right. Yet in the digital age, this right is under unprecedented pressure from corporations, governments, and criminals. Understanding your privacy rights and the tools available to protect them is more important than ever. The United Nations even declared internet privacy a fundamental human right in 2014.
 
 ## Your Right to Privacy
@@ -396,6 +406,8 @@ Your personal efforts to protect your privacy, combined with broader systemic ch
     author: "Temp Mail Pro Team",
     date: "November 25, 2024",
     readTime: 10,
+    featuredImage: "/blog-images/freetempmail.webp",
+    imageAlt: "Fraud prevention and free trial security concept with payment verification and shield",
     content: `Free trials are a wonderful way to test services before committing to paid plans. But they're also vulnerable to abuse. Understanding how companies prevent abuse while respecting user privacy is important for anyone interested in internet ethics. The average company loses $50,000 to $500,000 annually through free trial fraud.
 
 ## The Free Trial Problem
@@ -499,6 +511,8 @@ This approach protects both your privacy and the ecosystem of free trial offerin
     author: "Temp Mail Pro Team",
     date: "November 18, 2024",
     readTime: 12,
+    featuredImage: "/blog-images/24hoursmail.webp",
+    imageAlt: "Email identity and account security represented by a digital envelope and lock",
     content: `Your email address is the foundation of your digital identity. It's your username on social media, the recovery method for countless accounts, and the key to your financial systems. If someone gains control of your email, they can potentially take control of your entire digital life.
 
 ## Your Email is Your Master Key
@@ -625,6 +639,8 @@ Your email is the skeleton key to your digital life. Keep it safe.
     author: "Temp Mail Pro Team",
     date: "November 10, 2024",
     readTime: 13,
+    featuredImage: "/blog-images/temporarymail.webp",
+    imageAlt: "GDPR regulation and data protection rights visualized with legal documents and privacy symbols",
     content: `The European Union's General Data Protection Regulation (GDPR) is one of the most comprehensive privacy laws ever enacted. It fundamentally changed how companies handle personal data and gave individuals unprecedented control over their information. Even if you don't live in the EU, GDPR affects you if you've interacted with EU companies online.
 
 ## What GDPR Changed
@@ -735,6 +751,8 @@ Many countries are enacting similar privacy laws. The trend globally is toward s
     author: "Temp Mail Pro Team",
     date: "November 1, 2024",
     readTime: 14,
+    featuredImage: "/blog-images/my-tempmailpro.webp",
+    imageAlt: "Personal privacy strategy planning with security checklist and digital protection tools",
     content: `Privacy protection isn't a one-time setup – it's an ongoing practice. But building a sustainable privacy strategy doesn't require becoming paranoid or spending hours on security maintenance. This guide will help you create a practical, personalized plan based on your specific risk level.
 
 ## Assessing Your Risk
