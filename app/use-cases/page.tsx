@@ -32,10 +32,10 @@ const useCases: UseCase[] = [
     title: 'Free Trials',
     description: 'Use free trials for various services without sharing your real email. No hidden charges, no forced subscriptions.',
     benefits: [
-      'Avoid trial cancellation issues',
-      'No unwanted emails',
-      'Full access',
-      'Delete anytime'
+      'Receive trial notifications safely',
+      'Prevent inbox clutter',
+      'Manage trial communications',
+      'Control email lifespan'
     ],
     icon: '🎁',
     category: 'Services',
@@ -102,9 +102,9 @@ const useCases: UseCase[] = [
     title: 'Social Media Test Accounts',
     description: 'Create test accounts on social media without using your real email. Multiple accounts, no conflicts.',
     benefits: [
-      'Multiple accounts safely',
-      'No conflicts',
-      'Easy account deletion',
+      'Separate test accounts',
+      'Account testing without affecting primary email',
+      'Isolated email environments',
       'Maintain privacy'
     ],
     icon: '📱',
