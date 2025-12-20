@@ -581,9 +581,9 @@ function BlogPageContent() {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '12px' }}>
-                    <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text)', margin: 0 }}>
+                    <h2 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text)', margin: 0 }}>
                       {post.title}
-                    </h3>
+                    </h2>
                     <span style={{
                       fontSize: '12px',
                       padding: '4px 8px',
@@ -641,9 +641,9 @@ function BlogPageContent() {
                     {selectedPost.category}
                   </span>
                 </div>
-                <h1 style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', margin: '0 0 16px 0' }}>
+                <h2 style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', margin: '0 0 16px 0' }}>
                   {selectedPost.title}
-                </h1>
+                </h2>
                 <div style={{ display: 'flex', gap: '24px', fontSize: '14px', color: 'var(--text-muted)' }}>
                   <span>{selectedPost.date}</span>
                   <span>{selectedPost.readTime} min read</span>

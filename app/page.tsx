@@ -84,9 +84,6 @@ export default function Home() {
 
   useEffect(() => {
     const init = async () => {
-      // Pre-warm Firebase connection
-      fetch('/api/init').catch(() => {});
-      
       const stored = localStorage.getItem('tempEmail');
       if (stored) {
         try {

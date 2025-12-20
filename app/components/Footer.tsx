@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="footer-content">
           <div className="footer-main">
             <div className="footer-brand">
-              <h3 className="footer-logo">Temp Mail Pro</h3>
+              <h2 className="footer-logo">Temp Mail Pro</h2>
               <p className="footer-tagline">
                 Secure, instant disposable email addresses to protect your privacy online.
               </p>
@@ -15,7 +15,7 @@ export default function Footer() {
             
             <div className="footer-nav">
               <div className="footer-nav-group">
-                <h4>Product</h4>
+                <h3>Product</h3>
                 <ul>
                   <li><Link href="/">Home</Link></li>
                   <li><Link href="/use-cases">Use Cases</Link></li>
@@ -24,7 +24,7 @@ export default function Footer() {
               </div>
               
               <div className="footer-nav-group">
-                <h4>Support</h4>
+                <h3>Support</h3>
                 <ul>
                   <li><Link href="/faq">FAQ</Link></li>
                   <li><Link href="/contact">Contact</Link></li>
@@ -33,7 +33,7 @@ export default function Footer() {
               </div>
               
               <div className="footer-nav-group">
-                <h4>Legal</h4>
+                <h3>Legal</h3>
                 <ul>
                   <li><Link href="/privacy">Privacy Policy</Link></li>
                   <li><Link href="/terms">Terms & Conditions</Link></li>
@@ -43,7 +43,7 @@ export default function Footer() {
               </div>
               
               <div className="footer-nav-group">
-                <h4>Company</h4>
+                <h3>Company</h3>
                 <ul>
                   <li><Link href="/about">About Us</Link></li>
                 </ul>
