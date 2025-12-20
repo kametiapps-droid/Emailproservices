@@ -539,6 +539,92 @@ export default function Home() {
         </div>
       </section>
 
+      <section style={{ padding: '80px 0', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', color: 'var(--text)', marginBottom: '50px' }}>Latest from Our Blog</h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '24px'
+          }}>
+            {[
+              {
+                id: 1,
+                title: "The Ultimate Guide to Protecting Your Privacy Online",
+                excerpt: "Learn how temporary email addresses can be your first line of defense against spam and data breaches.",
+                date: "December 15, 2024",
+                readTime: 8
+              },
+              {
+                id: 2,
+                title: "How Scammers Use Email: A Complete Protection Guide",
+                excerpt: "Understand the tactics used by scammers and how temporary email can protect you from becoming their next victim.",
+                date: "December 12, 2024",
+                readTime: 10
+              },
+              {
+                id: 3,
+                title: "Spam: Where It Comes From and How to Stop It",
+                excerpt: "The complete origin story of spam and practical strategies to keep your inbox clean and organized.",
+                date: "December 10, 2024",
+                readTime: 7
+              },
+              {
+                id: 4,
+                title: "Why Companies Want Your Email Address (And What They'll Do With It)",
+                excerpt: "Explore the data economy and discover how your email address is bought, sold, and used.",
+                date: "December 8, 2024",
+                readTime: 9
+              }
+            ].map(post => (
+              <a
+                key={post.id}
+                href="/blog"
+                style={{
+                  display: 'block',
+                  background: 'var(--surface)',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                  borderRadius: '12px',
+                  padding: '24px',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                  color: 'inherit'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(59, 130, 246, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '12px', color: 'var(--text)', lineHeight: '1.4' }}>
+                  {post.title}
+                </h3>
+                <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
+                  {post.excerpt}
+                </p>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  fontSize: '12px',
+                  color: 'var(--text-muted)',
+                  borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+                  paddingTop: '16px'
+                }}>
+                  <span>{post.date}</span>
+                  <span>{post.readTime} min read</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {showQR && (
         <div className="modal-overlay" onClick={() => setShowQR(false)}>
           <div className="modal qr-modal" onClick={e => e.stopPropagation()}>
