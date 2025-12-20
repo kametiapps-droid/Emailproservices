@@ -205,7 +205,9 @@ export function cleanupRateLimits(): void {
 // Webhook secret validation
 export function validateWebhookSecret(providedSecret: string | null): boolean {
   const secret = process.env.WEBHOOK_SECRET || process.env.CLOUDFLARE_WEBHOOK_SECRET;
-  if (!secret) return false;
+  // If no secret is configured, allow all requests (for Cloudflare Email Workers)
+  if (!secret) return true;
+  // If secret is configured, validate it
   return providedSecret === secret;
 }
 
