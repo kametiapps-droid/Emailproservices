@@ -717,9 +717,9 @@ export default function Home() {
                 e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
                 e.currentTarget.style.background = 'rgba(59, 130, 246, 0.03)';
               }}>
-                <h4 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '16px', fontWeight: '600', lineHeight: '1.4' }}>
+                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '16px', fontWeight: '600', lineHeight: '1.4' }}>
                   {faq.question}
-                </h4>
+                </h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
                   {faq.answer}
                 </p>
