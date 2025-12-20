@@ -473,6 +473,41 @@ export default function Home() {
         </div>
       </section>
 
+      <section style={{ padding: '80px 0', background: 'var(--surface)' }}>
+        <div className="container">
+          <h2 style={{ color: 'var(--text)', marginBottom: '48px', textAlign: 'center' }}>Understanding Temporary Email</h2>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '40px',
+            maxWidth: '1000px',
+            margin: '0 auto'
+          }}>
+            <div>
+              <h3 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '20px', fontWeight: '600' }}>What is Temp Mail?</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                Temporary email, or disposable email, is a short-lived email address that exists for a limited time. Instead of using your real email for every online signup, registration, or verification, you can use a temporary address that automatically expires after 24 hours. This keeps your primary inbox clean and protects your personal email from being sold or shared with third parties. Temp Mail Pro makes this process effortless—generate a new address in seconds without any registration or complicated setup.
+              </p>
+            </div>
+
+            <div>
+              <h3 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '20px', fontWeight: '600' }}>Why Privacy Matters</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                Your email address is a gateway to your identity and personal information. Companies collect email addresses to build marketing profiles, sell your data to advertisers, and track your online behavior. Every signup exposes you to spam, phishing attempts, and data breaches. By using temporary emails for non-essential accounts, you create a barrier between your real identity and corporate data collection. Protecting your email is one of the most effective ways to maintain your digital privacy, reduce unwanted contact, and prevent identity theft.
+              </p>
+            </div>
+
+            <div>
+              <h3 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '20px', fontWeight: '600' }}>Legal & Ethical Usage</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                Temporary emails are completely legal and widely accepted. They're perfect for testing, protecting privacy, avoiding spam, and accessing services without sharing your personal details. However, using fake emails to commit fraud, evade security measures, or violate terms of service is illegal and unethical. Temp Mail Pro is designed for legitimate privacy protection—use it responsibly to safeguard your information while respecting the rules and regulations of websites and services you visit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="features">
         <div className="container">
           <h2 style={{ color: 'var(--text)' }}>Why Choose Temp Mail Pro?</h2>
