@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { blogPosts } from '../lib/blogData';
 
 interface Email {
   id: string;
@@ -800,45 +802,16 @@ export default function Home() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '24px'
           }}>
-            {[
-              {
-                id: 1,
-                title: "The Ultimate Guide to Protecting Your Privacy Online",
-                excerpt: "Learn how temporary email addresses can be your first line of defense against spam and data breaches.",
-                date: "December 15, 2024",
-                readTime: 8
-              },
-              {
-                id: 2,
-                title: "How Scammers Use Email: A Complete Protection Guide",
-                excerpt: "Understand the tactics used by scammers and how temporary email can protect you from becoming their next victim.",
-                date: "December 12, 2024",
-                readTime: 10
-              },
-              {
-                id: 3,
-                title: "Temporary Email for Software Testing and Development",
-                excerpt: "Discover how developers can use temporary email to streamline testing workflows and improve productivity.",
-                date: "December 8, 2024",
-                readTime: 7
-              },
-              {
-                id: 4,
-                title: "Privacy Rights and Digital Freedom: What You Should Know",
-                excerpt: "Explore your rights to privacy in the digital age and what you can do to protect them.",
-                date: "December 1, 2024",
-                readTime: 9
-              }
-            ].map(post => (
+            {blogPosts.slice(0, 4).map(post => (
               <Link
                 key={post.id}
-                href={`/blog?id=${post.id}`}
+                href={`/blog/${post.slug}`}
                 style={{
                   display: 'block',
                   background: 'var(--surface)',
                   border: '1px solid rgba(59, 130, 246, 0.2)',
                   borderRadius: '12px',
-                  padding: '24px',
+                  overflow: 'hidden',
                   textDecoration: 'none',
                   transition: 'all 0.3s ease',
                   color: 'inherit'
@@ -854,23 +827,42 @@ export default function Home() {
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '12px', color: 'var(--text)', lineHeight: '1.4' }}>
-                  {post.title}
-                </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
-                  {post.excerpt}
-                </p>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  fontSize: '12px',
-                  color: 'var(--text-muted)',
-                  borderTop: '1px solid rgba(59, 130, 246, 0.1)',
-                  paddingTop: '16px'
-                }}>
-                  <span>{post.date}</span>
-                  <span>{post.readTime} min read</span>
+                {post.featuredImage && (
+                  <div style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '200px',
+                    overflow: 'hidden',
+                    background: 'rgba(59, 130, 246, 0.1)'
+                  }}>
+                    <Image
+                      src={post.featuredImage}
+                      alt={post.imageAlt || post.title}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
+                <div style={{ padding: '24px' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '12px', color: 'var(--text)', lineHeight: '1.4' }}>
+                    {post.title}
+                  </h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
+                    {post.excerpt}
+                  </p>
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    fontSize: '12px',
+                    color: 'var(--text-muted)',
+                    borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+                    paddingTop: '16px'
+                  }}>
+                    <span>{post.date}</span>
+                    <span>{post.readTime} min read</span>
+                  </div>
                 </div>
               </Link>
             ))}
