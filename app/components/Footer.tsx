@@ -12,22 +12,22 @@ export default function Footer() {
     },
     {
       name: 'Facebook',
-      icon: 'ƒ',
+      icon: 'f',
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`,
     },
     {
       name: 'LinkedIn',
-      icon: '⊡',
+      icon: 'in',
       url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl)}`,
     },
     {
       name: 'WhatsApp',
-      icon: '◎',
+      icon: 'wa',
       url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`,
     },
     {
       name: 'Telegram',
-      icon: '✦',
+      icon: 'tg',
       url: `https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`,
     },
   ];
