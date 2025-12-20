@@ -123,8 +123,8 @@ export default function Home() {
     if (email?.id) {
       // Fetch immediately on mount
       fetchInbox();
-      // Then set up interval - use 15 seconds instead of 10 for better performance
-      const interval = setInterval(fetchInbox, 15000);
+      // Auto-refresh every 5 seconds for better responsiveness
+      const interval = setInterval(fetchInbox, 5000);
       return () => clearInterval(interval);
     }
   }, [email?.id, fetchInbox]);
