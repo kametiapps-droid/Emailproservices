@@ -77,10 +77,18 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 
 ### Recent Changes (Dec 20, 2025)
 
+**Social Media Icons Fixed**
+- ✅ Replaced text characters with proper SVG icons for all social platforms
+- ✅ Icons now visible in footer on desktop and mobile views
+- ✅ SVG icons for Twitter/X, Facebook, LinkedIn, WhatsApp, and Telegram
+- ✅ Proper sizing and centering of icons (18x18px)
+- ✅ Updated CSS for flexbox display of SVG icons
+- ✅ All social share links fully functional and visible
+
 **Improved Footer for Mobile View**
 - ✅ Optimized footer layout for mobile screens (600px and below)
 - ✅ Reduced padding and margins for compact mobile display (32px → 24px)
-- ✅ Social media icons visible and properly sized (36px) on mobile
+- ✅ Social media icons visible and properly sized on mobile
 - ✅ Improved spacing between footer sections with smaller gaps (16px)
 - ✅ Better typography sizing for mobile (smaller fonts, optimized line-height)
 - ✅ Social icons centered and responsive with "Share with us:" label
