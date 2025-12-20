@@ -1,28 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
 
-// Initialize Firebase Admin
-let db: admin.firestore.Firestore;
+export const dynamic = 'force-dynamic';
 
-try {
-  if (!admin.apps.length) {
-    const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-      ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
-      : undefined;
+let db: admin.firestore.Firestore | null = null;
 
-    if (serviceAccount) {
+function initializeFirebaseContact() {
+  if (db) return db;
+  
+  try {
+    if (!admin.apps.length) {
+      const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY || process.env.FIREBASE_SERVICES_KEY;
+      
+      if (!serviceAccountKey) {
+        throw new Error('Firebase credentials not available');
+      }
+
+      let serviceAccount;
+      try {
+        serviceAccount = JSON.parse(serviceAccountKey);
+      } catch {
+        const decoded = Buffer.from(serviceAccountKey, 'base64').toString('utf-8');
+        serviceAccount = JSON.parse(decoded);
+      }
+
+      const privateKey = serviceAccount.private_key.replace(/\\n/g, '\n');
+
       admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
+        credential: admin.credential.cert({
+          projectId: serviceAccount.project_id,
+          clientEmail: serviceAccount.client_email,
+          privateKey: privateKey,
+        }),
       });
     }
+    db = admin.firestore();
+  } catch (error) {
+    console.error('Firebase initialization error:', error);
   }
-  db = admin.firestore();
-} catch (error) {
-  console.error('Firebase initialization error:', error);
+  
+  return db;
 }
 
 export async function POST(request: NextRequest) {
   try {
+    const database = initializeFirebaseContact();
     const body = await request.json();
     const { name, email, subject, message } = body;
 
@@ -43,7 +65,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!db) {
+    if (!database) {
       return NextResponse.json(
         { success: false, error: 'Database not available' },
         { status: 500 }
@@ -51,7 +73,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Save to Firestore
-    const contactRef = await db.collection('contact_messages').add({
+    const contactRef = await database.collection('contact_messages').add({
       name,
       email,
       subject,
@@ -78,14 +100,16 @@ export async function POST(request: NextRequest) {
 // GET endpoint to retrieve all contact messages (admin only in production)
 export async function GET() {
   try {
-    if (!db) {
+    const database = initializeFirebaseContact();
+    
+    if (!database) {
       return NextResponse.json(
         { success: false, error: 'Database not available' },
         { status: 500 }
       );
     }
 
-    const snapshot = await db
+    const snapshot = await database
       .collection('contact_messages')
       .orderBy('createdAt', 'desc')
       .limit(100)
