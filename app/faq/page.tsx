@@ -254,104 +254,164 @@ export default function FAQPage() {
 
         {/* FAQ Items */}
         <div style={{
-          maxWidth: '800px',
+          maxWidth: '900px',
           margin: '0 auto'
         }}>
           {filteredFAQs.length > 0 ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: '24px' }}>
               {filteredFAQs.map(item => (
                 <div
                   key={item.id}
                   style={{
-                    background: expandedId === item.id
-                      ? 'linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%)'
-                      : 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-                    borderRadius: '12px',
-                    border: expandedId === item.id
-                      ? '1px solid rgba(59, 130, 246, 0.6)'
-                      : '1px solid rgba(59, 130, 246, 0.2)',
+                    background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.5) 0%, rgba(30, 41, 82, 0.3) 100%)',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(59, 130, 246, 0.15)',
                     overflow: 'hidden',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    boxShadow: expandedId === item.id
+                      ? '0 20px 45px rgba(59, 130, 246, 0.15)'
+                      : '0 8px 24px rgba(0, 0, 0, 0.12)',
+                    backdropFilter: 'blur(10px)',
+                    cursor: 'pointer',
+                    position: 'relative'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (expandedId !== item.id) {
+                      e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                      e.currentTarget.style.boxShadow = '0 12px 35px rgba(59, 130, 246, 0.12)';
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (expandedId !== item.id) {
+                      e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }
                   }}
                 >
                   <button
                     onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
                     style={{
                       width: '100%',
-                      padding: '20px',
+                      padding: '24px',
                       background: 'none',
                       border: 'none',
                       color: 'var(--text)',
                       cursor: 'pointer',
                       display: 'flex',
                       justifyContent: 'space-between',
-                      alignItems: 'center',
+                      alignItems: 'flex-start',
                       gap: '16px',
-                      textAlign: 'left'
+                      textAlign: 'left',
+                      flex: 1,
+                      transition: 'all 0.3s ease'
                     }}
                   >
                     <div style={{
                       display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px'
+                      alignItems: 'flex-start',
+                      gap: '12px',
+                      flex: 1
                     }}>
                       <div style={{
                         background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%'
-                      }} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <h2 style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         fontSize: '16px',
-                        fontWeight: '600',
-                        margin: 0,
-                        color: 'var(--text)'
+                        flexShrink: 0,
+                        marginTop: '2px'
                       }}>
-                        {item.question}
-                      </h2>
-                      <p style={{
-                        fontSize: '12px',
-                        color: 'var(--text-muted)',
-                        margin: '6px 0 0 0',
-                        fontWeight: '500'
-                      }}>
-                        {item.category}
-                      </p>
+                        ❓
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <h2 style={{
+                          fontSize: '15px',
+                          fontWeight: '700',
+                          margin: 0,
+                          color: 'var(--text)',
+                          lineHeight: '1.4'
+                        }}>
+                          {item.question}
+                        </h2>
+                        <div style={{
+                          display: 'flex',
+                          gap: '8px',
+                          marginTop: '10px',
+                          flexWrap: 'wrap'
+                        }}>
+                          <span
+                            style={{
+                              fontSize: '11px',
+                              padding: '4px 10px',
+                              borderRadius: '6px',
+                              background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%)',
+                              color: 'rgba(59, 130, 246, 0.9)',
+                              fontWeight: '600',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.5px'
+                            }}
+                          >
+                            {item.category}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <svg
-                      style={{
-                        width: '20px',
-                        height: '20px',
-                        color: 'var(--text-dim)',
-                        transform: expandedId === item.id ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.3s ease',
-                        flexShrink: 0
-                      }}
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
+                    <div style={{
+                      width: '24px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px'
+                    }}>
+                      <svg
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                          color: 'var(--text-dim)',
+                          transform: expandedId === item.id ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                        }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </div>
                   </button>
 
                   {expandedId === item.id && (
                     <div style={{
-                      padding: '0 20px 20px',
+                      padding: '0 24px 24px',
                       borderTop: '1px solid rgba(59, 130, 246, 0.1)',
                       animation: 'slideDown 0.3s ease-out'
                     }}>
-                      <p style={{
-                        color: 'var(--text-muted)',
-                        lineHeight: '1.8',
-                        fontSize: '15px',
-                        margin: 0
+                      <div style={{
+                        background: 'rgba(59, 130, 246, 0.05)',
+                        borderLeft: '3px solid rgba(59, 130, 246, 0.5)',
+                        padding: '16px',
+                        borderRadius: '8px'
                       }}>
-                        {item.answer}
-                      </p>
+                        <p style={{
+                          color: 'var(--text-muted)',
+                          lineHeight: '1.8',
+                          fontSize: '14px',
+                          margin: 0
+                        }}>
+                          {item.answer}
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -360,14 +420,17 @@ export default function FAQPage() {
           ) : (
             <div style={{
               textAlign: 'center',
-              padding: '60px 20px',
-              color: 'var(--text-muted)'
+              padding: '80px 20px',
+              color: 'var(--text-muted)',
+              background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.3) 0%, rgba(30, 41, 82, 0.15) 100%)',
+              borderRadius: '16px',
+              border: '1px solid rgba(59, 130, 246, 0.1)'
             }}>
               <svg
                 style={{
-                  width: '56px',
-                  height: '56px',
-                  margin: '0 auto 20px',
+                  width: '64px',
+                  height: '64px',
+                  margin: '0 auto 24px',
                   opacity: 0.3
                 }}
                 xmlns="http://www.w3.org/2000/svg"
@@ -378,14 +441,14 @@ export default function FAQPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h2 style={{
-                fontSize: '18px',
-                fontWeight: '600',
+                fontSize: '20px',
+                fontWeight: '700',
                 marginBottom: '8px',
                 color: 'var(--text)'
               }}>
                 No results found
               </h2>
-              <p>Try changing your search or select a different category</p>
+              <p style={{ fontSize: '15px' }}>Try changing your search or select a different category</p>
             </div>
           )}
         </div>
