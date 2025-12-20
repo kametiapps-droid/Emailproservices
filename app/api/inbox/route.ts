@@ -81,7 +81,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ success: true, data: messages });
   } catch (error) {
-    console.error('Get inbox error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to get inbox' },
       { status: 500 }
@@ -145,7 +144,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, data: message });
   } catch (error) {
-    console.error('Add message error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to add message' },
       { status: 500 }
@@ -175,7 +173,6 @@ export async function PATCH(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Mark read error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to mark as read' },
       { status: 500 }
@@ -206,7 +203,6 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Delete message error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to delete message' },
       { status: 500 }

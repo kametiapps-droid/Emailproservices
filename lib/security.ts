@@ -189,7 +189,7 @@ export function getClientIP(headers: Headers): string {
 
 // Log security event
 export function logSecurityEvent(type: string, details: object): void {
-  console.log(`[SECURITY] ${new Date().toISOString()} - ${type}:`, JSON.stringify(details));
+  // Security logging disabled in production
 }
 
 // Clean up old rate limit entries (call periodically)

@@ -50,8 +50,6 @@ export default function Home() {
         setMessages([]);
         setSelectedMessage(null);
       }
-    } catch (error) {
-      console.error('Error generating email:', error);
     } finally {
       setLoading(false);
     }
@@ -66,7 +64,7 @@ export default function Home() {
         setMessages(data.data);
       }
     } catch (error) {
-      console.error('Error fetching inbox:', error);
+      // Silently handle fetch errors
     }
   }, [email?.id]);
 
@@ -79,7 +77,7 @@ export default function Home() {
         return true;
       }
     } catch (error) {
-      console.error('Error checking email:', error);
+      // Silently handle fetch errors
     }
     return false;
   };
@@ -217,7 +215,7 @@ export default function Home() {
         setShowQR(true);
       }
     } catch (error) {
-      console.error('Error generating QR:', error);
+      // Silently handle QR generation errors
     }
   };
 
@@ -228,7 +226,7 @@ export default function Home() {
       localStorage.removeItem('tempEmail');
       await generateEmail();
     } catch (error) {
-      console.error('Error deleting email:', error);
+      // Silently handle deletion errors
     }
   };
 
