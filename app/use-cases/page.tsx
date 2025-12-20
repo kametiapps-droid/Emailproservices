@@ -266,61 +266,6 @@ export default function UseCasesPage() {
           ))}
         </div>
 
-        {/* Newsletter CTA Card */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          margin: '48px 0'
-        }}>
-          <div
-            style={{
-              maxWidth: '450px',
-              background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%)',
-              borderRadius: '16px',
-              border: '2px solid rgba(236, 72, 153, 0.3)',
-              padding: '32px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(236, 72, 153, 0.8)';
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(236, 72, 153, 0.2)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(236, 72, 153, 0.3)';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            <a
-              href="/"
-              style={{
-                display: 'inline-block',
-                background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%)',
-                color: 'white',
-                padding: '12px 32px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: '600',
-                transition: 'all 0.3s ease',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-            >
-              Get Your Email Now
-            </a>
-          </div>
-        </div>
-
         {/* Use Cases Grid - Last 4 cards */}
         <div style={{
           display: 'grid',
