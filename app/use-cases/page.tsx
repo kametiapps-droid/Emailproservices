@@ -16,9 +16,9 @@ const useCases: UseCase[] = [
   {
     id: '1',
     title: 'Online Shopping',
-    description: 'Keep your real email safe when shopping online. Get all order confirmations and sales notifications through a temporary email.',
+    description: 'Keep your real email safe when shopping online. Receive order confirmations and receipts on a temporary email without exposing your primary inbox to marketing campaigns.',
     benefits: [
-      'Avoid spam emails',
+      'Order confirmation support',
       'Maintain privacy',
       'Protect from data breaches',
       'Easy email deletion'
@@ -72,9 +72,9 @@ const useCases: UseCase[] = [
   {
     id: '5',
     title: 'Testing & Development',
-    description: 'Software developers can test email features in their apps. Use our API for direct integration.',
+    description: 'Software developers can test email features in their apps. Use our API with generous rate limits, webhook support, and direct integration for seamless development workflows.',
     benefits: [
-      'Real email testing',
+      'API rate limits & webhooks',
       'No obstacles',
       'Multiple emails instantly',
       'API documentation available'
@@ -86,9 +86,9 @@ const useCases: UseCase[] = [
   {
     id: '6',
     title: 'Phishing Protection',
-    description: 'Use a separate email for suspicious links. Instantly delete it if the email seems dangerous.',
+    description: 'Use a separate email for suspicious links. Our no-logs, auto-delete policy ensures your temporary email and its contents are permanently erased after 24 hours.',
     benefits: [
-      'Avoid fraud',
+      'No logs / auto-delete policy',
       'Protection from malware',
       'Keep your info safe',
       'Open only safe links'
@@ -114,9 +114,9 @@ const useCases: UseCase[] = [
   {
     id: '8',
     title: 'Data Breach Protection',
-    description: 'If a website gets hacked, only the temporary email is compromised. Your real email stays safe.',
+    description: 'If a website gets hacked, only the temporary email is compromised. Our zero-log architecture means no data can be traced back to you after auto-deletion.',
     benefits: [
-      'Minimal damage',
+      'Zero-log architecture',
       'Real email separate',
       'Instant deletion',
       'No worries'
@@ -332,6 +332,34 @@ export default function UseCasesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Center CTA */}
+        <div style={{
+          textAlign: 'center',
+          margin: '60px 0',
+          padding: '40px 20px'
+        }}>
+          <a
+            href="/"
+            style={{
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
+              border: 'none',
+              color: 'white',
+              padding: '16px 48px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '18px',
+              fontWeight: '600',
+              textDecoration: 'none',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            Create Temporary Email Now
+          </a>
         </div>
 
         {/* CTA Section */}
