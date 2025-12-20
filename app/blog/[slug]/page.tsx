@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getBlogPostBySlug, getAllBlogSlugs } from '@/lib/blogData';
 import BlogFAQ from '@/app/components/BlogFAQ';
 import Script from 'next/script';
@@ -180,6 +181,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <span>By {post.author}</span>
             </div>
           </header>
+
+          {post.featuredImage && (
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              height: '400px',
+              marginBottom: '40px',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              background: 'rgba(59, 130, 246, 0.1)'
+            }}>
+              <Image
+                src={post.featuredImage}
+                alt={post.imageAlt || post.title}
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 900px"
+                priority
+              />
+            </div>
+          )}
 
           <div
             style={{
