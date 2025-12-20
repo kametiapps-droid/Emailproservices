@@ -115,7 +115,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'google16d5a87599c45f6c',
   },
   category: 'technology',
 };

@@ -86,6 +86,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.date,
       authors: [post.author],
       tags: [post.category, 'temporary email', 'privacy', 'security'],
+      images: post.featuredImage ? [
+        {
+          url: `https://mytempmail.pro${post.featuredImage}`,
+          width: 1200,
+          height: 630,
+          alt: post.imageAlt || post.title,
+          type: 'image/webp',
+        }
+      ] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
@@ -108,7 +117,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "Article",
     "headline": post.title,
     "description": post.excerpt,
-    "image": "https://mytempmail.pro/logo.png",
+    "image": post.featuredImage ? `https://mytempmail.pro${post.featuredImage}` : "https://mytempmail.pro/favicon.png",
     "datePublished": post.date,
     "dateModified": post.date,
     "author": {
@@ -118,10 +127,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Temp Mail",
+      "name": "Temp Mail Pro",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://mytempmail.pro/logo.png"
+        "url": "https://mytempmail.pro/favicon.png"
       }
     },
     "mainEntityOfPage": {

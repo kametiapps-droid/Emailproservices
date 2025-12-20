@@ -1,8 +1,17 @@
 import { MetadataRoute } from 'next';
+import { blogPosts } from '@/lib/blogData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.mytempmail.pro';
   const currentDate = new Date().toISOString();
+
+  // Generate blog post entries
+  const blogEntries = blogPosts.map(post => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }));
 
   return [
     {
@@ -23,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    ...blogEntries,
     {
       url: `${baseUrl}/faq`,
       lastModified: currentDate,
