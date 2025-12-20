@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app'],
+  allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev'],
   experimental: {
     serverActions: {
       allowedOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app'],
