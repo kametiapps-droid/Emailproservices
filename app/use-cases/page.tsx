@@ -217,7 +217,7 @@ export default function UseCasesPage() {
         {/* Use Cases Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+          gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '24px',
           justifyItems: 'center'
         }}>
