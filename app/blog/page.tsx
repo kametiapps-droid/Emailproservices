@@ -997,35 +997,20 @@ export default function BlogPage() {
                 border: '1px solid rgba(59, 130, 246, 0.1)',
                 marginTop: '40px'
               }}>
-                <div style={{ display: 'flex', gap: '12px', marginBottom: '8px' }}>
+                <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
                   <span style={{ fontSize: '20px' }}>👤</span>
                   <div>
-                    <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '4px' }}>
-                      {selectedPost.author}
+                    <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '8px', fontSize: '16px' }}>
+                      Temp Mail Pro Team
                     </div>
-                    <div style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
-                      Privacy & security expert at Temp Mail Pro. Passionate about helping users protect their digital identity.
+                    <div style={{ fontSize: '14px', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '12px' }}>
+                      Privacy & security experts at Temp Mail Pro.<br />
+                      Passionate about helping users protect their digital identity.
                     </div>
-                  </div>
-                </div>
-                <div style={{
-                  marginTop: '16px',
-                  paddingTop: '16px',
-                  borderTop: '1px solid rgba(59, 130, 246, 0.1)',
-                  fontSize: '14px',
-                  color: 'var(--text-muted)',
-                  lineHeight: '1.6'
-                }}>
-                  <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '8px' }}>
-                    Temp Mail Pro Team
-                  </div>
-                  <div style={{ marginBottom: '12px' }}>
-                    Privacy & security experts at Temp Mail Pro.<br />
-                    Passionate about helping users protect their digital identity.
-                  </div>
-                  <div style={{ fontStyle: 'italic', fontSize: '13px' }}>
-                    We publish research-based articles to help users understand
-                    privacy-friendly email practices and online safety.
+                    <div style={{ fontStyle: 'italic', fontSize: '13px', color: 'var(--text-muted)' }}>
+                      We publish research-based articles to help users understand
+                      privacy-friendly email practices and online safety.
+                    </div>
                   </div>
                 </div>
               </div>
