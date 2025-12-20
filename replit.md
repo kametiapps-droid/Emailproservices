@@ -77,19 +77,31 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 
 ### Recent Changes (Dec 20, 2025)
 
-**Blog Structure Refactored - Server Component & Individual Pages**
-- **Blog Data**: Extracted to `lib/blogData.ts` server component with all 8 blog posts
-- **Dynamic Routes**: Created `app/blog/[slug]/page.tsx` for individual blog post pages
-- **SEO Metadata**: Each blog post page includes:
-  - ✅ Dynamic `<title>` with post title + site name
+**Blog SEO Complete Overhaul - Server Data & Article Schema**
+- **Blog Data Management**: Extracted all 8 posts to `lib/blogData.ts` server component
+  - Centralized blog post management with helper functions
+  - Easy to maintain and scale with new posts
+- **Individual Blog Post Pages**: Dynamic routes at `/blog/[slug]`
+  - Separate page for each post (e.g., `/blog/protecting-privacy-online`)
+  - Server-side rendering with Next.js 15 async components
+  - Static generation at build time for optimal performance
+- **SEO Metadata Implementation**: 
+  - ✅ Dynamic `<title>` tags per post with site name
   - ✅ `<meta description>` from post excerpt
-  - ✅ Canonical URLs for SEO
-  - ✅ Open Graph tags (og:title, og:description, og:type, og:article)
-  - ✅ Twitter Card metadata
-  - ✅ Author metadata and keywords
-- **Blog List Page**: Updated to use server data and link to individual post pages
-- **URL Structure**: `/blog/[slug]` where slugs are auto-generated (e.g., `/blog/protecting-privacy-online`)
-- **Functionality**: Search and category filtering still available on blog list page
+  - ✅ Canonical URLs for duplicate prevention
+  - ✅ Open Graph tags (og:title, og:description, og:type: article)
+  - ✅ Twitter Card metadata for social sharing
+  - ✅ Author metadata and post keywords
+  - ✅ **JSON-LD Article Schema** with structured data:
+    - Article type with headline, description, image
+    - Author and publisher information
+    - datePublished and dateModified fields
+    - mainEntityOfPage for search engines
+- **Blog Listing Page**: Client component with real-time search & filtering
+  - Search posts by title or excerpt
+  - Filter by category (Privacy, Security, Technical)
+  - Links to individual post pages
+  - Better UX with instant results
 
 ### Dec 19, 2025
 **Mobile UI Refinements - Final**

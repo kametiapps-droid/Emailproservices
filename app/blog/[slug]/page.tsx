@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBlogPostBySlug, getAllBlogSlugs } from '@/lib/blogData';
+import Script from 'next/script';
 
 export async function generateStaticParams() {
   const slugs = getAllBlogSlugs();
@@ -61,8 +62,42 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  const schemaData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": "https://www.mytempmail.pro/logo.png",
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": {
+      "@type": "Organization",
+      "name": post.author,
+      "url": "https://www.mytempmail.pro"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Temp Mail Pro",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.mytempmail.pro/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.mytempmail.pro/blog/${post.slug}`
+    }
+  });
+
   return (
     <div className="page-container">
+      <Script
+        id="article-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: schemaData,
+        }}
+      />
       <section className="hero" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         <div className="container">
           <Link 
@@ -178,5 +213,3 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </article>
       </div>
     </div>
-  );
-}
