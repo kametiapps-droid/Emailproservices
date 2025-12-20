@@ -104,42 +104,6 @@ export default function ContactPage() {
             padding: '32px',
             textAlign: 'center'
           }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>💬</div>
-            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Live Chat</h3>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
-              Chat with our support team
-            </p>
-            <button
-              onClick={() => alert('Live chat opening soon!')}
-              style={{
-                background: 'rgba(59, 130, 246, 0.15)',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                color: 'rgba(59, 130, 246, 1)',
-                padding: '8px 16px',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontWeight: '600',
-                fontSize: '14px',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.25)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
-              }}
-            >
-              Start Chat
-            </button>
-          </div>
-
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-            borderRadius: '16px',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            padding: '32px',
-            textAlign: 'center'
-          }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>⏱️</div>
             <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Response Time</h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
@@ -414,6 +378,19 @@ export default function ContactPage() {
           >
             Back to Home
           </a>
+        </div>
+
+        {/* Disclaimer Line */}
+        <div style={{
+          maxWidth: '700px',
+          margin: '40px auto 0',
+          textAlign: 'center',
+          padding: '30px 20px',
+          color: 'var(--text-muted)',
+          fontSize: '14px',
+          fontStyle: 'italic'
+        }}>
+          Temp Mail Pro is a privacy-focused email utility operated by an independent digital services team.
         </div>
       </div>
     </div>
