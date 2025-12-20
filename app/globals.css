@@ -394,14 +394,35 @@ main {
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.social-icon {
+.social-link::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 900;
   color: white;
   line-height: 1;
+  letter-spacing: 0;
+}
+
+.social-link-0::before {
+  content: 'X';
+}
+
+.social-link-1::before {
+  content: 'f';
+}
+
+.social-link-2::before {
+  content: 'in';
+}
+
+.social-link-3::before {
+  content: 'W';
+}
+
+.social-link-4::before {
+  content: 'T';
 }
 
 .footer-nav {

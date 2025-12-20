@@ -7,27 +7,22 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'Twitter',
-      icon: '𝕏',
       url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`,
     },
     {
       name: 'Facebook',
-      icon: 'f',
       url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`,
     },
     {
       name: 'LinkedIn',
-      icon: 'in',
       url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteUrl)}`,
     },
     {
       name: 'WhatsApp',
-      icon: '💬',
       url: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + siteUrl)}`,
     },
     {
       name: 'Telegram',
-      icon: '✈',
       url: `https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(shareText)}`,
     },
   ];
@@ -45,18 +40,16 @@ export default function Footer() {
               <div className="footer-social">
                 <p className="social-label">Share with us:</p>
                 <div className="social-links">
-                  {socialLinks.map((link) => (
+                  {socialLinks.map((link, idx) => (
                     <a
                       key={link.name}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="social-link"
+                      className={`social-link social-link-${idx}`}
                       title={`Share on ${link.name}`}
                       aria-label={`Share on ${link.name}`}
-                    >
-                      <span className="social-icon">{link.icon}</span>
-                    </a>
+                    />
                   ))}
                 </div>
               </div>
