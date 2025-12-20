@@ -717,8 +717,9 @@ main {
 }
 
 [data-theme="light"] .email-box {
-  background: linear-gradient(135deg, #f0f4ff 0%, #f9f5ff 100%);
-  box-shadow: 0 12px 48px rgba(59, 130, 246, 0.08);
+  background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+  box-shadow: 0 12px 48px rgba(59, 130, 246, 0.12), 0 0 1px rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -770,8 +771,9 @@ main {
 }
 
 [data-theme="light"] .email-display {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  background: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%);
+  border: 1.5px solid rgba(59, 130, 246, 0.25);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
 }
 
 .email-address {
@@ -1067,6 +1069,13 @@ main {
   font-weight: 500;
 }
 
+[data-theme="light"] .message-count {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: var(--text);
+  font-weight: 600;
+}
+
 .inbox-container {
   min-height: 400px;
   display: flex;
@@ -1081,6 +1090,13 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .inbox-list {
+  background: #ffffff;
+  border: 1.5px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
 }
 
 .inbox-empty {
@@ -1111,7 +1127,11 @@ main {
   padding: 16px 20px;
   border-bottom: 1px solid var(--border);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .message-item {
+  border-bottom: 1px solid rgba(59, 130, 246, 0.08);
 }
 
 @media (max-width: 600px) {
@@ -1122,6 +1142,11 @@ main {
 
 .message-item:hover {
   background: var(--glass);
+}
+
+[data-theme="light"] .message-item:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.04) 0%, rgba(168, 85, 247, 0.03) 100%);
+  border-color: rgba(59, 130, 246, 0.15);
 }
 
 .message-item:last-child {
