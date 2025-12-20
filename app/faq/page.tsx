@@ -303,14 +303,14 @@ export default function FAQPage() {
                       }} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <h3 style={{
+                      <h2 style={{
                         fontSize: '16px',
                         fontWeight: '600',
                         margin: 0,
                         color: 'var(--text)'
                       }}>
                         {item.question}
-                      </h3>
+                      </h2>
                       <p style={{
                         fontSize: '12px',
                         color: 'var(--text-muted)',
@@ -377,14 +377,14 @@ export default function FAQPage() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <h3 style={{
+              <h2 style={{
                 fontSize: '18px',
                 fontWeight: '600',
                 marginBottom: '8px',
                 color: 'var(--text)'
               }}>
                 No results found
-              </h3>
+              </h2>
               <p>Try changing your search or select a different category</p>
             </div>
           )}
@@ -398,9 +398,9 @@ export default function FAQPage() {
           paddingTop: '60px',
           borderTop: '1px solid rgba(59, 130, 246, 0.1)'
         }}>
-          <h2 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--text)' }}>
+          <h3 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--text)' }}>
             Need more help?
-          </h2>
+          </h3>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
             If you didn\'t find your answer here, please contact us
           </p>
