@@ -7,9 +7,9 @@ import QRCode from 'qrcode';
 
 export async function GET(request: NextRequest) {
   try {
-    // Rate limiting
+    // Rate limiting (20 per hour)
     const clientIP = getClientIP(request.headers);
-    const rateCheck = checkRateLimit(clientIP);
+    const rateCheck = checkRateLimit(clientIP, 'QR_CODE');
     if (!rateCheck.allowed) {
       return NextResponse.json(
         { success: false, error: rateCheck.reason || 'Too many requests' },

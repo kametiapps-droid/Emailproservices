@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
-import { checkRateLimit, getClientIP, SECURITY_HEADERS } from '@/lib/security';
+import { checkRateLimit, getClientIP, SECURITY_HEADERS, validateEmail, validateInput, sanitizeInput } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting
+    // Rate limiting (5 per hour)
     const clientIP = getClientIP(request.headers);
-    const rateCheck = checkRateLimit(clientIP);
+    const rateCheck = checkRateLimit(clientIP, 'CONTACTS');
     if (!rateCheck.allowed) {
       return NextResponse.json(
         { success: false, error: rateCheck.reason || 'Too many requests' },
@@ -16,9 +16,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Limit request body size
+    // Limit request body size (100KB max)
     const contentLength = parseInt(request.headers.get('content-length') || '0');
-    if (contentLength > 1024 * 1024) {
+    if (contentLength > 100 * 1024) {
       return NextResponse.json(
         { success: false, error: 'Request too large' },
         { status: 413, headers: SECURITY_HEADERS }
@@ -27,24 +27,42 @@ export async function POST(request: NextRequest) {
 
     const database = getDb();
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    let { name, email, subject, message } = body;
 
-    // Validation
-    if (!name || !email || !subject || !message) {
+    // Input validation
+    if (!validateInput(name, 100, 1)) {
       return NextResponse.json(
-        { success: false, error: 'All fields are required' },
-        { status: 400 }
+        { success: false, error: 'Name is required and must be less than 100 characters' },
+        { status: 400, headers: SECURITY_HEADERS }
       );
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!validateEmail(email)) {
       return NextResponse.json(
         { success: false, error: 'Invalid email address' },
-        { status: 400 }
+        { status: 400, headers: SECURITY_HEADERS }
       );
     }
+
+    if (!validateInput(subject, 200, 1)) {
+      return NextResponse.json(
+        { success: false, error: 'Subject is required and must be less than 200 characters' },
+        { status: 400, headers: SECURITY_HEADERS }
+      );
+    }
+
+    if (!validateInput(message, 5000, 1)) {
+      return NextResponse.json(
+        { success: false, error: 'Message is required and must be less than 5000 characters' },
+        { status: 400, headers: SECURITY_HEADERS }
+      );
+    }
+
+    // Sanitize inputs
+    name = sanitizeInput(name, 100);
+    email = sanitizeInput(email, 254);
+    subject = sanitizeInput(subject, 200);
+    message = sanitizeInput(message, 5000);
 
     if (!database) {
       return NextResponse.json(

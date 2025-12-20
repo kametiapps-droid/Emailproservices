@@ -36,6 +36,11 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
       // Clean the key - remove control characters that break JSON parsing
       let cleanedKey = serviceAccountKey.trim();
       
+      // Validate key length (Firebase keys are typically 2000+ chars)
+      if (cleanedKey.length < 1000) {
+        throw new Error('Service account key appears to be incomplete or invalid');
+      }
+      
       // Try to parse as JSON first
       if (cleanedKey.startsWith('{')) {
         // Replace actual newlines/returns in the JSON with escaped versions for parsing
@@ -45,6 +50,11 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
         // Try base64 decoding
         const decoded = Buffer.from(cleanedKey, 'base64').toString('utf-8');
         parsedKey = JSON.parse(decoded);
+      }
+
+      // Validate required fields
+      if (!parsedKey.type || !parsedKey.project_id || !parsedKey.private_key || !parsedKey.client_email) {
+        throw new Error('Service account key missing required fields');
       }
 
       // Fix: Replace escaped newlines with actual newlines in private key
@@ -59,8 +69,11 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
         projectId: parsedKey.project_id,
       });
     } catch (error) {
-      console.error('Error parsing Firebase service account:', error);
-      throw new Error('Failed to initialize Firebase. Please check your service account key format.');
+      // Don't log the actual error or key in production
+      const message = process.env.NODE_ENV === 'production' 
+        ? 'Failed to initialize Firebase' 
+        : `Error parsing Firebase service account: ${error}`;
+      throw new Error(message);
     }
   } else {
     app = getApp();

@@ -1,5 +1,14 @@
 // Security and Spam Filter Module for Temp Mail Pro
 
+// Blocked sender domains (known spam/malicious sources)
+export const BLOCKED_DOMAINS = [
+  'spam.com',
+  'spammer.net',
+  'malware.org',
+  'phishing.com',
+  'scam.net',
+];
+
 // Suspicious keywords that indicate spam/phishing
 export const SPAM_KEYWORDS = [
   'you have won',
@@ -35,10 +44,12 @@ export const ILLEGAL_KEYWORDS = [
 // Rate limiting storage (in-memory for development)
 const rateLimitStore: Map<string, { count: number; timestamp: number }> = new Map();
 
-// Rate limit settings
-const RATE_LIMIT = {
-  MAX_EMAILS_PER_HOUR: 10,
-  WINDOW_MS: 60 * 60 * 1000, // 1 hour
+// Rate limit settings (per endpoint)
+const RATE_LIMITS = {
+  EMAILS: { max: 10, window: 60 * 60 * 1000 }, // 10 per hour
+  CONTACTS: { max: 5, window: 60 * 60 * 1000 }, // 5 per hour
+  INBOX: { max: 30, window: 60 * 60 * 1000 }, // 30 per hour
+  QR_CODE: { max: 20, window: 60 * 60 * 1000 }, // 20 per hour
 };
 
 export interface SpamCheckResult {
@@ -103,24 +114,34 @@ export function containsIllegalContent(content: string): boolean {
   return ILLEGAL_KEYWORDS.some(keyword => lowerContent.includes(keyword));
 }
 
-// Rate limiting check
-export function checkRateLimit(identifier: string): SecurityCheckResult {
+// Check if email is from a blocked domain
+export function isBlockedDomain(email: string): boolean {
+  if (!email) return false;
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (!domain) return false;
+  return BLOCKED_DOMAINS.some(blocked => domain.includes(blocked));
+}
+
+// Rate limiting check with per-endpoint limits
+export function checkRateLimit(identifier: string, endpoint: keyof typeof RATE_LIMITS = 'EMAILS'): SecurityCheckResult {
   const now = Date.now();
-  const record = rateLimitStore.get(identifier);
+  const key = `${identifier}:${endpoint}`;
+  const record = rateLimitStore.get(key);
+  const limit = RATE_LIMITS[endpoint];
   
   if (!record) {
-    rateLimitStore.set(identifier, { count: 1, timestamp: now });
+    rateLimitStore.set(key, { count: 1, timestamp: now });
     return { allowed: true, blocked: false };
   }
   
   // Reset if window expired
-  if (now - record.timestamp > RATE_LIMIT.WINDOW_MS) {
-    rateLimitStore.set(identifier, { count: 1, timestamp: now });
+  if (now - record.timestamp > limit.window) {
+    rateLimitStore.set(key, { count: 1, timestamp: now });
     return { allowed: true, blocked: false };
   }
   
   // Check if exceeded limit
-  if (record.count >= RATE_LIMIT.MAX_EMAILS_PER_HOUR) {
+  if (record.count >= limit.max) {
     return {
       allowed: false,
       blocked: true,
@@ -130,8 +151,25 @@ export function checkRateLimit(identifier: string): SecurityCheckResult {
   
   // Increment count
   record.count++;
-  rateLimitStore.set(identifier, record);
+  rateLimitStore.set(key, record);
   return { allowed: true, blocked: false };
+}
+
+// Input validation and sanitization
+export function validateEmail(email: string): boolean {
+  if (!email || email.length > 254) return false;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email.trim());
+}
+
+export function validateInput(input: string, maxLength: number = 1000, minLength: number = 1): boolean {
+  if (!input || typeof input !== 'string') return false;
+  const trimmed = input.trim();
+  return trimmed.length >= minLength && trimmed.length <= maxLength;
+}
+
+export function sanitizeInput(input: string, maxLength: number = 1000): string {
+  return input.trim().slice(0, maxLength);
 }
 
 // Filter message for display (sanitize dangerous content)

@@ -1,20 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, generateRandomEmail, getExpirationTime } from '@/lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
-import { checkRateLimit, getClientIP, SECURITY_HEADERS } from '@/lib/security';
+import { checkRateLimit, getClientIP, SECURITY_HEADERS, validateInput } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting check
+    // Rate limiting check (10 per hour)
     const clientIP = getClientIP(request.headers);
-    const rateCheck = checkRateLimit(clientIP);
+    const rateCheck = checkRateLimit(clientIP, 'EMAILS');
     
     if (!rateCheck.allowed) {
       return NextResponse.json(
         { success: false, error: rateCheck.reason },
         { status: 429, headers: SECURITY_HEADERS }
+      );
+    }
+    
+    // Verify request is valid
+    const contentType = request.headers.get('content-type');
+    if (contentType && !contentType.includes('application/json') && contentType !== '') {
+      return NextResponse.json(
+        { success: false, error: 'Invalid content type' },
+        { status: 400, headers: SECURITY_HEADERS }
       );
     }
     

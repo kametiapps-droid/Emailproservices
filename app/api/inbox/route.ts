@@ -5,21 +5,34 @@ import {
   calculateSpamScore, 
   containsIllegalContent, 
   sanitizeMessage,
-  SECURITY_HEADERS 
+  SECURITY_HEADERS,
+  checkRateLimit,
+  getClientIP,
+  validateInput
 } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
+    // Rate limiting (30 per hour)
+    const clientIP = getClientIP(request.headers);
+    const rateCheck = checkRateLimit(clientIP, 'INBOX');
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { success: false, error: rateCheck.reason || 'Too many requests' },
+        { status: 429, headers: SECURITY_HEADERS }
+      );
+    }
+
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('emailId');
 
-    if (!emailId) {
+    if (!emailId || !validateInput(emailId, 40, 20)) {
       return NextResponse.json(
-        { success: false, error: 'Email ID is required' },
-        { status: 400 }
+        { success: false, error: 'Invalid Email ID' },
+        { status: 400, headers: SECURITY_HEADERS }
       );
     }
 
