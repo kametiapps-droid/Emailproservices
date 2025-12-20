@@ -378,6 +378,10 @@ main {
   transition: color 0.2s ease;
 }
 
+[data-theme="light"] .footer-nav-group a {
+  color: var(--text);
+}
+
 .footer-nav-group a:hover {
   color: var(--text);
 }
