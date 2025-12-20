@@ -209,11 +209,11 @@ export default function Home() {
   const showQRCode = async () => {
     if (!email?.id) return;
     try {
-      // Position above the button
+      // Position above the button (fixed to document, not viewport)
       if (qrButtonRef.current) {
         const rect = qrButtonRef.current.getBoundingClientRect();
         setPopupPosition({
-          top: rect.top - 280, // Position above button (280px is approximate modal height)
+          top: window.scrollY + rect.top - 280, // Position above button relative to document
           left: rect.left + rect.width / 2
         });
       }
