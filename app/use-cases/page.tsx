@@ -336,7 +336,9 @@ export default function UseCasesPage() {
 
         {/* Center CTA */}
         <div style={{
-          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           margin: '60px 0',
           padding: '40px 20px'
         }}>
