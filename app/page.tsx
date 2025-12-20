@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import Link from 'next/link';
 
 interface Email {
   id: string;
@@ -599,20 +600,20 @@ export default function Home() {
               },
               {
                 id: 3,
-                title: "Spam: Where It Comes From and How to Stop It",
-                excerpt: "The complete origin story of spam and practical strategies to keep your inbox clean and organized.",
-                date: "December 10, 2024",
+                title: "Temporary Email for Software Testing and Development",
+                excerpt: "Discover how developers can use temporary email to streamline testing workflows and improve productivity.",
+                date: "December 8, 2024",
                 readTime: 7
               },
               {
                 id: 4,
-                title: "Why Companies Want Your Email Address (And What They'll Do With It)",
-                excerpt: "Explore the data economy and discover how your email address is bought, sold, and used.",
-                date: "December 8, 2024",
+                title: "Privacy Rights and Digital Freedom: What You Should Know",
+                excerpt: "Explore your rights to privacy in the digital age and what you can do to protect them.",
+                date: "December 1, 2024",
                 readTime: 9
               }
             ].map(post => (
-              <a
+              <Link
                 key={post.id}
                 href={`/blog?id=${post.id}`}
                 style={{
@@ -654,7 +655,7 @@ export default function Home() {
                   <span>{post.date}</span>
                   <span>{post.readTime} min read</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
