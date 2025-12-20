@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, generateRandomEmail, getExpirationTime } from '@/lib/firebase';
-import { initializeFirebase } from '@/lib/firebaseInit';
 import { v4 as uuidv4 } from 'uuid';
 import { checkRateLimit, getClientIP, SECURITY_HEADERS } from '@/lib/security';
 
@@ -18,8 +17,6 @@ export async function POST(request: NextRequest) {
         { status: 429, headers: SECURITY_HEADERS }
       );
     }
-    
-    await initializeFirebase();
     
     const id = uuidv4();
     const email = generateRandomEmail();
@@ -54,7 +51,6 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    await initializeFirebase();
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('id');
@@ -96,7 +92,6 @@ export async function GET(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
-    await initializeFirebase();
     const db = getDb();
     const { searchParams } = new URL(request.url);
     const emailId = searchParams.get('id');

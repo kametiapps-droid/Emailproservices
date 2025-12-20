@@ -1,25 +1,5 @@
 // Security and Spam Filter Module for Temp Mail Pro
 
-// Blocked sender domains (known spam/malicious sources)
-export const BLOCKED_DOMAINS = [
-  'spam.com',
-  'spammer.net',
-  'malware.org',
-  'phishing.com',
-  'scam.net',
-  'fraud.org',
-  'hack.com',
-  'virus.net',
-  'trojan.org',
-  'ransomware.com',
-  'botnet.net',
-  'exploit.org',
-  'darkweb.com',
-  'illegal.net',
-  'drugs.org',
-  'weapons.com',
-];
-
 // Suspicious keywords that indicate spam/phishing
 export const SPAM_KEYWORDS = [
   'you have won',
@@ -71,14 +51,6 @@ export interface SecurityCheckResult {
   allowed: boolean;
   reason?: string;
   blocked: boolean;
-}
-
-// Check if email is from a blocked domain
-export function isBlockedDomain(email: string): boolean {
-  if (!email) return false;
-  const domain = email.split('@')[1]?.toLowerCase();
-  if (!domain) return false;
-  return BLOCKED_DOMAINS.some(blocked => domain.includes(blocked));
 }
 
 // Calculate spam score for a message
@@ -185,21 +157,6 @@ export function getClientIP(headers: Headers): string {
   return headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
          headers.get('x-real-ip') || 
          'unknown';
-}
-
-// Log security event
-export function logSecurityEvent(type: string, details: object): void {
-  // Security logging disabled in production
-}
-
-// Clean up old rate limit entries (call periodically)
-export function cleanupRateLimits(): void {
-  const now = Date.now();
-  for (const [key, value] of rateLimitStore.entries()) {
-    if (now - value.timestamp > RATE_LIMIT.WINDOW_MS) {
-      rateLimitStore.delete(key);
-    }
-  }
 }
 
 // Webhook secret validation

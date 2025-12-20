@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/firebase';
-import { initializeFirebase } from '@/lib/firebaseInit';
 import { checkRateLimit, getClientIP, SECURITY_HEADERS } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
@@ -26,7 +25,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await initializeFirebase();
     const database = getDb();
     const body = await request.json();
     const { name, email, subject, message } = body;
