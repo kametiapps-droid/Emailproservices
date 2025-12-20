@@ -689,6 +689,114 @@ export default function Home() {
         </div>
       </section>
 
+      <section style={{ padding: '80px 0', background: 'var(--surface)' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', color: 'var(--text)', marginBottom: '60px', fontSize: '38px', fontWeight: '700' }}>Common Questions</h2>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '24px',
+            marginBottom: '48px'
+          }}>
+            {[
+              { question: 'Do I need to register to use Temp Mail Pro?', answer: 'No! Temp Mail Pro is completely free and requires no registration.' },
+              { question: 'How quickly can I get an email address?', answer: 'Instantly! With just one click, you get a new temporary email address ready to use.' },
+              { question: 'How long will my temporary email address work?', answer: '24 hours! Your temporary email is automatically deleted after 24 hours.' },
+              { question: 'Is this completely free?', answer: 'Yes! Temp Mail Pro is completely free. No hidden costs, no subscriptions.' },
+              { question: 'Can I use Temp Mail Pro on mobile?', answer: 'Absolutely! Temp Mail Pro works seamlessly on both iOS and Android.' },
+              { question: 'Is this illegal?', answer: 'No! Temp Mail Pro is completely legal for privacy protection and legitimate uses.' }
+            ].map((faq, idx) => (
+              <div key={idx} style={{
+                background: 'rgba(59, 130, 246, 0.03)',
+                border: '1px solid rgba(59, 130, 246, 0.15)',
+                borderRadius: '12px',
+                padding: '24px',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.03)';
+              }}>
+                <h4 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '16px', fontWeight: '600', lineHeight: '1.4' }}>
+                  {faq.question}
+                </h4>
+                <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: 'center' }}>
+            <Link href="/faq" style={{
+              display: 'inline-block',
+              padding: '14px 32px',
+              background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
+              color: 'white',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontWeight: '600',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+            }}>
+              View All Questions →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ 
+        padding: '80px 0',
+        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%)',
+        textAlign: 'center'
+      }}>
+        <div className="container">
+          <h2 style={{ color: 'var(--text)', marginBottom: '24px', fontSize: '44px', fontWeight: '700' }}>Get Your Free Temporary Email</h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '18px', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
+            Start protecting your privacy instantly. Generate a disposable email address in seconds with zero registration required.
+          </p>
+          <Link href="/" onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} style={{
+            display: 'inline-block',
+            padding: '18px 48px',
+            background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
+            color: 'white',
+            borderRadius: '10px',
+            textDecoration: 'none',
+            fontWeight: '700',
+            fontSize: '16px',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 8px 20px rgba(59, 130, 246, 0.4)',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-6px)';
+            e.currentTarget.style.boxShadow = '0 12px 30px rgba(59, 130, 246, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)';
+          }}>
+            Get Started Free Now ✨
+          </Link>
+        </div>
+      </section>
+
       <section style={{ padding: '80px 0', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)' }}>
         <div className="container">
           <h2 style={{ textAlign: 'center', color: 'var(--text)', marginBottom: '50px' }}>Latest from Our Blog</h2>
@@ -793,6 +901,65 @@ export default function Home() {
           </div>
         </div>
       )}
+      <section style={{ 
+        padding: '80px 0',
+        background: 'var(--surface)',
+        borderTop: '1px solid rgba(59, 130, 246, 0.1)'
+      }}>
+        <div className="container">
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(239, 68, 68, 0.05) 100%)',
+              border: '1px solid rgba(239, 68, 68, 0.2)',
+              borderRadius: '16px',
+              padding: '48px 40px',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 24px'
+              }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              
+              <h3 style={{ color: 'var(--text)', fontSize: '28px', fontWeight: '700', marginBottom: '16px' }}>Legal Notice & Terms of Use</h3>
+              
+              <p style={{
+                color: 'var(--text-muted)',
+                fontSize: '15px',
+                lineHeight: '1.8',
+                margin: 0,
+                textAlign: 'left'
+              }}>
+                Temp Mail Pro is intended for privacy protection, testing, and inbox management only. Misuse for illegal or abusive activities is strictly prohibited. Users are responsible for complying with applicable laws and third-party terms.
+              </p>
+
+              <div style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid rgba(239, 68, 68, 0.2)', textAlign: 'center' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: 0 }}>
+                  For complete terms and policies, please visit our{' '}
+                  <Link href="/terms" style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '600' }}>
+                    Terms and Conditions
+                  </Link>
+                  {' '}and{' '}
+                  <Link href="/privacy" style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '600' }}>
+                    Privacy Policy
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
