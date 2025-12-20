@@ -355,6 +355,7 @@ main {
 }
 
 .footer-social {
+  display: none;
   margin-top: 16px;
 }
 
@@ -395,13 +396,11 @@ main {
 }
 
 .social-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  font-size: 16px;
+  display: block;
+  font-size: 14px;
   font-weight: 700;
   color: white;
+  line-height: 1.2;
 }
 
 .footer-nav {
