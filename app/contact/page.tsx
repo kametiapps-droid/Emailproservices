@@ -74,7 +74,7 @@ export default function ContactPage() {
           {/* Contact Info Cards */}
           <div className="contact-info-card">
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>📧</div>
-            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Email</h3>
+            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px', color: 'var(--text)' }}>Email</h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
               Reach us via email for inquiries
             </p>
@@ -93,7 +93,7 @@ export default function ContactPage() {
 
           <div className="contact-info-card">
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>⏱️</div>
-            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px' }}>Response Time</h3>
+            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px', color: 'var(--text)' }}>Response Time</h3>
             <p style={{ color: 'var(--text-muted)', marginBottom: '16px' }}>
               We typically respond within 24 hours
             </p>
@@ -113,7 +113,7 @@ export default function ContactPage() {
           margin: '0 auto'
         }}>
           <div className="contact-form-container">
-            <h2 style={{ fontSize: '24px', marginBottom: '24px', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '24px', marginBottom: '24px', textAlign: 'center', color: 'var(--text)' }}>
               Send us a Message
             </h2>
 
@@ -307,7 +307,7 @@ export default function ContactPage() {
           paddingTop: '60px',
           borderTop: '1px solid rgba(59, 130, 246, 0.1)'
         }}>
-          <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>
+          <h2 style={{ fontSize: '24px', marginBottom: '16px', color: 'var(--text)' }}>
             Didn't find an answer?
           </h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>
