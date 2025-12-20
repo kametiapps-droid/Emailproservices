@@ -366,23 +366,6 @@ export default function UseCasesPage() {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>💌</div>
-            <h3 style={{
-              fontSize: '20px',
-              fontWeight: '700',
-              marginBottom: '12px',
-              color: 'var(--text)'
-            }}>
-              Subscribe to Newsletters
-            </h3>
-            <p style={{
-              color: 'var(--text-muted)',
-              fontSize: '14px',
-              lineHeight: '1.6',
-              marginBottom: '24px'
-            }}>
-              Get handpicked recommendations and privacy tips for managing your inbox
-            </p>
             <a
               href="/"
               style={{
