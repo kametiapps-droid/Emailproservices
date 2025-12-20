@@ -209,11 +209,11 @@ export default function Home() {
   const showQRCode = async () => {
     if (!email?.id) return;
     try {
-      // Get button position - CSS media query will handle mobile centering
+      // Position above the button
       if (qrButtonRef.current) {
         const rect = qrButtonRef.current.getBoundingClientRect();
         setPopupPosition({
-          top: rect.bottom + 10,
+          top: rect.top - 280, // Position above button (280px is approximate modal height)
           left: rect.left + rect.width / 2
         });
       }
@@ -882,7 +882,7 @@ export default function Home() {
 
       {showQR && (
         <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
-          <div className="qr-popup" onClick={e => e.stopPropagation()}>
+          <div className="qr-popup" style={{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }} onClick={e => e.stopPropagation()}>
             <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
             <div className="qr-popup-content">
               {qrCode && <img src={qrCode} alt="QR Code" />}
