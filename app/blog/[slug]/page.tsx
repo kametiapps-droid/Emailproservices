@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBlogPostBySlug, getAllBlogSlugs } from '@/lib/blogData';
+import BlogFAQ from '@/app/components/BlogFAQ';
 import Script from 'next/script';
 
 function renderContentWithLinks(text: string) {
@@ -197,13 +198,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             })}
           </div>
 
+          <BlogFAQ />
+
           <div
             style={{
               background: 'rgba(59, 130, 246, 0.05)',
               borderRadius: '12px',
               padding: '24px',
               border: '1px solid rgba(59, 130, 246, 0.1)',
-              marginTop: '40px'
+              marginTop: '60px'
             }}
           >
             <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
