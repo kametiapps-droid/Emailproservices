@@ -614,7 +614,7 @@ export default function Home() {
             ].map(post => (
               <a
                 key={post.id}
-                href="/blog"
+                href={`/blog?id=${post.id}`}
                 style={{
                   display: 'block',
                   background: 'var(--surface)',

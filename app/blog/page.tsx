@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 interface BlogPost {
   id: number;
@@ -710,6 +711,17 @@ export default function BlogPage() {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const postId = searchParams.get('id');
+    if (postId) {
+      const post = blogPosts.find(p => p.id === parseInt(postId));
+      if (post) {
+        setSelectedPost(post);
+      }
+    }
+  }, [searchParams]);
 
   const categories = Array.from(new Set(blogPosts.map(post => post.category)));
 
