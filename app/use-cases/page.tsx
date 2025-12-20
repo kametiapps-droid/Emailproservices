@@ -214,192 +214,315 @@ export default function UseCasesPage() {
           ))}
         </div>
 
-        {/* Use Cases Grid */}
+        {/* Use Cases Grid - First 4 cards */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
           gap: '24px'
         }}>
-          {filteredUseCases.map((useCase, idx) => (
-            <>
-              <div
-                key={useCase.id}
-                style={{
-                  background: `linear-gradient(135deg, ${useCase.color}, ${useCase.color.replace('0.1', '0.05')})`,
-                  borderRadius: '16px',
-                  border: '1px solid rgba(59, 130, 246, 0.2)',
-                  padding: '32px',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(59, 130, 246, 0.2)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                <div style={{
-                  fontSize: '40px',
-                  marginBottom: '16px'
-                }}>
-                  {useCase.icon}
-                </div>
-
-                <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  marginBottom: '12px',
-                  color: 'var(--text)'
-                }}>
-                  {useCase.title}
-                </h3>
-
-                <p style={{
-                  color: 'var(--text-muted)',
-                  fontSize: '14px',
-                  lineHeight: '1.6',
-                  marginBottom: '20px'
-                }}>
-                  {useCase.description}
-                </p>
-
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}>
-                  <p style={{
-                    fontSize: '12px',
-                    fontWeight: '600',
-                    color: 'var(--primary)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    margin: '0 0 12px 0'
-                  }}>
-                    Benefits:
-                  </p>
-                  {useCase.benefits.map((benefit, benefitIdx) => (
-                    <div
-                      key={benefitIdx}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '10px'
-                      }}
-                    >
-                      <span style={{
-                        color: 'rgba(34, 197, 94, 1)',
-                        fontWeight: '700',
-                        minWidth: '20px'
-                      }}>
-                        ✓
-                      </span>
-                      <span style={{
-                        color: 'var(--text-dim)',
-                        fontSize: '13px',
-                        lineHeight: '1.5'
-                      }}>
-                        {benefit}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div style={{
-                  marginTop: '20px',
-                  paddingTop: '20px',
-                  borderTop: '1px solid rgba(59, 130, 246, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  color: 'var(--primary)',
-                  fontSize: '12px',
-                  fontWeight: '600'
-                }}>
-                  <span>Category:</span>
-                  <span style={{
-                    background: 'var(--glass)',
-                    padding: '4px 12px',
-                    borderRadius: '12px',
-                    color: 'var(--primary)'
-                  }}>
-                    {useCase.category}
-                  </span>
-                </div>
+          {filteredUseCases.slice(0, 4).map(useCase => (
+            <div
+              key={useCase.id}
+              style={{
+                background: `linear-gradient(135deg, ${useCase.color}, ${useCase.color.replace('0.1', '0.05')})`,
+                borderRadius: '16px',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                padding: '32px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(59, 130, 246, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div style={{
+                fontSize: '40px',
+                marginBottom: '16px'
+              }}>
+                {useCase.icon}
               </div>
 
-              {idx === 3 && (
-                <div
-                  key="newsletter-cta"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%)',
-                    borderRadius: '16px',
-                    border: '2px solid rgba(236, 72, 153, 0.3)',
-                    padding: '32px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(236, 72, 153, 0.8)';
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(236, 72, 153, 0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(236, 72, 153, 0.3)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <div style={{ fontSize: '48px', marginBottom: '16px' }}>💌</div>
-                  <h3 style={{
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    marginBottom: '12px',
-                    color: 'var(--text)'
-                  }}>
-                    Subscribe to Newsletters
-                  </h3>
-                  <p style={{
-                    color: 'var(--text-muted)',
-                    fontSize: '14px',
-                    lineHeight: '1.6',
-                    marginBottom: '24px'
-                  }}>
-                    Get handpicked recommendations and privacy tips for managing your inbox
-                  </p>
-                  <a
-                    href="/"
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: '700',
+                marginBottom: '12px',
+                color: 'var(--text)'
+              }}>
+                {useCase.title}
+              </h3>
+
+              <p style={{
+                color: 'var(--text-muted)',
+                fontSize: '14px',
+                lineHeight: '1.6',
+                marginBottom: '20px'
+              }}>
+                {useCase.description}
+              </p>
+
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px'
+              }}>
+                <p style={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: 'var(--primary)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  margin: '0 0 12px 0'
+                }}>
+                  Benefits:
+                </p>
+                {useCase.benefits.map((benefit, benefitIdx) => (
+                  <div
+                    key={benefitIdx}
                     style={{
-                      display: 'inline-block',
-                      background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%)',
-                      color: 'white',
-                      padding: '12px 32px',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      transition: 'all 0.3s ease',
-                      border: 'none',
-                      cursor: 'pointer'
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-                    onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
                   >
-                    Subscribe Now
-                  </a>
-                </div>
-              )}
-            </>
+                    <span style={{
+                      color: 'rgba(34, 197, 94, 1)',
+                      fontWeight: '700',
+                      minWidth: '20px'
+                    }}>
+                      ✓
+                    </span>
+                    <span style={{
+                      color: 'var(--text-dim)',
+                      fontSize: '13px',
+                      lineHeight: '1.5'
+                    }}>
+                      {benefit}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{
+                marginTop: '20px',
+                paddingTop: '20px',
+                borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'var(--primary)',
+                fontSize: '12px',
+                fontWeight: '600'
+              }}>
+                <span>Category:</span>
+                <span style={{
+                  background: 'var(--glass)',
+                  padding: '4px 12px',
+                  borderRadius: '12px',
+                  color: 'var(--primary)'
+                }}>
+                  {useCase.category}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Newsletter CTA Card */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+          gap: '24px',
+          margin: '24px 0'
+        }}>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%)',
+              borderRadius: '16px',
+              border: '2px solid rgba(236, 72, 153, 0.3)',
+              padding: '32px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(236, 72, 153, 0.8)';
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(236, 72, 153, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(236, 72, 153, 0.3)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>💌</div>
+            <h3 style={{
+              fontSize: '20px',
+              fontWeight: '700',
+              marginBottom: '12px',
+              color: 'var(--text)'
+            }}>
+              Subscribe to Newsletters
+            </h3>
+            <p style={{
+              color: 'var(--text-muted)',
+              fontSize: '14px',
+              lineHeight: '1.6',
+              marginBottom: '24px'
+            }}>
+              Get handpicked recommendations and privacy tips for managing your inbox
+            </p>
+            <a
+              href="/"
+              style={{
+                display: 'inline-block',
+                background: 'linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%)',
+                color: 'white',
+                padding: '12px 32px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: '600',
+                transition: 'all 0.3s ease',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+            >
+              Subscribe Now
+            </a>
+          </div>
+        </div>
+
+        {/* Use Cases Grid - Last 4 cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+          gap: '24px'
+        }}>
+          {filteredUseCases.slice(4).map(useCase => (
+            <div
+              key={useCase.id}
+              style={{
+                background: `linear-gradient(135deg, ${useCase.color}, ${useCase.color.replace('0.1', '0.05')})`,
+                borderRadius: '16px',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                padding: '32px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(59, 130, 246, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div style={{
+                fontSize: '40px',
+                marginBottom: '16px'
+              }}>
+                {useCase.icon}
+              </div>
+
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: '700',
+                marginBottom: '12px',
+                color: 'var(--text)'
+              }}>
+                {useCase.title}
+              </h3>
+
+              <p style={{
+                color: 'var(--text-muted)',
+                fontSize: '14px',
+                lineHeight: '1.6',
+                marginBottom: '20px'
+              }}>
+                {useCase.description}
+              </p>
+
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px'
+              }}>
+                <p style={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: 'var(--primary)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  margin: '0 0 12px 0'
+                }}>
+                  Benefits:
+                </p>
+                {useCase.benefits.map((benefit, benefitIdx) => (
+                  <div
+                    key={benefitIdx}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px'
+                    }}
+                  >
+                    <span style={{
+                      color: 'rgba(34, 197, 94, 1)',
+                      fontWeight: '700',
+                      minWidth: '20px'
+                    }}>
+                      ✓
+                    </span>
+                    <span style={{
+                      color: 'var(--text-dim)',
+                      fontSize: '13px',
+                      lineHeight: '1.5'
+                    }}>
+                      {benefit}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{
+                marginTop: '20px',
+                paddingTop: '20px',
+                borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'var(--primary)',
+                fontSize: '12px',
+                fontWeight: '600'
+              }}>
+                <span>Category:</span>
+                <span style={{
+                  background: 'var(--glass)',
+                  padding: '4px 12px',
+                  borderRadius: '12px',
+                  color: 'var(--primary)'
+                }}>
+                  {useCase.category}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
 
