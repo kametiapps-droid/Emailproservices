@@ -891,62 +891,6 @@ export default function Home() {
 
       <section style={{ 
         padding: '80px 0',
-        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%)',
-        textAlign: 'center'
-      }}>
-        <div className="container">
-          <h2 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '40px', fontWeight: '700' }}>Help Others Discover Temp Mail Pro</h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '16px', marginBottom: '48px', maxWidth: '600px', margin: '0 auto 48px' }}>
-            Love using Temp Mail Pro? Share it with your friends, colleagues, and community. Follow us on social media for updates and tips.
-          </p>
-          
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '24px',
-            flexWrap: 'wrap'
-          }}>
-            <a href="https://twitter.com/tempmail" target="_blank" rel="noopener noreferrer" className="social-link" title="Follow on Twitter/X">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9-5.5 9-5.5s4 5 0 10c-4 5-9 7-15 7-6 0-11-5-11-5"/>
-              </svg>
-              <span>Twitter</span>
-            </a>
-            
-            <a href="https://github.com/tempmail-pro" target="_blank" rel="noopener noreferrer" className="social-link" title="Follow on GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              <span>GitHub</span>
-            </a>
-            
-            <a href="https://linkedin.com/company/tempmail-pro" target="_blank" rel="noopener noreferrer" className="social-link" title="Follow on LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.25-.129.599-.129.948v5.439h-3.554s.05-8.736 0-9.646h3.554v1.364c.429-.659 1.189-1.599 2.898-1.599 2.117 0 3.704 1.379 3.704 4.342v5.539zM5.337 9.433c-1.144 0-1.915-.759-1.915-1.71 0-.951.77-1.71 1.954-1.71 1.184 0 1.915.759 1.915 1.71 0 .951-.73 1.71-1.954 1.71zm1.6 11.019H3.738V9.806h3.199v10.646zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-            
-            <a href="https://facebook.com/tempmail" target="_blank" rel="noopener noreferrer" className="social-link" title="Follow on Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-              <span>Facebook</span>
-            </a>
-            
-            <a href="https://reddit.com/r/tempmail" target="_blank" rel="noopener noreferrer" className="social-link" title="Join on Reddit">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.385 4.859-7.181 4.859-3.796 0-7.182-2.165-7.182-4.859a3.5 3.5 0 0 1 .476-1.465 1.761 1.761 0 0 1-.105-.3c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.53l.847-4.5c.034-.179-.021-.353-.141-.465-.12-.112-.282-.151-.465-.122l-2.654.567a1.746 1.746 0 0 0-1.235-2.235c-.464-.115-.9.182-.996.646-.096.464.182.901.646.996.327.082.64-.122.825-.451.57-.315 1.298-.315 1.868 0 .249.14.495.208.743.208.468 0 .9-.272 1.055-.707l2.368-.504.56 2.958c1.68.163 3.19.735 4.29 1.58a1.754 1.754 0 0 1 1.226-.505zm4.78 4.731a1.754 1.754 0 0 1-1.754 1.754 1.754 1.754 0 1 1 0-3.508 1.754 1.754 0 0 1 1.754 1.754zm-10.5 4.772c.676 0 1.193.517 1.193 1.193 0 .676-.517 1.193-1.193 1.193-.676 0-1.193-.517-1.193-1.193 0-.676.517-1.193 1.193-1.193zm5.524 0c.676 0 1.193.517 1.193 1.193 0 .676-.517 1.193-1.193 1.193-.676 0-1.193-.517-1.193-1.193 0-.676.517-1.193 1.193-1.193z"/>
-              </svg>
-              <span>Reddit</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section style={{ 
-        padding: '80px 0',
         background: 'var(--surface)',
         borderTop: '1px solid rgba(59, 130, 246, 0.1)'
       }}>

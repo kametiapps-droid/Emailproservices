@@ -77,7 +77,13 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 
 ### Recent Changes (Dec 20, 2025)
 
-**Social Media Sharing Links Added**
+**Removed "Help Others Discover" Section**
+- ✅ Deleted the "Help Others Discover Temp Mail Pro" section from home page
+- ✅ Removed duplicate social media buttons that were on the page
+- ✅ Kept footer social media links for sharing functionality
+- ✅ Cleaner home page layout with focused content
+
+**Social Media Sharing Links Added to Footer**
 - ✅ Added social media share buttons in footer (Twitter/X, Facebook, LinkedIn, WhatsApp, Telegram)
 - ✅ Each button shares the website URL (https://mytempmail.pro) with custom message
 - ✅ Buttons styled with blue gradient theme matching design system
