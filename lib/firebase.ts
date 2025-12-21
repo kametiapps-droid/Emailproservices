@@ -88,14 +88,10 @@ export function getDb(): FirebaseFirestore.Firestore {
 }
 
 export const EMAIL_DOMAINS = [
-  'kameti.online',
   'giftofhope.online',
-  'mytoolhub.store',
+  'kameti.online',
   'playgamesonline.space',
-  'mailbox.online',
-  'inbox.online',
-  'email.online',
-  'tempmail.online'
+  'mytoolhub.store'
 ];
 
 const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
