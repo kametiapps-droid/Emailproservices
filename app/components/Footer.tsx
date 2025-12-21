@@ -70,7 +70,7 @@ export default function Footer() {
                 <ul>
                   <li><Link href="/faq">FAQ</Link></li>
                   <li><Link href="/contact">Contact</Link></li>
-                  <li><Link href="/reviews">Feedback</Link></li>
+                  <li><Link href="/feedback">Feedback</Link></li>
                 </ul>
               </div>
               

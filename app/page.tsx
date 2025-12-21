@@ -989,7 +989,7 @@ export default function Home() {
               </div>
 
               <div style={{ textAlign: 'center', marginTop: '48px' }}>
-                <Link href="/reviews" style={{
+                <Link href="/feedback" style={{
                   display: 'inline-block',
                   background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
                   color: 'white',
@@ -1000,7 +1000,7 @@ export default function Home() {
                   fontSize: '16px',
                   transition: 'all 0.3s ease'
                 }}>
-                  View All Reviews
+                  View All Feedback
                 </Link>
               </div>
             </div>

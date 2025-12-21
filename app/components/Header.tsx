@@ -60,7 +60,7 @@ export default function Header() {
           <Link href="/use-cases" className="nav-link" onClick={closeMenu} prefetch={false}>Use Cases</Link>
           <Link href="/blog" className="nav-link" onClick={closeMenu} prefetch={false}>Blog</Link>
           <Link href="/faq" className="nav-link" onClick={closeMenu} prefetch={false}>FAQ</Link>
-          <Link href="/reviews" className="nav-link" onClick={closeMenu} prefetch={false}>Feedback</Link>
+          <Link href="/feedback" className="nav-link" onClick={closeMenu} prefetch={false}>Feedback</Link>
           <Link href="/contact" className="nav-link" onClick={closeMenu} prefetch={false}>Contact</Link>
         </nav>
 
