@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { blogPosts, BlogPost } from '../../lib/blogData';
 
 interface Feedback {
   id: string;
@@ -380,6 +382,100 @@ export default function ReviewsPage() {
                   </button>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Recent Blog Posts Section */}
+        <div style={{ marginTop: '100px', paddingTop: '80px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
+          <h2 style={{ fontSize: '28px', marginBottom: '24px', color: 'var(--text)' }}>Latest from Our Blog</h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '24px'
+          }}>
+            {blogPosts.slice(0, 4).map((post: BlogPost) => (
+              <Link 
+                key={post.id} 
+                href={`/blog/${post.slug}`}
+                style={{
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div style={{
+                  background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                  padding: '24px',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)';
+                }}
+                >
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'start',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{
+                      background: 'rgba(59, 130, 246, 0.1)',
+                      border: '1px solid rgba(59, 130, 246, 0.3)',
+                      color: 'rgba(59, 130, 246, 1)',
+                      padding: '4px 12px',
+                      borderRadius: '12px',
+                      fontSize: '12px',
+                      fontWeight: '600'
+                    }}>
+                      {post.category}
+                    </div>
+                    <div style={{
+                      color: 'var(--text-muted)',
+                      fontSize: '12px'
+                    }}>
+                      {post.readTime} min read
+                    </div>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    color: 'var(--text)',
+                    marginBottom: '12px',
+                    lineHeight: '1.4'
+                  }}>
+                    {post.title}
+                  </h3>
+
+                  <p style={{
+                    color: 'var(--text-muted)',
+                    fontSize: '13px',
+                    lineHeight: '1.5',
+                    marginBottom: '16px',
+                    margin: 0
+                  }}>
+                    {post.excerpt}
+                  </p>
+
+                  <div style={{
+                    fontSize: '12px',
+                    color: 'var(--text-muted)',
+                    paddingTop: '12px',
+                    borderTop: '1px solid rgba(59, 130, 246, 0.1)'
+                  }}>
+                    {post.date}
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
