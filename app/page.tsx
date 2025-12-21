@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import QRCode from 'qrcode';
 import { blogPosts } from '../lib/blogData';
 
 interface Email {
@@ -233,7 +234,7 @@ export default function Home() {
   };
 
   const showQRCode = async () => {
-    if (!email?.id) return;
+    if (!email?.email) return;
     try {
       // Position above the button (fixed to document, not viewport)
       if (qrButtonRef.current) {
@@ -243,12 +244,17 @@ export default function Home() {
           left: rect.left + rect.width / 2
         });
       }
-      const response = await fetch(`/api/qrcode?id=${email.id}`);
-      const data = await response.json();
-      if (data.success) {
-        setQrCode(data.qrCode);
-        setShowQR(true);
-      }
+      // Generate QR code client-side for instant display
+      const qrDataUrl = await QRCode.toDataURL(email.email, {
+        width: 200,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#ffffff',
+        },
+      });
+      setQrCode(qrDataUrl);
+      setShowQR(true);
     } catch (error) {
       // Silently handle QR generation errors
     }
