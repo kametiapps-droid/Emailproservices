@@ -91,18 +91,33 @@ export const EMAIL_DOMAINS = [
   'kameti.online',
   'giftofhope.online',
   'mytoolhub.store',
-  'playgamesonline.space'
+  'playgamesonline.space',
+  'mailbox.online',
+  'inbox.online',
+  'email.online',
+  'tempmail.online'
 ];
 
-const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager'];
-const NOUNS = ['tiger', 'eagle', 'shark', 'lion', 'wolf', 'bear', 'hawk', 'fox', 'owl', 'lynx'];
+const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
+const NOUNS = ['tiger', 'eagle', 'shark', 'lion', 'wolf', 'bear', 'hawk', 'fox', 'owl', 'lynx', 'panda', 'dragon', 'phoenix', 'swan', 'falcon', 'raven', 'horse', 'zebra', 'cheetah', 'panther'];
 
 export function generateRandomEmail(): string {
   const adjective = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
   const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
-  const number = Math.floor(Math.random() * 9999);
+  // Generate 6-8 digit number for more realistic appearance
+  const number = Math.floor(Math.random() * 90000000) + 10000000;
+  // Randomly add underscore or dot for variation
+  const separator = Math.random() > 0.5 ? '_' : '.';
   const domain = EMAIL_DOMAINS[Math.floor(Math.random() * EMAIL_DOMAINS.length)];
-  return `${adjective}${noun}${number}@${domain}`;
+  
+  // Mix format: sometimes with separator, sometimes without
+  const formats = [
+    `${adjective}${noun}${number}@${domain}`,
+    `${adjective}${separator}${noun}${number}@${domain}`,
+    `${adjective}${number}${separator}${noun}@${domain}`,
+  ];
+  
+  return formats[Math.floor(Math.random() * formats.length)];
 }
 
 export function getExpirationTime(): Date {
