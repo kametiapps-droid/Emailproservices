@@ -32,7 +32,10 @@ export async function POST(request: NextRequest) {
     // Validate webhook secret
     const secret = request.headers.get('x-webhook-secret');
     if (!validateWebhookSecret(secret)) {
-      console.log('✅ Webhook secret validation passed (no secret configured)');
+      return NextResponse.json(
+        { success: false, error: 'Invalid or missing webhook secret' },
+        { status: 401, headers: SECURITY_HEADERS }
+      );
     }
 
     // Limit request body size (10MB)
