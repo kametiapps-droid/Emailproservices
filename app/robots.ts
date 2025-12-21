@@ -44,7 +44,10 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://www.mytempmail.pro/sitemap.xml',
+    sitemap: [
+    'https://www.mytempmail.pro/sitemap.xml',
+    'https://www.mytempmail.pro/api/image-sitemap',
+  ],
     host: 'https://www.mytempmail.pro',
   };
 }

@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 import { blogPosts } from '@/lib/blogData';
 
+// This automatically generates a text-based sitemap index for search engines
+// that points to both the regular sitemap and image sitemap
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.mytempmail.pro';
   const currentDate = new Date().toISOString();
