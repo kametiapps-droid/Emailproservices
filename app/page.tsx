@@ -30,6 +30,15 @@ interface Message {
   isRead: boolean;
 }
 
+interface Feedback {
+  id: string;
+  name: string;
+  rating: number;
+  message: string;
+  timestamp: string | Date;
+  sentiment: 'positive' | 'neutral' | 'negative';
+}
+
 export default function Home() {
   const [email, setEmail] = useState<Email | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -40,6 +49,7 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState('');
   const [copied, setCopied] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
+  const [recentReviews, setRecentReviews] = useState<Feedback[]>([]);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -116,6 +126,22 @@ export default function Home() {
       } else {
         // Generate email in background
         generateEmail();
+      }
+      
+      // Fetch recent reviews
+      try {
+        const cached = localStorage.getItem('tempmail_feedback_cache');
+        if (cached) {
+          const data = JSON.parse(cached);
+          setRecentReviews(data.slice(0, 5));
+        }
+        const response = await fetch('/api/feedback');
+        if (response.ok) {
+          const data = await response.json();
+          setRecentReviews(data.slice(0, 5));
+        }
+      } catch (error) {
+        console.error('Error loading recent reviews:', error);
       }
     };
     init();
@@ -889,6 +915,97 @@ export default function Home() {
             </div>
           </div>
         </div>
+      )}
+
+      {recentReviews.length > 0 && (
+        <section style={{
+          padding: '80px 0',
+          background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.4) 0%, rgba(30, 41, 82, 0.2) 100%)',
+          borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+          borderBottom: '1px solid rgba(59, 130, 246, 0.1)'
+        }}>
+          <div className="container">
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+              <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                <h2 style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', marginBottom: '16px' }}>
+                  Community Reviews
+                </h2>
+                <p style={{ color: 'var(--text-muted)', fontSize: '16px' }}>
+                  See what users are saying about Temp Mail Pro
+                </p>
+              </div>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '24px'
+              }}>
+                {recentReviews.map(review => (
+                  <div
+                    key={review.id}
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(59, 130, 246, 0.2)',
+                      padding: '24px',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
+                      <div>
+                        <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '4px' }}>
+                          {review.name}
+                        </div>
+                      </div>
+                      <div style={{
+                        color: 'rgba(34, 197, 94, 1)',
+                        fontSize: '14px',
+                        fontWeight: '600'
+                      }}>
+                        {'★'.repeat(review.rating)}
+                      </div>
+                    </div>
+
+                    <p style={{
+                      color: 'var(--text-muted)',
+                      fontSize: '14px',
+                      lineHeight: '1.6',
+                      margin: 0,
+                      marginBottom: '12px'
+                    }}>
+                      {review.message}
+                    </p>
+
+                    <div style={{
+                      fontSize: '12px',
+                      color: 'var(--text-muted)',
+                      paddingTop: '12px',
+                      borderTop: '1px solid rgba(59, 130, 246, 0.1)'
+                    }}>
+                      Recently
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ textAlign: 'center', marginTop: '48px' }}>
+                <Link href="/reviews" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
+                  color: 'white',
+                  padding: '12px 32px',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  fontWeight: '600',
+                  fontSize: '16px',
+                  transition: 'all 0.3s ease'
+                }}>
+                  View All Reviews
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
       )}
 
       <section style={{ 
