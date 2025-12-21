@@ -61,8 +61,6 @@ export default function ReviewsPage() {
     message: '',
   });
 
-  const [showForm, setShowForm] = useState(false);
-
   const handleSubmitFeedback = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newFeedback.name || !newFeedback.message) {
@@ -81,7 +79,6 @@ export default function ReviewsPage() {
 
     setFeedbacks([feedback, ...feedbacks]);
     setNewFeedback({ name: '', rating: 5, message: '' });
-    setShowForm(false);
   };
 
 
@@ -177,38 +174,15 @@ export default function ReviewsPage() {
           </div>
         </div>
 
-        {/* Add Feedback Button */}
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <button
-            onClick={() => setShowForm(!showForm)}
-            style={{
-              background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
-              border: 'none',
-              color: 'white',
-              padding: '12px 32px',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: '600',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-          >
-            {showForm ? '✕ Close' : '+ Share Your Feedback'}
-          </button>
-        </div>
-
         {/* Feedback Form */}
-        {showForm && (
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%)',
-            borderRadius: '12px',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            padding: '32px',
-            marginBottom: '40px'
-          }}>
-            <h3 style={{ marginBottom: '24px', fontSize: '20px' }}>Leave Your Feedback</h3>
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%)',
+          borderRadius: '12px',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          padding: '32px',
+          marginBottom: '40px'
+        }}>
+          <h3 style={{ marginBottom: '24px', fontSize: '20px' }}>Leave Your Feedback</h3>
             <form onSubmit={handleSubmitFeedback}>
               <div style={{ marginBottom: '20px' }}>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
@@ -291,8 +265,7 @@ export default function ReviewsPage() {
                 Submit Feedback
               </button>
             </form>
-          </div>
-        )}
+        </div>
 
         {/* Feedback Section */}
         <div>
