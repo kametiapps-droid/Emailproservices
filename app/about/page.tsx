@@ -88,6 +88,13 @@ export default function AboutPage() {
           </ul>
 
           <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
+            Responsible Use Notice
+          </h2>
+          <p style={{ marginBottom: '24px' }}>
+            Temp Mail Pro is designed strictly for privacy protection, software testing, and educational purposes. We do not support or promote fraud, impersonation, spam, or bypassing the terms of any third-party services. Users are solely responsible for complying with applicable laws and platform policies.
+          </p>
+
+          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
             Get In Touch
           </h2>
           <p style={{ marginBottom: '24px' }}>
