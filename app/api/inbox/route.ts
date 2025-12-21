@@ -89,7 +89,9 @@ export async function GET(request: NextRequest) {
       };
     }).filter(Boolean); // Remove blocked messages
 
-    return NextResponse.json({ success: true, data: messages });
+    const response = NextResponse.json({ success: true, data: messages }, { headers: SECURITY_HEADERS });
+    response.headers.set('Cache-Control', 'private, max-age=30');
+    return response;
   } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to get inbox' },

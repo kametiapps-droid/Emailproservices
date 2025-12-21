@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       expiresAt: expiresAt.toISOString(),
     }, { merge: false });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       data: {
         id,
@@ -49,7 +49,9 @@ export async function POST(request: NextRequest) {
         createdAt: createdAt.toISOString(),
         expiresAt: expiresAt.toISOString(),
       },
-    });
+    }, { headers: SECURITY_HEADERS });
+    response.headers.set('Cache-Control', 'private, max-age=3600');
+    return response;
   } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to generate email' },
@@ -100,11 +102,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true, data });
+    const response = NextResponse.json({ success: true, data }, { headers: SECURITY_HEADERS });
+    response.headers.set('Cache-Control', 'private, max-age=60');
+    return response;
   } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to get email' },
-      { status: 500 }
+      { status: 500, headers: SECURITY_HEADERS }
     );
   }
 }

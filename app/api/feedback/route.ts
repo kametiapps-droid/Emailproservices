@@ -6,6 +6,7 @@ export async function GET() {
     const db = getDb();
     const snapshot = await db.collection('feedback')
       .orderBy('timestamp', 'desc')
+      .limit(100)
       .get();
     
     const feedbacks = snapshot.docs.map(doc => {
@@ -17,7 +18,9 @@ export async function GET() {
       };
     });
 
-    return NextResponse.json(feedbacks);
+    const response = NextResponse.json(feedbacks);
+    response.headers.set('Cache-Control', 'public, max-age=300');
+    return response;
   } catch (error) {
     console.error('Error fetching feedback:', error);
     return NextResponse.json([], { status: 200 });

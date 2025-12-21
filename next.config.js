@@ -3,11 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   compress: true,
+  poweredByHeader: false,
+  productionBrowserSourceMaps: false,
+  optimizeFonts: true,
+  swcMinify: true,
   allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev'],
   experimental: {
     serverActions: {
       allowedOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app'],
     },
+    optimizePackageImports: ['firebase-admin', 'qrcode'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
