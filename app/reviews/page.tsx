@@ -11,13 +11,6 @@ interface Feedback {
   sentiment: 'positive' | 'neutral' | 'negative';
 }
 
-interface Poll {
-  id: string;
-  question: string;
-  options: { text: string; votes: number }[];
-  totalVotes: number;
-}
-
 export default function ReviewsPage() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([
     {
@@ -62,31 +55,6 @@ export default function ReviewsPage() {
     },
   ]);
 
-  const [polls, setPolls] = useState<Poll[]>([
-    {
-      id: 'poll1',
-      question: 'How often do you use temporary email?',
-      options: [
-        { text: 'Daily', votes: 234 },
-        { text: 'Weekly', votes: 187 },
-        { text: 'Monthly', votes: 92 },
-        { text: 'Rarely', votes: 45 },
-      ],
-      totalVotes: 558
-    },
-    {
-      id: 'poll2',
-      question: 'What\'s your main use case?',
-      options: [
-        { text: 'Online Shopping', votes: 312 },
-        { text: 'Free Trials', votes: 245 },
-        { text: 'Privacy Protection', votes: 189 },
-        { text: 'Testing Services', votes: 98 },
-      ],
-      totalVotes: 844
-    },
-  ]);
-
   const [newFeedback, setNewFeedback] = useState({
     name: '',
     rating: 5,
@@ -94,19 +62,6 @@ export default function ReviewsPage() {
   });
 
   const [showForm, setShowForm] = useState(false);
-  const [userVotes, setUserVotes] = useState<Set<string>>(new Set());
-
-  // Load user votes from localStorage on mount
-  useEffect(() => {
-    const savedVotes = localStorage.getItem('tempmail_poll_votes');
-    if (savedVotes) {
-      try {
-        setUserVotes(new Set(JSON.parse(savedVotes)));
-      } catch (error) {
-        console.error('Error loading votes:', error);
-      }
-    }
-  }, []);
 
   const handleSubmitFeedback = (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,35 +84,6 @@ export default function ReviewsPage() {
     setShowForm(false);
   };
 
-  const handleVotePoll = (pollId: string, optionIndex: number) => {
-    // Check if user already voted on this poll
-    if (userVotes.has(pollId)) {
-      alert('You have already voted on this poll! One vote per user allowed.');
-      return;
-    }
-
-    // Update polls
-    setPolls(polls.map(poll => {
-      if (poll.id === pollId) {
-        const newOptions = [...poll.options];
-        newOptions[optionIndex].votes += 1;
-        return {
-          ...poll,
-          options: newOptions,
-          totalVotes: poll.totalVotes + 1
-        };
-      }
-      return poll;
-    }));
-
-    // Save vote to localStorage
-    const newVotes = new Set(userVotes);
-    newVotes.add(pollId);
-    setUserVotes(newVotes);
-    localStorage.setItem('tempmail_poll_votes', JSON.stringify(Array.from(newVotes)));
-  };
-
-  const hasUserVoted = (pollId: string) => userVotes.has(pollId);
 
   const getAverageRating = () => {
     if (feedbacks.length === 0) return 0;
@@ -179,8 +105,8 @@ export default function ReviewsPage() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>Community Feedback & Polls</h1>
-          <p>See what our users are saying and participate in live polls</p>
+          <h1>Community Feedback</h1>
+          <p>See what our users are saying about Temp Mail Pro</p>
         </div>
       </section>
 
@@ -229,24 +155,6 @@ export default function ReviewsPage() {
             </div>
             <div style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '4px' }}>
               {((stats.positive / feedbacks.length) * 100).toFixed(0)}% of total
-            </div>
-          </div>
-
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
-            borderRadius: '12px',
-            padding: '24px',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '32px', fontWeight: '700', color: 'rgba(59, 130, 246, 1)', marginBottom: '8px' }}>
-              {polls.reduce((acc, p) => acc + p.totalVotes, 0)}
-            </div>
-            <div style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
-              Total Poll Votes
-            </div>
-            <div style={{ color: 'var(--text-muted)', fontSize: '12px', marginTop: '4px' }}>
-              Active participation
             </div>
           </div>
 
@@ -385,132 +293,6 @@ export default function ReviewsPage() {
             </form>
           </div>
         )}
-
-        {/* Live Polls Section */}
-        <div style={{ marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '28px', marginBottom: '24px', color: 'var(--text)' }}>Live Polls</h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '24px'
-          }}>
-            {polls.map(poll => (
-              <div
-                key={poll.id}
-                style={{
-                  background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(59, 130, 246, 0.2)',
-                  padding: '24px',
-                  opacity: hasUserVoted(poll.id) ? 0.85 : 1
-                }}
-              >
-                <h3 style={{ fontSize: '18px', marginBottom: '20px', color: 'var(--text)' }}>
-                  {poll.question}
-                </h3>
-
-                {hasUserVoted(poll.id) && (
-                  <div style={{
-                    background: 'rgba(34, 197, 94, 0.15)',
-                    border: '1px solid rgba(34, 197, 94, 0.3)',
-                    borderRadius: '8px',
-                    padding: '12px',
-                    marginBottom: '16px',
-                    color: 'rgba(34, 197, 94, 1)',
-                    fontSize: '13px',
-                    fontWeight: '600',
-                    textAlign: 'center'
-                  }}>
-                    ✓ You have already voted on this poll
-                  </div>
-                )}
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {poll.options.map((option, idx) => {
-                    const percentage = (option.votes / poll.totalVotes) * 100;
-                    return (
-                      <div key={idx}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                          <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
-                            {option.text}
-                          </span>
-                          <span style={{ color: 'rgba(59, 130, 246, 1)', fontSize: '14px', fontWeight: '600' }}>
-                            {option.votes} ({percentage.toFixed(0)}%)
-                          </span>
-                        </div>
-                        <div style={{
-                          background: 'rgba(59, 130, 246, 0.1)',
-                          borderRadius: '8px',
-                          height: '24px',
-                          overflow: 'hidden',
-                          border: '1px solid rgba(59, 130, 246, 0.2)'
-                        }}>
-                          <div
-                            style={{
-                              background: 'linear-gradient(90deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
-                              height: '100%',
-                              width: `${percentage}%`,
-                              transition: 'width 0.3s ease',
-                              borderRadius: '8px'
-                            }}
-                          />
-                        </div>
-                        <button
-                          onClick={() => handleVotePoll(poll.id, idx)}
-                          disabled={hasUserVoted(poll.id)}
-                          style={{
-                            marginTop: '8px',
-                            background: hasUserVoted(poll.id)
-                              ? 'rgba(107, 114, 128, 0.1)'
-                              : 'rgba(59, 130, 246, 0.15)',
-                            border: hasUserVoted(poll.id)
-                              ? '1px solid rgba(107, 114, 128, 0.2)'
-                              : '1px solid rgba(59, 130, 246, 0.3)',
-                            color: hasUserVoted(poll.id)
-                              ? 'rgba(107, 114, 128, 1)'
-                              : 'rgba(59, 130, 246, 1)',
-                            padding: '8px 16px',
-                            borderRadius: '6px',
-                            cursor: hasUserVoted(poll.id) ? 'not-allowed' : 'pointer',
-                            fontSize: '12px',
-                            fontWeight: '600',
-                            transition: 'all 0.3s ease',
-                            width: '100%',
-                            opacity: hasUserVoted(poll.id) ? 0.6 : 1
-                          }}
-                          onMouseEnter={(e) => {
-                            if (!hasUserVoted(poll.id)) {
-                              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.25)';
-                              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
-                            }
-                          }}
-                          onMouseLeave={(e) => {
-                            if (!hasUserVoted(poll.id)) {
-                              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
-                              e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-                            }
-                          }}
-                        >
-                          {hasUserVoted(poll.id) ? '✓ Already Voted' : 'Vote for this option'}
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div style={{
-                  marginTop: '16px',
-                  paddingTop: '16px',
-                  borderTop: '1px solid rgba(59, 130, 246, 0.1)',
-                  color: 'var(--text-muted)',
-                  fontSize: '12px',
-                  textAlign: 'center'
-                }}>
-                  Total Votes: {poll.totalVotes}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Feedback Section */}
         <div>
