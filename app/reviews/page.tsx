@@ -7,12 +7,14 @@ interface Feedback {
   name: string;
   rating: number;
   message: string;
-  timestamp: string;
+  timestamp: Date | string;
   sentiment: 'positive' | 'neutral' | 'negative';
 }
 
 export default function ReviewsPage() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [newFeedback, setNewFeedback] = useState({
     name: '',
@@ -20,24 +22,61 @@ export default function ReviewsPage() {
     message: '',
   });
 
-  const handleSubmitFeedback = (e: React.FormEvent) => {
+  // Load feedback from Firestore on mount
+  useEffect(() => {
+    loadFeedback();
+  }, []);
+
+  const loadFeedback = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch('/api/feedback');
+      if (response.ok) {
+        const data = await response.json();
+        setFeedbacks(data);
+      }
+    } catch (error) {
+      console.error('Error loading feedback:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmitFeedback = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newFeedback.name || !newFeedback.message) {
       alert('Please fill all fields');
       return;
     }
 
-    const feedback: Feedback = {
-      id: Date.now().toString(),
-      name: newFeedback.name,
-      rating: newFeedback.rating,
-      message: newFeedback.message,
-      timestamp: 'Just now',
-      sentiment: newFeedback.rating >= 4 ? 'positive' : newFeedback.rating === 3 ? 'neutral' : 'negative'
-    };
+    try {
+      setIsSubmitting(true);
+      const response = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: newFeedback.name,
+          rating: newFeedback.rating,
+          message: newFeedback.message,
+          sentiment: newFeedback.rating >= 4 ? 'positive' : newFeedback.rating === 3 ? 'neutral' : 'negative'
+        })
+      });
 
-    setFeedbacks([feedback, ...feedbacks]);
-    setNewFeedback({ name: '', rating: 5, message: '' });
+      if (response.ok) {
+        setNewFeedback({ name: '', rating: 5, message: '' });
+        await loadFeedback();
+        alert('Thank you for your feedback!');
+      } else {
+        alert('Error submitting feedback. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      alert('Error submitting feedback. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
 
@@ -53,6 +92,22 @@ export default function ReviewsPage() {
       neutral: feedbacks.filter(f => f.sentiment === 'neutral').length,
       negative: feedbacks.filter(f => f.sentiment === 'negative').length,
     };
+  };
+
+  const formatTimestamp = (timestamp: Date | string): string => {
+    if (!timestamp) return 'Recently';
+    const date = timestamp instanceof Date ? timestamp : new Date(timestamp);
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    if (days < 7) return `${days} day${days !== 1 ? 's' : ''} ago`;
+    return date.toLocaleDateString();
   };
 
   const stats = getSentimentStats();
@@ -259,7 +314,7 @@ export default function ReviewsPage() {
                       {feedback.name}
                     </div>
                     <div style={{ color: 'var(--text-muted)', fontSize: '12px' }}>
-                      {feedback.timestamp}
+                      {formatTimestamp(feedback.timestamp)}
                     </div>
                   </div>
                   <div style={{

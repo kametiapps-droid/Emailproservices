@@ -108,3 +108,42 @@ export function generateRandomEmail(): string {
 export function getExpirationTime(): Date {
   return new Date(Date.now() + 24 * 60 * 60 * 1000);
 }
+
+// Client-side Firebase functions for feedback
+export async function saveFeedbackToFirestore(feedback: {
+  name: string;
+  rating: number;
+  message: string;
+  sentiment: 'positive' | 'neutral' | 'negative';
+}) {
+  try {
+    const db = getDb();
+    const docRef = await db.collection('feedback').add({
+      ...feedback,
+      timestamp: new Date(),
+      createdAt: new Date()
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error('Error saving feedback to Firestore:', error);
+    throw error;
+  }
+}
+
+export async function loadFeedbackFromFirestore() {
+  try {
+    const db = getDb();
+    const snapshot = await db.collection('feedback')
+      .orderBy('timestamp', 'desc')
+      .get();
+    
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      timestamp: doc.data().timestamp?.toDate?.() || new Date(doc.data().timestamp)
+    }));
+  } catch (error) {
+    console.error('Error loading feedback from Firestore:', error);
+    return [];
+  }
+}
