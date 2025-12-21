@@ -27,8 +27,8 @@ export default function AboutPage() {
           <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
             <li style={{ marginBottom: '12px' }}>Protect your primary email from spam</li>
             <li style={{ marginBottom: '12px' }}>Maintain your privacy online</li>
-            <li style={{ marginBottom: '12px' }}>Sign up for services without revealing your real email</li>
-            <li style={{ marginBottom: '12px' }}>Receive verification codes securely</li>
+            <li style={{ marginBottom: '12px' }}>Use an alternative email for newsletters, trials, and testing purposes</li>
+            <li style={{ marginBottom: '12px' }}Receive automated messages for testing and privacy protection only</li>
             <li style={{ marginBottom: '12px' }}>Test email functionality</li>
           </ul>
 
