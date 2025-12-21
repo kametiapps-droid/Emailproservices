@@ -258,6 +258,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Temp Mail Pro" />
         
         <link rel="canonical" href="https://www.mytempmail.pro" />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.png" type="image/png" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
