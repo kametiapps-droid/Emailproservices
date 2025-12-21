@@ -13,7 +13,7 @@ interface Feedback {
   sentiment: 'positive' | 'neutral' | 'negative';
 }
 
-export default function ReviewsPage() {
+export default function FeedbackPage() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -132,7 +132,7 @@ export default function ReviewsPage() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>Community Feedback</h1>
+          <h1>User Feedback</h1>
           <p>See what our users are saying about Temp Mail Pro</p>
         </div>
       </section>

@@ -23,7 +23,7 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 2. **Use Cases** (/use-cases) - 8 different use cases
 3. **Blog** (/blog) - 10 articles with category filtering
 4. **FAQ** (/faq) - 16 FAQs with search functionality
-5. **Reviews** (/reviews) - Customer feedback with voting (one vote per poll via localStorage)
+5. **Feedback** (/reviews) - Customer feedback with voting (one vote per poll via localStorage)
 6. **Contact** (/contact) - Contact form with Firebase storage
 7. **Privacy Policy** (/privacy) - AdSense-compliant privacy disclosure
 8. **Terms and Conditions** (/terms) - Legal terms for service usage
