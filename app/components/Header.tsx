@@ -14,7 +14,17 @@ export default function Header() {
       setIsDark(false);
       document.documentElement.setAttribute('data-theme', 'light');
     }
-  }, []);
+
+    // Close menu on scroll
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMenuOpen]);
 
   const toggleTheme = () => {
     const newTheme = isDark ? 'light' : 'dark';
