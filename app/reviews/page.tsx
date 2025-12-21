@@ -12,48 +12,7 @@ interface Feedback {
 }
 
 export default function ReviewsPage() {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([
-    {
-      id: '1',
-      name: 'Ahmed Khan',
-      rating: 5,
-      message: 'Amazing privacy protection! This is exactly what I needed. Love the simplicity!',
-      timestamp: 'Just now',
-      sentiment: 'positive'
-    },
-    {
-      id: '2',
-      name: 'Fatima Ali',
-      rating: 5,
-      message: 'Super fast email generation. No more spam on my main email. Highly recommend!',
-      timestamp: '2 minutes ago',
-      sentiment: 'positive'
-    },
-    {
-      id: '3',
-      name: 'Hassan Malik',
-      rating: 4,
-      message: 'Great service. Works perfectly. Would appreciate webhook support though.',
-      timestamp: '5 minutes ago',
-      sentiment: 'positive'
-    },
-    {
-      id: '4',
-      name: 'Sara Khan',
-      rating: 5,
-      message: 'Best temporary email service I\'ve used. Clean UI and instant email generation!',
-      timestamp: '10 minutes ago',
-      sentiment: 'positive'
-    },
-    {
-      id: '5',
-      name: 'Usman Ahmed',
-      rating: 4,
-      message: 'Really useful for online shopping. Keeps my real email safe from spam.',
-      timestamp: '15 minutes ago',
-      sentiment: 'positive'
-    },
-  ]);
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
 
   const [newFeedback, setNewFeedback] = useState({
     name: '',
