@@ -13,10 +13,10 @@ body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSyste
 `;
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mytempmail.pro'),
+  metadataBase: new URL('https://www.mytempmail.pro'),
   title: {
-    default: 'Temp Mail - Free Temporary Disposable Email for Privacy & Testing',
-    template: '%s | Temp Mail'
+    default: 'Temp Mail Pro - Free Temporary Disposable Email for Privacy & Testing',
+    template: '%s | Temp Mail Pro'
   },
   description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and test services without spam. Privacy-focused email for testing, shopping, and signup verification. No registration required. Auto-expires in 24 hours.',
   keywords: [
@@ -67,30 +67,30 @@ export const metadata: Metadata = {
     'test email address',
     'temporary inbox',
   ],
-  authors: [{ name: 'Temp Mail', url: 'https://mytempmail.pro' }],
-  creator: 'Temp Mail',
-  publisher: 'Temp Mail',
+  authors: [{ name: 'Temp Mail Pro', url: 'https://www.mytempmail.pro' }],
+  creator: 'Temp Mail Pro',
+  publisher: 'Temp Mail Pro',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   alternates: {
-    canonical: 'https://mytempmail.pro',
+    canonical: 'https://www.mytempmail.pro',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://mytempmail.pro',
-    siteName: 'Temp Mail',
-    title: 'Temp Mail - Free Temporary Disposable Email',
+    url: 'https://www.mytempmail.pro',
+    siteName: 'Temp Mail Pro',
+    title: 'Temp Mail Pro - Free Temporary Disposable Email',
     description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and use secure temporary email for testing. No registration required.',
     images: [
       {
-        url: '/favicon.png',
+        url: 'https://www.mytempmail.pro/favicon.png',
         width: 512,
         height: 512,
-        alt: 'Temp Mail - Free Temporary Email Service',
+        alt: 'Temp Mail Pro - Free Temporary Email Service',
       },
     ],
   },
@@ -125,9 +125,10 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://mytempmail.pro/#website',
-      url: 'https://mytempmail.pro',
-      name: 'Temp Mail',
+      '@id': 'https://www.mytempmail.pro/#website',
+      url: 'https://www.mytempmail.pro',
+      name: 'Temp Mail Pro',
+      alternateName: 'Temp Mail',
       description: 'Free temporary disposable email service',
       publisher: {
         '@id': 'https://mytempmail.pro/#organization',
@@ -144,17 +145,18 @@ const jsonLd = {
     },
     {
       '@type': 'Organization',
-      '@id': 'https://mytempmail.pro/#organization',
-      name: 'Temp Mail',
-      url: 'https://mytempmail.pro',
+      '@id': 'https://www.mytempmail.pro/#organization',
+      name: 'Temp Mail Pro',
+      alternateName: 'Temp Mail',
+      url: 'https://www.mytempmail.pro',
       logo: {
         '@type': 'ImageObject',
-        '@id': 'https://mytempmail.pro/#logo',
-        url: 'https://mytempmail.pro/favicon.png',
-        contentUrl: 'https://mytempmail.pro/favicon.png',
+        '@id': 'https://www.mytempmail.pro/#logo',
+        url: 'https://www.mytempmail.pro/favicon.png',
+        contentUrl: 'https://www.mytempmail.pro/favicon.png',
         width: 512,
         height: 512,
-        caption: 'Temp Mail',
+        caption: 'Temp Mail Pro',
       },
       image: { '@id': 'https://mytempmail.pro/#logo' },
       sameAs: [],
@@ -167,9 +169,10 @@ const jsonLd = {
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://mytempmail.pro/#webapp',
-      name: 'Temp Mail',
-      url: 'https://mytempmail.pro',
+      '@id': 'https://www.mytempmail.pro/#webapp',
+      name: 'Temp Mail Pro',
+      alternateName: 'Temp Mail',
+      url: 'https://www.mytempmail.pro',
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'All',
       offers: {
@@ -196,7 +199,7 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://mytempmail.pro/faq#faqpage',
+      '@id': 'https://www.mytempmail.pro/faq#faqpage',
       mainEntity: [
         {
           '@type': 'Question',
@@ -232,7 +235,7 @@ const jsonLd = {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://mytempmail.pro',
+          item: 'https://www.mytempmail.pro',
         },
       ],
     },
@@ -252,9 +255,10 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#0a0e27" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Temp Mail" />
+        <meta name="apple-mobile-web-app-title" content="Temp Mail Pro" />
         
-        <link rel="canonical" href="https://mytempmail.pro" />
+        <link rel="canonical" href="https://www.mytempmail.pro" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
