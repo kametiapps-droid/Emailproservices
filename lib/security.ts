@@ -46,10 +46,10 @@ const rateLimitStore: Map<string, { count: number; timestamp: number }> = new Ma
 
 // Rate limit settings (per endpoint)
 const RATE_LIMITS = {
-  EMAILS: { max: 10, window: 60 * 60 * 1000 }, // 10 per hour
+  EMAILS: { max: 100, window: 60 * 60 * 1000 }, // 100 per hour
   CONTACTS: { max: 5, window: 60 * 60 * 1000 }, // 5 per hour
-  INBOX: { max: 30, window: 60 * 60 * 1000 }, // 30 per hour
-  QR_CODE: { max: 20, window: 60 * 60 * 1000 }, // 20 per hour
+  INBOX: { max: 100, window: 60 * 60 * 1000 }, // 100 per hour
+  QR_CODE: { max: 50, window: 60 * 60 * 1000 }, // 50 per hour
 };
 
 export interface SpamCheckResult {
