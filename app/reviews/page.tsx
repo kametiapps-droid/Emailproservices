@@ -29,11 +29,25 @@ export default function ReviewsPage() {
 
   const loadFeedback = async () => {
     try {
-      setIsLoading(true);
+      // Load cached feedback instantly
+      const cached = localStorage.getItem('tempmail_feedback_cache');
+      if (cached) {
+        try {
+          setFeedbacks(JSON.parse(cached));
+          setIsLoading(false);
+        } catch (e) {
+          console.error('Error parsing cached feedback:', e);
+        }
+      } else {
+        setIsLoading(true);
+      }
+
+      // Fetch fresh data from server
       const response = await fetch('/api/feedback');
       if (response.ok) {
         const data = await response.json();
         setFeedbacks(data);
+        localStorage.setItem('tempmail_feedback_cache', JSON.stringify(data));
       }
     } catch (error) {
       console.error('Error loading feedback:', error);
