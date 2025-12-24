@@ -213,20 +213,20 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  background: #2563eb;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(37, 99, 235, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 20px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   will-change: transform;
   transform: translateZ(0);
 }
 
 [data-theme="light"] .site-header {
-  background: #2563eb;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(37, 99, 235, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
