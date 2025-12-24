@@ -590,8 +590,11 @@ main {
 }
 
 .footer-bottom {
-  padding-top: 28px;
-  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -599,6 +602,10 @@ main {
   font-size: 0.85rem;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+[data-theme="light"] .footer-bottom {
+  background: rgba(15, 23, 42, 0.85);
 }
 
 .footer-domain {
