@@ -213,7 +213,7 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(37, 99, 235, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 12px 0;
@@ -225,7 +225,7 @@ main {
 }
 
 [data-theme="light"] .site-header {
-  background: rgba(37, 99, 235, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -233,7 +233,7 @@ main {
   position: sticky; 
   top: 0; 
   z-index: 1000; 
-  background: rgba(37, 99, 235, 0.75); 
+  background: rgba(15, 23, 42, 0.85); 
   backdrop-filter: blur(20px); 
   -webkit-backdrop-filter: blur(20px); 
   padding: 12px 0; 
@@ -383,7 +383,7 @@ main {
     top: 56px;
     left: 0;
     right: 0;
-    background: rgba(37, 99, 235, 0.75);
+    background: rgba(15, 23, 42, 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);

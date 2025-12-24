@@ -40,6 +40,7 @@ export default function Header() {
     const newTheme = isDark ? 'light' : 'dark';
     setIsDark(!isDark);
     document.documentElement.setAttribute('data-theme', newTheme);
+    document.body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
   };
 
