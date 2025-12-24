@@ -323,8 +323,8 @@ export default function Home() {
   const displayEmail = email || { 
     id: '', 
     email: 'Loading...', 
-    createdAt: new Date().toISOString(), 
-    expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() 
+    createdAt: '', 
+    expiresAt: '' 
   };
 
   return (
