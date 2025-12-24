@@ -6,11 +6,14 @@ import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
+    if (savedTheme === 'dark') {
+      setIsDark(true);
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
       setIsDark(false);
       document.documentElement.setAttribute('data-theme', 'light');
     }
