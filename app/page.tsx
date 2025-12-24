@@ -927,7 +927,7 @@ export default function Home() {
         <div className="container">
           <div className="cta-card">
             <div className="cta-content">
-              <h2>Ready to Protect Your Privacy?</h2>
+              <h2 style={{ color: '#000000' }}>Ready to Protect Your Privacy?</h2>
               <p>Join thousands of users who trust Temp Mail Pro for their temporary email needs. Start your secure, spam-free journey today.</p>
               <div className="cta-actions">
                 <button className="btn btn-primary" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
