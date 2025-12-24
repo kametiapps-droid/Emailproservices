@@ -14,61 +14,61 @@ const faqData: FAQItem[] = [
     id: '1',
     category: 'Getting Started',
     question: 'Do I need to register to use Temp Mail Pro?',
-    answer: 'No! Temp Mail Pro is completely free and requires no registration. Simply visit our website and instantly get a temporary email address.'
+    answer: 'No! Temp Mail Pro is a free temp mail pro generator that requires no registration. Simply visit our website and instantly get a temporary email address or a burner email address for privacy.'
   },
   {
     id: '2',
     category: 'Getting Started',
     question: 'How quickly can I get an email address?',
-    answer: 'Instantly! With just one click, you will get a new, unique temporary email address. It\'s ready to use immediately.'
+    answer: 'Instantly! With our fast temporary email service, you get a new, unique temporary inbox online immediately. It\'s the best fake email generator for quick email sign up.'
   },
   {
     id: '3',
     category: 'Getting Started',
-    question: 'Can I forward emails from my current email?',
-    answer: 'Yes, you can view all emails received through Temp Mail Pro. See all messages directly in the inbox and forward them to your real email if needed.'
+    question: 'Can I use this for apps and trials?',
+    answer: 'Yes! Our users use it as a temp mail for apps, temp mail for games, and even temporary email for netflix signup or shopping. It\'s an excellent anonymous email tool for free trials.'
   },
   {
     id: '4',
     category: 'Security & Privacy',
-    question: 'Is Temp Mail Pro secure?',
-    answer: 'Absolutely! We take your privacy protection very seriously. All emails are encrypted, and we never sell or share your personal information. Our servers use the most modern security protocols.'
+    question: 'Is Temp Mail Pro a secure temp mail service?',
+    answer: 'Absolutely! We offer a secure temp mail service with spam protection email features. Your private temp mail is encrypted, providing safe disposable email access to avoid spam emails.'
   },
   {
     id: '5',
     category: 'Security & Privacy',
-    question: 'Are my emails private?',
-    answer: 'Yes, all emails are completely private. No one else can access your temporary email address. Only you can see the emails you receive.'
+    question: 'Is it an online inbox with no sign up?',
+    answer: 'Yes, Temp Mail Pro is an online inbox with no sign up required. It serves as a burner mailbox online or a throwaway email to protect your email privacy protection.'
   },
   {
     id: '6',
     category: 'Security & Privacy',
-    question: 'Are you protected against spam and malware?',
-    answer: 'We have advanced filtering that blocks spam and malware. If you receive any suspicious email, you can block it immediately.'
+    question: 'Is it adsense friendly?',
+    answer: 'Yes, our platform uses adsense safe email terms and follows legal safe temporary email practices. We provide a clean email inbox and email without login for all users.'
   },
   {
     id: '7',
     category: 'Email Usage',
-    question: 'How long will my temporary email address work?',
-    answer: '24 hours! Your temporary email address is automatically deleted after 24 hours. If you need more time, you can extend it or create a new one.'
+    question: 'How long does the temporary inbox online last?',
+    answer: 'Your temporary email for testing or signups lasts for 24 hours. This short term email address is a great temporary gmail alternative for online verification.'
   },
   {
     id: '8',
-    category: 'Email Usage',
-    question: 'Can I change my email address?',
-    answer: 'Yes! You can get a new temporary email address whenever you want. Just click the "New Email" button.'
+    category: 'Technical',
+    question: 'Is there a developer test email API?',
+    answer: 'Yes! Our cloud temp mail service includes a powerful API. It\'s a perfect testing email inbox tool for developers needing temp mail for coding platforms.'
   },
   {
     id: '9',
-    category: 'Email Usage',
-    question: 'Can I send emails?',
-    answer: 'Temp Mail Pro is primarily for receiving emails. You can receive emails, but you cannot send directly from the temporary email. However, you can forward emails to your real email.'
+    category: 'Pricing & Plans',
+    question: 'Is this the best free temp mail generator?',
+    answer: 'We strive to be the best temp mail service. It is completely free with no registration email service required. Use it as a professional temp mail tool for your projects.'
   },
   {
     id: '10',
-    category: 'Technical',
-    question: 'Can I use Temp Mail Pro on mobile?',
-    answer: 'Absolutely! Temp Mail Pro is fully mobile-friendly. It works seamlessly on both iOS and Android.'
+    category: 'Use Cases',
+    question: 'Can I use it for social media?',
+    answer: 'Yes, many use it as temp mail for discord, temp mail for instagram, or temp mail for facebook. It also works for temp mail for telegram, tiktok, and more.'
   },
   {
     id: '11',

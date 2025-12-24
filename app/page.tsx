@@ -331,8 +331,8 @@ export default function Home() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>Privacy-Focused Temporary Email</h1>
-          <p>Protect your privacy with instant disposable email addresses for testing and signup verification. No registration required. Emails expire in 24 hours.</p>
+          <h1>Temp Mail Pro: Privacy-Focused Temporary Email Service</h1>
+          <p>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
         </div>
       </section>
 
@@ -341,10 +341,10 @@ export default function Home() {
           {loading && !email && (
             <div className="email-loading-indicator">
               <div className="spinner"></div>
-              <p>Generating...</p>
+              <p>Generating fake email...</p>
             </div>
           )}
-          <div className="email-header-label">Your Temporary Email</div>
+          <div className="email-header-label">Your Private Temp Mail Inbox</div>
           <div className="email-display">
             <span className="email-address">{displayEmail.email}</span>
             <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>

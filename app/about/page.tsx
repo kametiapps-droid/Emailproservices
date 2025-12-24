@@ -22,18 +22,18 @@ export default function AboutPage() {
             What We Do
           </h2>
           <p style={{ marginBottom: '24px' }}>
-            Temp Mail Pro provides instant, disposable email addresses that allow you to:
+            Temp Mail Pro is a leading <strong>temporary email service</strong> that provides instant, <strong>disposable email</strong> addresses. We are the <strong>best temp mail pro generator</strong> for users who need a <strong>private temp mail</strong> solution. Our <strong>secure temp mail service</strong> allows you to:
           </p>
           <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '12px' }}>Protect your primary email from spam</li>
-            <li style={{ marginBottom: '12px' }}>Maintain your privacy online</li>
-            <li style={{ marginBottom: '12px' }}>Use an alternative email for newsletters, trials, and testing purposes</li>
-            <li style={{ marginBottom: '12px' }}>Receive automated messages for testing and privacy protection only</li>
-            <li style={{ marginBottom: '12px' }}>Test email functionality</li>
+            <li style={{ marginBottom: '12px' }}>Protect your primary email with a <strong>spam protection email</strong></li>
+            <li style={{ marginBottom: '12px' }}>Maintain your <strong>email privacy protection</strong> online</li>
+            <li style={{ marginBottom: '12px' }}>Use an <strong>alternative email</strong> or <strong>burner email address</strong> for newsletters, trials, and testing</li>
+            <li style={{ marginBottom: '12px' }}>Access a <strong>temporary inbox online</strong> without a <strong>no registration email service</strong></li>
+            <li style={{ marginBottom: '12px' }}>Use a <strong>fake email generator</strong> for <strong>online verification</strong></li>
           </ul>
 
           <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Why Choose Temp Mail Pro?
+            Why Choose Our Free Temp Mail Generator?
           </h2>
           <div style={{
             background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
@@ -43,20 +43,20 @@ export default function AboutPage() {
             marginBottom: '24px'
           }}>
             <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⚡ Instant Creation</h3>
-              <p>Generate temporary email addresses instantly without registration</p>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⚡ Fast Temporary Email</h3>
+              <p>Generate a <strong>burner mailbox online</strong> instantly with our <strong>quick email sign up</strong> process.</p>
             </div>
             <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🔒 Secure & Private</h3>
-              <p>Your privacy is protected with end-to-end encrypted communications</p>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🔒 Secure Disposable Mailbox</h3>
+              <p>Your <strong>privacy focused email tool</strong> ensures a <strong>safe disposable email</strong> experience.</p>
             </div>
             <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⏰ Automatic Expiration</h3>
-              <p>Temporary addresses automatically expire after 24 hours</p>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⏰ Short Term Email Address</h3>
+              <p>Our <strong>throwaway email</strong> addresses automatically expire after 24 hours, acting as a perfect <strong>temporary gmail alternative</strong>.</p>
             </div>
             <div>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🎯 Easy to Use</h3>
-              <p>Simple, intuitive interface that works on all devices</p>
+              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🎯 Anonymous Email Tool</h3>
+              <p>A simple, intuitive <strong>anonymous mailbox service</strong> that works on all devices for <strong>email without login</strong>.</p>
             </div>
           </div>
 
