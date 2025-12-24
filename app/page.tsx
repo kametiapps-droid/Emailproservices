@@ -513,6 +513,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-card">
+            <div className="cta-content">
+              <h2>Ready to Protect Your Privacy?</h2>
+              <p>Join thousands of users who trust Temp Mail Pro for their temporary email needs. Start your secure, spam-free journey today.</p>
+              <div className="cta-actions">
+                <button className="btn btn-primary" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                  Generate Free Email Now
+                </button>
+                <Link href="/use-cases" className="btn btn-secondary">
+                  Explore Use Cases
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section style={{ 
         padding: '100px 0', 
         background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(59, 130, 246, 0.03) 100%)',
