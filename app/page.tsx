@@ -513,25 +513,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cta-section">
-        <div className="container">
-          <div className="cta-card">
-            <div className="cta-content">
-              <h2>Ready to Protect Your Privacy?</h2>
-              <p>Join thousands of users who trust Temp Mail Pro for their temporary email needs. Start your secure, spam-free journey today.</p>
-              <div className="cta-actions">
-                <button className="btn btn-primary" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                  Generate Free Email Now
-                </button>
-                <Link href="/use-cases" className="btn btn-secondary">
-                  Explore Use Cases
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section style={{ 
         padding: '100px 0', 
         background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(59, 130, 246, 0.03) 100%)',
@@ -816,45 +797,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ 
-        padding: '80px 0',
-        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%)',
-        textAlign: 'center'
-      }}>
-        <div className="container">
-          <h2 style={{ color: 'var(--text)', marginBottom: '24px', fontSize: '44px', fontWeight: '700' }}>Get Your Free Temporary Email</h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '18px', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
-            Start protecting your privacy instantly. Generate a disposable email address in seconds with zero registration required.
-          </p>
-          <Link href="/" onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }} style={{
-            display: 'inline-block',
-            padding: '18px 48px',
-            background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
-            color: 'white',
-            borderRadius: '10px',
-            textDecoration: 'none',
-            fontWeight: '700',
-            fontSize: '16px',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 8px 20px rgba(59, 130, 246, 0.4)',
-            cursor: 'pointer'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-6px)';
-            e.currentTarget.style.boxShadow = '0 12px 30px rgba(59, 130, 246, 0.5)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)';
-          }}>
-            Get Started Free Now ✨
-          </Link>
-        </div>
-      </section>
-
       <section style={{ padding: '80px 0', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)' }}>
         <div className="container">
           <h2 style={{ textAlign: 'center', color: 'var(--text)', marginBottom: '50px' }}>Latest from Our Blog</h2>
@@ -931,17 +873,6 @@ export default function Home() {
         </div>
       </section>
 
-      {showQR && (
-        <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
-          <div className="qr-popup" style={{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }} onClick={e => e.stopPropagation()}>
-            <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
-            <div className="qr-popup-content">
-              {qrCode && <img src={qrCode} alt="QR Code" />}
-            </div>
-          </div>
-        </div>
-      )}
-
       {recentReviews.length > 0 && (
         <section style={{
           padding: '80px 0',
@@ -952,146 +883,79 @@ export default function Home() {
           <div className="container">
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                <h2 style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', marginBottom: '16px' }}>
-                  Community Reviews
-                </h2>
-                <p style={{ color: 'var(--text-muted)', fontSize: '16px' }}>
-                  See what users are saying about Temp Mail Pro
-                </p>
+                <h2 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '36px', fontWeight: '700' }}>User Feedback</h2>
+                <p style={{ color: 'var(--text-muted)' }}>What our community says about Temp Mail Pro</p>
               </div>
-
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '24px'
               }}>
-                {recentReviews.map(review => (
-                  <div
-                    key={review.id}
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-                      borderRadius: '12px',
-                      border: '1px solid rgba(59, 130, 246, 0.2)',
-                      padding: '24px',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '16px' }}>
-                      <div>
-                        <div style={{ fontWeight: '600', color: 'var(--text)', marginBottom: '4px' }}>
-                          {review.name}
-                        </div>
-                      </div>
-                      <div style={{
-                        color: 'rgba(34, 197, 94, 1)',
-                        fontSize: '14px',
-                        fontWeight: '600'
-                      }}>
-                        {'★'.repeat(review.rating)}
-                      </div>
+                {recentReviews.map((review) => (
+                  <div key={review.id} style={{
+                    background: 'var(--surface)',
+                    padding: '32px',
+                    borderRadius: '16px',
+                    border: '1px solid var(--border)',
+                    boxShadow: 'var(--shadow-sm)'
+                  }}>
+                    <div style={{ display: 'flex', gap: '4px', marginBottom: '16px' }}>
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={i < review.rating ? '#FBBF24' : 'rgba(255,255,255,0.1)'}>
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      ))}
                     </div>
-
-                    <p style={{
-                      color: 'var(--text-muted)',
-                      fontSize: '14px',
-                      lineHeight: '1.6',
-                      margin: 0,
-                      marginBottom: '12px'
-                    }}>
-                      {review.message}
-                    </p>
-
-                    <div style={{
-                      fontSize: '12px',
-                      color: 'var(--text-muted)',
-                      paddingTop: '12px',
-                      borderTop: '1px solid rgba(59, 130, 246, 0.1)'
-                    }}>
-                      Recently
+                    <p style={{ color: 'var(--text)', fontStyle: 'italic', marginBottom: '24px', lineHeight: '1.7' }}>"{review.message}"</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ width: '32px', height: '32px', background: 'var(--primary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', fontWeight: '700', color: 'white' }}>
+                        {review.name.charAt(0)}
+                      </div>
+                      <div>
+                        <div style={{ color: 'var(--text)', fontWeight: '600', fontSize: '14px' }}>{review.name}</div>
+                        <div style={{ color: 'var(--text-muted)', fontSize: '12px' }}>Verified User</div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-
               <div style={{ textAlign: 'center', marginTop: '48px' }}>
-                <Link href="/feedback" style={{
-                  display: 'inline-block',
-                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
-                  color: 'white',
-                  padding: '12px 32px',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  transition: 'all 0.3s ease'
-                }}>
-                  View All Feedback
-                </Link>
+                <Link href="/reviews" className="btn btn-secondary">Read All Reviews</Link>
               </div>
             </div>
           </div>
         </section>
       )}
 
-      <section style={{ 
-        padding: '80px 0',
-        background: 'var(--surface)',
-        borderTop: '1px solid rgba(59, 130, 246, 0.1)'
-      }}>
+      <section className="cta-section">
         <div className="container">
-          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(239, 68, 68, 0.05) 100%)',
-              border: '1px solid rgba(239, 68, 68, 0.2)',
-              borderRadius: '16px',
-              padding: '48px 40px',
-              textAlign: 'center'
-            }}>
-              <div style={{
-                width: '56px',
-                height: '56px',
-                background: 'linear-gradient(135deg, #DC2626 0%, #EF4444 100%)',
-                borderRadius: '12px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px'
-              }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="8" x2="12" y2="12"/>
-                  <line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-              </div>
-              
-              <h3 style={{ color: 'var(--text)', fontSize: '28px', fontWeight: '700', marginBottom: '16px' }}>Legal Notice & Terms of Use</h3>
-              
-              <p style={{
-                color: 'var(--text-muted)',
-                fontSize: '15px',
-                lineHeight: '1.8',
-                margin: 0,
-                textAlign: 'left'
-              }}>
-                Temp Mail Pro is intended for privacy protection, testing, and inbox management only. Misuse for illegal or abusive activities is strictly prohibited. Users are responsible for complying with applicable laws and third-party terms.
-              </p>
-
-              <div style={{ marginTop: '28px', paddingTop: '28px', borderTop: '1px solid rgba(239, 68, 68, 0.2)', textAlign: 'center' }}>
-                <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: 0 }}>
-                  For complete terms and policies, please visit our{' '}
-                  <Link href="/terms" style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '600' }}>
-                    Terms and Conditions
-                  </Link>
-                  {' '}and{' '}
-                  <Link href="/privacy" style={{ color: 'rgb(59, 130, 246)', textDecoration: 'none', fontWeight: '600' }}>
-                    Privacy Policy
-                  </Link>
-                </p>
+          <div className="cta-card">
+            <div className="cta-content">
+              <h2>Ready to Protect Your Privacy?</h2>
+              <p>Join thousands of users who trust Temp Mail Pro for their temporary email needs. Start your secure, spam-free journey today.</p>
+              <div className="cta-actions">
+                <button className="btn btn-primary" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                  Generate Free Email Now
+                </button>
+                <Link href="/use-cases" className="btn btn-secondary">
+                  Explore Use Cases
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {showQR && (
+        <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
+          <div className="qr-popup" style={{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }} onClick={e => e.stopPropagation()}>
+            <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
+            <div className="qr-popup-content">
+              {qrCode && <img src={qrCode} alt="QR Code" />}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
