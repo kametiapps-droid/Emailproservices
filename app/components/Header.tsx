@@ -55,12 +55,12 @@ export default function Header() {
         <Link href="/" className="logo" onClick={closeMenu}>
           <Image 
             src="/favicon.png" 
-            alt="Temp Mail Logo" 
+            alt="Temp Mail Pro Logo" 
             width={28} 
             height={28}
             style={{ borderRadius: '8px' }}
           />
-          Temp Mail
+          Temp Mail Pro
         </Link>
 
         <nav className={`nav-menu ${isMenuOpen ? 'nav-open' : ''}`}>

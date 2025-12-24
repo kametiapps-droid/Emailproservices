@@ -375,10 +375,10 @@ main {
 
   .nav-menu {
     position: fixed;
-    top: 72px;
+    top: 56px;
     left: 0;
     right: 0;
-    background: rgba(37, 99, 235, 0.85);
+    background: rgba(37, 99, 235, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
