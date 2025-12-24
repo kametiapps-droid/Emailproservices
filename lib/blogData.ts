@@ -225,3 +225,11 @@ The fight for digital privacy is ongoing, and tools like temporary email are on 
 For more practical steps on protecting your digital life, explore our [security guide](/blog/scammers-use-email-protection-guide) and [personal privacy strategy](/blog/personal-privacy-strategy-step-by-step). Your journey to digital freedom begins with a single choice.`
   }
 ];
+
+export function getAllBlogSlugs() {
+  return blogPosts.map((post) => post.slug);
+}
+
+export function getBlogPostBySlug(slug: string) {
+  return blogPosts.find((post) => post.slug === slug);
+}
