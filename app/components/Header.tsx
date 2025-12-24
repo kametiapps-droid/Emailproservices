@@ -9,6 +9,7 @@ export default function Header() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    // Force light mode as default unless explicitly saved as dark
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       setIsDark(true);
@@ -16,6 +17,10 @@ export default function Header() {
     } else {
       setIsDark(false);
       document.documentElement.setAttribute('data-theme', 'light');
+      // If no theme is saved, explicitly save light to ensure it sticks
+      if (!savedTheme) {
+        localStorage.setItem('theme', 'light');
+      }
     }
 
     // Close menu on scroll

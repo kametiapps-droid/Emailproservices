@@ -259,7 +259,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
-      <body>
+      <body data-theme="light">
         <Script
           id="json-ld"
           type="application/ld+json"
