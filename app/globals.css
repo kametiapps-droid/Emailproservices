@@ -1,5 +1,5 @@
 /* Critical CSS moved from layout.tsx to prevent hydration errors */
-.site-header { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 20px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.15); }
+.site-header-init { position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 20px 0; border-bottom: 1px solid rgba(59, 130, 246, 0.15); }
 .hero { text-align: center; padding: 56px 0 40px; background: linear-gradient(180deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%); }
 .hero h1 { font-size: 2.75rem; margin-bottom: 16px; font-weight: 700; letter-spacing: -0.03em; }
 .email-box { background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%); border-radius: 20px; padding: 40px; margin: 40px auto; max-width: 560px; border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -319,11 +319,11 @@ main {
 
 .hamburger span {
   display: block;
-  width: 18px;
+  width: 22px;
   height: 2px;
-  background: #ffffff;
+  background: #ffffff !important;
   border-radius: 2px;
-  transition: opacity 0.1s ease, transform 0.1s ease;
+  transition: all 0.2s ease;
 }
 
 .hamburger-open span:nth-child(1) {
