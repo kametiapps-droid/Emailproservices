@@ -100,17 +100,17 @@ const NOUNS = ['tiger', 'eagle', 'shark', 'lion', 'wolf', 'bear', 'hawk', 'fox',
 export function generateRandomEmail(): string {
   const adjective = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
   const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
-  // Generate 6-8 digit number for more realistic appearance
-  const number = Math.floor(Math.random() * 90000000) + 10000000;
+  // Generate 3-4 digit number for a cleaner look
+  const number = Math.floor(Math.random() * 9000) + 1000;
   // Randomly add underscore or dot for variation
   const separator = Math.random() > 0.5 ? '_' : '.';
   const domain = EMAIL_DOMAINS[Math.floor(Math.random() * EMAIL_DOMAINS.length)];
   
-  // Mix format: sometimes with separator, sometimes without
+  // Mix format: simplified for better readability
   const formats = [
     `${adjective}${noun}${number}@${domain}`,
-    `${adjective}${separator}${noun}${number}@${domain}`,
-    `${adjective}${number}${separator}${noun}@${domain}`,
+    `${adjective}${separator}${noun}@${domain}`,
+    `${adjective}${noun}@${domain}`,
   ];
   
   return formats[Math.floor(Math.random() * formats.length)];
