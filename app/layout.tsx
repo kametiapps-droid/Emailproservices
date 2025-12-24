@@ -15,10 +15,10 @@ body { margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSyste
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mytempmail.pro'),
   title: {
-    default: 'Temp Mail Pro - Free Temporary Disposable Email for Privacy & Testing',
+    default: 'Temp Mail Pro - Free Temporary Disposable Email Service',
     template: '%s | Temp Mail Pro'
   },
-  description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and test services without spam. Privacy-focused email for testing, shopping, and signup verification. No registration required. Auto-expires in 24 hours.',
+  description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and avoid spam with our secure, no-registration temporary inbox online.',
   keywords: [
     'temporary email',
     'temp mail',
