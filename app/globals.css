@@ -213,11 +213,11 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(15, 23, 42, 0.9);
+  background: #2563eb;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 20px 0;
-  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   will-change: transform;
@@ -225,8 +225,8 @@ main {
 }
 
 [data-theme="light"] .site-header {
-  background: rgba(255, 255, 255, 0.7);
-  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  background: #2563eb;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
@@ -240,7 +240,7 @@ main {
 .site-header .logo {
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--text);
+  color: #ffffff;
   text-decoration: none;
   letter-spacing: -0.03em;
   display: flex;
@@ -262,7 +262,7 @@ main {
 }
 
 .nav-link {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   padding: 10px 16px;
   border-radius: 8px;
@@ -272,8 +272,8 @@ main {
 }
 
 .nav-link:hover {
-  color: var(--text);
-  background: var(--glass);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .header-actions {
@@ -283,9 +283,9 @@ main {
 }
 
 .theme-toggle {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -297,9 +297,9 @@ main {
 }
 
 .theme-toggle:hover {
-  color: var(--text);
-  background: var(--surface-light);
-  border-color: var(--border-light);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .hamburger {
@@ -310,8 +310,8 @@ main {
   gap: 5px;
   width: 40px;
   height: 40px;
-  background: var(--glass);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   cursor: pointer;
   padding: 10px;
@@ -321,7 +321,7 @@ main {
   display: block;
   width: 18px;
   height: 2px;
-  background: var(--text);
+  background: #ffffff;
   border-radius: 2px;
   transition: opacity 0.1s ease, transform 0.1s ease;
 }
