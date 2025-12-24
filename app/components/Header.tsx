@@ -34,7 +34,9 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isMenuOpen]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     const newTheme = isDark ? 'light' : 'dark';
     setIsDark(!isDark);
     document.documentElement.setAttribute('data-theme', newTheme);
