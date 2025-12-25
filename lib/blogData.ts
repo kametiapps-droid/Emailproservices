@@ -444,7 +444,7 @@ By using a **[temporary email](/)**, you create a barrier between your personal 
     author: "Temp Mail Pro Team",
     date: "November 15, 2025",
     readTime: 10,
-    featuredImage: "/blog-images/trials.webp",
+    featuredImage: "/blog-images/mytempmail-pro.webp",
     imageAlt: "Gift box icon representing free trials and service benefits without email clutter",
     faqItems: [
       { q: "Can I use temporary email for streaming service trials?", a: "Many users do, but some major streaming platforms block known disposable email domains to prevent trial abuse. It works on many mid-tier and niche services, though." },
@@ -470,7 +470,7 @@ With **[Temp Mail Pro](/)**, you can have your cake and eat it too. Generate a t
     author: "Temp Mail Pro Team",
     date: "November 05, 2025",
     readTime: 15,
-    featuredImage: "/blog-images/gdpr.webp",
+    featuredImage: "/blog-images/24hoursmail.webp",
     imageAlt: "GDPR compliance lock and digital data protection symbols representing user rights",
     faqItems: [
       { q: "Does GDPR apply to temporary email services?", a: "Yes, GDPR applies to any service handling the data of EU citizens. However, because Temp Mail Pro doesn't collect personal info (name, real email, IP storage), there is significantly less data to 'protect' compared to traditional services." },
@@ -495,7 +495,7 @@ By using a temporary address, you are proactively managing your data rights. You
     author: "Temp Mail Pro Team",
     date: "October 26, 2025",
     readTime: 9,
-    featuredImage: "/blog-images/devtest.webp",
+    featuredImage: "/blog-images/temporarymail.webp",
     imageAlt: "Software development and testing visualization with code and email notification icons",
     faqItems: [
       { q: "Can I automate temp mail for testing?", a: "Yes, many developers use temp mail APIs to programmatically create addresses and check for incoming verification emails in their automated test suites." },
@@ -520,7 +520,7 @@ Stop cluttering your personal or work email with thousands of test messages. By 
     author: "Temp Mail Pro Team",
     date: "October 16, 2025",
     readTime: 16,
-    featuredImage: "/blog-images/strategy.webp",
+    featuredImage: "/blog-images/freetempmail.webp",
     imageAlt: "Holistic privacy strategy visualization with VPN, secure browser, and temp mail icons",
     faqItems: [
       { q: "Is a VPN enough for privacy?", a: "A VPN hides your IP, but it doesn't hide your identity if you sign up for everything with your real email. True privacy requires a 'layered' approach." },
