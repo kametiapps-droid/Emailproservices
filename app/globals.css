@@ -810,6 +810,9 @@ main {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .btn-hero-primary {
@@ -824,8 +827,9 @@ main {
   transition: all 0.3s ease;
   box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
   display: flex;
-  alignItems: center;
-  justifyContent: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 .btn-hero-primary:hover {
