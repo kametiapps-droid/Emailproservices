@@ -398,7 +398,7 @@ export default function Home() {
               </div>
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div className="email-header-label">Your Private Temp Mail Inbox</div>
+              <div className="email-header-label" style={{ color: '#10b981' }}>Your Private Temp Mail Inbox 💚</div>
               <button 
                 onClick={() => setShowGenerator(false)}
                 style={{
