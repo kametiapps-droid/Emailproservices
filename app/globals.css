@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 .hero h1 { font-size: 2.75rem; margin-bottom: 16px; font-weight: 700; letter-spacing: -0.03em; }
-.email-box { background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%); border-radius: 20px; padding: 40px; margin: 40px auto; max-width: 560px; border: 1px solid rgba(255, 255, 255, 0.1); }
+.email-box { background: var(--surface); border-radius: 20px; padding: 40px; margin: 40px auto; max-width: 560px; border: 1.5px solid var(--border); box-shadow: var(--shadow-lg); }
 
 .cta-section {
   padding: 80px 0;
@@ -150,11 +150,11 @@ button, input, textarea {
   --text: #0f172a;
   --text-muted: #334155;
   --text-dim: #64748b;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-light: rgba(255, 255, 255, 0.2);
-  --header-bg: rgba(15, 23, 42, 0.85);
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.05);
+  --border: rgba(15, 23, 42, 0.15);
+  --border-light: rgba(15, 23, 42, 0.2);
+  --header-bg: #ffffff;
+  --glass: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
@@ -1522,8 +1522,8 @@ main {
 
 [data-theme="light"] .inbox-list {
   background: #ffffff;
-  border: 1.5px solid rgba(59, 130, 246, 0.15);
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+  border: 1.5px solid rgba(15, 23, 42, 0.15);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
 }
 
 .inbox-empty {
