@@ -8,15 +8,17 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.mytempmail.pro'),
   title: {
     default: 'Temp Mail Pro - Free Temporary Disposable Email Service',
-    template: '%s | Temp Mail Pro'
+    template: '%s | My Temp Mail Pro'
   },
   description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and avoid spam with our secure, no-registration temporary inbox online.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.png', type: 'image/png' }
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/logo.png', type: 'image/png' }
     ],
     apple: '/apple-touch-icon.png',
+    shortcut: '/favicon.ico',
   },
   keywords: [
     'temporary email',
@@ -126,8 +128,8 @@ const jsonLd = {
       '@type': 'WebSite',
       '@id': 'https://www.mytempmail.pro/#website',
       url: 'https://www.mytempmail.pro',
-      name: 'Temp Mail Pro',
-      alternateName: 'Temp Mail',
+      name: 'My Temp Mail Pro',
+      alternateName: 'Temp Mail Pro',
       description: 'Free temporary disposable email service',
       publisher: {
         '@id': 'https://mytempmail.pro/#organization',
@@ -260,6 +262,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
