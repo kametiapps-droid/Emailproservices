@@ -537,3 +537,11 @@ Think of your privacy like a shield. A VPN is one layer (location), a secure bro
 The best privacy strategy is one you actually use. Temp Mail Pro is designed to be so fast and easy that it becomes a habit. When a site asks for an email, you don't even think about it—you just grab a temp address and keep your real life private. That's the secret to digital freedom in the modern age.`
   }
 ];
+
+export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+  return blogPosts.find(post => post.slug === slug);
+}
+
+export function getAllBlogSlugs(): string[] {
+  return blogPosts.map(post => post.slug);
+}
