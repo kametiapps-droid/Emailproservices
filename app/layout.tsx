@@ -251,20 +251,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics - GTM */}
-        <Script
-          id="gtm-base"
-          src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
-          strategy="afterInteractive"
+        <meta charSet="utf-8" />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-SP2GJ092X1');
+            `,
+          }}
         />
-        <Script id="gtm-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-SP2GJ092X1');
-          `}
-        </Script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileColor" content="#ffffff" />
