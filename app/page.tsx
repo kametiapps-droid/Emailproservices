@@ -347,7 +347,7 @@ export default function Home() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>Temp Mail Pro: Privacy-Focused Temporary Email Service</h1>
+          <h1>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
           {!showGenerator && (
             <button 
