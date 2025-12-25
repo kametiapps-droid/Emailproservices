@@ -869,7 +869,7 @@ export default function Home() {
                 e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
                 e.currentTarget.style.background = 'rgba(59, 130, 246, 0.03)';
               }}>
-                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '16px', fontWeight: '600', lineHeight: '1.4' }}>
+                <h3 style={{ color: '#3B82F6', marginBottom: '12px', fontSize: '16px', fontWeight: '700', lineHeight: '1.4' }}>
                   {faq.question}
                 </h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
@@ -956,7 +956,7 @@ export default function Home() {
                   </div>
                 )}
                 <div style={{ padding: '24px' }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '12px', color: 'var(--text)', lineHeight: '1.4' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: '700', marginBottom: '12px', color: '#3B82F6', lineHeight: '1.4' }}>
                     {post.title}
                   </h3>
                   <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
