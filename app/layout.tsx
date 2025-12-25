@@ -3,6 +3,7 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Script from 'next/script';
+import GoogleAnalytics from './GoogleAnalytics';
 
 
 
