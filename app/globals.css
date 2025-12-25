@@ -810,10 +810,6 @@ main {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  text-align: center;
 }
 
 .btn-hero-primary {
@@ -821,7 +817,7 @@ main {
   font-size: 16px;
   font-weight: 700;
   background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
-  color: white;
+  color: white !important;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -830,12 +826,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
 
 .btn-hero-primary:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5);
+  opacity: 0.95;
 }
 
 .btn-hero-secondary {
@@ -843,7 +839,7 @@ main {
   font-size: 16px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.05);
-  color: white;
+  color: white !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   text-decoration: none;
@@ -862,6 +858,7 @@ main {
   .hero-cta-container {
     flex-direction: column;
     gap: 12px;
+    align-items: center;
   }
   .btn-hero-primary, .btn-hero-secondary {
     width: 100%;
