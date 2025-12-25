@@ -147,20 +147,21 @@ export default function FAQPage() {
               width: '100%',
               padding: '16px 20px',
               borderRadius: '12px',
-              border: '1px solid var(--border-light)',
-              background: 'var(--surface-light)',
+              border: '1px solid var(--border)',
+              background: 'var(--surface)',
               color: 'var(--text)',
               fontSize: '16px',
               outline: 'none',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              boxShadow: 'var(--shadow-sm)'
             }}
             onFocus={(e) => {
               e.currentTarget.style.borderColor = 'var(--primary)';
-              e.currentTarget.style.background = 'var(--surface)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
             }}
             onBlur={(e) => {
-              e.currentTarget.style.borderColor = 'var(--border-light)';
-              e.currentTarget.style.background = 'var(--surface-light)';
+              e.currentTarget.style.borderColor = 'var(--border)';
+              e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
             }}
           />
           <svg
@@ -258,37 +259,36 @@ export default function FAQPage() {
           margin: '0 auto'
         }}>
           {filteredFAQs.length > 0 ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', gap: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
               {filteredFAQs.map(item => (
                 <div
                   key={item.id}
                   style={{
-                    background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.5) 0%, rgba(30, 41, 82, 0.3) 100%)',
+                    background: 'var(--surface)',
                     borderRadius: '16px',
-                    border: '1px solid rgba(59, 130, 246, 0.15)',
+                    border: '1px solid var(--border)',
                     overflow: 'hidden',
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                     display: 'flex',
                     flexDirection: 'column',
                     height: '100%',
                     boxShadow: expandedId === item.id
-                      ? '0 20px 45px rgba(59, 130, 246, 0.15)'
-                      : '0 8px 24px rgba(0, 0, 0, 0.12)',
-                    backdropFilter: 'blur(10px)',
+                      ? 'var(--shadow-lg)'
+                      : 'var(--shadow-md)',
                     cursor: 'pointer',
                     position: 'relative'
                   }}
                   onMouseEnter={(e) => {
                     if (expandedId !== item.id) {
                       e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-                      e.currentTarget.style.boxShadow = '0 12px 35px rgba(59, 130, 246, 0.12)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
                       e.currentTarget.style.transform = 'translateY(-4px)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (expandedId !== item.id) {
-                      e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+                      e.currentTarget.style.borderColor = 'var(--border)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-md)';
                       e.currentTarget.style.transform = 'translateY(0)';
                     }
                   }}
@@ -394,11 +394,11 @@ export default function FAQPage() {
                   {expandedId === item.id && (
                     <div style={{
                       padding: '0 24px 24px',
-                      borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+                      borderTop: '1px solid var(--border)',
                       animation: 'slideDown 0.3s ease-out'
                     }}>
                       <div style={{
-                        background: 'rgba(59, 130, 246, 0.05)',
+                        background: 'var(--background)',
                         borderLeft: '3px solid rgba(59, 130, 246, 0.5)',
                         padding: '16px',
                         borderRadius: '8px'
