@@ -146,8 +146,8 @@ export default function BlogPage() {
               <article
                 style={{
                   borderRadius: '14px',
-                  border: '1px solid rgba(59, 130, 246, 0.15)',
-                  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(31, 41, 55, 0.3) 100%)',
+                  border: '1px solid rgba(59, 130, 246, 0.25)',
+                  background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.7) 100%)',
                   cursor: 'pointer',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   display: 'flex',
@@ -157,14 +157,14 @@ export default function BlogPage() {
                   boxShadow: '0 4px 12px rgba(37, 99, 235, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(31, 41, 55, 0.5) 100%)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(51, 65, 85, 0.8) 100%)';
                   e.currentTarget.style.boxShadow = '0 12px 32px rgba(37, 99, 235, 0.2)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(31, 41, 55, 0.3) 100%)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.25)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.7) 100%)';
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.08)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
