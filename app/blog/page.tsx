@@ -146,8 +146,9 @@ export default function BlogPage() {
               <article
                 style={{
                   borderRadius: '14px',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
-                  background: 'rgba(23, 30, 50, 0.95)',
+                  border: '1px solid rgba(59, 130, 246, 0.4)',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  backdropFilter: 'blur(10px)',
                   cursor: 'pointer',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   display: 'flex',
@@ -157,14 +158,14 @@ export default function BlogPage() {
                   boxShadow: '0 4px 12px rgba(37, 99, 235, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
-                  e.currentTarget.style.background = 'rgba(30, 40, 65, 1)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.8)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.07)';
                   e.currentTarget.style.boxShadow = '0 12px 32px rgba(37, 99, 235, 0.2)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-                  e.currentTarget.style.background = 'rgba(23, 30, 50, 0.95)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.08)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
