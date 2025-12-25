@@ -8,7 +8,7 @@ export default function GoogleAnalytics() {
       {/* Load the Google Analytics script */}
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1`}
+        src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
       />
       
       {/* Configure Google Analytics */}
