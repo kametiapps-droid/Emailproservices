@@ -8,12 +8,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/api/",
-          "/api-docs/",
-          "/inbox/",
-          "/mail/",
           "/webhook/",
           "/admin/",
-          "/dashboard/",
           "/private/",
         ],
       },
