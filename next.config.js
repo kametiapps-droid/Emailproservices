@@ -76,6 +76,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/reviews',
+        destination: '/feedback',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig
