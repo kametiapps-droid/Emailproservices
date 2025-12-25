@@ -616,160 +616,156 @@ export default function Home() {
             
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '16px',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '20px',
               marginBottom: '16px'
             }}>
               <div style={{
-                background: 'rgba(59, 130, 246, 0.05)',
-                border: '1px solid rgba(59, 130, 246, 0.15)',
-                borderRadius: '16px',
-                padding: '40px 32px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                borderRadius: '12px',
+                padding: '28px',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(59, 130, 246, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
               }}>
                 <div style={{
-                  width: '52px',
-                  height: '52px',
+                  width: '48px',
+                  height: '48px',
                   background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '24px'
+                  marginBottom: '16px'
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <rect x="2" y="4" width="20" height="16" rx="2"/>
                     <path d="M2 6l10 7 10-7"/>
                   </svg>
                 </div>
-                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>What is Temp Mail?</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                  Temporary email, or disposable email, is a short-lived email address that exists for a limited time. Instead of using your real email for every signup, you can use a temporary address that automatically expires after 24 hours. This keeps your primary inbox clean and protects your personal email from being sold or shared with third parties.
+                <h3 style={{ color: 'var(--text)', marginBottom: '10px', fontSize: '18px', fontWeight: '700', lineHeight: '1.4' }}>What is Temp Mail?</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '14px' }}>
+                  Temporary email is a short-lived email address that protects your privacy. Instead of using your real email for signups, use a temporary address that automatically expires after 24 hours.
                 </p>
               </div>
 
               <div style={{
-                background: 'rgba(168, 85, 247, 0.05)',
-                border: '1px solid rgba(168, 85, 247, 0.15)',
-                borderRadius: '16px',
-                padding: '40px 32px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                borderRadius: '12px',
+                padding: '28px',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(168, 85, 247, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(168, 85, 247, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(168, 85, 247, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.15)';
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
               }}>
                 <div style={{
-                  width: '52px',
-                  height: '52px',
+                  width: '48px',
+                  height: '48px',
                   background: 'linear-gradient(135deg, #A855F7 0%, #D946EF 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '24px'
+                  marginBottom: '16px'
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                 </div>
-                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Why Privacy Matters</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                  Your email address is a gateway to your identity. Companies collect emails to build marketing profiles and sell your data. Every signup exposes you to spam and data breaches. By using temporary emails, you create a barrier between your real identity and corporate data collection. Protecting your email is one of the most effective ways to maintain digital privacy.
+                <h3 style={{ color: 'var(--text)', marginBottom: '10px', fontSize: '18px', fontWeight: '700', lineHeight: '1.4' }}>Why Privacy Matters</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '14px' }}>
+                  Your email is your digital identity. Companies collect emails to sell your data. Temporary emails create a barrier between your real identity and corporate data collection.
                 </p>
               </div>
 
               <div style={{
-                background: 'rgba(34, 197, 94, 0.05)',
-                border: '1px solid rgba(34, 197, 94, 0.15)',
-                borderRadius: '16px',
-                padding: '40px 32px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                borderRadius: '12px',
+                padding: '28px',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(34, 197, 94, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.15)';
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
               }}>
                 <div style={{
-                  width: '52px',
-                  height: '52px',
+                  width: '48px',
+                  height: '48px',
                   background: 'linear-gradient(135deg, #22C55E 0%, #4ADE80 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '24px'
+                  marginBottom: '16px'
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Legal & Ethical</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                  Temporary emails are completely legal and widely accepted. Perfect for testing, protecting privacy, and avoiding spam. However, using fake emails to commit fraud or violate terms of service is illegal. Temp Mail Pro is designed for legitimate privacy protection—use it responsibly.
+                <h3 style={{ color: 'var(--text)', marginBottom: '10px', fontSize: '18px', fontWeight: '700', lineHeight: '1.4' }}>Legal & Ethical</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '14px' }}>
+                  Temporary emails are completely legal. Perfect for testing and privacy protection. Use responsibly for legitimate purposes only.
                 </p>
               </div>
 
               <div style={{
-                background: 'rgba(239, 68, 68, 0.05)',
-                border: '1px solid rgba(239, 68, 68, 0.15)',
-                borderRadius: '16px',
-                padding: '40px 32px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                borderRadius: '12px',
+                padding: '28px',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(239, 68, 68, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.15)';
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
               }}>
                 <div style={{
-                  width: '52px',
-                  height: '52px',
+                  width: '48px',
+                  height: '48px',
                   background: 'linear-gradient(135deg, #EF4444 0%, #F87171 100%)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '24px'
+                  marginBottom: '16px'
                 }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                 </div>
-                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Complete Control & Peace of Mind</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                  Take charge of your digital identity with complete control over your online presence. Each temporary email acts as an isolated inbox, keeping your accounts separate and manageable. Enjoy peace of mind knowing your personal information stays private and compartmentalized across different services.
+                <h3 style={{ color: 'var(--text)', marginBottom: '10px', fontSize: '18px', fontWeight: '700', lineHeight: '1.4' }}>Complete Control</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '14px' }}>
+                  Each temporary email is an isolated inbox. Keep your accounts separate and your personal information private across different services.
                 </p>
               </div>
             </div>
