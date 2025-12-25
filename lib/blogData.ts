@@ -417,7 +417,7 @@ Using a temporary email provides significant privacy protection, making your onl
     author: "Temp Mail Pro Team",
     date: "November 25, 2025",
     readTime: 11,
-    featuredImage: "/blog-images/emailid.webp",
+    featuredImage: "/blog-images/mytempmail-pro.webp",
     imageAlt: "Digital identity protection visualization with secure email icons and scam prevention elements",
     faqItems: [
       { q: "How do scammers use email to steal information?", a: "Scammers use techniques like phishing, where they send deceptive emails that look like they're from trusted brands to trick you into revealing passwords or credit card numbers. They also use email to spread malware or conduct 'social engineering' attacks." },
