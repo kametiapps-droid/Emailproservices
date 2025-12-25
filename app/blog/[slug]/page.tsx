@@ -181,7 +181,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {post.category}
               </span>
             </div>
-            <h1 style={{ fontSize: '36px', fontWeight: '700', color: 'var(--text)', margin: '0 0 16px 0' }}>
+            <h1 style={{ fontSize: '36px', fontWeight: '700', color: 'rgb(59, 130, 246)', margin: '0 0 16px 0' }}>
               {post.title}
             </h1>
             <div style={{ display: 'flex', gap: '24px', fontSize: '14px', color: 'var(--text-muted)' }}>
