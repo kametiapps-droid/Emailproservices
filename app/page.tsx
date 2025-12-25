@@ -727,6 +727,44 @@ export default function Home() {
                   Temporary emails are completely legal and widely accepted. Perfect for testing, protecting privacy, and avoiding spam. However, using fake emails to commit fraud or violate terms of service is illegal. Temp Mail Pro is designed for legitimate privacy protection—use it responsibly.
                 </p>
               </div>
+
+              <div style={{
+                background: 'rgba(239, 68, 68, 0.05)',
+                border: '1px solid rgba(239, 68, 68, 0.15)',
+                borderRadius: '16px',
+                padding: '40px 32px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-8px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.15)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}>
+                <div style={{
+                  width: '52px',
+                  height: '52px',
+                  background: 'linear-gradient(135deg, #EF4444 0%, #F87171 100%)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '24px'
+                }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Advanced Security</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
+                  Protect yourself from data breaches and identity theft. Temporary emails reduce your digital footprint and prevent hackers from linking multiple accounts to your real identity. Use different temp emails for different services to compartmentalize your online presence and stay secure.
+                </p>
+              </div>
             </div>
           </div>
         </div>
