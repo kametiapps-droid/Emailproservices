@@ -166,8 +166,7 @@ export default function Home() {
           generateEmail();
         }
       } else {
-        // Generate email in background
-        generateEmail();
+        setLoading(false);
       }
       
       // Fetch recent reviews
@@ -188,6 +187,13 @@ export default function Home() {
     };
     init();
   }, []);
+
+  // Auto-generate email when generator opens
+  useEffect(() => {
+    if (showGenerator && !email && !loading) {
+      generateEmail();
+    }
+  }, [showGenerator, email, loading]);
 
   useEffect(() => {
     if (email?.id) {
@@ -377,7 +383,10 @@ export default function Home() {
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             {!showGenerator && (
               <button 
-                onClick={() => setShowGenerator(true)}
+                onClick={() => {
+                  setShowGenerator(true);
+                  setLoading(true);
+                }}
                 className="btn-hero-primary"
                 style={{ margin: '0 auto', display: 'block' }}
               >

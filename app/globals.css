@@ -1055,22 +1055,26 @@ main {
 
 .email-loading-indicator {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(10, 14, 39, 0.3);
-  border-radius: 20px;
-  padding: 8px 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(17, 24, 39, 0.95);
+  border-radius: 16px;
+  padding: 24px 32px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  z-index: 10;
-  backdrop-filter: blur(4px);
+  gap: 12px;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .email-loading-indicator p {
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin: 0;
+  font-weight: 500;
 }
 
 .refresh-dot {
@@ -2120,12 +2124,12 @@ a {
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--border);
-  border-top-color: var(--primary);
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-top-color: #3B82F6;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 0.6s linear infinite;
 }
 
 @keyframes spin {
