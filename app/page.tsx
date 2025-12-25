@@ -371,14 +371,15 @@ export default function Home() {
   return (
     <div className="page-container">
       <section className="hero">
-        <div className="container">
-          <h1>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
-          <p>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
-          <div className="hero-cta-container">
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }}>
+          <h1 style={{ textAlign: 'center', width: '100%' }}>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
+          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }}>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
+          <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             {!showGenerator && (
               <button 
                 onClick={() => setShowGenerator(true)}
                 className="btn-hero-primary"
+                style={{ margin: '0' }}
               >
                 🚀 Generate Your Temporary Email Address
               </button>
@@ -387,6 +388,7 @@ export default function Home() {
               <Link 
                 href="/use-cases"
                 className="btn-hero-secondary"
+                style={{ margin: '0' }}
               >
                 Learn Use Cases
               </Link>
