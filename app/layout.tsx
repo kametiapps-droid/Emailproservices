@@ -251,8 +251,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Google tag (gtag.js) */}
         <Script
           id="gtm-base"
@@ -267,6 +265,8 @@ export default function RootLayout({
             gtag('config', 'G-SP2GJ092X1');
           `}
         </Script>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
