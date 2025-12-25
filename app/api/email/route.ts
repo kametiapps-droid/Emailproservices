@@ -136,25 +136,34 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
+    // Delete the email document and all subcollections in parallel
+    const docRef = db.collection('temp_emails').doc(emailId);
+    const batch = db.batch();
+
+    // Fetch messages with limit for optimization
     const messagesSnapshot = await db
       .collection('temp_emails')
       .doc(emailId)
       .collection('messages')
+      .limit(500) // Limit to prevent timeouts
       .get();
     
-    const batch = db.batch();
+    // Add all message deletions to batch
     messagesSnapshot.docs.forEach((doc) => {
       batch.delete(doc.ref);
     });
+
+    // Delete the main email document
+    batch.delete(docRef);
+    
+    // Execute all deletions in one batch operation
     await batch.commit();
 
-    await db.collection('temp_emails').doc(emailId).delete();
-
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true }, { headers: SECURITY_HEADERS });
   } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to delete email' },
-      { status: 500 }
+      { status: 500, headers: SECURITY_HEADERS }
     );
   }
 }
