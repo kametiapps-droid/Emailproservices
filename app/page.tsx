@@ -597,12 +597,12 @@ export default function Home() {
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div style={{ marginBottom: '80px', textAlign: 'center' }}>
               <h2 style={{ 
-                color: '#3B82F6', 
+                color: '#FFFFFF', 
                 marginBottom: '16px',
                 fontSize: '42px',
                 fontWeight: '700'
               }}>Understanding Temporary Email</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '16px', marginTop: '12px' }}>
+              <p style={{ color: '#FFFFFF', fontSize: '16px', marginTop: '12px' }}>
                 Learn how our service protects your privacy and why it matters in today's digital world
               </p>
             </div>
