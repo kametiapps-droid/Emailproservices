@@ -5,10 +5,10 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
-  allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev'],
+  allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev', '*.vercel.app'],
   experimental: {
     serverActions: {
-      allowedOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app'],
+      allowedOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.vercel.app'],
     },
     optimizePackageImports: ['firebase-admin', 'qrcode'],
   },
@@ -29,7 +29,7 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=(), payment=()' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://pagead2.googlesyndication.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://www.google.com; frame-ancestors 'self' https://*.replit.dev https://*.replit.app https://*.repl.co" },
+          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://pagead2.googlesyndication.com https://*.adtrafficquality.google; frame-src https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://www.google.com; frame-ancestors 'self' https://*.vercel.app https://*.replit.dev https://*.replit.app https://*.repl.co" },
         ],
       },
       {
