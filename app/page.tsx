@@ -107,7 +107,7 @@ export default function Home() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 8000);
       
-      const response = await fetch(`/api/inbox?emailId=${email.id}`, { signal: controller.signal });
+      const response = await fetch(`/api/inbox?emailId=${encodeURIComponent(email.id)}`, { signal: controller.signal });
       clearTimeout(timeoutId);
       
       const data = await response.json();
@@ -124,7 +124,7 @@ export default function Home() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 8000);
       
-      const response = await fetch(`/api/email?id=${storedEmail.id}`, { signal: controller.signal });
+      const response = await fetch(`/api/email?id=${encodeURIComponent(storedEmail.id)}`, { signal: controller.signal });
       clearTimeout(timeoutId);
       
       const data = await response.json();
