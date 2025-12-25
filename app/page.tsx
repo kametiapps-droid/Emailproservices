@@ -913,7 +913,7 @@ export default function Home() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
             gap: '24px'
           }}>
-            {blogPosts.slice(0, 4).map(post => (
+            {blogPosts.slice(0, 8).map(post => (
               <Link
                 key={post.id}
                 href={`/blog/${post.slug}`}
