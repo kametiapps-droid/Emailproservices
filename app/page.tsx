@@ -374,33 +374,11 @@ export default function Home() {
         <div className="container">
           <h1>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
-          <div style={{ marginTop: '32px', display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', width: '100%' }}>
+          <div className="hero-cta-container">
             {!showGenerator && (
               <button 
                 onClick={() => setShowGenerator(true)}
-                style={{
-                  padding: '16px 48px',
-                  fontSize: '16px',
-                  fontWeight: '700',
-                  background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 8px 20px rgba(59, 130, 246, 0.4)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(59, 130, 246, 0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)';
-                }}
+                className="btn-hero-primary"
               >
                 🚀 Generate Your Temporary Email Address
               </button>
@@ -408,28 +386,7 @@ export default function Home() {
             {!showGenerator && (
               <Link 
                 href="/use-cases"
-                style={{
-                  padding: '16px 32px',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  color: 'white',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '12px',
-                  textDecoration: 'none',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                }}
+                className="btn-hero-secondary"
               >
                 Learn Use Cases
               </Link>
