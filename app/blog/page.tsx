@@ -141,6 +141,7 @@ export default function BlogPage() {
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
+              prefetch={true}
               style={{ textDecoration: 'none', height: '100%' }}
             >
               <article

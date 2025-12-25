@@ -7,10 +7,11 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev', '*.vercel.app'],
   experimental: {
+    scrollRestoration: true,
     serverActions: {
       allowedOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.vercel.app'],
     },
-    optimizePackageImports: ['firebase-admin', 'qrcode'],
+    optimizePackageImports: ['firebase-admin', 'qrcode', 'lucide-react', 'framer-motion'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
