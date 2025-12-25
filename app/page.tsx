@@ -1078,11 +1078,90 @@ export default function Home() {
       </section>
 
       {showQR && (
-        <div className="qr-popup-backdrop" onClick={() => setShowQR(false)}>
-          <div className="qr-popup" style={{ top: `${popupPosition.top}px`, left: `${popupPosition.left}px` }} onClick={e => e.stopPropagation()}>
-            <button className="qr-popup-close" onClick={() => setShowQR(false)}>&times;</button>
-            <div className="qr-popup-content">
-              {qrCode && <img src={qrCode} alt="QR Code" />}
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'rgba(0, 0, 0, 0.75)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 9999,
+            backdropFilter: 'blur(8px)',
+            padding: '20px'
+          }}
+          onClick={() => setShowQR(false)}
+        >
+          <div 
+            style={{
+              background: 'white',
+              padding: '24px',
+              borderRadius: '24px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              textAlign: 'center',
+              maxWidth: '340px',
+              width: '100%',
+              position: 'relative',
+              animation: 'modalFadeIn 0.3s ease-out'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <style jsx>{`
+              @keyframes modalFadeIn {
+                from { opacity: 0; transform: scale(0.95); }
+                to { opacity: 1; transform: scale(1); }
+              }
+            `}</style>
+            <button
+              onClick={() => setShowQR(false)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: '#f3f4f6',
+                border: 'none',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                cursor: 'pointer',
+                fontSize: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#4b5563',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#e5e7eb'}
+              onMouseLeave={(e) => e.currentTarget.style.background = '#f3f4f6'}
+            >
+              ×
+            </button>
+            <h3 style={{ color: '#111827', marginBottom: '8px', fontSize: '20px', fontWeight: '800' }}>Scan QR Code</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '20px' }}>Access your temporary inbox on mobile</p>
+            
+            <div style={{ 
+              background: 'white', 
+              padding: '16px', 
+              borderRadius: '16px', 
+              border: '2px solid #f3f4f6',
+              marginBottom: '20px',
+              display: 'inline-block'
+            }}>
+              {qrCode && <img src={qrCode} alt="Email QR Code" style={{ width: '200px', height: '200px', display: 'block' }} />}
+            </div>
+            
+            <div style={{ 
+              background: '#f9fafb', 
+              padding: '12px', 
+              borderRadius: '12px',
+              border: '1px solid #f3f4f6'
+            }}>
+              <p style={{ color: '#374151', fontSize: '14px', wordBreak: 'break-all', fontWeight: '600', margin: 0 }}>
+                {email?.email}
+              </p>
             </div>
           </div>
         </div>
