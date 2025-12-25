@@ -374,7 +374,7 @@ export default function Home() {
         <div className="container">
           <h1>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
-          <div style={{ marginTop: '32px', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div style={{ marginTop: '32px', display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', width: '100%' }}>
             {!showGenerator && (
               <button 
                 onClick={() => setShowGenerator(true)}
@@ -389,7 +389,9 @@ export default function Home() {
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: '0 8px 20px rgba(59, 130, 246, 0.4)',
-                  display: 'inline-block'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
@@ -403,30 +405,35 @@ export default function Home() {
                 🚀 Generate Your Temporary Email Address
               </button>
             )}
-            <Link 
-              href="/use-cases"
-              style={{
-                padding: '16px 32px',
-                fontSize: '16px',
-                fontWeight: '600',
-                background: 'rgba(255, 255, 255, 0.05)',
-                color: 'white',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '12px',
-                textDecoration: 'none',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-              }}
-            >
-              Learn Use Cases
-            </Link>
+            {!showGenerator && (
+              <Link 
+                href="/use-cases"
+                style={{
+                  padding: '16px 32px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  color: 'white',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}
+              >
+                Learn Use Cases
+              </Link>
+            )}
           </div>
         </div>
       </section>
