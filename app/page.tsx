@@ -193,8 +193,8 @@ export default function Home() {
     if (email?.id) {
       // Fetch immediately on mount
       fetchInbox();
-      // Auto-refresh every 5 seconds for better responsiveness
-      const interval = setInterval(fetchInbox, 5000);
+      // Auto-refresh every 15 seconds (reduced frequency for performance)
+      const interval = setInterval(fetchInbox, 15000);
       return () => clearInterval(interval);
     }
   }, [email?.id, fetchInbox]);
