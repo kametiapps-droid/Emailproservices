@@ -3,7 +3,8 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Script from 'next/script';
-import GoogleAnalytics from './GoogleAnalytics';
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mytempmail.pro'),
@@ -253,7 +254,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics */}
-        
+        <GoogleAnalytics gaId="G-SP2GJ092X1" />
         <GoogleAnalytics />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
