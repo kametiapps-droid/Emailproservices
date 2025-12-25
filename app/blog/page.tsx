@@ -207,7 +207,7 @@ export default function BlogPage() {
                       {post.category}
                     </span>
                   </div>
-                  <h2 style={{ fontSize: '19px', fontWeight: '700', color: 'var(--text)', margin: '0 0 14px 0', lineHeight: '1.4' }}>
+                  <h2 style={{ fontSize: '19px', fontWeight: '700', color: 'rgb(59, 130, 246)', margin: '0 0 14px 0', lineHeight: '1.4' }}>
                     {post.title}
                   </h2>
                   <p style={{ fontSize: '14px', color: 'var(--text-muted)', margin: '0 0 20px 0', flex: 1, lineHeight: '1.6' }}>
@@ -236,6 +236,36 @@ export default function BlogPage() {
             href="/" 
             text="Generate Free Temporary Email" 
           />
+        </div>
+
+        <div style={{ 
+          marginTop: '80px', 
+          padding: '40px', 
+          borderRadius: '20px', 
+          background: 'rgba(59, 130, 246, 0.05)', 
+          border: '1px solid rgba(59, 130, 246, 0.15)',
+          textAlign: 'center',
+          marginBottom: '40px'
+        }}>
+          <h3 style={{ 
+            fontSize: '18px', 
+            fontWeight: '700', 
+            color: 'rgb(59, 130, 246)', 
+            marginBottom: '16px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}>
+            Responsible Use Notice
+          </h3>
+          <p style={{ 
+            fontSize: '15px', 
+            color: 'var(--text-muted)', 
+            lineHeight: '1.8', 
+            maxWidth: '800px', 
+            margin: '0 auto' 
+          }}>
+            Temp Mail Pro is designed for privacy protection, testing, and inbox management. The service must not be used for illegal activities, spam, abuse, or to violate the terms of any platform. Users are responsible for complying with all applicable laws and website policies.
+          </p>
         </div>
       </div>
     </div>
