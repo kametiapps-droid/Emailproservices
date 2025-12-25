@@ -212,10 +212,10 @@ export default function FeedbackPage() {
           padding: '32px',
           marginBottom: '40px'
         }}>
-          <h3 style={{ marginBottom: '24px', fontSize: '20px' }}>Leave Your Feedback</h3>
+          <h3 style={{ marginBottom: '24px', fontSize: '20px', color: 'white' }}>Leave Your Feedback</h3>
             <form onSubmit={handleSubmitFeedback}>
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px', fontWeight: '500' }}>
                   Your Name
                 </label>
                 <input
@@ -228,8 +228,8 @@ export default function FeedbackPage() {
                     padding: '12px',
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
-                    background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text)',
+                    background: 'rgba(15, 23, 42, 0.7)',
+                    color: 'rgba(255, 255, 255, 0.9)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box'
@@ -238,7 +238,7 @@ export default function FeedbackPage() {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px', fontWeight: '500' }}>
                   Rating: {newFeedback.rating} ★
                 </label>
                 <input
@@ -252,7 +252,7 @@ export default function FeedbackPage() {
               </div>
 
               <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '14px' }}>
+                <label style={{ display: 'block', marginBottom: '8px', color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px', fontWeight: '500' }}>
                   Your Feedback
                 </label>
                 <textarea
@@ -265,8 +265,8 @@ export default function FeedbackPage() {
                     padding: '12px',
                     borderRadius: '8px',
                     border: '1px solid rgba(59, 130, 246, 0.3)',
-                    background: 'rgba(15, 23, 42, 0.5)',
-                    color: 'var(--text)',
+                    background: 'rgba(15, 23, 42, 0.7)',
+                    color: 'rgba(255, 255, 255, 0.9)',
                     fontSize: '14px',
                     outline: 'none',
                     boxSizing: 'border-box',
