@@ -80,7 +80,14 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - Reviews: No reply buttons on feedback cards
 - Vote limiting: One vote per poll using localStorage
 
-### Recent Changes (Dec 20, 2025)
+### Dec 25, 2025
+
+**Replit Environment Migration**
+- ✅ Removed Vercel-specific environment variable configuration from `vercel.json` to fix deployment checks.
+- ✅ Configured Next.js dev server for Replit (port 5000, 0.0.0.0).
+- ✅ Verified application loads and functions in Replit environment.
+
+### Dec 20, 2025
 
 **Social Media Icons Fixed**
 - ✅ Replaced text characters with proper SVG icons for all social platforms

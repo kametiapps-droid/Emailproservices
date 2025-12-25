@@ -16,8 +16,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "NEXT_PUBLIC_DOMAIN": "@vercel_domain"
-  }
+  ]
 }
