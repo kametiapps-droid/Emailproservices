@@ -50,6 +50,7 @@ const RATE_LIMITS = {
   CONTACTS: { max: 5, window: 60 * 60 * 1000 }, // 5 per hour
   INBOX: { max: 100, window: 60 * 60 * 1000 }, // 100 per hour
   QR_CODE: { max: 50, window: 60 * 60 * 1000 }, // 50 per hour
+  FEEDBACK: { max: 1, window: 60 * 60 * 1000 }, // 1 per hour per IP
 };
 
 export interface SpamCheckResult {
