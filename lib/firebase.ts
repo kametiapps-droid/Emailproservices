@@ -26,7 +26,12 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
   if (getApps().length === 0) {
     const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY || process.env.FIREBASE_SERVICES_KEY;
     
+    // During build time on Vercel, Firebase key may not be available - that's ok
     if (!serviceAccountKey) {
+      if (process.env.VERCEL_ENV === 'preview' || process.env.VERCEL_ENV === 'production') {
+        // Build time on Vercel - skip initialization for now
+        throw new Error('Firebase credentials not available during build. Please ensure FIREBASE_SERVICE_ACCOUNT_KEY is set in Vercel environment variables.');
+      }
       throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY or FIREBASE_SERVICES_KEY environment variable is not set. Please add your Firebase service account key in the Secrets tab.');
     }
 
