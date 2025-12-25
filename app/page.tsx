@@ -978,6 +978,29 @@ export default function Home() {
               </Link>
             ))}
           </div>
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <Link href="/blog" style={{
+              display: 'inline-block',
+              padding: '14px 32px',
+              background: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
+              color: '#3B82F6',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontWeight: '600',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}>
+              Explore All Articles →
+            </Link>
+          </div>
         </div>
       </section>
 
