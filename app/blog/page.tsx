@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { blogPosts } from '@/lib/blogData';
+import CTAButton from '@/app/components/CTAButton';
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -231,31 +232,10 @@ export default function BlogPage() {
         )}
 
         <div style={{ textAlign: 'center', marginTop: '60px' }}>
-          <Link
-            href="/"
-            style={{
-              display: 'inline-block',
-              padding: '16px 32px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
-              color: 'white',
-              fontSize: '18px',
-              fontWeight: '700',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 8px 24px rgba(59, 130, 246, 0.3)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(59, 130, 246, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(59, 130, 246, 0.3)';
-            }}
-          >
-            Generate Free Temporary Email
-          </Link>
+          <CTAButton 
+            href="/" 
+            text="Generate Free Temporary Email" 
+          />
         </div>
       </div>
     </div>
