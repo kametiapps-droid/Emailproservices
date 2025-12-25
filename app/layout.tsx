@@ -11,6 +11,13 @@ export const metadata: Metadata = {
     template: '%s | Temp Mail Pro'
   },
   description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and avoid spam with our secure, no-registration temporary inbox online.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png' }
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   keywords: [
     'temporary email',
     'temp mail',
