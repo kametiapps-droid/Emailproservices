@@ -51,6 +51,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const [recentReviews, setRecentReviews] = useState<Feedback[]>([]);
+  const [showGenerator, setShowGenerator] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -348,66 +349,123 @@ export default function Home() {
         <div className="container">
           <h1>Temp Mail Pro: Privacy-Focused Temporary Email Service</h1>
           <p>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
+          {!showGenerator && (
+            <button 
+              onClick={() => setShowGenerator(true)}
+              style={{
+                marginTop: '32px',
+                padding: '16px 48px',
+                fontSize: '16px',
+                fontWeight: '700',
+                background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '12px',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 20px rgba(59, 130, 246, 0.4)',
+                display: 'inline-block'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(59, 130, 246, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)';
+              }}
+            >
+              🚀 Generate Your Temporary Email Address
+            </button>
+          )}
         </div>
       </section>
 
-      <div className="container">
-        <div className="email-box">
-          {loading && !email && (
-            <div className="email-loading-indicator">
-              <div className="spinner"></div>
-              <p>Generating fake email...</p>
+      {showGenerator && (
+        <div className="container">
+          <div className="email-box">
+            {loading && !email && (
+              <div className="email-loading-indicator">
+                <div className="spinner"></div>
+                <p>Generating fake email...</p>
+              </div>
+            )}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+              <div className="email-header-label">Your Private Temp Mail Inbox</div>
+              <button 
+                onClick={() => setShowGenerator(false)}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: 'var(--text)',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }}
+              >
+                ✕ Close
+              </button>
             </div>
-          )}
-          <div className="email-header-label">Your Private Temp Mail Inbox</div>
-          <div className="email-display">
-            <span className="email-address">{displayEmail.email}</span>
-            <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-            </button>
-          </div>
+            <div className="email-display">
+              <span className="email-address">{displayEmail.email}</span>
+              <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
 
-          <div className="timer">
-            <span className="timer-icon">⏱️</span>
-            <span className="timer-text">{timeLeft || '24h 0m remaining'}</span>
-          </div>
+            <div className="timer">
+              <span className="timer-icon">⏱️</span>
+              <span className="timer-text">{timeLeft || '24h 0m remaining'}</span>
+            </div>
 
-          <div className="action-buttons">
-            <button className="action-btn" onClick={fetchInbox}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
-              </svg>
-              Refresh
-            </button>
-            <button className="action-btn" ref={qrButtonRef} onClick={showQRCode}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-              </svg>
-              QR Code
-            </button>
-            <button className="action-btn" onClick={generateEmail}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-              </svg>
-              New Email
-            </button>
-            <button className="action-btn danger" onClick={deleteEmail}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-              Delete
-            </button>
+            <div className="action-buttons">
+              <button className="action-btn" onClick={fetchInbox}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+                </svg>
+                Refresh
+              </button>
+              <button className="action-btn" ref={qrButtonRef} onClick={showQRCode}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                </svg>
+                QR Code
+              </button>
+              <button className="action-btn" onClick={generateEmail}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                New Email
+              </button>
+              <button className="action-btn danger" onClick={deleteEmail}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                Delete
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
+      {showGenerator && (
       <section className="inbox-section">
         <div className="inbox-header">
           <div className="inbox-header-left">
@@ -527,6 +585,7 @@ export default function Home() {
 
         </div>
       </section>
+      )}
 
       <section style={{ 
         padding: '100px 0', 
