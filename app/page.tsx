@@ -914,7 +914,10 @@ export default function Home() {
 
       <section style={{ padding: '80px 0', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)' }}>
         <div className="container">
-          <h2 style={{ textAlign: 'center', color: 'var(--text)', marginBottom: '50px' }}>Latest from Our Blog</h2>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <h2 style={{ color: 'var(--text)', marginBottom: '16px', fontSize: '36px', fontWeight: '700' }}>Privacy & Security Resource Center</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '18px', maxWidth: '700px', margin: '0 auto' }}>Stay informed with the latest guides on online privacy, email security, and spam prevention in 2025.</p>
+          </div>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
