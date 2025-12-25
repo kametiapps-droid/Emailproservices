@@ -407,9 +407,9 @@ export default function FeedbackPage() {
                 }}
               >
                 <div style={{
-                  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(31, 41, 55, 0.3) 100%)',
+                  background: 'var(--surface)',
                   borderRadius: '16px',
-                  border: '1px solid rgba(59, 130, 246, 0.15)',
+                  border: '1px solid var(--border)',
                   padding: '0',
                   height: '100%',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -417,18 +417,16 @@ export default function FeedbackPage() {
                   overflow: 'hidden',
                   display: 'flex',
                   flexDirection: 'column',
-                  boxShadow: '0 4px 12px rgba(37, 99, 235, 0.08)'
+                  boxShadow: 'var(--shadow-md)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(31, 41, 55, 0.5) 100%)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(37, 99, 235, 0.2)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(31, 41, 55, 0.3) 100%)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.08)';
+                  e.currentTarget.style.borderColor = 'var(--border)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
                 >
