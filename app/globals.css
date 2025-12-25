@@ -27,14 +27,7 @@
 }
 
 .cta-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -20%;
-  width: 60%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 
 .cta-content {
@@ -831,7 +824,7 @@ main {
 .page-hero {
   text-align: center;
   padding: 56px 0;
-  background: var(--gradient-subtle);
+  background: var(--background);
 }
 
 .page-hero h1 {
@@ -857,15 +850,7 @@ main {
 }
 
 .hero::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -20%;
-  width: 60%;
-  height: 60%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+  display: none;
 }
 
 .hero h1 {
