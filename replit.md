@@ -1,5 +1,10 @@
 # Temp Mail Pro - Temporary Email Service
 
+## Replit Setup
+- **Dev Server**: `npm run dev` on port 5000
+- **Production**: `npm run build` then `npm run start`
+- **Framework**: Next.js 15 with React 19, TypeScript
+
 ## Project Overview
 Temp Mail Pro is a modern temporary disposable email service built with Next.js 15, React 19, and TypeScript. Users can instantly generate disposable email addresses that expire in 24 hours, protecting their privacy. All features are fast, beautiful, and fully responsive.
 
