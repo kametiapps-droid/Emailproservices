@@ -272,21 +272,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         
         <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9600331042737400"
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
-      </head>
-      <body data-theme="light" className="inter-font">
-        <Script
-          id="json-ld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          strategy="afterInteractive"
-        />
-        <Script
-          async
           src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
           strategy="afterInteractive"
         />
@@ -299,6 +284,21 @@ export default function RootLayout({
             gtag('config', 'G-SP2GJ092X1');
           `}
         </Script>
+
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9600331042737400"
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          strategy="afterInteractive"
+        />
+      </head>
+      <body data-theme="light" className="inter-font">
         <Header />
         <main>{children}</main>
         <Footer />
