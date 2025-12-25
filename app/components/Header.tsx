@@ -69,7 +69,7 @@ export default function Header() {
         <nav className={`nav-menu ${isMenuOpen ? 'nav-open' : ''}`}>
           <Link href="/" className="nav-link" onClick={closeMenu} prefetch={false}>Home</Link>
           <Link href="/use-cases" className="nav-link" onClick={closeMenu} prefetch={false}>Use Cases</Link>
-          <Link href="/blog" className="nav-link" onClick={closeMenu} prefetch={false}>Blog</Link>
+          <Link href="/blog" className="nav-link" onClick={closeMenu}>Blog</Link>
           <Link href="/faq" className="nav-link" onClick={closeMenu} prefetch={false}>FAQ</Link>
           <Link href="/feedback" className="nav-link" onClick={closeMenu} prefetch={false}>Feedback</Link>
           <Link href="/contact" className="nav-link" onClick={closeMenu} prefetch={false}>Contact</Link>
