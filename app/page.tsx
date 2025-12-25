@@ -371,9 +371,9 @@ export default function Home() {
   return (
     <div className="page-container">
       <section className="hero">
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h1>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
-          <p style={{ textAlign: 'center' }}>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%' }}>
+          <h1 style={{ width: '100%', textAlign: 'center' }}>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
+          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px' }}>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
           <div className="hero-cta-container">
             {!showGenerator && (
               <button 
