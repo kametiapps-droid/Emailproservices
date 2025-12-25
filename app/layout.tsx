@@ -3,7 +3,7 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Script from 'next/script';
-import Googleanalytics from './googleanalytics';
+import GoogleAnalytics from './GoogleAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mytempmail.pro'),
