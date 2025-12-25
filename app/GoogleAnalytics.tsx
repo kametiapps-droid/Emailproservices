@@ -1,4 +1,4 @@
-export default function googleanalytics() {
+export default function GoogleAnalytics() {
   return (
     <>
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"></script>
