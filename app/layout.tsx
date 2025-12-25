@@ -252,17 +252,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-SP2GJ092X1');
-          `}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1" />
+        <Script id="gtag-init">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SP2GJ092X1');`}
         </Script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
