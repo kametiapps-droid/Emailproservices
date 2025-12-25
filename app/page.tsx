@@ -1108,14 +1108,13 @@ export default function Home() {
             position: 'fixed',
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'rgba(0, 0, 0, 0.75)',
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(10, 14, 39, 0.9)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 9999,
-            backdropFilter: 'blur(8px)',
+            zIndex: 99999,
             padding: '20px'
           }}
           onClick={() => setShowQR(false)}
@@ -1130,6 +1129,7 @@ export default function Home() {
               maxWidth: '340px',
               width: '100%',
               position: 'relative',
+              zIndex: 100000,
               animation: 'modalFadeIn 0.3s ease-out'
             }}
             onClick={(e) => e.stopPropagation()}

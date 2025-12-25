@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  output: 'standalone',
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
+  swcMinify: true,
+  reactStrictMode: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev', '*.vercel.app'],
   experimental: {
     scrollRestoration: true,
@@ -18,6 +21,8 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async headers() {
     return [
