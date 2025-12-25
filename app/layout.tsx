@@ -251,13 +251,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
+        {/* Google Analytics - GTM */}
         <Script
           id="gtm-base"
-          strategy="beforeInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
+          strategy="afterInteractive"
         />
-        <Script id="gtm-init" strategy="beforeInteractive">
+        <Script id="gtm-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
