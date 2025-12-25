@@ -151,11 +151,11 @@ button, input, textarea {
   --text: #0f172a;
   --text-muted: #334155;
   --text-dim: #64748b;
-  --border: rgba(0, 0, 0, 0.05);
-  --border-light: rgba(0, 0, 0, 0.1);
-  --header-bg: rgba(255, 255, 255, 0.9);
-  --glass: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.2);
+  --header-bg: rgba(15, 23, 42, 0.85);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.05);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
@@ -213,11 +213,11 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  background: var(--header-bg) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 12px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   will-change: transform;
@@ -225,19 +225,19 @@ main {
 }
 
 [data-theme="light"] .site-header {
-  background: var(--header-bg) !important;
-  border-bottom: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.85) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .site-header-init { 
   position: sticky; 
   top: 0; 
   z-index: 1000; 
-  background: var(--header-bg) !important; 
+  background: rgba(15, 23, 42, 0.85) !important; 
   backdrop-filter: blur(20px); 
   -webkit-backdrop-filter: blur(20px); 
   padding: 12px 0; 
-  border-bottom: 1px solid var(--border); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .site-header .header-content {
@@ -593,10 +593,10 @@ main {
 
 .footer-bottom {
   padding: 28px 0;
-  background: var(--header-bg) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -607,7 +607,7 @@ main {
 }
 
 [data-theme="light"] .footer-bottom {
-  background: var(--header-bg) !important;
+  background: rgba(15, 23, 42, 0.85) !important;
 }
 
 .footer-domain {
