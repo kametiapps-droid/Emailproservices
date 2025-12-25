@@ -256,6 +256,16 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1" />
+
+<Script id="gtag-init" strategy="afterInteractive">
+{`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SP2GJ092X1');
+`}
+</Script>
         
         <GoogleAnalytics />
         <meta charSet="utf-8" />
