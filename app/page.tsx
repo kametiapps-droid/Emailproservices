@@ -57,7 +57,12 @@ export default function Home() {
   const generateEmail = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/email', { method: 'POST' });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      
+      const response = await fetch('/api/email', { method: 'POST', signal: controller.signal });
+      clearTimeout(timeoutId);
+      
       const data = await response.json();
       if (data.success) {
         setEmail(data.data);
@@ -73,7 +78,12 @@ export default function Home() {
   const fetchInbox = useCallback(async () => {
     if (!email?.id) return;
     try {
-      const response = await fetch(`/api/inbox?emailId=${email.id}`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      
+      const response = await fetch(`/api/inbox?emailId=${email.id}`, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      
       const data = await response.json();
       if (data.success) {
         setMessages(data.data);
@@ -85,7 +95,12 @@ export default function Home() {
 
   const checkExistingEmail = async (storedEmail: Email) => {
     try {
-      const response = await fetch(`/api/email?id=${storedEmail.id}`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+      
+      const response = await fetch(`/api/email?id=${storedEmail.id}`, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      
       const data = await response.json();
       if (data.success) {
         setEmail(data.data);

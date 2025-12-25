@@ -90,7 +90,8 @@ export async function GET(request: NextRequest) {
     }).filter(Boolean); // Remove blocked messages
 
     const response = NextResponse.json({ success: true, data: messages }, { headers: SECURITY_HEADERS });
-    response.headers.set('Cache-Control', 'private, max-age=30');
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    response.headers.set('Content-Type', 'application/json; charset=utf-8');
     return response;
   } catch (error) {
     return NextResponse.json(

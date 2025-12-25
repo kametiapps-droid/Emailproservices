@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   try {
     // Rate limiting (100 per hour - webhook endpoint)
     const clientIP = getClientIP(request.headers);
-    const rateCheck = checkRateLimit(clientIP, 'QR_CODE');
+    const rateCheck = checkRateLimit(clientIP, 'INBOX');
     if (!rateCheck.allowed) {
       return NextResponse.json(
         { success: false, error: rateCheck.reason || 'Too many requests' },
@@ -26,9 +26,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('📧 Webhook request received');
-    console.log('Headers:', Object.fromEntries(request.headers.entries()));
-    
     // Validate webhook secret
     const secret = request.headers.get('x-webhook-secret');
     if (!validateWebhookSecret(secret)) {

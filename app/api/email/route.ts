@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
         expiresAt: expiresAt.toISOString(),
       },
     }, { headers: SECURITY_HEADERS });
-    response.headers.set('Cache-Control', 'private, max-age=3600');
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
     return response;
   } catch (error) {
     return NextResponse.json(
@@ -103,7 +103,8 @@ export async function GET(request: NextRequest) {
     }
 
     const response = NextResponse.json({ success: true, data }, { headers: SECURITY_HEADERS });
-    response.headers.set('Cache-Control', 'private, max-age=60');
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    response.headers.set('Content-Type', 'application/json; charset=utf-8');
     return response;
   } catch (error) {
     return NextResponse.json(
