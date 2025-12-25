@@ -4,47 +4,31 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: ['Googlebot', 'Bingbot', 'DuckDuckBot', 'YandexBot'],
-        allow: '/',
+        userAgent: "*", // all crawlers
+        allow: "/",
         disallow: [
-          '/api/',
-          '/api-docs/',
-          '/inbox/',
-          '/mail/',
-          '/webhook/',
-          '/admin/',
-          '/dashboard/',
-          '/private/',
+          "/api/",
+          "/api-docs/",
+          "/inbox/",
+          "/mail/",
+          "/webhook/",
+          "/admin/",
+          "/dashboard/",
+          "/private/",
         ],
       },
       {
         userAgent: [
-          'GPTBot',
-          'ChatGPT-User',
-          'ClaudeBot',
-          'CCBot',
-          'Google-Extended',
-          'Amazonbot',
-          'Applebot-Extended',
+          "GPTBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "CCBot",
+          "Google-Extended",
         ],
-        disallow: '/',
-      },
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/api/',
-          '/api-docs/',
-          '/inbox/',
-          '/mail/',
-          '/webhook/',
-          '/admin/',
-          '/dashboard/',
-          '/private/',
-        ],
+        disallow: "/", // AI crawlers blocked
       },
     ],
-    sitemap: 'https://www.mytempmail.pro/sitemap.xml',
-    host: 'https://www.mytempmail.pro',
+    sitemap: "https://www.mytempmail.pro/sitemap.xml",
+    host: "https://www.mytempmail.pro",
   };
 }
