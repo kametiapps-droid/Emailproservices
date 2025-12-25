@@ -402,79 +402,98 @@ export default function FeedbackPage() {
                 href={`/blog/${post.slug}`}
                 style={{
                   textDecoration: 'none',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  height: '100%'
                 }}
               >
                 <div style={{
-                  background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(59, 130, 246, 0.2)',
-                  padding: '24px',
+                  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(31, 41, 55, 0.3) 100%)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(59, 130, 246, 0.15)',
+                  padding: '0',
                   height: '100%',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  boxShadow: '0 4px 12px rgba(37, 99, 235, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.6)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(30, 41, 82, 0.8) 0%, rgba(30, 41, 82, 0.6) 100%)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(31, 41, 55, 0.5) 100%)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(37, 99, 235, 0.2)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.15)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(31, 41, 55, 0.3) 100%)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
                 >
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'start',
-                    marginBottom: '12px'
-                  }}>
+                  {post.featuredImage && (
+                    <div style={{ position: 'relative', width: '100%', height: '180px', overflow: 'hidden' }}>
+                      <img 
+                        src={post.featuredImage} 
+                        alt={post.imageAlt || post.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  )}
+                  <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <div style={{
-                      background: 'rgba(59, 130, 246, 0.1)',
-                      border: '1px solid rgba(59, 130, 246, 0.3)',
-                      color: 'rgba(59, 130, 246, 1)',
-                      padding: '4px 12px',
-                      borderRadius: '12px',
-                      fontSize: '12px',
-                      fontWeight: '600'
+                      background: 'rgba(59, 130, 246, 0.15)',
+                      color: 'rgb(59, 130, 246)',
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px',
+                      display: 'inline-block',
+                      width: 'fit-content',
+                      marginBottom: '12px'
                     }}>
                       {post.category}
                     </div>
-                    <div style={{
-                      color: 'var(--text-muted)',
-                      fontSize: '12px'
+
+                    <h3 style={{
+                      fontSize: '18px',
+                      fontWeight: '700',
+                      color: 'var(--text)',
+                      marginBottom: '12px',
+                      lineHeight: '1.4'
                     }}>
-                      {post.readTime} min read
+                      {post.title}
+                    </h3>
+
+                    <p style={{
+                      color: 'var(--text-muted)',
+                      fontSize: '14px',
+                      lineHeight: '1.6',
+                      marginBottom: '20px',
+                      flex: 1
+                    }}>
+                      {post.excerpt}
+                    </p>
+
+                    <div style={{
+                      fontSize: '12px',
+                      color: 'var(--text-dim)',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      paddingTop: '16px',
+                      borderTop: '1px solid rgba(59, 130, 246, 0.1)'
+                    }}>
+                      <span>{post.date}</span>
+                      <span style={{ fontWeight: '600' }}>{post.readTime} MIN READ</span>
                     </div>
-                  </div>
-
-                  <h3 style={{
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    color: 'var(--text)',
-                    marginBottom: '12px',
-                    lineHeight: '1.4'
-                  }}>
-                    {post.title}
-                  </h3>
-
-                  <p style={{
-                    color: 'var(--text-muted)',
-                    fontSize: '13px',
-                    lineHeight: '1.5',
-                    marginBottom: '16px',
-                    margin: 0
-                  }}>
-                    {post.excerpt}
-                  </p>
-
-                  <div style={{
-                    fontSize: '12px',
-                    color: 'var(--text-muted)',
-                    paddingTop: '12px',
-                    borderTop: '1px solid rgba(59, 130, 246, 0.1)'
-                  }}>
-                    {post.date}
                   </div>
                 </div>
               </Link>
