@@ -258,6 +258,13 @@ export default function RootLayout({
         
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9600331042737400"
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
       </head>
       <body data-theme="light">
         <Script
