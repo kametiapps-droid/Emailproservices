@@ -589,7 +589,7 @@ export default function Home() {
 
       <section style={{ 
         padding: '100px 0', 
-        background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.5) 0%, rgba(59, 130, 246, 0.03) 100%)',
+        background: '#FFFFFF',
         borderTop: '1px solid rgba(59, 130, 246, 0.1)',
         borderBottom: '1px solid rgba(59, 130, 246, 0.1)'
       }}>
@@ -597,12 +597,12 @@ export default function Home() {
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <div style={{ marginBottom: '80px', textAlign: 'center' }}>
               <h2 style={{ 
-                color: '#FFFFFF', 
+                color: '#3B82F6', 
                 marginBottom: '16px',
                 fontSize: '42px',
                 fontWeight: '700'
               }}>Understanding Temporary Email</h2>
-              <p style={{ color: '#FFFFFF', fontSize: '16px', marginTop: '12px' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '16px', marginTop: '12px' }}>
                 Learn how our service protects your privacy and why it matters in today's digital world
               </p>
             </div>
