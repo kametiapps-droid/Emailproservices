@@ -251,17 +251,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
         <Script
-          id="gtm-script"
-          src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
+          id="gtm-base"
           strategy="beforeInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-SP2GJ092X1"
         />
-        <Script id="google-analytics" strategy="beforeInteractive">
+        <Script id="gtm-init" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-SP2GJ092X1');
           `}
         </Script>
