@@ -595,18 +595,18 @@ export default function Home() {
       )}
 
       <section style={{ 
-        padding: '60px 0', 
+        padding: '36px 0', 
         background: 'var(--surface)',
         borderTop: '1px solid rgba(59, 130, 246, 0.1)',
         borderBottom: '1px solid rgba(59, 130, 246, 0.1)'
       }} className="content-section-responsive">
         <div className="container">
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <div style={{ marginBottom: '40px', textAlign: 'center' }}>
+            <div style={{ marginBottom: '28px', textAlign: 'center' }}>
               <h2 style={{ 
                 color: '#3B82F6', 
-                marginBottom: '12px',
-                fontSize: 'clamp(28px, 5vw, 42px)',
+                marginBottom: '8px',
+                fontSize: 'clamp(24px, 5vw, 36px)',
                 fontWeight: '700'
               }}>Understanding Temporary Email</h2>
               <p style={{ color: 'var(--text-muted)', fontSize: '15px', marginTop: '8px' }}>
@@ -617,8 +617,8 @@ export default function Home() {
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '24px',
-              marginBottom: '20px'
+              gap: '16px',
+              marginBottom: '16px'
             }}>
               <div style={{
                 background: 'rgba(59, 130, 246, 0.05)',
@@ -777,7 +777,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="features content-section-responsive" style={{ padding: '60px 0' }}>
+      <section className="features content-section-responsive" style={{ padding: '36px 0' }}>
         <div className="container">
           <h2 style={{ color: 'var(--text)', textAlign: 'center', marginBottom: '40px' }}>Why Choose Temp Mail Pro?</h2>
           <div className="features-grid">
@@ -843,17 +843,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ padding: '60px 0', background: 'var(--surface)' }} className="content-section-responsive">
+      <section style={{ padding: '36px 0', background: 'var(--surface)' }} className="content-section-responsive">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '40px' }} className="section-header-mobile">
-            <h2 style={{ color: 'var(--text)', fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: '700' }}>Common Questions</h2>
+          <div style={{ textAlign: 'center', marginBottom: '28px' }} className="section-header-mobile">
+            <h2 style={{ color: 'var(--text)', fontSize: 'clamp(22px, 5vw, 28px)', fontWeight: '700' }}>Common Questions</h2>
           </div>
           
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '20px',
-            marginBottom: '32px'
+            gap: '16px',
+            marginBottom: '24px'
           }}>
             {[
               { question: 'Do I need to register to use Temp Mail Pro?', answer: 'No! Temp Mail Pro is completely free and requires no registration.' },
@@ -914,10 +914,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ padding: '60px 0', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)' }} className="content-section-responsive">
+      <section style={{ padding: '36px 0', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)' }} className="content-section-responsive">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: 'clamp(28px, 5vw, 36px)', fontWeight: '700' }}>Privacy & Security Resource Center</h2>
+          <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+            <h2 style={{ color: 'var(--text)', marginBottom: '8px', fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: '700' }}>Privacy & Security Resource Center</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '16px', maxWidth: '700px', margin: '0 auto' }}>Stay informed with the latest guides on online privacy, email security, and spam prevention in 2025.</p>
           </div>
           <div style={{
