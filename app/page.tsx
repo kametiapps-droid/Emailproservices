@@ -55,6 +55,17 @@ export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    if (showQR) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showQR]);
+
   const generateEmail = async () => {
     try {
       setLoading(true);
