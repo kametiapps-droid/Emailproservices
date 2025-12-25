@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting check (10 per hour)
+    // Rate limiting check (100 per hour)
     const clientIP = getClientIP(request.headers);
     const rateCheck = checkRateLimit(clientIP, 'EMAILS');
     
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    // Rate limiting (30 per hour)
+    // Rate limiting (100 per hour)
     const clientIP = getClientIP(request.headers);
     const rateCheck = checkRateLimit(clientIP, 'EMAILS');
     if (!rateCheck.allowed) {
