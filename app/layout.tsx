@@ -264,7 +264,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         
         <Script
           async
@@ -273,7 +275,7 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
       </head>
-      <body data-theme="light">
+      <body data-theme="light" className="inter-font">
         <Script
           id="json-ld"
           type="application/ld+json"
