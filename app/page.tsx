@@ -589,7 +589,7 @@ export default function Home() {
 
       <section style={{ 
         padding: '100px 0', 
-        background: '#FFFFFF',
+        background: 'var(--surface)',
         borderTop: '1px solid rgba(59, 130, 246, 0.1)',
         borderBottom: '1px solid rgba(59, 130, 246, 0.1)'
       }}>
