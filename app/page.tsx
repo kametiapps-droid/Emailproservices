@@ -379,19 +379,10 @@ export default function Home() {
               <button 
                 onClick={() => setShowGenerator(true)}
                 className="btn-hero-primary"
-                style={{ margin: '0' }}
+                style={{ margin: '0 auto', display: 'block' }}
               >
                 🚀 Generate Your Temporary Email Address
               </button>
-            )}
-            {!showGenerator && (
-              <Link 
-                href="/use-cases"
-                className="btn-hero-secondary"
-                style={{ margin: '0' }}
-              >
-                Learn Use Cases
-              </Link>
             )}
           </div>
         </div>
