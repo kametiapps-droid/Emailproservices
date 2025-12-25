@@ -7,7 +7,6 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   allowedDevOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev'],
   experimental: {
-    optimizeCss: true,
     serverActions: {
       allowedOrigins: ['*.replit.dev', '*.repl.co', '*.replit.app'],
     },
