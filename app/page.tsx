@@ -760,9 +760,9 @@ export default function Home() {
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                 </div>
-                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Advanced Security</h3>
+                <h3 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '22px', fontWeight: '700' }}>Complete Control & Peace of Mind</h3>
                 <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: '15px' }}>
-                  Protect yourself from data breaches and identity theft. Temporary emails reduce your digital footprint and prevent hackers from linking multiple accounts to your real identity. Use different temp emails for different services to compartmentalize your online presence and stay secure.
+                  Take charge of your digital identity with complete control over your online presence. Each temporary email acts as an isolated inbox, keeping your accounts separate and manageable. Enjoy peace of mind knowing your personal information stays private and compartmentalized across different services.
                 </p>
               </div>
             </div>
