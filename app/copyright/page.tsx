@@ -1,100 +1,239 @@
+'use client';
+
 export default function CopyrightPage() {
+  const currentYear = new Date().getFullYear();
+  const lastUpdated = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
   return (
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>Copyright Disclaimer</h1>
-          <p>Intellectual property and copyright information</p>
+          <h1 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', fontWeight: '800', marginBottom: '16px' }}>
+            Copyright & Intellectual Property
+          </h1>
+          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', opacity: 0.9 }}>
+            Understanding our intellectual property rights and your usage rights
+          </p>
         </div>
       </section>
 
-      <div className="container" style={{ paddingTop: '60px', paddingBottom: '80px', maxWidth: '900px' }}>
-        <div style={{ lineHeight: '1.8', color: 'var(--text-muted)' }}>
-          <p style={{ marginBottom: '24px', fontWeight: '500', color: 'var(--text)' }}>
-            Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+      <div className="container" style={{ maxWidth: '1100px', paddingTop: '60px', paddingBottom: '80px', padding: '60px 20px' }}>
+        
+        {/* Last Updated */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
+          borderRadius: '12px',
+          padding: '20px 24px',
+          marginBottom: '60px',
+          border: '1px solid rgba(59, 130, 246, 0.15)',
+          textAlign: 'center'
+        }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0 }}>
+            <strong>Last Updated:</strong> {lastUpdated}
           </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Ownership of Content
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            All content included on this website, including but not limited to text, graphics, logos, images, audio clips, and software, is the property of Temp Mail Pro or its content suppliers and is protected by international copyright laws. The compilation of all content on this website is the exclusive property of Temp Mail Pro and protected by international copyright laws.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Copyright Notice
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            © {new Date().getFullYear()} Temp Mail Pro. All rights reserved. No content from this website may be copied, reproduced, republished, uploaded, posted, transmitted, or distributed in any way without our prior written consent.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Use of Content
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            You may view and print pages from the website for personal, non-commercial use, subject to restrictions set in these terms and conditions. You must not:
-          </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '12px' }}>Republish material from this website (including republication on another website)</li>
-            <li style={{ marginBottom: '12px' }}>Sell, rent, or sub-license material from the website</li>
-            <li style={{ marginBottom: '12px' }}>Reproduce, duplicate, or copy material from this website for commercial purposes</li>
-            <li style={{ marginBottom: '12px' }}>Redistribute content from this website (unless content is specifically made for redistribution)</li>
-            <li style={{ marginBottom: '12px' }}>Frame pages of this website in another website</li>
-          </ul>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Intellectual Property Rights
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            Unless otherwise stated, Temp Mail Pro and/or its licensors own the intellectual property rights for all material on www.mytempmail.pro. All intellectual property rights are reserved. You may access this for personal use subject to restrictions set in these terms and conditions.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Trademarks
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            The trademarks, logos, and brand names used on this website are the property of Temp Mail Pro or their respective owners. You may not use any of these marks without the prior written permission of Temp Mail Pro or the respective owner.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Third-Party Content
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            This website may contain content from third parties. The use of third-party content is for informational purposes only. We do not endorse and are not responsible for the accuracy or legitimacy of third-party content. If you believe any third-party content violates your intellectual property rights, please contact us immediately.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            DMCA Compliance
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            If you believe that your copyrighted work has been infringed upon in any way, please notify us immediately at Contact@mytempmail.pro with the following information:
-          </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '12px' }}>Your name and contact information</li>
-            <li style={{ marginBottom: '12px' }}>A detailed description of the copyrighted work</li>
-            <li style={{ marginBottom: '12px' }}>The URL where the infringing material is located</li>
-            <li style={{ marginBottom: '12px' }}>Your statement that you have a good faith belief that the use is not authorized</li>
-            <li style={{ marginBottom: '12px' }}>Your signature and declaration under penalty of perjury</li>
-          </ul>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            User-Generated Content
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            By submitting content to Temp Mail Pro (including but not limited to reviews, comments, or feedback), you grant us a non-exclusive, worldwide, perpetual, irrevocable, and royalty-free license to use that content in any way we deem appropriate.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Contact Us
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            If you have any questions about this Copyright Disclaimer or if you believe your intellectual property rights have been infringed, please contact us at:
-          </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '8px' }}>Email: Contact@mytempmail.pro</li>
-            <li style={{ marginBottom: '8px' }}>Website: www.mytempmail.pro</li>
-          </ul>
         </div>
+
+        {/* Main Content Sections */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '32px',
+          marginBottom: '60px'
+        }}>
+          {[
+            {
+              icon: '📋',
+              title: 'Ownership of Content',
+              content: 'All content on this website—including text, graphics, logos, images, and software—is owned by Temp Mail Pro or our suppliers and protected by international copyright laws. The complete compilation of website content is our exclusive property.'
+            },
+            {
+              icon: '©️',
+              title: 'Copyright Notice',
+              content: `© ${currentYear} Temp Mail Pro. All rights reserved. No part of this website may be copied, reproduced, or distributed without our prior written permission.`
+            },
+            {
+              icon: '✅',
+              title: 'Permitted Use',
+              content: 'You may view and print pages for personal, non-commercial use only. This does not include republishing, selling, or using content for commercial purposes.'
+            },
+            {
+              icon: '🏛️',
+              title: 'Intellectual Property Rights',
+              content: 'Temp Mail Pro and its licensors own all intellectual property rights for website materials. All rights are reserved. Personal access is permitted under these terms and conditions.'
+            },
+            {
+              icon: '™️',
+              title: 'Trademark Protection',
+              content: 'Our trademarks, logos, and brand names are our property. You may not use these marks without our written permission. Unauthorized use is prohibited.'
+            },
+            {
+              icon: '🔗',
+              title: 'Third-Party Content',
+              content: 'Third-party content is for informational purposes only. We do not endorse it and are not responsible for its accuracy. Report infringements immediately.'
+            }
+          ].map((item, idx) => (
+            <div key={idx} style={{
+              background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.5) 0%, rgba(30, 41, 82, 0.3) 100%)',
+              borderRadius: '16px',
+              padding: '32px',
+              border: '1px solid rgba(59, 130, 246, 0.15)',
+              transition: 'all 0.3s ease'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{item.icon}</div>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '12px', color: 'var(--text)' }}>
+                {item.title}
+              </h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.95rem' }}>
+                {item.content}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Restrictions Section */}
+        <section style={{ marginBottom: '60px' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '700', marginBottom: '32px', color: 'var(--text)' }}>
+            ⛔ Content Usage Restrictions
+          </h2>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%)',
+            borderRadius: '16px',
+            padding: '40px',
+            border: '1px solid rgba(239, 68, 68, 0.1)'
+          }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '24px', lineHeight: '1.7', fontSize: 'clamp(0.95rem, 2vw, 1.05rem)' }}>
+              You agree not to:
+            </p>
+            <ul style={{ paddingLeft: 0, margin: 0 }}>
+              {[
+                'Republish material from this website on other platforms',
+                'Sell, rent, or sub-license website material',
+                'Reproduce or duplicate content for commercial use',
+                'Redistribute content without permission',
+                'Frame our pages within another website',
+                'Use our content to create competing services',
+                'Scrape or automate content collection'
+              ].map((item, idx) => (
+                <li key={idx} style={{
+                  marginBottom: '16px',
+                  display: 'flex',
+                  gap: '12px',
+                  color: 'var(--text-muted)',
+                  lineHeight: '1.6',
+                  fontSize: 'clamp(0.95rem, 2vw, 1rem)'
+                }}>
+                  <span style={{ color: '#ef4444', fontWeight: '700', flexShrink: 0 }}>✕</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* DMCA Section */}
+        <section style={{ marginBottom: '60px' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '700', marginBottom: '32px', color: 'var(--text)' }}>
+            📜 DMCA Compliance & Copyright Claims
+          </h2>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
+            borderRadius: '16px',
+            padding: '40px',
+            border: '1px solid rgba(59, 130, 246, 0.15)'
+          }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '24px', lineHeight: '1.7', fontSize: 'clamp(0.95rem, 2vw, 1.05rem)' }}>
+              If you believe your copyrighted work has been infringed, notify us immediately at <strong>Contact@mytempmail.pro</strong> with:
+            </p>
+            <ul style={{ paddingLeft: 0, margin: 0 }}>
+              {[
+                'Your full name and contact information',
+                'Description of the copyrighted work',
+                'URL of the infringing material',
+                'Statement of good faith belief',
+                'Your signature under penalty of perjury'
+              ].map((item, idx) => (
+                <li key={idx} style={{
+                  marginBottom: '16px',
+                  display: 'flex',
+                  gap: '12px',
+                  color: 'var(--text-muted)',
+                  lineHeight: '1.6',
+                  fontSize: 'clamp(0.95rem, 2vw, 1rem)'
+                }}>
+                  <span style={{ color: '#10b981', fontWeight: '700', flexShrink: 0 }}>✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p style={{
+              marginTop: '24px',
+              paddingTop: '24px',
+              borderTop: '1px solid rgba(59, 130, 246, 0.1)',
+              color: 'var(--text-muted)',
+              fontSize: '0.9rem'
+            }}>
+              We will respond to all valid claims and take appropriate action.
+            </p>
+          </div>
+        </section>
+
+        {/* User-Generated Content */}
+        <section style={{ marginBottom: '60px' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '700', marginBottom: '32px', color: 'var(--text)' }}>
+            👥 User-Generated Content
+          </h2>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)',
+            borderRadius: '16px',
+            padding: '40px',
+            border: '1px solid rgba(59, 130, 246, 0.1)'
+          }}>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', fontSize: 'clamp(0.95rem, 2vw, 1.05rem)' }}>
+              By submitting content to Temp Mail Pro—including reviews, comments, feedback, or suggestions—you grant us a non-exclusive, worldwide, perpetual, irrevocable, and royalty-free license to use that content in any way we deem appropriate, including in marketing and product improvements.
+            </p>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section style={{
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
+          borderRadius: '20px',
+          padding: 'clamp(40px, 5vw, 60px) clamp(20px, 5vw, 40px)',
+          textAlign: 'center',
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          marginBottom: '60px'
+        }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
+            💬 Have Copyright Questions?
+          </h2>
+          <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', color: 'var(--text-muted)', marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
+            If you have questions about this policy or believe your intellectual property rights have been violated, contact us immediately.
+          </p>
+          <a href="mailto:Contact@mytempmail.pro" style={{
+            display: 'inline-block',
+            padding: '16px 40px',
+            background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
+            color: 'white',
+            borderRadius: '12px',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: '1rem',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 8px 24px rgba(59, 130, 246, 0.3)'
+          }}>
+            Contact@mytempmail.pro
+          </a>
+        </section>
+
+        {/* Footer */}
+        <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7' }}>
+            This Copyright Disclaimer outlines Temp Mail Pro's intellectual property rights and your permitted usage. By accessing our website, you agree to respect these terms. If you do not agree, please discontinue use immediately.
+          </p>
+          <p style={{ color: 'var(--text-muted)', marginTop: '24px', fontSize: '0.9rem', opacity: 0.8 }}>
+            © {currentYear} Temp Mail Pro. All rights reserved. | Website: www.mytempmail.pro
+          </p>
+        </section>
       </div>
     </div>
   );
