@@ -6,6 +6,7 @@ let firestoreInstance: FirebaseFirestore.Firestore | null = null;
 // Mock Firestore for development without credentials
 function createMockFirestore(): any {
   const mockStore: Record<string, Record<string, any>> = {};
+  const ipEmailMap: Record<string, { emailId: string; expiresAt: string }> = {};
   
   return {
     collection: (name: string) => ({
@@ -33,6 +34,11 @@ function createMockFirestore(): any {
       orderBy: () => ({
         get: async () => ({ docs: [] }),
       }),
+      where: (field: string, operator: string, value: string) => ({
+        get: async () => ({
+          docs: [],
+        }),
+      }),
       get: async () => ({ docs: [] }),
       limit: () => ({
         get: async () => ({ docs: [] }),
@@ -42,6 +48,14 @@ function createMockFirestore(): any {
       delete: () => {},
       commit: async () => {},
     }),
+    getIpEmailMap: () => ipEmailMap,
+    setIpEmail: (ip: string, emailId: string, expiresAt: string) => {
+      ipEmailMap[ip] = { emailId, expiresAt };
+    },
+    getIpEmail: (ip: string) => ipEmailMap[ip],
+    clearIpEmail: (ip: string) => {
+      delete ipEmailMap[ip];
+    },
   };
 }
 

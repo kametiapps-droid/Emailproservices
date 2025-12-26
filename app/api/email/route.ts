@@ -27,19 +27,50 @@ export async function POST(request: NextRequest) {
       );
     }
     
+    const db = getDb();
+    
+    // Check if IP already has an active email (one per IP per 24 hours)
+    const existingEmailData = (db as any).getIpEmail?.(clientIP);
+    if (existingEmailData) {
+      const expiresAt = new Date(existingEmailData.expiresAt);
+      // If email hasn't expired, return the existing one
+      if (expiresAt > new Date()) {
+        const emailDoc = await db.collection('temp_emails').doc(existingEmailData.emailId).get();
+        if (emailDoc.exists) {
+          const data = emailDoc.data();
+          const response = NextResponse.json({
+            success: true,
+            data: {
+              id: data.id,
+              email: data.email,
+              createdAt: data.createdAt,
+              expiresAt: data.expiresAt,
+            },
+          }, { headers: SECURITY_HEADERS });
+          response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+          return response;
+        }
+      } else {
+        // Email expired, clear the IP mapping
+        (db as any).clearIpEmail?.(clientIP);
+      }
+    }
+    
     const id = uuidv4();
     const email = generateRandomEmail();
     const createdAt = new Date();
     const expiresAt = getExpirationTime();
 
-    const db = getDb();
-    
     await db.collection('temp_emails').doc(id).set({
       id,
       email,
+      clientIP,
       createdAt: createdAt.toISOString(),
       expiresAt: expiresAt.toISOString(),
     }, { merge: false });
+    
+    // Track this email for the IP
+    (db as any).setIpEmail?.(clientIP, id, expiresAt.toISOString());
 
     const response = NextResponse.json({
       success: true,
@@ -137,6 +168,10 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
+    // Get the email document to find the IP
+    const emailDoc = await db.collection('temp_emails').doc(emailId).get();
+    const emailData = emailDoc.data();
+    
     // Delete the email document and all subcollections in parallel
     const docRef = db.collection('temp_emails').doc(emailId);
     const batch = db.batch();
@@ -159,6 +194,11 @@ export async function DELETE(request: NextRequest) {
     
     // Execute all deletions in one batch operation
     await batch.commit();
+    
+    // Clear IP mapping to allow new email generation
+    if (emailData?.clientIP) {
+      (db as any).clearIpEmail?.(emailData.clientIP);
+    }
 
     return NextResponse.json({ success: true }, { headers: SECURITY_HEADERS });
   } catch (error) {
