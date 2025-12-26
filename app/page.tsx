@@ -401,7 +401,7 @@ export default function Home() {
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
           <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
-          <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }} suppressHydrationWarning>
+          <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: '120px', marginTop: '30px' }} suppressHydrationWarning>
             {mounted && !showGenerator && (
               <button 
                 onClick={() => {
@@ -416,105 +416,52 @@ export default function Home() {
                 🚀 Generate Your Temporary Email Address
               </button>
             )}
+            {mounted && showGenerator && (
+              <div className="email-box" style={{ margin: '0 auto', width: '100%', maxWidth: '500px', padding: '20px', background: 'rgba(30, 41, 82, 0.8)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }} suppressHydrationWarning>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }} suppressHydrationWarning>
+                  <div className="email-header-label" style={{ color: '#10b981', fontSize: '0.9rem', fontWeight: '600' }} suppressHydrationWarning>Your Temporary Inbox 💚</div>
+                  <button onClick={() => setShowGenerator(false)} style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', padding: '4px 10px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', transition: 'all 0.2s' }}>✕ Close</button>
+                </div>
+                <div className="email-display" style={{ marginBottom: '15px', padding: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }} suppressHydrationWarning>
+                  {email ? (
+                    <span className="email-address" style={{ fontSize: '1.1rem', wordBreak: 'break-all' }} suppressHydrationWarning>{email.email}</span>
+                  ) : (
+                    <span className="email-address" style={{ color: '#10b981', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }} suppressHydrationWarning>
+                      <span className="spinner-small" style={{ width: '16px', height: '16px', border: '2px solid transparent', borderTopColor: '#10b981', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></span>
+                      Preparing...
+                    </span>
+                  )}
+                  {email && (
+                    <button className="copy-btn-icon" onClick={copyEmail} style={{ padding: '6px', color: '#3B82F6' }} title="Copy">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                  <button className="action-btn" onClick={fetchInbox} style={{ padding: '8px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
+                    Refresh
+                  </button>
+                  <button className="action-btn" onClick={generateEmail} disabled={loading} style={{ padding: '8px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    New
+                  </button>
+                  <button className="action-btn danger" onClick={deleteEmail} style={{ padding: '8px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {mounted && showGenerator && (
-        <div className="container" suppressHydrationWarning>
-          <div className="email-box" suppressHydrationWarning>
-            {loading && !email && (
-              <div className="email-loading-indicator" suppressHydrationWarning>
-                <div className="spinner" suppressHydrationWarning></div>
-                <p suppressHydrationWarning>Generating temporary email...</p>
-              </div>
-            )}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }} suppressHydrationWarning>
-              <div className="email-header-label" style={{ color: '#10b981' }} suppressHydrationWarning>Your Private Temp Mail Inbox 💚</div>
-              <button 
-                onClick={() => setShowGenerator(false)}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  color: 'var(--text)',
-                  padding: '8px 16px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                }}
-              >
-                ✕ Close
-              </button>
-            </div>
-            <div className="email-display" suppressHydrationWarning>
-              {email ? (
-                <span className="email-address" suppressHydrationWarning>{email.email}</span>
-              ) : (
-                <span className="email-address" style={{ color: '#10b981', fontSize: '1.1rem', fontWeight: '500' }} suppressHydrationWarning>
-                  <span style={{ display: 'inline-block', marginRight: '10px', animation: 'spin 1s linear infinite' }}>⏳</span>
-                  Your email is being prepared...
-                </span>
-              )}
-              {email && (
-                <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                  </svg>
-                </button>
-              )}
-            </div>
-
-            <div className="timer" suppressHydrationWarning>
-              <span className="timer-icon" suppressHydrationWarning>⏱️</span>
-              <span className="timer-text" suppressHydrationWarning>{timeLeft || '24h 0m remaining'}</span>
-            </div>
-
-            <div className="action-buttons">
-              <button className="action-btn" onClick={fetchInbox}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
-                </svg>
-                Refresh
-              </button>
-              <button className="action-btn" ref={qrButtonRef} onClick={showQRCode}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="3" width="7" height="7"></rect>
-                  <rect x="3" y="14" width="7" height="7"></rect>
-                  <rect x="14" y="14" width="7" height="7"></rect>
-                </svg>
-                QR Code
-              </button>
-              <button className="action-btn" onClick={generateEmail} disabled={loading}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                </svg>
-                New Email
-              </button>
-              <button className="action-btn danger" onClick={deleteEmail}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="3 6 5 6 21 6"></polyline>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                </svg>
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {mounted && showGenerator && (
-      <section className="inbox-section">
+        <section className="inbox-section" style={{ marginTop: '0', paddingTop: '20px' }}>
         <div className="inbox-header">
           <div className="inbox-header-left">
             <h2 className="inbox-title">
