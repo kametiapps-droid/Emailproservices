@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and use secure temporary email for testing. No registration required.',
     images: [
       {
-        url: 'https://www.mytempmail.pro/logo.png',
+        url: '/logo.png',
         width: 512,
         height: 512,
         alt: 'Temp Mail Pro - Free Temporary Email Service',
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Temp Mail - Temporary Disposable Email',
     description: 'Generate free temporary disposable email instantly. Privacy-focused email for testing and signup verification.',
-    images: ['https://www.mytempmail.pro/logo.png'],
+    images: ['/logo.png'],
     creator: '@tempmail',
   },
   robots: {
