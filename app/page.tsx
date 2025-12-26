@@ -165,6 +165,10 @@ export default function Home() {
               const data = await response.json();
               if (data.success) {
                 setMessages(data.data);
+                // Keep generator open if user has messages
+                if (data.data && data.data.length > 0) {
+                  setShowGenerator(true);
+                }
               }
             }
           });
@@ -454,7 +458,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="timer">
+            <div className="timer" suppressHydrationWarning>
               <span className="timer-icon">⏱️</span>
               <span className="timer-text">{timeLeft || '24h 0m remaining'}</span>
             </div>
