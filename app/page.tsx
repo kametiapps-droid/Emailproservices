@@ -164,15 +164,13 @@ export default function Home() {
           checkExistingEmail(storedEmail).then(async (isValid) => {
             if (!isValid) {
               localStorage.removeItem('tempEmail');
-              // Don't auto-generate on refresh if it was invalid
-              // generateEmail(); 
+              setEmail(null); // Clear invalid email state
             } else {
               // Valid, fetch inbox
               const response = await fetch(`/api/inbox?emailId=${storedEmail.id}`);
               const data = await response.json();
               if (data.success) {
                 setMessages(data.data);
-                // Keep generator open if user has messages
                 if (data.data && data.data.length > 0) {
                   setShowGenerator(true);
                 }
@@ -182,27 +180,30 @@ export default function Home() {
         } catch {
           localStorage.removeItem('tempEmail');
           setLoading(false);
-          // generateEmail();
+          setEmail(null);
         }
       } else {
         setLoading(false);
       }
       
-      // Fetch recent reviews
-      try {
-        const cached = localStorage.getItem('tempmail_feedback_cache');
-        if (cached) {
-          const data = JSON.parse(cached);
-          setRecentReviews(data.slice(0, 5));
+      // Fetch recent reviews in background after initial render
+      setTimeout(async () => {
+        try {
+          const cached = localStorage.getItem('tempmail_feedback_cache');
+          if (cached) {
+            const data = JSON.parse(cached);
+            setRecentReviews(data.slice(0, 5));
+          }
+          const response = await fetch('/api/feedback');
+          if (response.ok) {
+            const data = await response.json();
+            setRecentReviews(data.slice(0, 5));
+            localStorage.setItem('tempmail_feedback_cache', JSON.stringify(data));
+          }
+        } catch (error) {
+          console.error('Error loading recent reviews:', error);
         }
-        const response = await fetch('/api/feedback');
-        if (response.ok) {
-          const data = await response.json();
-          setRecentReviews(data.slice(0, 5));
-        }
-      } catch (error) {
-        console.error('Error loading recent reviews:', error);
-      }
+      }, 1000);
     };
     init();
   }, []);
@@ -396,17 +397,12 @@ export default function Home() {
 
   return (
     <div className={`page-container ${!mounted ? 'loading-state' : ''}`} suppressHydrationWarning>
-      {!mounted && (
-        <div style={{ position: 'fixed', inset: 0, background: '#fff', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <div className="spinner"></div>
-        </div>
-      )}
       <section className="hero" style={{ minHeight: '60vh' }} suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
           <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }} suppressHydrationWarning>
-            {!showGenerator && (
+            {mounted && !showGenerator && (
               <button 
                 onClick={() => {
                   setShowGenerator(true);
