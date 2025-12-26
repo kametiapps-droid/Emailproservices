@@ -52,6 +52,15 @@
     border-radius: 16px !important;
   }
 }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .email-box { background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%); border-radius: 16px; padding: 24px; margin: 24px auto; max-width: 800px; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08); backdrop-filter: blur(5px); contain: layout style; }
 
 .cta-section {

@@ -412,7 +412,14 @@ export default function Home() {
                 style={{ margin: '0 auto', display: 'block' }}
                 disabled={loading}
               >
-                🚀 Generate Your Temporary Email Address
+                {loading ? (
+                  <>
+                    <span style={{ display: 'inline-block', marginRight: '8px', animation: 'spin 1s linear infinite' }}>⏳</span>
+                    Generating Email...
+                  </>
+                ) : (
+                  <>🚀 Generate Your Temporary Email Address</>
+                )}
               </button>
             )}
           </div>
