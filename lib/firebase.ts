@@ -83,15 +83,9 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
   if (getApps().length === 0) {
     const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY || process.env.FIREBASE_SERVICES_KEY;
     
-    // Ensure Firebase is initialized with real credentials in production
+    // Ensure Firebase is initialized with real credentials
     if (!serviceAccountKey) {
-      // During build time or local development without credentials, we can fallback to mock
-      if (process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview') {
-        console.warn('FIREBASE_SERVICE_ACCOUNT_KEY not found. Using mock Firestore for development.');
-        firestoreInstance = createMockFirestore();
-        return firestoreInstance!;
-      }
-      throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY is required for production mode.');
+      throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY is required. Please add your Firebase service account key in the Secrets tab.');
     }
 
     try {
