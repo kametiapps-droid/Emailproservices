@@ -2,7 +2,7 @@
 
 export default function CopyrightPage() {
   const currentYear = new Date().getFullYear();
-  const lastUpdated = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const lastUpdated = "November 25, 2025";
 
   return (
     <div className="page-container">
