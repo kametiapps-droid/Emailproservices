@@ -206,12 +206,7 @@ export default function Home() {
     init();
   }, []);
 
-  // Auto-generate email when generator opens (only once)
-  useEffect(() => {
-    if (showGenerator && !email && !loading && !isGeneratingRef.current) {
-      generateEmail();
-    }
-  }, [showGenerator]);
+  // Don't auto-generate - let user click button or load from localStorage
 
   useEffect(() => {
     if (email?.id) {
@@ -403,10 +398,13 @@ export default function Home() {
               <button 
                 onClick={() => {
                   setShowGenerator(true);
-                  generateEmail();
+                  if (!email && !isGeneratingRef.current) {
+                    generateEmail();
+                  }
                 }}
                 className="btn-hero-primary"
                 style={{ margin: '0 auto', display: 'block' }}
+                disabled={loading}
               >
                 🚀 Generate Your Temporary Email Address
               </button>
