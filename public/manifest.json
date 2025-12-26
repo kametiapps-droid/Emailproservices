@@ -22,5 +22,8 @@
       "purpose": "maskable"
     }
   ],
-  "categories": ["productivity", "utilities"]
+  "categories": [
+    "productivity",
+    "utilities"
+  ]
 }
