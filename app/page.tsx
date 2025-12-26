@@ -383,8 +383,8 @@ export default function Home() {
   };
 
   return (
-    <div className="page-container">
-      <section className="hero">
+    <div className="page-container" suppressHydrationWarning>
+      <section className="hero" suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }}>
           <h1 style={{ textAlign: 'center', width: '100%' }}>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }}>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
@@ -406,15 +406,15 @@ export default function Home() {
       </section>
 
       {showGenerator && (
-        <div className="container">
+        <div className="container" suppressHydrationWarning>
           <div className="email-box">
             {loading && !email && (
-              <div className="email-loading-indicator">
+              <div className="email-loading-indicator" suppressHydrationWarning>
                 <div className="spinner"></div>
                 <p>Generating temporary email...</p>
               </div>
             )}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }} suppressHydrationWarning>
               <div className="email-header-label" style={{ color: '#10b981' }}>Your Private Temp Mail Inbox 💚</div>
               <button 
                 onClick={() => setShowGenerator(false)}
@@ -440,8 +440,12 @@ export default function Home() {
                 ✕ Close
               </button>
             </div>
-            <div className="email-display">
-              <span className="email-address">{displayEmail.email}</span>
+            <div className="email-display" suppressHydrationWarning>
+              {email ? (
+                <span className="email-address">{email.email}</span>
+              ) : (
+                <span className="email-address" style={{ color: 'var(--text-dim)' }}>Loading email...</span>
+              )}
               <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
