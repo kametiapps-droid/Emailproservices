@@ -3,6 +3,48 @@ import { getFirestore } from 'firebase-admin/firestore';
 
 let firestoreInstance: FirebaseFirestore.Firestore | null = null;
 
+// Mock Firestore for development without credentials
+function createMockFirestore(): any {
+  const mockStore: Record<string, Record<string, any>> = {};
+  
+  return {
+    collection: (name: string) => ({
+      doc: (id: string) => ({
+        set: async (data: any) => {
+          if (!mockStore[name]) mockStore[name] = {};
+          mockStore[name][id] = data;
+        },
+        get: async () => ({
+          exists: !!mockStore[name]?.[id],
+          data: () => mockStore[name]?.[id],
+        }),
+        delete: async () => {
+          if (mockStore[name]) delete mockStore[name][id];
+        },
+        collection: (subcollection: string) => ({
+          limit: () => ({
+            get: async () => ({ docs: [] }),
+          }),
+        }),
+      }),
+      add: async (data: any) => ({
+        id: Math.random().toString(36).substr(2, 9),
+      }),
+      orderBy: () => ({
+        get: async () => ({ docs: [] }),
+      }),
+      get: async () => ({ docs: [] }),
+      limit: () => ({
+        get: async () => ({ docs: [] }),
+      }),
+    }),
+    batch: () => ({
+      delete: () => {},
+      commit: async () => {},
+    }),
+  };
+}
+
 interface ServiceAccountKey {
   type: string;
   project_id: string;
@@ -31,6 +73,11 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
       if (process.env.VERCEL_ENV === 'preview' || process.env.VERCEL_ENV === 'production') {
         // Build time on Vercel - skip initialization for now
         throw new Error('Firebase credentials not available during build. Please ensure FIREBASE_SERVICE_ACCOUNT_KEY is set in Vercel environment variables.');
+      }
+      // In development mode (Replit), return a mock instance that allows the app to function
+      if (process.env.NODE_ENV === 'development') {
+        // Return a mock Firestore instance for development
+        return createMockFirestore();
       }
       throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY or FIREBASE_SERVICES_KEY environment variable is not set. Please add your Firebase service account key in the Secrets tab.');
     }
