@@ -412,16 +412,8 @@ export default function Home() {
                 }}
                 className="btn-hero-primary"
                 style={{ margin: '0 auto', display: 'block' }}
-                disabled={loading}
               >
-                {loading ? (
-                  <>
-                    <span style={{ display: 'inline-block', marginRight: '8px', animation: 'spin 1s linear infinite' }}>⏳</span>
-                    Generating Email...
-                  </>
-                ) : (
-                  <>🚀 Generate Your Temporary Email Address</>
-                )}
+                🚀 Generate Your Temporary Email Address
               </button>
             )}
           </div>
@@ -467,14 +459,19 @@ export default function Home() {
               {email ? (
                 <span className="email-address" suppressHydrationWarning>{email.email}</span>
               ) : (
-                <span className="email-address" style={{ color: 'var(--text-dim)' }} suppressHydrationWarning>Loading email...</span>
+                <span className="email-address" style={{ color: '#10b981', fontSize: '1.1rem', fontWeight: '500' }} suppressHydrationWarning>
+                  <span style={{ display: 'inline-block', marginRight: '10px', animation: 'spin 1s linear infinite' }}>⏳</span>
+                  Your email is being prepared...
+                </span>
               )}
-              <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-              </button>
+              {email && (
+                <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              )}
             </div>
 
             <div className="timer" suppressHydrationWarning>
