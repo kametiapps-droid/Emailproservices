@@ -403,7 +403,7 @@ export default function Home() {
             {loading && !email && (
               <div className="email-loading-indicator">
                 <div className="spinner"></div>
-                <p>Generating fake email...</p>
+                <p>Generating temporary email...</p>
               </div>
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>

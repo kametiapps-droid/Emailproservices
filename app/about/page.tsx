@@ -29,7 +29,7 @@ export default function AboutPage() {
             <li style={{ marginBottom: '12px' }}>Maintain your <strong>email privacy protection</strong> online</li>
             <li style={{ marginBottom: '12px' }}>Use an <strong>alternative email</strong> or <strong>burner email address</strong> for newsletters, trials, and testing</li>
             <li style={{ marginBottom: '12px' }}>Access a <strong>temporary inbox online</strong> without a <strong>no registration email service</strong></li>
-            <li style={{ marginBottom: '12px' }}>Use a <strong>fake email generator</strong> for <strong>online verification</strong></li>
+            <li style={{ marginBottom: '12px' }}>Use a <strong>temporary email generator</strong> for <strong>online verification</strong></li>
           </ul>
 
           <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>

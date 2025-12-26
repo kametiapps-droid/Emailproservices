@@ -20,7 +20,7 @@ const faqData: FAQItem[] = [
     id: '2',
     category: 'Getting Started',
     question: 'How quickly can I get an email address?',
-    answer: 'Our service is lightning-fast. With our fast temporary email technology, a unique temporary inbox online is generated for you automatically. There are no forms to fill out and no waiting periods. It is widely considered the best fake email generator for quick email sign up because it eliminates all barriers to entry. Whether you are in a rush to verify a download or just want to browse a site without being tracked, your new email is ready to use in milliseconds.'
+    answer: 'Our service is lightning-fast. With our fast temporary email technology, a unique temporary inbox online is generated for you automatically. There are no forms to fill out and no waiting periods. It is widely considered the best temporary email generator for quick email sign up because it eliminates all barriers to entry. Whether you are in a rush to verify a download or just want to browse a site without being tracked, your new email is ready to use in milliseconds.'
   },
   {
     id: '3',
