@@ -83,21 +83,15 @@ function initFirebaseAdmin(): FirebaseFirestore.Firestore {
   if (getApps().length === 0) {
     const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY || process.env.FIREBASE_SERVICES_KEY;
     
-    // During build time on Vercel, Firebase key may not be available - that's ok
+    // Ensure Firebase is initialized with real credentials in production
     if (!serviceAccountKey) {
-      if (process.env.VERCEL_ENV === 'preview' || process.env.VERCEL_ENV === 'production') {
-        // Build time on Vercel - skip initialization for now
-        // Return a mock instance instead of throwing during build to satisfy type checking
+      // During build time or local development without credentials, we can fallback to mock
+      if (process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview') {
+        console.warn('FIREBASE_SERVICE_ACCOUNT_KEY not found. Using mock Firestore for development.');
         firestoreInstance = createMockFirestore();
         return firestoreInstance!;
       }
-      // In development mode (Replit), return a mock instance that allows the app to function
-      if (process.env.NODE_ENV === 'development') {
-        // Return a mock Firestore instance for development
-        firestoreInstance = createMockFirestore();
-        return firestoreInstance!;
-      }
-      throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY or FIREBASE_SERVICES_KEY environment variable is not set. Please add your Firebase service account key in the Secrets tab.');
+      throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY is required for production mode.');
     }
 
     try {
