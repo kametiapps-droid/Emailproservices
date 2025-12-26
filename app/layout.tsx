@@ -253,7 +253,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Analytics */}
         
@@ -294,7 +294,9 @@ export default function RootLayout({
       </head>
       <body data-theme="light" className="inter-font" suppressHydrationWarning>
         <Header />
-        <main suppressHydrationWarning>{children}</main>
+        <div suppressHydrationWarning>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

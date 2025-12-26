@@ -393,6 +393,10 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div className="page-container" suppressHydrationWarning>
       <section className="hero" suppressHydrationWarning>
