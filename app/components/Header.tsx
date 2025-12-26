@@ -73,7 +73,7 @@ export default function Header() {
       <div className="container header-content">
         <Link href="/" className="logo" onClick={closeMenu}>
           <Image 
-            src="/favicon.png" 
+            src="/logo.png" 
             alt="Temp Mail Pro Logo" 
             width={28} 
             height={28}
