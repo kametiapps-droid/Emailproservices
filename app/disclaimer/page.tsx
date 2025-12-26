@@ -327,11 +327,8 @@ export default function DisclaimerPage() {
 
         {/* Footer */}
         <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
-          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7', marginBottom: '16px' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7' }}>
             By using Temp Mail Pro, you acknowledge that you have read, understood, and agree to all terms in this disclaimer. If you do not agree with any part of this disclaimer, please discontinue use of our service immediately.
-          </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', opacity: 0.8 }}>
-            © 2024 Temp Mail Pro. All rights reserved. | www.mytempmail.pro
           </p>
         </section>
       </div>

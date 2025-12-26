@@ -307,44 +307,10 @@ export default function TermsPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section style={{
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
-          borderRadius: '20px',
-          padding: 'clamp(40px, 5vw, 60px) clamp(20px, 5vw, 40px)',
-          textAlign: 'center',
-          border: '1px solid rgba(59, 130, 246, 0.2)',
-          marginBottom: '60px'
-        }}>
-          <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
-            9️⃣ Questions About Our Terms?
-          </h2>
-          <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', color: 'var(--text-muted)', marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
-            If you have any questions or concerns about these terms and conditions, please don't hesitate to contact us.
-          </p>
-          <a href="mailto:Contact@mytempmail.pro" style={{
-            display: 'inline-block',
-            padding: '16px 40px',
-            background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
-            color: 'white',
-            borderRadius: '12px',
-            textDecoration: 'none',
-            fontWeight: '600',
-            fontSize: '1rem',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 8px 24px rgba(59, 130, 246, 0.3)'
-          }}>
-            Contact Us
-          </a>
-        </section>
-
         {/* Footer */}
         <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
-          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7', marginBottom: '16px' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7' }}>
             By using Temp Mail Pro, you acknowledge that you have read, understood, and agree to be bound by all terms and conditions in this agreement. If you do not agree with any part of these terms, please do not use our service.
-          </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', opacity: 0.8 }}>
-            © 2024 Temp Mail Pro. All rights reserved. | www.mytempmail.pro
           </p>
         </section>
       </div>

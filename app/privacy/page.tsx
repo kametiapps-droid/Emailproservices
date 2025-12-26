@@ -382,11 +382,8 @@ export default function PrivacyPage() {
 
         {/* Footer */}
         <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
-          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7', marginBottom: '16px' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.9rem, 2vw, 1rem)', lineHeight: '1.7' }}>
             We comply with GDPR, CCPA, and other international data protection regulations. Your privacy is not negotiable, and we take it seriously.
-          </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', opacity: 0.8 }}>
-            © 2024 Temp Mail Pro. All rights reserved. | www.mytempmail.pro
           </p>
         </section>
       </div>

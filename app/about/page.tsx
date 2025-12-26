@@ -256,25 +256,6 @@ export default function AboutPage() {
             Generate Your Email Now
           </a>
         </section>
-
-        {/* Contact */}
-        <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
-          <h3 style={{ fontSize: 'clamp(1.1rem, 4vw, 1.3rem)', fontWeight: '700', marginBottom: '20px' }}>Get In Touch</h3>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>
-            Have questions or feedback? We'd love to hear from you.
-          </p>
-          <a href="mailto:Contact@mytempmail.pro" style={{
-            color: '#3B82F6',
-            textDecoration: 'none',
-            fontWeight: '500',
-            transition: 'opacity 0.3s'
-          }}>
-            Contact@mytempmail.pro
-          </a>
-          <p style={{ color: 'var(--text-muted)', marginTop: '40px', fontSize: '0.95rem', opacity: 0.8 }}>
-            © 2024 Temp Mail Pro. Your privacy matters to us.
-          </p>
-        </section>
       </div>
     </div>
   );
