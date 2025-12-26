@@ -294,7 +294,7 @@ export default function RootLayout({
       </head>
       <body data-theme="light" className="inter-font" suppressHydrationWarning>
         <Header />
-        <main>{children}</main>
+        <main suppressHydrationWarning>{children}</main>
         <Footer />
       </body>
     </html>

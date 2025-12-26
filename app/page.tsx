@@ -428,15 +428,15 @@ export default function Home() {
 
       {mounted && showGenerator && (
         <div className="container" suppressHydrationWarning>
-          <div className="email-box">
+          <div className="email-box" suppressHydrationWarning>
             {loading && !email && (
               <div className="email-loading-indicator" suppressHydrationWarning>
-                <div className="spinner"></div>
-                <p>Generating temporary email...</p>
+                <div className="spinner" suppressHydrationWarning></div>
+                <p suppressHydrationWarning>Generating temporary email...</p>
               </div>
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }} suppressHydrationWarning>
-              <div className="email-header-label" style={{ color: '#10b981' }}>Your Private Temp Mail Inbox 💚</div>
+              <div className="email-header-label" style={{ color: '#10b981' }} suppressHydrationWarning>Your Private Temp Mail Inbox 💚</div>
               <button 
                 onClick={() => setShowGenerator(false)}
                 style={{
@@ -463,9 +463,9 @@ export default function Home() {
             </div>
             <div className="email-display" suppressHydrationWarning>
               {email ? (
-                <span className="email-address">{email.email}</span>
+                <span className="email-address" suppressHydrationWarning>{email.email}</span>
               ) : (
-                <span className="email-address" style={{ color: 'var(--text-dim)' }}>Loading email...</span>
+                <span className="email-address" style={{ color: 'var(--text-dim)' }} suppressHydrationWarning>Loading email...</span>
               )}
               <button className="copy-btn-icon" onClick={copyEmail} disabled={!email} title={copied ? 'Copied!' : 'Copy to clipboard'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -476,8 +476,8 @@ export default function Home() {
             </div>
 
             <div className="timer" suppressHydrationWarning>
-              <span className="timer-icon">⏱️</span>
-              <span className="timer-text">{timeLeft || '24h 0m remaining'}</span>
+              <span className="timer-icon" suppressHydrationWarning>⏱️</span>
+              <span className="timer-text" suppressHydrationWarning>{timeLeft || '24h 0m remaining'}</span>
             </div>
 
             <div className="action-buttons">
