@@ -56,7 +56,16 @@ export default function Header() {
   };
 
   if (!mounted) {
-    return null;
+    return (
+      <header className="site-header">
+        <div className="container header-content">
+          <div className="logo" style={{ opacity: 0.5 }}>
+            <div style={{ width: 28, height: 28, borderRadius: '8px', background: '#eee' }}></div>
+            Temp Mail Pro
+          </div>
+        </div>
+      </header>
+    );
   }
 
   return (

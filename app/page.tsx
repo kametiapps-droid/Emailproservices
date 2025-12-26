@@ -393,12 +393,13 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
   return (
-    <div className="page-container" suppressHydrationWarning>
+    <div className={`page-container ${!mounted ? 'loading-state' : ''}`} suppressHydrationWarning>
+      {!mounted && (
+        <div style={{ position: 'fixed', inset: 0, background: '#fff', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           <div className="spinner"></div>
+        </div>
+      )}
       <section className="hero" suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
           <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
