@@ -164,7 +164,8 @@ export default function Home() {
           checkExistingEmail(storedEmail).then(async (isValid) => {
             if (!isValid) {
               localStorage.removeItem('tempEmail');
-              generateEmail();
+              // Don't auto-generate on refresh if it was invalid
+              // generateEmail(); 
             } else {
               // Valid, fetch inbox
               const response = await fetch(`/api/inbox?emailId=${storedEmail.id}`);
@@ -181,7 +182,7 @@ export default function Home() {
         } catch {
           localStorage.removeItem('tempEmail');
           setLoading(false);
-          generateEmail();
+          // generateEmail();
         }
       } else {
         setLoading(false);
@@ -405,7 +406,7 @@ export default function Home() {
           <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }} suppressHydrationWarning>
-            {mounted && !showGenerator && (
+            {!showGenerator && (
               <button 
                 onClick={() => {
                   setShowGenerator(true);
