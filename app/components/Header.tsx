@@ -8,7 +8,10 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     // Force light mode as default unless explicitly saved as dark
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -51,6 +54,19 @@ export default function Header() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  if (!mounted) {
+    return (
+      <header className="site-header">
+        <div className="container header-content">
+          <div className="logo">
+            <div style={{ width: 28, height: 28, borderRadius: '8px', background: '#eee' }}></div>
+            Temp Mail Pro
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="site-header">

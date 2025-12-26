@@ -400,7 +400,7 @@ export default function Home() {
           <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }} suppressHydrationWarning>
-            {(!mounted || !showGenerator) && (
+            {mounted && !showGenerator && (
               <button 
                 onClick={() => {
                   setShowGenerator(true);
@@ -426,7 +426,7 @@ export default function Home() {
         </div>
       </section>
 
-      {showGenerator && (
+      {mounted && showGenerator && (
         <div className="container" suppressHydrationWarning>
           <div className="email-box">
             {loading && !email && (
@@ -514,7 +514,7 @@ export default function Home() {
         </div>
       )}
 
-      {showGenerator && (
+      {mounted && showGenerator && (
       <section className="inbox-section">
         <div className="inbox-header">
           <div className="inbox-header-left">
