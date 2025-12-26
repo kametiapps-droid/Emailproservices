@@ -292,7 +292,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body data-theme="light" className="inter-font">
+      <body data-theme="light" className="inter-font" suppressHydrationWarning>
         <Header />
         <main>{children}</main>
         <Footer />

@@ -38,17 +38,19 @@ export async function POST(request: NextRequest) {
         const emailDoc = await db.collection('temp_emails').doc(existingEmailData.emailId).get();
         if (emailDoc.exists) {
           const data = emailDoc.data();
-          const response = NextResponse.json({
-            success: true,
-            data: {
-              id: data.id,
-              email: data.email,
-              createdAt: data.createdAt,
-              expiresAt: data.expiresAt,
-            },
-          }, { headers: SECURITY_HEADERS });
-          response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-          return response;
+          if (data) {
+            const response = NextResponse.json({
+              success: true,
+              data: {
+                id: data.id,
+                email: data.email,
+                createdAt: data.createdAt,
+                expiresAt: data.expiresAt,
+              },
+            }, { headers: SECURITY_HEADERS });
+            response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+            return response;
+          }
         }
       } else {
         // Email expired, clear the IP mapping
