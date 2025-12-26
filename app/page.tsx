@@ -54,6 +54,7 @@ export default function Home() {
   const [showGenerator, setShowGenerator] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
+  const isGeneratingRef = useRef(false);
 
   useEffect(() => {
     if (showQR) {
@@ -80,8 +81,12 @@ export default function Home() {
     };
   }, [showQR]);
 
-  const generateEmail = async () => {
+  const generateEmail = useCallback(async () => {
+    // Prevent multiple simultaneous generations
+    if (isGeneratingRef.current) return;
+    
     try {
+      isGeneratingRef.current = true;
       setLoading(true);
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
@@ -106,8 +111,9 @@ export default function Home() {
       console.error('Failed to generate email:', error);
     } finally {
       setLoading(false);
+      isGeneratingRef.current = false;
     }
-  };
+  }, []);
 
   const fetchInbox = useCallback(async () => {
     if (!email?.id) return;
@@ -200,12 +206,12 @@ export default function Home() {
     init();
   }, []);
 
-  // Auto-generate email when generator opens
+  // Auto-generate email when generator opens (only once)
   useEffect(() => {
-    if (showGenerator && !email && !loading) {
+    if (showGenerator && !email && !loading && !isGeneratingRef.current) {
       generateEmail();
     }
-  }, [showGenerator, email, loading]);
+  }, [showGenerator]);
 
   useEffect(() => {
     if (email?.id) {
@@ -479,7 +485,7 @@ export default function Home() {
                 </svg>
                 QR Code
               </button>
-              <button className="action-btn" onClick={generateEmail}>
+              <button className="action-btn" onClick={generateEmail} disabled={loading}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                 </svg>
