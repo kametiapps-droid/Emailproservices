@@ -84,9 +84,13 @@ export default function Home() {
     try {
       setLoading(true);
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
       
-      const response = await fetch('/api/email', { method: 'POST', signal: controller.signal });
+      const response = await fetch('/api/email', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal 
+      });
       clearTimeout(timeoutId);
       
       const data = await response.json();
@@ -95,7 +99,11 @@ export default function Home() {
         localStorage.setItem('tempEmail', JSON.stringify(data.data));
         setMessages([]);
         setSelectedMessage(null);
+      } else {
+        console.error('API error:', data.error);
       }
+    } catch (error) {
+      console.error('Failed to generate email:', error);
     } finally {
       setLoading(false);
     }
@@ -385,7 +393,7 @@ export default function Home() {
               <button 
                 onClick={() => {
                   setShowGenerator(true);
-                  setLoading(true);
+                  generateEmail();
                 }}
                 className="btn-hero-primary"
                 style={{ margin: '0 auto', display: 'block' }}
