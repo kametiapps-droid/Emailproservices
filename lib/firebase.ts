@@ -3,11 +3,12 @@ import { getFirestore } from 'firebase-admin/firestore';
 
 let firestoreInstance: FirebaseFirestore.Firestore | null = null;
 
+// Global IP email map for one-per-IP-per-24h limit (persists across requests)
+const globalIpEmailMap: Record<string, { emailId: string; expiresAt: string }> = {};
+const mockStore: Record<string, Record<string, any>> = {};
+
 // Mock Firestore for development without credentials
 function createMockFirestore(): any {
-  const mockStore: Record<string, Record<string, any>> = {};
-  const ipEmailMap: Record<string, { emailId: string; expiresAt: string }> = {};
-  
   return {
     collection: (name: string) => ({
       doc: (id: string) => ({
@@ -48,13 +49,13 @@ function createMockFirestore(): any {
       delete: () => {},
       commit: async () => {},
     }),
-    getIpEmailMap: () => ipEmailMap,
+    getIpEmailMap: () => globalIpEmailMap,
     setIpEmail: (ip: string, emailId: string, expiresAt: string) => {
-      ipEmailMap[ip] = { emailId, expiresAt };
+      globalIpEmailMap[ip] = { emailId, expiresAt };
     },
-    getIpEmail: (ip: string) => ipEmailMap[ip],
+    getIpEmail: (ip: string) => globalIpEmailMap[ip],
     clearIpEmail: (ip: string) => {
-      delete ipEmailMap[ip];
+      delete globalIpEmailMap[ip];
     },
   };
 }
