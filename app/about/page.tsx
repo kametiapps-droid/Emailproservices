@@ -5,20 +5,20 @@ export default function AboutPage() {
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '16px' }}>About Temp Mail Pro</h1>
-          <p style={{ fontSize: '1.2rem', opacity: 0.9 }}>Protecting your privacy, one temporary email at a time</p>
+          <h1 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', fontWeight: '800', marginBottom: '16px' }}>About Temp Mail Pro</h1>
+          <p style={{ fontSize: 'clamp(1rem, 3vw, 1.2rem)', opacity: 0.9 }}>Protecting your privacy, one temporary email at a time</p>
         </div>
       </section>
 
-      <div className="container" style={{ maxWidth: '1100px', paddingTop: '80px', paddingBottom: '80px' }}>
+      <div className="container" style={{ maxWidth: '1100px', paddingTop: '60px', paddingBottom: '80px', padding: '60px 20px' }}>
         {/* Mission Section */}
         <section style={{ marginBottom: '80px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center' }}>
             <div>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '24px', color: 'var(--text)' }}>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '700', marginBottom: '24px', color: 'var(--text)' }}>
                 Our Mission
               </h2>
-              <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-muted)', marginBottom: '20px' }}>
+              <p style={{ fontSize: 'clamp(1rem, 2vw, 1.1rem)', lineHeight: '1.8', color: 'var(--text-muted)', marginBottom: '20px' }}>
                 We believe everyone deserves the right to privacy in the digital world. Our mission is to provide a simple, secure, and reliable way to protect your personal information while browsing the web, signing up for services, or testing applications.
               </p>
               <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-muted)' }}>
@@ -41,7 +41,7 @@ export default function AboutPage() {
 
         {/* What We Offer */}
         <section style={{ marginBottom: '80px' }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '50px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '700', marginBottom: '50px', textAlign: 'center' }}>
             What We Offer
           </h2>
           <div style={{
@@ -80,12 +80,12 @@ export default function AboutPage() {
 
         {/* Why Choose Us */}
         <section style={{ marginBottom: '80px' }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '50px', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '700', marginBottom: '50px', textAlign: 'center' }}>
             Why Choose Temp Mail Pro?
           </h2>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '40px',
             alignItems: 'center'
           }}>
@@ -143,7 +143,7 @@ export default function AboutPage() {
         <section style={{ marginBottom: '80px' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '40px'
           }}>
             <div style={{
@@ -230,15 +230,15 @@ export default function AboutPage() {
         <section style={{
           background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
           borderRadius: '20px',
-          padding: '60px 40px',
+          padding: 'clamp(40px, 5vw, 60px) clamp(20px, 5vw, 40px)',
           textAlign: 'center',
           border: '1px solid rgba(59, 130, 246, 0.2)',
           marginBottom: '60px'
         }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
             Ready to protect your privacy?
           </h2>
-          <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
+          <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', color: 'var(--text-muted)', marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
             Get started instantly with Temp Mail Pro. No signup, no fees, no hassle.
           </p>
           <a href="/" style={{
@@ -259,8 +259,8 @@ export default function AboutPage() {
 
         {/* Contact */}
         <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
-          <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '20px' }}>Get In Touch</h3>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: '1rem' }}>
+          <h3 style={{ fontSize: 'clamp(1.1rem, 4vw, 1.3rem)', fontWeight: '700', marginBottom: '20px' }}>Get In Touch</h3>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>
             Have questions or feedback? We'd love to hear from you.
           </p>
           <a href="mailto:Contact@mytempmail.pro" style={{
