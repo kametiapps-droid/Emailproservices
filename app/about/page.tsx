@@ -1,114 +1,280 @@
+'use client';
+
 export default function AboutPage() {
   return (
     <div className="page-container">
       <section className="hero">
         <div className="container">
-          <h1>About Us</h1>
-          <p>Learn more about Temp Mail Pro and our mission</p>
+          <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '16px' }}>About Temp Mail Pro</h1>
+          <p style={{ fontSize: '1.2rem', opacity: 0.9 }}>Protecting your privacy, one temporary email at a time</p>
         </div>
       </section>
 
-      <div className="container" style={{ paddingTop: '60px', paddingBottom: '80px', maxWidth: '900px' }}>
-        <div style={{ lineHeight: '1.8', color: 'var(--text-muted)' }}>
-          
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Our Mission
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            At Temp Mail Pro, our mission is to empower users with a simple, secure, and reliable solution for protecting their privacy online. We believe everyone deserves the right to privacy when browsing the web, signing up for services, or accessing content without compromising their personal information.
-          </p>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            What We Do
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            Temp Mail Pro is a leading <strong>temporary email service</strong> that provides instant, <strong>disposable email</strong> addresses. We are the <strong>best temp mail pro generator</strong> for users who need a <strong>private temp mail</strong> solution. Our <strong>secure temp mail service</strong> allows you to:
-          </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '12px' }}>Protect your primary email with a <strong>spam protection email</strong></li>
-            <li style={{ marginBottom: '12px' }}>Maintain your <strong>email privacy protection</strong> online</li>
-            <li style={{ marginBottom: '12px' }}>Use an <strong>alternative email</strong> or <strong>burner email address</strong> for newsletters, trials, and testing</li>
-            <li style={{ marginBottom: '12px' }}>Access a <strong>temporary inbox online</strong> without a <strong>no registration email service</strong></li>
-            <li style={{ marginBottom: '12px' }}>Use a <strong>temporary email generator</strong> for <strong>online verification</strong></li>
-          </ul>
-
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Why Choose Our Free Temp Mail Generator?
-          </h2>
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
-            borderRadius: '16px',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            padding: '32px',
-            marginBottom: '24px'
-          }}>
-            <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⚡ Fast Temporary Email</h3>
-              <p>Generate a <strong>burner mailbox online</strong> instantly with our <strong>quick email sign up</strong> process.</p>
-            </div>
-            <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🔒 Secure Disposable Mailbox</h3>
-              <p>Your <strong>privacy focused email tool</strong> ensures a <strong>safe disposable email</strong> experience.</p>
-            </div>
-            <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>⏰ Short Term Email Address</h3>
-              <p>Our <strong>throwaway email</strong> addresses automatically expire after 24 hours, acting as a perfect <strong>temporary gmail alternative</strong>.</p>
-            </div>
+      <div className="container" style={{ maxWidth: '1100px', paddingTop: '80px', paddingBottom: '80px' }}>
+        {/* Mission Section */}
+        <section style={{ marginBottom: '80px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
             <div>
-              <h3 style={{ fontSize: '18px', color: 'var(--text)', marginBottom: '8px' }}>🎯 Anonymous Email Tool</h3>
-              <p>A simple, intuitive <strong>anonymous mailbox service</strong> that works on all devices for <strong>email without login</strong>.</p>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '24px', color: 'var(--text)' }}>
+                Our Mission
+              </h2>
+              <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-muted)', marginBottom: '20px' }}>
+                We believe everyone deserves the right to privacy in the digital world. Our mission is to provide a simple, secure, and reliable way to protect your personal information while browsing the web, signing up for services, or testing applications.
+              </p>
+              <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--text-muted)' }}>
+                Temp Mail Pro gives you complete control over your digital footprint without complicated setups or hidden fees.
+              </p>
+            </div>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
+              borderRadius: '20px',
+              padding: '40px',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '5rem', marginBottom: '16px' }}>🛡️</div>
+              <h3 style={{ fontSize: '1.3rem', fontWeight: '600', marginBottom: '12px' }}>Privacy First</h3>
+              <p style={{ color: 'var(--text-muted)' }}>Your data, your control, always</p>
             </div>
           </div>
+        </section>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Our Commitment
+        {/* What We Offer */}
+        <section style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '50px', textAlign: 'center' }}>
+            What We Offer
           </h2>
-          <p style={{ marginBottom: '24px' }}>
-            We are committed to:
-          </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '12px' }}>Maintaining the highest standards of security and privacy</li>
-            <li style={{ marginBottom: '12px' }}>Providing a reliable and fast service</li>
-            <li style={{ marginBottom: '12px' }}>Continuously improving our platform</li>
-            <li style={{ marginBottom: '12px' }}>Protecting user data from unauthorized access</li>
-            <li style={{ marginBottom: '12px' }}>Being transparent about our policies and practices</li>
-          </ul>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '32px'
+          }}>
+            {[
+              { icon: '⚡', title: 'Instant Generation', desc: 'Get a temporary email in seconds, no signup required' },
+              { icon: '🔒', title: 'Secure & Private', desc: 'Your emails are encrypted and protected from unwanted access' },
+              { icon: '⏰', title: '24-Hour Expiration', desc: 'Emails automatically expire and delete after 24 hours' },
+              { icon: '📱', title: 'Works Everywhere', desc: 'Use on desktop, tablet, or mobile—no app needed' },
+              { icon: '💬', title: 'Full Inbox Access', desc: 'Receive and read emails instantly in your temporary inbox' },
+              { icon: '🎯', title: 'Privacy Protection', desc: 'Keep your primary email safe from spam and data brokers' }
+            ].map((item, idx) => (
+              <div key={idx} style={{
+                background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.5) 0%, rgba(30, 41, 82, 0.3) 100%)',
+                borderRadius: '16px',
+                padding: '32px',
+                border: '1px solid rgba(59, 130, 246, 0.15)',
+                textAlign: 'center',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '16px' }}>{item.icon}</div>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '12px', color: 'var(--text)' }}>
+                  {item.title}
+                </h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Legal Compliance
+        {/* Why Choose Us */}
+        <section style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '50px', textAlign: 'center' }}>
+            Why Choose Temp Mail Pro?
           </h2>
-          <p style={{ marginBottom: '24px' }}>
-            Temp Mail Pro operates in compliance with applicable laws and regulations. We:
-          </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '12px' }}>Comply with GDPR and international privacy laws</li>
-            <li style={{ marginBottom: '12px' }}>Maintain transparent privacy practices</li>
-            <li style={{ marginBottom: '12px' }}>Do not engage in illegal activities</li>
-            <li style={{ marginBottom: '12px' }}>Actively prevent misuse of our service</li>
-          </ul>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '40px',
+            alignItems: 'center'
+          }}>
+            <div>
+              {[
+                { num: '1', title: 'Completely Free', text: 'No credit card, no hidden charges, no subscriptions' },
+                { num: '2', title: 'Fast & Reliable', text: 'Emails arrive instantly. We keep our service running 24/7' },
+                { num: '3', title: 'Trusted by Users', text: 'Used by thousands of people worldwide for privacy and testing' },
+                { num: '4', title: 'Privacy Focused', text: 'We never sell your data or use invasive tracking' }
+              ].map((item, idx) => (
+                <div key={idx} style={{ marginBottom: '32px', display: 'flex', gap: '20px' }}>
+                  <div style={{
+                    width: '50px',
+                    height: '50px',
+                    background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: '700',
+                    color: 'white',
+                    fontSize: '1.3rem',
+                    flexShrink: 0
+                  }}>
+                    {item.num}
+                  </div>
+                  <div>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '8px', color: 'var(--text)' }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
+              borderRadius: '20px',
+              padding: '50px 40px',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '4rem', marginBottom: '20px' }}>✨</div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '16px' }}>Simple & Effective</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '1rem' }}>
+                No complicated setup. No registration forms. Just click and get a temporary email ready to use instantly.
+              </p>
+            </div>
+          </div>
+        </section>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Responsible Use Notice
+        {/* Legal & Commitment */}
+        <section style={{ marginBottom: '80px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '40px'
+          }}>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
+              borderRadius: '16px',
+              padding: '40px',
+              border: '1px solid rgba(59, 130, 246, 0.15)'
+            }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
+                Our Commitment
+              </h3>
+              <ul style={{ paddingLeft: 0 }}>
+                {[
+                  'Maintaining high security standards',
+                  'Providing reliable 24/7 service',
+                  'Protecting user privacy always',
+                  'Being transparent about our practices',
+                  'Continuously improving the platform'
+                ].map((item, idx) => (
+                  <li key={idx} style={{
+                    marginBottom: '16px',
+                    display: 'flex',
+                    gap: '12px',
+                    color: 'var(--text-muted)',
+                    lineHeight: '1.6'
+                  }}>
+                    <span style={{ color: '#10b981', fontWeight: '700' }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(30, 41, 82, 0.6) 0%, rgba(30, 41, 82, 0.4) 100%)',
+              borderRadius: '16px',
+              padding: '40px',
+              border: '1px solid rgba(59, 130, 246, 0.15)'
+            }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
+                Legal Compliance
+              </h3>
+              <ul style={{ paddingLeft: 0 }}>
+                {[
+                  'GDPR compliant',
+                  'International privacy laws respected',
+                  'No illegal activities supported',
+                  'Abuse prevention in place',
+                  'Transparent policies'
+                ].map((item, idx) => (
+                  <li key={idx} style={{
+                    marginBottom: '16px',
+                    display: 'flex',
+                    gap: '12px',
+                    color: 'var(--text-muted)',
+                    lineHeight: '1.6'
+                  }}>
+                    <span style={{ color: '#10b981', fontWeight: '700' }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Responsible Use */}
+        <section style={{ marginBottom: '80px' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)',
+            borderRadius: '16px',
+            padding: '40px',
+            border: '1px solid rgba(59, 130, 246, 0.1)'
+          }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: '700', marginBottom: '16px', color: 'var(--text)' }}>
+              Responsible Use
+            </h3>
+            <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '16px' }}>
+              Temp Mail Pro is designed for legitimate purposes including privacy protection, software testing, and educational use. We do not support fraud, impersonation, spam, or bypassing third-party terms of service. Users are responsible for complying with all applicable laws and platform policies.
+            </p>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section style={{
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)',
+          borderRadius: '20px',
+          padding: '60px 40px',
+          textAlign: 'center',
+          border: '1px solid rgba(59, 130, 246, 0.2)',
+          marginBottom: '60px'
+        }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '20px', color: 'var(--text)' }}>
+            Ready to protect your privacy?
           </h2>
-          <p style={{ marginBottom: '24px' }}>
-            Temp Mail Pro is designed strictly for privacy protection, software testing, and educational purposes. We do not support or promote fraud, impersonation, spam, or bypassing the terms of any third-party services. Users are solely responsible for complying with applicable laws and platform policies.
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
+            Get started instantly with Temp Mail Pro. No signup, no fees, no hassle.
           </p>
+          <a href="/" style={{
+            display: 'inline-block',
+            padding: '16px 40px',
+            background: 'linear-gradient(135deg, #3B82F6 0%, #A855F7 100%)',
+            color: 'white',
+            borderRadius: '12px',
+            textDecoration: 'none',
+            fontWeight: '600',
+            fontSize: '1rem',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 8px 24px rgba(59, 130, 246, 0.3)'
+          }}>
+            Generate Your Email Now
+          </a>
+        </section>
 
-          <h2 style={{ fontSize: '24px', marginTop: '40px', marginBottom: '16px', color: 'var(--text)' }}>
-            Get In Touch
-          </h2>
-          <p style={{ marginBottom: '24px' }}>
-            Have questions or feedback? We'd love to hear from you. Contact us at:
+        {/* Contact */}
+        <section style={{ textAlign: 'center', paddingTop: '40px', borderTop: '1px solid rgba(59, 130, 246, 0.1)' }}>
+          <h3 style={{ fontSize: '1.3rem', fontWeight: '700', marginBottom: '20px' }}>Get In Touch</h3>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: '1rem' }}>
+            Have questions or feedback? We'd love to hear from you.
           </p>
-          <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-            <li style={{ marginBottom: '8px' }}>Email: Contact@mytempmail.pro</li>
-            <li style={{ marginBottom: '8px' }}>Website: www.mytempmail.pro</li>
-          </ul>
-
-          <p style={{ marginTop: '60px', paddingTop: '24px', borderTop: '1px solid rgba(59, 130, 246, 0.1)', fontSize: '14px' }}>
-            Thank you for choosing Temp Mail Pro. Your privacy matters to us.
+          <a href="mailto:Contact@mytempmail.pro" style={{
+            color: '#3B82F6',
+            textDecoration: 'none',
+            fontWeight: '500',
+            transition: 'opacity 0.3s'
+          }}>
+            Contact@mytempmail.pro
+          </a>
+          <p style={{ color: 'var(--text-muted)', marginTop: '40px', fontSize: '0.95rem', opacity: 0.8 }}>
+            © 2024 Temp Mail Pro. Your privacy matters to us.
           </p>
-        </div>
+        </section>
       </div>
     </div>
   );
