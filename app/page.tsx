@@ -395,11 +395,11 @@ export default function Home() {
 
   if (!mounted) {
     return (
-      <div className="page-container" suppressHydrationWarning>
-        <section className="hero" suppressHydrationWarning>
-          <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
-            <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
-            <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
+      <div className="page-container" suppressHydrationWarning={true}>
+        <section className="hero" suppressHydrationWarning={true}>
+          <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning={true}>
+            <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning={true}>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
+            <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning={true}>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
           </div>
         </section>
       </div>
@@ -407,12 +407,12 @@ export default function Home() {
   }
 
   return (
-    <div className="page-container" suppressHydrationWarning>
-      <section className="hero" suppressHydrationWarning>
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
-          <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
-          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
-          <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }} suppressHydrationWarning>
+    <div className="page-container" suppressHydrationWarning={true}>
+      <section className="hero" suppressHydrationWarning={true}>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning={true}>
+          <h1 style={{ textAlign: 'center', width: '100%' }} suppressHydrationWarning={true}>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
+          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto' }} suppressHydrationWarning={true}>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
+          <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }} suppressHydrationWarning={true}>
             {!showGenerator && (
               <button 
                 onClick={() => {
