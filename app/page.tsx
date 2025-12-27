@@ -85,12 +85,11 @@ function Home() {
   }, [showQR]);
 
   const generateEmail = useCallback(async () => {
-    // Prevent multiple simultaneous generations with debounce
+    // Prevent concurrent requests with simple timestamp debounce
     const now = Date.now();
-    if (isGeneratingRef.current || now - lastGenerateTimeRef.current < 3500) return;
-    
-    isGeneratingRef.current = true;
+    if (now - lastGenerateTimeRef.current < 4000) return;
     lastGenerateTimeRef.current = now;
+    
     setLoading(true);
     
     try {
@@ -107,7 +106,6 @@ function Home() {
             setSelectedMessage(null);
             setShowGenerator(true);
             setLoading(false);
-            isGeneratingRef.current = false;
             return;
           }
         } catch {
@@ -137,7 +135,6 @@ function Home() {
       console.error('Failed to generate email:', error);
     } finally {
       setLoading(false);
-      isGeneratingRef.current = false;
     }
   }, []);
 
