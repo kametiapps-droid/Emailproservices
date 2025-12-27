@@ -444,15 +444,18 @@ export default function Home() {
                 style={{ 
                   margin: '0 auto', 
                   display: 'block',
-                  opacity: loading ? 0.6 : 1,
+                  background: loading ? 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
+                  transform: loading ? 'scale(1)' : 'scale(1)',
+                  animation: loading ? 'buttonPulse 1.5s ease-in-out infinite' : 'none',
                   cursor: loading ? 'not-allowed' : 'pointer',
+                  opacity: 1,
                   pointerEvents: loading ? 'none' : 'auto'
                 }}
               >
                 {loading ? (
                   <>
-                    <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite', marginRight: '8px' }}>⏳</span>
-                    Generating your email...
+                    <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite', marginRight: '8px', fontSize: '18px' }}>⚡</span>
+                    Generating email...
                   </>
                 ) : (
                   '🚀 Generate Your Temporary Email Address'
