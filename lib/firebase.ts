@@ -18,7 +18,7 @@ if (!global.mockStore) {
 }
 
 // Mock Firestore for development without credentials
-function createMockFirestore(): any {
+function createMockFirestore(): FirebaseFirestore.Firestore {
   return {
     collection: (name: string) => ({
       doc: (id: string) => ({
@@ -67,7 +67,7 @@ function createMockFirestore(): any {
     clearIpEmail: (ip: string) => {
       delete global.globalIpEmailMap[ip];
     },
-  };
+  } as unknown as FirebaseFirestore.Firestore;
 }
 
 interface ServiceAccountKey {
