@@ -432,15 +432,31 @@ export default function Home() {
             {!showGenerator && (
               <button 
                 onClick={() => {
-                  setShowGenerator(true);
-                  if (!email && !isGeneratingRef.current) {
-                    generateEmail();
+                  if (!loading && !isGeneratingRef.current) {
+                    setShowGenerator(true);
+                    if (!email) {
+                      generateEmail();
+                    }
                   }
                 }}
+                disabled={loading}
                 className="btn-hero-primary"
-                style={{ margin: '0 auto', display: 'block' }}
+                style={{ 
+                  margin: '0 auto', 
+                  display: 'block',
+                  opacity: loading ? 0.6 : 1,
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  pointerEvents: loading ? 'none' : 'auto'
+                }}
               >
-                🚀 Generate Your Temporary Email Address
+                {loading ? (
+                  <>
+                    <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite', marginRight: '8px' }}>⏳</span>
+                    Generating your email...
+                  </>
+                ) : (
+                  '🚀 Generate Your Temporary Email Address'
+                )}
               </button>
             )}
             {showGenerator && (

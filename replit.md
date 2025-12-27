@@ -95,6 +95,9 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - ✅ Surface light color updated to #E8F8FF for subtle depth in light mode
 - ✅ CTA Button optimized for instant visibility: removed `mounted` state check for immediate page load appearance
 - ✅ Inbox section conditionally rendered based on `showGenerator` state (not `mounted`) for performance
+- ✅ Button responsiveness fixed: disabled during loading with visual feedback (hourglass emoji + "Generating..." text)
+- ✅ Prevents multiple simultaneous clicks: button opacity reduced to 0.6 and pointer events disabled during generation
+- ✅ Smooth user experience: immediate visual feedback when button is clicked
 
 ### Dec 25, 2025
 
