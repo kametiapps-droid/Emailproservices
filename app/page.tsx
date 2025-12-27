@@ -82,12 +82,33 @@ export default function Home() {
   }, [showQR]);
 
   const generateEmail = useCallback(async () => {
-    // Prevent multiple simultaneous generations with double-check
+    // Prevent multiple simultaneous generations
     if (isGeneratingRef.current) return;
     
     try {
       isGeneratingRef.current = true;
       setLoading(true);
+      
+      // Check localStorage first - if valid email exists, return it (one per IP per 24h)
+      const storedEmail = localStorage.getItem('tempEmail');
+      if (storedEmail) {
+        try {
+          const email = JSON.parse(storedEmail);
+          const expiresAt = new Date(email.expiresAt);
+          if (expiresAt > new Date()) {
+            // Email still valid - return stored email instead of making API call
+            setEmail(email);
+            setMessages([]);
+            setSelectedMessage(null);
+            setShowGenerator(true);
+            setLoading(false);
+            isGeneratingRef.current = false;
+            return;
+          }
+        } catch {
+          localStorage.removeItem('tempEmail');
+        }
+      }
       
       // Small delay to prevent rapid API calls
       await new Promise(resolve => setTimeout(resolve, 100));
