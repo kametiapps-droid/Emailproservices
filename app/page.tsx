@@ -429,7 +429,7 @@ export default function Home() {
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px' }} suppressHydrationWarning>
-            {!showGenerator && (
+            {!showGenerator || loading ? (
               <button 
                 onClick={() => {
                   if (!loading && !isGeneratingRef.current) {
@@ -462,7 +462,7 @@ export default function Home() {
                   '🚀 Generate Your Temporary Email Address'
                 )}
               </button>
-            )}
+            ) : null}
             {showGenerator && (
               <div className="email-generator-card" suppressHydrationWarning>
                 <div className="generator-header" suppressHydrationWarning>
