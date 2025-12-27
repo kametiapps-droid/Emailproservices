@@ -444,12 +444,13 @@ export default function Home() {
                 style={{ 
                   margin: '0 auto', 
                   display: 'block',
-                  background: loading ? 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
+                  background: loading ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
                   transform: loading ? 'scale(1)' : 'scale(1)',
                   animation: loading ? 'buttonPulse 1.5s ease-in-out infinite' : 'none',
                   cursor: loading ? 'not-allowed' : 'pointer',
                   opacity: 1,
-                  pointerEvents: loading ? 'none' : 'auto'
+                  pointerEvents: loading ? 'none' : 'auto',
+                  boxShadow: loading ? '0 8px 24px rgba(16, 185, 129, 0.4)' : '0 8px 24px rgba(59, 130, 246, 0.4)'
                 }}
               >
                 {loading ? (
