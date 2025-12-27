@@ -397,9 +397,14 @@ export default function Home() {
 
   return (
     <div className={`page-container ${!mounted ? 'loading-state' : ''}`} suppressHydrationWarning>
-      <section className="hero" style={{ minHeight: 'auto', padding: '20px 0' }} suppressHydrationWarning>
+      <section className="hero" style={{ minHeight: 'auto', padding: '60px 0 20px' }} suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
-          <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '8px' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
+          <div className="privacy-badge-container" style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
+            <span style={{ color: '#10B981', fontWeight: '600', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '0 0 10px rgba(16, 185, 129, 0.4)' }}>Protect</span>
+            <span style={{ color: '#10B981', fontWeight: '600', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '0 0 10px rgba(16, 185, 129, 0.4)' }}>Your</span>
+            <span style={{ color: '#10B981', fontWeight: '600', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '0 0 10px rgba(16, 185, 129, 0.4)' }}>Privacy</span>
+          </div>
+          <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px' }} suppressHydrationWarning>
             {mounted && !showGenerator && (
