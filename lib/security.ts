@@ -193,9 +193,14 @@ export function sanitizeMessage(content: string): string {
 
 // Get client IP from request headers
 export function getClientIP(headers: Headers): string {
-  return headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+  const ip = headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
          headers.get('x-real-ip') || 
-         'unknown';
+         headers.get('cf-connecting-ip') ||
+         '127.0.0.1';
+  
+  // In development, use a fixed IP to enforce one-per-IP limit
+  // In production, use the actual IP
+  return ip === 'unknown' || ip === '' ? '127.0.0.1' : ip;
 }
 
 // Webhook secret validation
