@@ -37,13 +37,13 @@ const MessageList = memo(({
 }: MessageListProps) => {
   if (messages.length === 0) {
     return (
-      <div className="empty-inbox">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <div className="inbox-empty">
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
           <polyline points="22,6 12,13 2,6"></polyline>
         </svg>
-        <p>Your inbox is empty</p>
-        <p className="empty-inbox-subtext">New emails will appear here as they arrive</p>
+        <p style={{ fontWeight: '600', marginBottom: '8px', fontSize: '1rem', color: 'var(--text)' }}>Your inbox is empty</p>
+        <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', margin: '0' }}>New emails will appear here as they arrive</p>
       </div>
     );
   }
