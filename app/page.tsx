@@ -399,10 +399,38 @@ export default function Home() {
     <div className={`page-container ${!mounted ? 'loading-state' : ''}`} suppressHydrationWarning>
       <section className="hero" style={{ minHeight: 'auto', padding: '60px 0 20px' }} suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
-          <div className="privacy-badge-container" style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
-            <span style={{ color: '#10B981', fontWeight: '600', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '0 0 10px rgba(16, 185, 129, 0.4)' }}>Protect</span>
-            <span style={{ color: '#10B981', fontWeight: '600', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '0 0 10px rgba(16, 185, 129, 0.4)' }}>Your</span>
-            <span style={{ color: '#10B981', fontWeight: '600', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '0 0 10px rgba(16, 185, 129, 0.4)' }}>Privacy</span>
+          <div className="privacy-badge-container" style={{ 
+            marginBottom: '24px', 
+            display: 'flex', 
+            gap: '12px',
+            justifyContent: 'center',
+            alignItems: 'center',
+            animation: 'fadeInDown 0.8s ease-out'
+          }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)',
+              padding: '12px 20px',
+              borderRadius: '50px',
+              border: '1.5px solid rgba(16, 185, 129, 0.4)',
+              boxShadow: '0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(16, 185, 129, 0.1)'
+            }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.6))' }}>
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span style={{ 
+                background: 'linear-gradient(90deg, #10B981 0%, #06B6D4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: '700', 
+                fontSize: '0.95rem', 
+                textTransform: 'uppercase', 
+                letterSpacing: '1.5px',
+                fontFamily: '"Inter", system-ui, sans-serif'
+              }}>Protect Your Privacy</span>
+            </div>
           </div>
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
