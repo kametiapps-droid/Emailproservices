@@ -68,19 +68,19 @@ const EmailGenerator = memo(({
       </div>
 
       <div className="generator-actions">
-        <button className="action-btn-new refresh-btn" onClick={onRefresh} title="Refresh inbox">
+        <button className="action-btn-new refresh-btn" onClick={onRefresh} disabled={loading} title="Refresh inbox">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
-          <span>Refresh</span>
+          <span>{loading ? 'Generating...' : 'Refresh'}</span>
         </button>
-        <button className="action-btn-new qr-btn" onClick={onShowQR} title="Show QR code">
+        <button className="action-btn-new qr-btn" onClick={onShowQR} disabled={loading || !email} title="Show QR code">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="5" y="5" width="3" height="3"></rect><rect x="16" y="5" width="3" height="3"></rect><rect x="16" y="16" width="3" height="3"></rect><rect x="5" y="16" width="3" height="3"></rect></svg>
           <span>QR Code</span>
         </button>
-        <button className="action-btn-new change-btn" onClick={onGenerate} disabled={loading} title="Generate new email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          <span>Change Email</span>
+        <button className="action-btn-new change-btn" onClick={onGenerate} disabled={loading} title="Generate new email" style={{ opacity: loading ? 0.6 : 1 }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }}><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>{loading ? 'Generating...' : 'Change Email'}</span>
         </button>
-        <button className="action-btn-new delete-btn" onClick={onDelete} title="Delete this email">
+        <button className="action-btn-new delete-btn" onClick={onDelete} disabled={loading} title="Delete this email">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
           <span>Delete</span>
         </button>

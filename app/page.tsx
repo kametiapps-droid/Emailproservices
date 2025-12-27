@@ -87,10 +87,10 @@ function Home() {
     // Prevent multiple simultaneous generations
     if (isGeneratingRef.current) return;
     
+    isGeneratingRef.current = true;
+    setLoading(true);
+    
     try {
-      isGeneratingRef.current = true;
-      setLoading(true);
-      
       // Check localStorage first - if valid email exists, return it (one per IP per 24h)
       const storedEmail = localStorage.getItem('tempEmail');
       if (storedEmail) {
@@ -103,17 +103,12 @@ function Home() {
             setMessages([]);
             setSelectedMessage(null);
             setShowGenerator(true);
-            setLoading(false);
-            isGeneratingRef.current = false;
             return;
           }
         } catch {
           localStorage.removeItem('tempEmail');
         }
       }
-      
-      // Small delay to prevent rapid API calls
-      await new Promise(resolve => setTimeout(resolve, 100));
       
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
@@ -132,8 +127,6 @@ function Home() {
         setMessages([]);
         setSelectedMessage(null);
         setShowGenerator(true);
-      } else {
-        console.error('API error:', data.error);
       }
     } catch (error) {
       console.error('Failed to generate email:', error);
