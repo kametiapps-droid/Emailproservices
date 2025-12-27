@@ -493,7 +493,6 @@ export default function Home() {
               <div className="email-generator-card" suppressHydrationWarning>
                 <div className="generator-header" suppressHydrationWarning>
                   <div className="generator-title-section" suppressHydrationWarning>
-                    <div className="generator-badge">🎯 Active Inbox</div>
                     <h3 className="generator-title">Your Temporary Email</h3>
                   </div>
                   <button onClick={() => setShowGenerator(false)} className="generator-close-btn" title="Close">
