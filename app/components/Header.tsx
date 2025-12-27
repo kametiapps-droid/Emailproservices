@@ -23,15 +23,22 @@ export default function Header() {
       }
     }
 
-    // Close menu on scroll
+    // Close menu on scroll - debounced for better performance
+    let scrollTimer: NodeJS.Timeout;
     const handleScroll = () => {
-      if (isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        if (isMenuOpen) {
+          setIsMenuOpen(false);
+        }
+      }, 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      clearTimeout(scrollTimer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [isMenuOpen]);
 
   const toggleTheme = (e: React.MouseEvent) => {
