@@ -433,7 +433,7 @@ export default function Home() {
             {!showGenerator || loading ? (
               <button 
                 onClick={() => {
-                  if (!loading && !isGeneratingRef.current && !email) {
+                  if (!loading && !isGeneratingRef.current) {
                     generateEmail();
                   }
                 }}
