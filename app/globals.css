@@ -1436,12 +1436,13 @@ main {
   border-radius: 16px;
   padding: 24px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 16px;
   margin-bottom: 28px;
   backdrop-filter: blur(4px);
-  min-height: 70px;
+  min-height: auto;
+  flex-wrap: wrap;
 }
 
 [data-theme="light"] .email-display-new {
@@ -1454,10 +1455,13 @@ main {
   font-weight: 700;
   color: #3b82f6;
   font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
-  word-break: break-all;
-  flex: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  flex-basis: 100%;
   min-width: 0;
   line-height: 1.4;
+  padding-right: 8px;
 }
 
 [data-theme="light"] .email-address-large {
