@@ -11,10 +11,10 @@ import GoogleAnalytics from './GoogleAnalytics';
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mytempmail.pro'),
   title: {
-    default: 'Temp Mail Pro - Free Temporary Disposable Email Service',
-    template: '%s | My Temp Mail Pro'
+    default: 'Your Privacy-First Temporary Email Solution | Temp Mail Pro',
+    template: '%s | Your Privacy-First Temporary Email Solution'
   },
-  description: 'Generate free temporary disposable email addresses instantly. Protect your privacy and avoid spam with our secure, no-registration temporary inbox online.',
+  description: 'Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },

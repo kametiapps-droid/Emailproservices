@@ -399,8 +399,8 @@ export default function Home() {
     <div className={`page-container ${!mounted ? 'loading-state' : ''}`} suppressHydrationWarning>
       <section className="hero" style={{ minHeight: 'auto', padding: '20px 0' }} suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
-          <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '8px' }} suppressHydrationWarning>Free Temp Mail Pro – Disposable Temporary Email for Verification & Privacy (No Signup)</h1>
-          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Protect your privacy with the best temp mail pro generator. Get instant disposable email addresses for testing, apps, and signup verification. Secure temp mail service with no registration required. Your temporary inbox online expires in 24 hours.</p>
+          <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '8px' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
+          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px' }} suppressHydrationWarning>
             {mounted && !showGenerator && (
               <button 
