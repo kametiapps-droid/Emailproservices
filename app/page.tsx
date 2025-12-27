@@ -389,14 +389,8 @@ export default function Home() {
     expiresAt: '' 
   };
 
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <div className={`page-container ${!mounted ? 'loading-state' : ''}`} suppressHydrationWarning>
+    <div className="page-container" suppressHydrationWarning>
       <section className="hero" style={{ minHeight: 'auto', padding: '60px 0 20px' }} suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
           <div className="privacy-badge-container" style={{ 
@@ -435,7 +429,7 @@ export default function Home() {
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px' }} suppressHydrationWarning>
-            {mounted && !showGenerator && (
+            {!showGenerator && (
               <button 
                 onClick={() => {
                   setShowGenerator(true);
@@ -449,7 +443,7 @@ export default function Home() {
                 🚀 Generate Your Temporary Email Address
               </button>
             )}
-            {mounted && showGenerator && (
+            {showGenerator && (
               <div className="email-generator-card" suppressHydrationWarning>
                 <div className="generator-header" suppressHydrationWarning>
                   <div className="generator-title-section" suppressHydrationWarning>
@@ -512,7 +506,7 @@ export default function Home() {
         </div>
       </section>
 
-      {mounted && showGenerator && (
+      {showGenerator && (
         <section className="inbox-section" style={{ marginTop: '0', paddingTop: '20px' }}>
         <div className="inbox-header">
           <div className="inbox-header-left">

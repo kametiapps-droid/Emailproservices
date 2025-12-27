@@ -93,6 +93,8 @@ Temp Mail Pro is a modern temporary disposable email service built with Next.js 
 - ✅ "Protect Your Privacy" section enhanced with shield icon, gradient text, glowing shadows, and fade-in animation
 - ✅ Electric light blue background (#E0F4FF) added to light mode for stunning visual appeal
 - ✅ Surface light color updated to #E8F8FF for subtle depth in light mode
+- ✅ CTA Button optimized for instant visibility: removed `mounted` state check for immediate page load appearance
+- ✅ Inbox section conditionally rendered based on `showGenerator` state (not `mounted`) for performance
 
 ### Dec 25, 2025
 
