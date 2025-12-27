@@ -1332,8 +1332,8 @@ main {
 .email-generator-card {
   background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(25, 35, 65, 0.85) 100%);
   border-radius: 20px;
-  padding: 40px;
-  margin: 40px auto;
+  padding: 24px;
+  margin: 24px auto;
   max-width: 700px;
   border: 1px solid rgba(59, 130, 246, 0.2);
   box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15), 0 0 1px rgba(59, 130, 246, 0.1);
@@ -1354,8 +1354,8 @@ main {
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 32px;
-  padding-bottom: 20px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(59, 130, 246, 0.15);
 }
 
@@ -1434,14 +1434,14 @@ main {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(59, 130, 246, 0.03) 100%);
   border: 1.5px solid rgba(59, 130, 246, 0.15);
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 28px;
+  gap: 12px;
+  margin-bottom: 16px;
   backdrop-filter: blur(4px);
-  min-height: 70px;
+  min-height: 60px;
 }
 
 [data-theme="light"] .email-display-new {
@@ -1508,23 +1508,23 @@ main {
 .generator-actions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
 .action-btn-new {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
   border: 1.5px solid rgba(59, 130, 246, 0.2);
   color: var(--text);
-  padding: 14px 18px;
+  padding: 11px 14px;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
   position: relative;
@@ -1575,14 +1575,14 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px 20px;
+  gap: 8px;
+  padding: 10px 16px;
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.04) 100%);
   border: 1px solid rgba(245, 158, 11, 0.2);
   border-radius: 10px;
   color: #f59e0b;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.08);
 }
 
@@ -1594,46 +1594,48 @@ main {
 
 @media (max-width: 768px) {
   .email-generator-card {
-    padding: 28px;
-    margin: 28px 16px;
-    max-width: calc(100% - 32px);
+    padding: 20px;
+    margin: 16px 12px;
+    max-width: calc(100% - 24px);
   }
 
   .generator-header {
-    margin-bottom: 24px;
-    padding-bottom: 16px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
   }
 
   .generator-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .email-display-new {
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    min-height: 70px;
-    padding: 20px;
+    gap: 10px;
+    min-height: 56px;
+    padding: 14px;
   }
 
   .email-address-large {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
 
   .copy-btn-primary {
     flex-shrink: 0;
+    padding: 8px 12px;
+    font-size: 0.75rem;
   }
 
   .generator-actions {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .action-btn-new {
-    padding: 12px 14px;
-    font-size: 0.9rem;
-    gap: 6px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    gap: 5px;
   }
 
   .action-btn-new span {
@@ -1643,19 +1645,19 @@ main {
 
 @media (max-width: 600px) {
   .email-generator-card {
-    padding: 20px;
-    margin: 16px 10px;
+    padding: 16px;
+    margin: 12px 8px;
     border-radius: 16px;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 16px);
   }
 
   .generator-header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
   }
 
   .generator-title-section {
@@ -1663,65 +1665,65 @@ main {
   }
 
   .generator-close-btn {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
   }
 
   .generator-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .generator-badge {
-    font-size: 0.75rem;
-    padding: 4px 10px;
+    font-size: 0.7rem;
+    padding: 3px 8px;
   }
 
   .email-display-new {
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    min-height: 65px;
-    padding: 16px;
+    gap: 10px;
+    min-height: 56px;
+    padding: 12px;
     flex-direction: row;
   }
 
   .email-address-large {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     min-width: 0;
   }
 
   .copy-btn-primary {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-    gap: 6px;
+    font-size: 0.75rem;
+    padding: 7px 10px;
+    gap: 5px;
     flex-shrink: 0;
     white-space: nowrap;
   }
 
   .copy-btn-primary svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 
   .generator-actions {
     grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .action-btn-new {
-    padding: 12px 14px;
-    font-size: 0.9rem;
-    gap: 8px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    gap: 6px;
     min-height: auto;
     width: 100%;
     justify-content: center;
   }
 
   .action-btn-new svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 
   .action-btn-new span {
@@ -1729,14 +1731,14 @@ main {
   }
 
   .generator-timer {
-    padding: 12px 14px;
-    font-size: 0.9rem;
-    gap: 8px;
+    padding: 9px 12px;
+    font-size: 0.8rem;
+    gap: 6px;
   }
 
   .generator-timer svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 }
 
