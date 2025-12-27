@@ -3,9 +3,19 @@ import { getFirestore } from 'firebase-admin/firestore';
 
 let firestoreInstance: FirebaseFirestore.Firestore | null = null;
 
-// Global IP email map for one-per-IP-per-24h limit (persists across requests)
-const globalIpEmailMap: Record<string, { emailId: string; expiresAt: string }> = {};
-const mockStore: Record<string, Record<string, any>> = {};
+// Use Node.js global to persist across HMR reloads
+declare global {
+  var globalIpEmailMap: Record<string, { emailId: string; expiresAt: string }>;
+  var mockStore: Record<string, Record<string, any>>;
+}
+
+// Global IP email map for one-per-IP-per-24h limit (persists across requests and HMR)
+if (!global.globalIpEmailMap) {
+  global.globalIpEmailMap = {};
+}
+if (!global.mockStore) {
+  global.mockStore = {};
+}
 
 // Mock Firestore for development without credentials
 function createMockFirestore(): any {
@@ -13,15 +23,15 @@ function createMockFirestore(): any {
     collection: (name: string) => ({
       doc: (id: string) => ({
         set: async (data: any) => {
-          if (!mockStore[name]) mockStore[name] = {};
-          mockStore[name][id] = data;
+          if (!global.mockStore[name]) global.mockStore[name] = {};
+          global.mockStore[name][id] = data;
         },
         get: async () => ({
-          exists: !!mockStore[name]?.[id],
-          data: () => mockStore[name]?.[id],
+          exists: !!global.mockStore[name]?.[id],
+          data: () => global.mockStore[name]?.[id],
         }),
         delete: async () => {
-          if (mockStore[name]) delete mockStore[name][id];
+          if (global.mockStore[name]) delete global.mockStore[name][id];
         },
         collection: (subcollection: string) => ({
           limit: () => ({
@@ -49,13 +59,13 @@ function createMockFirestore(): any {
       delete: () => {},
       commit: async () => {},
     }),
-    getIpEmailMap: () => globalIpEmailMap,
+    getIpEmailMap: () => global.globalIpEmailMap,
     setIpEmail: (ip: string, emailId: string, expiresAt: string) => {
-      globalIpEmailMap[ip] = { emailId, expiresAt };
+      global.globalIpEmailMap[ip] = { emailId, expiresAt };
     },
-    getIpEmail: (ip: string) => globalIpEmailMap[ip],
+    getIpEmail: (ip: string) => global.globalIpEmailMap[ip],
     clearIpEmail: (ip: string) => {
-      delete globalIpEmailMap[ip];
+      delete global.globalIpEmailMap[ip];
     },
   };
 }
