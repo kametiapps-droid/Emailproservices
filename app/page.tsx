@@ -104,6 +104,7 @@ export default function Home() {
         localStorage.setItem('tempEmail', JSON.stringify(data.data));
         setMessages([]);
         setSelectedMessage(null);
+        setShowGenerator(true);
       } else {
         console.error('API error:', data.error);
       }
@@ -432,11 +433,8 @@ export default function Home() {
             {!showGenerator || loading ? (
               <button 
                 onClick={() => {
-                  if (!loading && !isGeneratingRef.current) {
-                    setShowGenerator(true);
-                    if (!email) {
-                      generateEmail();
-                    }
+                  if (!loading && !isGeneratingRef.current && !email) {
+                    generateEmail();
                   }
                 }}
                 disabled={loading}
