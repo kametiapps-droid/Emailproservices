@@ -417,43 +417,62 @@ export default function Home() {
               </button>
             )}
             {mounted && showGenerator && (
-              <div className="email-box" style={{ margin: '0 auto', width: '100%', maxWidth: '500px', padding: '20px', background: 'rgba(30, 41, 82, 0.8)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '16px', boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }} suppressHydrationWarning>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }} suppressHydrationWarning>
-                  <div className="email-header-label" style={{ color: '#10b981', fontSize: '0.9rem', fontWeight: '600' }} suppressHydrationWarning>Your Temporary Inbox 💚</div>
-                  <button onClick={() => setShowGenerator(false)} style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', padding: '4px 10px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', transition: 'all 0.2s' }}>✕ Close</button>
+              <div className="email-generator-card" suppressHydrationWarning>
+                <div className="generator-header" suppressHydrationWarning>
+                  <div className="generator-title-section" suppressHydrationWarning>
+                    <div className="generator-badge">🎯 Active Inbox</div>
+                    <h3 className="generator-title">Your Temporary Email</h3>
+                  </div>
+                  <button onClick={() => setShowGenerator(false)} className="generator-close-btn" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  </button>
                 </div>
-                <div className="email-display" style={{ marginBottom: '15px', padding: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }} suppressHydrationWarning>
+
+                <div className="email-display-new" suppressHydrationWarning>
                   {email ? (
-                    <span className="email-address" style={{ fontSize: '1.1rem', wordBreak: 'break-all' }} suppressHydrationWarning>{email.email}</span>
+                    <>
+                      <span className="email-address-large">{email.email}</span>
+                      <button className="copy-btn-primary" onClick={copyEmail} title="Copy email address">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        {copied ? 'Copied!' : 'Copy'}
+                      </button>
+                    </>
                   ) : (
-                    <span className="email-address" style={{ color: '#10b981', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }} suppressHydrationWarning>
-                      <span className="spinner-small" style={{ width: '16px', height: '16px', border: '2px solid transparent', borderTopColor: '#10b981', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></span>
-                      Preparing...
-                    </span>
-                  )}
-                  {email && (
-                    <button className="copy-btn-icon" onClick={copyEmail} style={{ padding: '6px', color: '#3B82F6' }} title="Copy">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                      </svg>
-                    </button>
+                    <div className="email-loading-state">
+                      <span className="spinner-small" style={{ width: '20px', height: '20px', border: '3px solid transparent', borderTopColor: '#3B82F6', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></span>
+                      <span>Generating your email...</span>
+                    </div>
                   )}
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                  <button className="action-btn" onClick={fetchInbox} style={{ padding: '8px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
-                    Refresh
+
+                <div className="generator-actions" suppressHydrationWarning>
+                  <button className="action-btn-new refresh-btn" onClick={fetchInbox} title="Refresh inbox">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg>
+                    <span>Refresh</span>
                   </button>
-                  <button className="action-btn" onClick={generateEmail} disabled={loading} style={{ padding: '8px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                    New
+                  <button className="action-btn-new qr-btn" onClick={showQRCode} ref={qrButtonRef} title="Show QR code">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="5" y="5" width="3" height="3"></rect><rect x="16" y="5" width="3" height="3"></rect><rect x="16" y="16" width="3" height="3"></rect><rect x="5" y="16" width="3" height="3"></rect></svg>
+                    <span>QR Code</span>
                   </button>
-                  <button className="action-btn danger" onClick={deleteEmail} style={{ padding: '8px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    Delete
+                  <button className="action-btn-new change-btn" onClick={generateEmail} disabled={loading} title="Generate new email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    <span>Change Email</span>
+                  </button>
+                  <button className="action-btn-new delete-btn" onClick={deleteEmail} title="Delete this email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    <span>Delete</span>
                   </button>
                 </div>
+
+                {timeLeft && email && (
+                  <div className="generator-timer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>{timeLeft}</span>
+                  </div>
+                )}
               </div>
             )}
           </div>
