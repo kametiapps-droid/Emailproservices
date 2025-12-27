@@ -980,7 +980,7 @@ main {
 
 .hero {
   text-align: center;
-  padding: 56px 0 40px;
+  padding: 56px 0 0;
   background: var(--background);
   position: relative;
   overflow: hidden;
@@ -1333,7 +1333,7 @@ main {
   background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(25, 35, 65, 0.85) 100%);
   border-radius: 20px;
   padding: 24px;
-  margin: 20px auto 8px;
+  margin: 20px auto 0;
   max-width: 700px;
   border: 1px solid rgba(59, 130, 246, 0.2);
   box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15), 0 0 1px rgba(59, 130, 246, 0.1);
@@ -1595,7 +1595,7 @@ main {
 @media (max-width: 768px) {
   .email-generator-card {
     padding: 20px;
-    margin: 16px 12px;
+    margin: 16px 12px 0;
     max-width: calc(100% - 24px);
   }
 
@@ -1646,7 +1646,7 @@ main {
 @media (max-width: 600px) {
   .email-generator-card {
     padding: 16px;
-    margin: 12px 8px;
+    margin: 12px 8px 0;
     border-radius: 16px;
     max-width: calc(100% - 16px);
   }
@@ -1836,23 +1836,22 @@ main {
 
 .inbox-section {
   max-width: 1000px;
-  margin: 0 auto 32px;
+  margin: -40px auto 32px;
   padding: 0 24px;
   position: relative;
-  margin-top: 0;
 }
 
 @media (max-width: 768px) {
   .inbox-section {
     padding: 0 12px;
-    margin: 0 auto 40px;
+    margin: -30px auto 40px;
   }
 }
 
 @media (max-width: 600px) {
   .inbox-section {
     padding: 0 4px;
-    margin: 0 auto 32px;
+    margin: -30px auto 32px;
   }
 }
 
