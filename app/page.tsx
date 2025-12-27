@@ -57,6 +57,7 @@ function Home() {
   const [showGenerator, setShowGenerator] = useState(false);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
   const isGeneratingRef = useRef(false);
+  const lastGenerateTimeRef = useRef<number>(0);
 
   useEffect(() => {
     if (showQR) {
@@ -84,10 +85,12 @@ function Home() {
   }, [showQR]);
 
   const generateEmail = useCallback(async () => {
-    // Prevent multiple simultaneous generations
-    if (isGeneratingRef.current) return;
+    // Prevent multiple simultaneous generations with debounce
+    const now = Date.now();
+    if (isGeneratingRef.current || now - lastGenerateTimeRef.current < 2000) return;
     
     isGeneratingRef.current = true;
+    lastGenerateTimeRef.current = now;
     setLoading(true);
     
     try {
@@ -103,6 +106,8 @@ function Home() {
             setMessages([]);
             setSelectedMessage(null);
             setShowGenerator(true);
+            setLoading(false);
+            isGeneratingRef.current = false;
             return;
           }
         } catch {
@@ -412,12 +417,8 @@ function Home() {
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px' }} suppressHydrationWarning>
             {!showGenerator || loading ? (
               <button 
-                onClick={() => {
-                  if (!isGeneratingRef.current) {
-                    generateEmail();
-                  }
-                }}
-                disabled={loading || isGeneratingRef.current}
+                onClick={generateEmail}
+                disabled={loading}
                 className="btn-hero-primary"
                 style={{ 
                   margin: '0 auto', 
@@ -425,9 +426,9 @@ function Home() {
                   background: loading ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
                   transform: loading ? 'scale(1)' : 'scale(1)',
                   animation: loading ? 'buttonPulse 1.5s ease-in-out infinite' : 'none',
-                  cursor: loading || isGeneratingRef.current ? 'not-allowed' : 'pointer',
-                  opacity: loading || isGeneratingRef.current ? 0.7 : 1,
-                  pointerEvents: loading || isGeneratingRef.current ? 'none' : 'auto',
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  opacity: loading ? 0.7 : 1,
+                  pointerEvents: loading ? 'none' : 'auto',
                   boxShadow: loading ? '0 8px 24px rgba(16, 185, 129, 0.4)' : '0 8px 24px rgba(59, 130, 246, 0.4)'
                 }}
               >
