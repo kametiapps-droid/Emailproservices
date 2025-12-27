@@ -82,12 +82,16 @@ export default function Home() {
   }, [showQR]);
 
   const generateEmail = useCallback(async () => {
-    // Prevent multiple simultaneous generations
+    // Prevent multiple simultaneous generations with double-check
     if (isGeneratingRef.current) return;
     
     try {
       isGeneratingRef.current = true;
       setLoading(true);
+      
+      // Small delay to prevent rapid API calls
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
       
@@ -433,11 +437,11 @@ export default function Home() {
             {!showGenerator || loading ? (
               <button 
                 onClick={() => {
-                  if (!loading && !isGeneratingRef.current) {
+                  if (!isGeneratingRef.current) {
                     generateEmail();
                   }
                 }}
-                disabled={loading}
+                disabled={loading || isGeneratingRef.current}
                 className="btn-hero-primary"
                 style={{ 
                   margin: '0 auto', 
@@ -445,9 +449,9 @@ export default function Home() {
                   background: loading ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
                   transform: loading ? 'scale(1)' : 'scale(1)',
                   animation: loading ? 'buttonPulse 1.5s ease-in-out infinite' : 'none',
-                  cursor: loading ? 'not-allowed' : 'pointer',
-                  opacity: 1,
-                  pointerEvents: loading ? 'none' : 'auto',
+                  cursor: loading || isGeneratingRef.current ? 'not-allowed' : 'pointer',
+                  opacity: loading || isGeneratingRef.current ? 0.7 : 1,
+                  pointerEvents: loading || isGeneratingRef.current ? 'none' : 'auto',
                   boxShadow: loading ? '0 8px 24px rgba(16, 185, 129, 0.4)' : '0 8px 24px rgba(59, 130, 246, 0.4)'
                 }}
               >
