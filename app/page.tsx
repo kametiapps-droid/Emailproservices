@@ -353,7 +353,10 @@ export default function Home() {
     try {
       await fetch(`/api/email?id=${email.id}`, { method: 'DELETE' });
       localStorage.removeItem('tempEmail');
-      await generateEmail();
+      setEmail(null);
+      setMessages([]);
+      setSelectedMessage(null);
+      setShowGenerator(false);
     } catch (error) {
       // Silently handle deletion errors
     }
