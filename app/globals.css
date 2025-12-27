@@ -207,9 +207,9 @@ button, input, textarea {
 }
 
 [data-theme="light"] {
-  --background: #f8fafc;
+  --background: #E0F4FF;
   --surface: #ffffff;
-  --surface-light: #f8fafc;
+  --surface-light: #E8F8FF;
   --surface-elevated: #ffffff;
   --text: #0f172a;
   --text-muted: #334155;
