@@ -43,7 +43,7 @@ interface Feedback {
 export default function Home() {
   const [email, setEmail] = useState<Email | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [qrCode, setQrCode] = useState('');
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
