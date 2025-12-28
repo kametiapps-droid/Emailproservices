@@ -55,9 +55,9 @@ function Home() {
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const [recentReviews, setRecentReviews] = useState<Feedback[]>([]);
   const [showGenerator, setShowGenerator] = useState(false);
+  const [canGenerate, setCanGenerate] = useState(true);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
-  const isGeneratingRef = useRef(false);
-  const lastGenerateTimeRef = useRef<number>(0);
+  const isRunningRef = useRef(false);
 
   useEffect(() => {
     if (showQR) {
@@ -84,12 +84,15 @@ function Home() {
     };
   }, [showQR]);
 
-  const generateEmail = useCallback(async () => {
-    // Prevent concurrent requests with simple timestamp debounce
-    const now = Date.now();
-    if (now - lastGenerateTimeRef.current < 4000) return;
-    lastGenerateTimeRef.current = now;
+  const generateEmail = useCallback(async (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     
+    // CRITICAL: Check if already running - exit immediately if true
+    if (isRunningRef.current) return;
+    isRunningRef.current = true;
+    
+    setCanGenerate(false);
     setLoading(true);
     
     try {
@@ -135,6 +138,11 @@ function Home() {
       console.error('Failed to generate email:', error);
     } finally {
       setLoading(false);
+      // Re-enable button after 4 seconds
+      setTimeout(() => {
+        isRunningRef.current = false;
+        setCanGenerate(true);
+      }, 4000);
     }
   }, []);
 
@@ -415,8 +423,8 @@ function Home() {
             {!showGenerator || loading ? (
               <>
                 <button 
-                  onClick={generateEmail}
-                  disabled={loading}
+                  onClick={(e) => generateEmail(e)}
+                  disabled={!canGenerate || loading}
                   className="btn-hero-primary"
                   style={{ 
                     margin: '0 auto', 
@@ -424,9 +432,9 @@ function Home() {
                     background: loading ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
                     transform: loading ? 'scale(1)' : 'scale(1)',
                     animation: loading ? 'buttonPulse 1.5s ease-in-out infinite' : 'none',
-                    cursor: loading ? 'not-allowed' : 'pointer',
-                    opacity: loading ? 0.6 : 1,
-                    pointerEvents: loading ? 'none' : 'auto',
+                    cursor: (!canGenerate || loading) ? 'not-allowed' : 'pointer',
+                    opacity: (!canGenerate || loading) ? 0.6 : 1,
+                    pointerEvents: (!canGenerate || loading) ? 'none' : 'auto',
                     boxShadow: loading ? '0 8px 24px rgba(16, 185, 129, 0.4)' : '0 8px 24px rgba(59, 130, 246, 0.4)',
                     position: 'relative',
                     zIndex: 1
@@ -435,13 +443,13 @@ function Home() {
                   {loading ? (
                     <>
                       <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite', marginRight: '8px', fontSize: '18px' }}>⚡</span>
-                      Generating email... (Please wait 3 seconds)
+                      Generating email... (Please wait)
                     </>
                   ) : (
                     '🚀 Generate Your Temporary Email Address'
                   )}
                 </button>
-                {loading && (
+                {(!canGenerate || loading) && (
                   <div 
                     style={{
                       position: 'absolute',
