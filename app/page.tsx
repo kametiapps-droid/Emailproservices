@@ -163,12 +163,15 @@ function Home() {
   }, []);
 
   const fetchInbox = useCallback(async () => {
-    if (!email?.id) return;
+    if (!email?.id || isRunningRef.current) return;
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 8000);
       
-      const response = await fetch(`/api/inbox?emailId=${encodeURIComponent(email.id)}`, { signal: controller.signal });
+      const response = await fetch(`/api/inbox?emailId=${encodeURIComponent(email.id)}`, { 
+        signal: controller.signal,
+        headers: { 'Cache-Control': 'max-age=10' } // Small cache to prevent redundant fetches
+      });
       clearTimeout(timeoutId);
       
       const data = await response.json();
@@ -205,52 +208,31 @@ function Home() {
       if (stored) {
         try {
           const storedEmail = JSON.parse(stored);
-          setEmail(storedEmail);
-          setShowGenerator(true);
-          setLoading(false);
-          // Check if valid in background
-          checkExistingEmail(storedEmail).then(async (isValid) => {
-            if (!isValid) {
-              localStorage.removeItem('tempEmail');
-              setEmail(null);
-              setShowGenerator(true); // Keep generator visible to allow auto-gen
-              generateEmail();
-            } else {
-              // Valid, fetch inbox
-              fetchInbox();
-            }
-          });
+          const expiresAt = new Date(storedEmail.expiresAt);
+          
+          if (expiresAt > new Date()) {
+            setEmail(storedEmail);
+            setLoading(false);
+            fetchInbox();
+            
+            // Re-validate in background only
+            checkExistingEmail(storedEmail).then((isValid) => {
+              if (!isValid) {
+                localStorage.removeItem('tempEmail');
+                setEmail(null);
+                generateEmail();
+              }
+            });
+            return;
+          }
         } catch {
           localStorage.removeItem('tempEmail');
-          setEmail(null);
-          setShowGenerator(true);
-          setLoading(false);
-          generateEmail();
         }
-      } else {
-        setShowGenerator(true);
-        setLoading(false);
-        generateEmail();
       }
       
-      // Fetch recent reviews in background after initial render
-      setTimeout(async () => {
-        try {
-          const cached = localStorage.getItem('tempmail_feedback_cache');
-          if (cached) {
-            const data = JSON.parse(cached);
-            setRecentReviews(data.slice(0, 5));
-          }
-          const response = await fetch('/api/feedback');
-          if (response.ok) {
-            const data = await response.json();
-            setRecentReviews(data.slice(0, 5));
-            localStorage.setItem('tempmail_feedback_cache', JSON.stringify(data));
-          }
-        } catch (error) {
-          console.error('Error loading recent reviews:', error);
-        }
-      }, 1000);
+      setShowGenerator(true);
+      setLoading(false);
+      generateEmail();
     };
     init();
   }, [generateEmail, fetchInbox]);
