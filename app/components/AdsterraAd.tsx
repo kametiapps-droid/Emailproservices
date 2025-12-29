@@ -32,9 +32,14 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
         'width' : ${width},
         'params' : {}
       };
-      document.write('<scr' + 'ipt type="text/javascript" src="https://www.highperformanceformat.com/${adKey}/invoke.js"></scr' + 'ipt>');
     `;
     container.appendChild(configScript);
+
+    const invokeScript = document.createElement('script');
+    invokeScript.type = 'text/javascript';
+    invokeScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
+    invokeScript.async = true;
+    container.appendChild(invokeScript);
 
     return () => {
       if (adRef.current) {
