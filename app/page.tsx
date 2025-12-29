@@ -435,7 +435,7 @@ function Home() {
           
           {/* Banner Ad */}
           <div className="ad-container banner-ad" style={{ margin: '20px 0', minHeight: '60px', display: 'flex', justifyContent: 'center' }}>
-            <Script id="adsterra-banner-config" strategy="afterInteractive">
+            <Script id="adsterra-banner-config">
               {`
                 atOptions = {
                   'key' : '78700c452c631c6534cf7a201eb6cab5',
@@ -449,7 +449,6 @@ function Home() {
             <Script 
               id="adsterra-banner-invoke"
               src="https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
-              strategy="afterInteractive"
             />
           </div>
 
@@ -474,7 +473,6 @@ function Home() {
             <Script 
               id="adsterra-native"
               src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
-              strategy="afterInteractive"
             />
           </div>
         </div>
