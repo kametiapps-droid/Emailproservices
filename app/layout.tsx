@@ -281,11 +281,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         
-        <Script
-  async
-  src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
-  strategy="afterInteractive"
-/>
+      
         
       </head>
       <body data-theme="light" className="inter-font" suppressHydrationWarning>
