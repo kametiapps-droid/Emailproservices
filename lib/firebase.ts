@@ -208,7 +208,11 @@ export const EMAIL_DOMAINS = [
   'tempmail.pro',
   'mailpro.me',
   'mytempmail.pro',
-  'temporarymail.top'
+  'temporarymail.top',
+  'temp-mail.pro',
+  'fast-mail.top',
+  'inbox-temp.com',
+  'secure-mail.pro'
 ].filter(domain => domain && domain.trim() !== '');
 
 const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
