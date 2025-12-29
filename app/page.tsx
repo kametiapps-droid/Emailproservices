@@ -190,21 +190,21 @@ function Home() {
         try {
           const storedEmail = JSON.parse(stored);
           setEmail(storedEmail);
+          setShowGenerator(true); // Ensure generator is shown if we have a stored email
           setLoading(false);
           // Check if valid in background
           checkExistingEmail(storedEmail).then(async (isValid) => {
             if (!isValid) {
               localStorage.removeItem('tempEmail');
               setEmail(null); // Clear invalid email state
+              setShowGenerator(false);
+              generateEmail(); // Auto-generate if stored was invalid
             } else {
               // Valid, fetch inbox
               const response = await fetch(`/api/inbox?emailId=${storedEmail.id}`);
               const data = await response.json();
               if (data.success) {
                 setMessages(data.data);
-                if (data.data && data.data.length > 0) {
-                  setShowGenerator(true);
-                }
               }
             }
           });
@@ -212,9 +212,11 @@ function Home() {
           localStorage.removeItem('tempEmail');
           setLoading(false);
           setEmail(null);
+          generateEmail(); // Auto-generate on parse error
         }
       } else {
         setLoading(false);
+        generateEmail(); // Auto-generate if no stored email
       }
       
       // Fetch recent reviews in background after initial render
@@ -420,56 +422,6 @@ function Home() {
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px', position: 'relative' }} suppressHydrationWarning>
-            {!showGenerator || loading ? (
-              <>
-                <button 
-                  onClick={(e) => generateEmail(e)}
-                  disabled={!canGenerate || loading}
-                  className="btn-hero-primary"
-                  style={{ 
-                    margin: '0 auto', 
-                    display: 'block',
-                    background: loading ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)',
-                    transform: loading ? 'scale(1)' : 'scale(1)',
-                    animation: loading ? 'buttonPulse 1.5s ease-in-out infinite' : 'none',
-                    cursor: (!canGenerate || loading) ? 'not-allowed' : 'pointer',
-                    opacity: (!canGenerate || loading) ? 0.6 : 1,
-                    pointerEvents: (!canGenerate || loading) ? 'none' : 'auto',
-                    boxShadow: loading ? '0 8px 24px rgba(16, 185, 129, 0.4)' : '0 8px 24px rgba(59, 130, 246, 0.4)',
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                >
-                  {loading ? (
-                    <>
-                      <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite', marginRight: '8px', fontSize: '18px' }}>⚡</span>
-                      Generating email... (Please wait)
-                    </>
-                  ) : (
-                    '🚀 Generate Your Temporary Email Address'
-                  )}
-                </button>
-                {(!canGenerate || loading) && (
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundColor: 'rgba(0, 0, 0, 0.1)',
-                      borderRadius: '12px',
-                      zIndex: 2,
-                      pointerEvents: 'auto',
-                      cursor: 'not-allowed'
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                    onMouseDown={(e) => e.preventDefault()}
-                    onTouchStart={(e) => e.preventDefault()}
-                  />
-                )}
-              </>
-            ) : null}
             {showGenerator && (
               <EmailGenerator 
                 email={email}
