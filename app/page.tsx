@@ -427,6 +427,27 @@ function Home() {
             </div>
           </div>
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
+          
+          {/* Banner Ad */}
+          <div className="ad-container banner-ad" style={{ margin: '20px 0', minHeight: '60px', display: 'flex', justifyContent: 'center' }}>
+            <Script id="adsterra-banner-config" strategy="afterInteractive">
+              {`
+                atOptions = {
+                  'key' : '78700c452c631c6534cf7a201eb6cab5',
+                  'format' : 'iframe',
+                  'height' : 60,
+                  'width' : 468,
+                  'params' : {}
+                };
+              `}
+            </Script>
+            <Script 
+              id="adsterra-banner-invoke"
+              src="https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
+              strategy="afterInteractive"
+            />
+          </div>
+
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
           <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px', position: 'relative' }} suppressHydrationWarning>
             {showGenerator && (
@@ -440,6 +461,16 @@ function Home() {
                 onShowQR={showQRCode}
               />
             )}
+          </div>
+
+          {/* Native Ad */}
+          <div className="ad-container native-ad" style={{ marginTop: '30px', width: '100%', maxWidth: '1200px' }}>
+            <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
+            <Script 
+              id="adsterra-native"
+              src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
+              strategy="afterInteractive"
+            />
           </div>
         </div>
       </section>

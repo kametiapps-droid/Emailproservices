@@ -286,6 +286,11 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <Script
+          id="adsterra-social-bar"
+          src="https://pl28355048.effectivegatecpm.com/4a/b4/ed/4ab4edfe9bfd89766697db1bf9b9a3ff.js"
+          strategy="afterInteractive"
+        />
+        <Script
           id="json-ld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
