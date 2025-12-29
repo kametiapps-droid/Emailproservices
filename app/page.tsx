@@ -106,8 +106,7 @@ function Home() {
     setLoading(true);
     
     try {
-      // Check localStorage first - if valid email exists, return it (one per IP per 24h)
-      // Only skip if NOT forced
+      // Check localStorage first
       if (!forceNew) {
         const storedEmail = localStorage.getItem('tempEmail');
         if (storedEmail) {
@@ -115,7 +114,6 @@ function Home() {
             const email = JSON.parse(storedEmail);
             const expiresAt = new Date(email.expiresAt);
             if (expiresAt > new Date()) {
-              // Email still valid - return stored email instead of making API call
               setEmail(email);
               setMessages([]);
               setSelectedMessage(null);
@@ -128,12 +126,11 @@ function Home() {
           }
         }
       } else {
-        // If forced, clear existing first
         localStorage.removeItem('tempEmail');
       }
       
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      const timeoutId = setTimeout(() => controller.abort(), 8000); // Reduce timeout
       
       const response = await fetch('/api/email', { 
         method: 'POST',
@@ -155,11 +152,11 @@ function Home() {
       console.error('Failed to generate email:', error);
     } finally {
       setLoading(false);
-      // Re-enable button after 4 seconds
+      // Re-enable button after 1 second for faster experience
       setTimeout(() => {
         isRunningRef.current = false;
         setCanGenerate(true);
-      }, 4000);
+      }, 1000);
     }
   }, []);
 
