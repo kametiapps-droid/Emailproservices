@@ -282,22 +282,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         
         <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9600331042737400"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-        {/* Adsterra Social Bar */}
-        <Script
-          id="adsterra-social-bar"
-          src="//pl28354972.effectivegatecpm.com/f0/6a/0a/f06a0a03332463f8205466b078028f80.js"
-          strategy="lazyOnload"
-        />
-        <Script
-          id="json-ld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+  async
+  src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
+  strategy="afterInteractive"
+/>
+        
       </head>
       <body data-theme="light" className="inter-font" suppressHydrationWarning>
         <Header />
