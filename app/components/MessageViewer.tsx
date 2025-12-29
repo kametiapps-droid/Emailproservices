@@ -76,6 +76,7 @@ const MessageViewer = memo(({ message }: MessageViewerProps) => {
         className="message-content-iframe"
         sandbox="allow-same-origin"
         title={`Message from ${message.sender}`}
+        style={{ width: '100%', border: 'none', background: 'white' }}
       />
       {message.attachments && message.attachments.length > 0 && (
         <div className="message-attachments">
