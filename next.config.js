@@ -21,7 +21,6 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.highperformanceformat.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://*.highperformanceformat.com; connect-src 'self' https://*.highperformanceformat.com; sandbox allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts;",
   },
   async headers() {
     return [
@@ -29,11 +28,12 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Frame-Options', value: 'ALLOW-FROM https://*.highperformanceformat.com' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'no-referrer-when-downgrade' },
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=(), payment=()' },
+          { key: 'Content-Security-Policy', value: "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; frame-src 'self' https:; connect-src 'self' https:;" },
         ],
       },
       {
