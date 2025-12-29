@@ -291,7 +291,17 @@ export default function RootLayout({
         <Script
           id="adsterra-social-bar"
           src="//pl28354972.effectivegatecpm.com/f0/6a/0a/f06a0a03332463f8205466b078028f80.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
+        />
+        <Script
+          id="adsterra-native"
+          src="//www.highperformanceformat.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
+          strategy="lazyOnload"
+        />
+        <Script
+          id="adsterra-banner"
+          src="//www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
+          strategy="lazyOnload"
         />
         <Script
           id="json-ld"

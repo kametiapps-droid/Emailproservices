@@ -13,13 +13,13 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
   const adRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!adRef.current) return;
+    if (typeof window === 'undefined' || !adRef.current) return;
 
     // Clear existing content
     adRef.current.innerHTML = '';
 
     const container = document.createElement('div');
-    container.id = `adsterra-container-${adKey}`;
+    container.id = `at-container-${adKey}`;
     adRef.current.appendChild(container);
 
     const configScript = document.createElement('script');
@@ -38,7 +38,6 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
     const invokeScript = document.createElement('script');
     invokeScript.type = 'text/javascript';
     invokeScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
-    invokeScript.async = true;
     container.appendChild(invokeScript);
 
     return () => {
@@ -51,14 +50,16 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
   return (
     <div 
       ref={adRef} 
-      className="adsterra-ad-container" 
+      className="ad-slot"
       style={{ 
         minHeight: `${height}px`, 
         minWidth: `${width}px`,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: '20px 0'
+        margin: '20px 0',
+        background: 'rgba(0,0,0,0.05)',
+        borderRadius: '8px'
       }} 
     />
   );
