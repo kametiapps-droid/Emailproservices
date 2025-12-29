@@ -18,7 +18,7 @@ export default function AdsterraAd({ adKey, format = 'iframe', width = 468, heig
     const settings = document.createElement("script");
     settings.type = "text/javascript";
     settings.innerHTML = `
-      atOptions = {
+      window.atOptions = {
         'key' : '${adKey}',
         'format' : '${format}',
         'height' : ${height},
