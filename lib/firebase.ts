@@ -34,9 +34,52 @@ function createMockFirestore(): FirebaseFirestore.Firestore {
           if (global.mockStore[name]) delete global.mockStore[name][id];
         },
         collection: (subcollection: string) => ({
+          orderBy: (field: string, direction: string) => ({
+            get: async () => {
+              const messages = global.mockStore[`${name}/${id}/${subcollection}`] || {};
+              const docs = Object.values(messages)
+                .sort((a: any, b: any) => {
+                  const valA = a[field];
+                  const valB = b[field];
+                  return direction === 'desc' 
+                    ? (valB > valA ? 1 : -1) 
+                    : (valA > valB ? 1 : -1);
+                })
+                .map(m => ({ id: (m as any).id, data: () => m }));
+              return { docs };
+            }
+          }),
+          doc: (messageId: string) => ({
+            set: async (data: any) => {
+              const path = `${name}/${id}/${subcollection}`;
+              if (!global.mockStore[path]) global.mockStore[path] = {};
+              global.mockStore[path][messageId || data.id] = data;
+            },
+            update: async (data: any) => {
+              const path = `${name}/${id}/${subcollection}`;
+              if (global.mockStore[path]?.[messageId]) {
+                global.mockStore[path][messageId] = { ...global.mockStore[path][messageId], ...data };
+              }
+            },
+            delete: async () => {
+              const path = `${name}/${id}/${subcollection}`;
+              if (global.mockStore[path]) delete global.mockStore[path][messageId];
+            },
+            get: async () => {
+              const path = `${name}/${id}/${subcollection}`;
+              const data = global.mockStore[path]?.[messageId];
+              return { exists: !!data, data: () => data };
+            }
+          }),
           limit: () => ({
             get: async () => ({ docs: [] }),
           }),
+          get: async () => {
+            const path = `${name}/${id}/${subcollection}`;
+            const messages = global.mockStore[path] || {};
+            const docs = Object.values(messages).map(m => ({ id: (m as any).id, data: () => m }));
+            return { docs };
+          }
         }),
       }),
       add: async (data: any) => ({

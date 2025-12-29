@@ -57,11 +57,12 @@ export async function GET(request: NextRequest) {
       .collection('temp_emails')
       .doc(emailId)
       .collection('messages')
-      .orderBy('receivedAt', 'desc')
       .get();
+    
+    const docs = (messagesSnapshot as any).docs || [];
 
     // Filter and sanitize messages
-    const messages = messagesSnapshot.docs.map((doc) => {
+    const messages = docs.map((doc: any) => {
       const data = doc.data();
       
       // Check for blocked domains
