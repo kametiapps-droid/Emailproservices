@@ -1,69 +1,30 @@
-'use client';
+"use client";
+import { useEffect } from "react";
 
-import { useEffect, useRef } from 'react';
-
-interface AdsterraAdProps {
-  adKey: string;
-  format?: string;
-  width?: number;
-  height?: number;
-}
-
-const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: AdsterraAdProps) => {
-  const adRef = useRef<HTMLDivElement>(null);
-
+export default function Ads() {
   useEffect(() => {
-    if (typeof window === 'undefined' || !adRef.current) return;
+    // Load script 1
+    const s1 = document.createElement("script");
+    s1.src = "https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js";
+    s1.async = true;
+    document.body.appendChild(s1);
 
-    // Clear existing content
-    adRef.current.innerHTML = '';
+    // Load script 2
+    const s2 = document.createElement("script");
+    s2.src = "https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js";
+    document.body.appendChild(s2);
 
-    const container = document.createElement('div');
-    container.id = `at-container-${adKey}`;
-    adRef.current.appendChild(container);
+    // Load script 3
+    const s3 = document.createElement("script");
+    s3.src = "https://pl28355048.effectivegatecpm.com/4a/b4/ed/4ab4edfe9bfd89766697db1bf9b9a3ff.js";
+    document.body.appendChild(s3);
 
-    const configScript = document.createElement('script');
-    configScript.type = 'text/javascript';
-    configScript.innerHTML = `
-      var atOptions = {
-        'key' : '${adKey}',
-        'format' : '${format}',
-        'height' : ${height},
-        'width' : ${width},
-        'params' : {}
-      };
-    `;
-    container.appendChild(configScript);
-
-    const invokeScript = document.createElement('script');
-    invokeScript.type = 'text/javascript';
-    invokeScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
-    invokeScript.async = true;
-    container.appendChild(invokeScript);
-
-    return () => {
-      if (adRef.current) {
-        adRef.current.innerHTML = '';
-      }
-    };
-  }, [adKey, format, width, height]);
+  }, []);
 
   return (
-    <div 
-      ref={adRef} 
-      className="ad-slot"
-      style={{ 
-        minHeight: `${height}px`, 
-        minWidth: `${width}px`,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '20px 0',
-        background: 'rgba(0,0,0,0.05)',
-        borderRadius: '8px'
-      }} 
-    />
+    <div>
+      {/* yahan ad dikhega */}
+      <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
+    </div>
   );
-};
-
-export default AdsterraAd;
+}
