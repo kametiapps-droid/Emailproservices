@@ -203,33 +203,31 @@ function Home() {
         try {
           const storedEmail = JSON.parse(stored);
           setEmail(storedEmail);
-          setShowGenerator(true); // Ensure generator is shown if we have a stored email
+          setShowGenerator(true);
           setLoading(false);
           // Check if valid in background
           checkExistingEmail(storedEmail).then(async (isValid) => {
             if (!isValid) {
               localStorage.removeItem('tempEmail');
-              setEmail(null); // Clear invalid email state
-              setShowGenerator(false);
-              generateEmail(); // Auto-generate if stored was invalid
+              setEmail(null);
+              setShowGenerator(true); // Keep generator visible to allow auto-gen
+              generateEmail();
             } else {
               // Valid, fetch inbox
-              const response = await fetch(`/api/inbox?emailId=${storedEmail.id}`);
-              const data = await response.json();
-              if (data.success) {
-                setMessages(data.data);
-              }
+              fetchInbox();
             }
           });
         } catch {
           localStorage.removeItem('tempEmail');
-          setLoading(false);
           setEmail(null);
-          generateEmail(); // Auto-generate on parse error
+          setShowGenerator(true);
+          setLoading(false);
+          generateEmail();
         }
       } else {
+        setShowGenerator(true);
         setLoading(false);
-        generateEmail(); // Auto-generate if no stored email
+        generateEmail();
       }
       
       // Fetch recent reviews in background after initial render
@@ -252,7 +250,7 @@ function Home() {
       }, 1000);
     };
     init();
-  }, []);
+  }, [generateEmail, fetchInbox]);
 
   // Don't auto-generate - let user click button or load from localStorage
 
