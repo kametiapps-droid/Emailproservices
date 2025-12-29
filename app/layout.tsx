@@ -276,6 +276,8 @@ export default function RootLayout({
         
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://pl28355048.effectivegatecpm.com" />
+        <link rel="preconnect" href="https://www.highperformanceformat.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         
