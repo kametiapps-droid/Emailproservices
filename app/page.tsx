@@ -435,28 +435,21 @@ function Home() {
           
           {/* Banner Ad */}
           <div className="ad-container banner-ad" style={{ margin: '20px 0', minHeight: '60px', display: 'flex', justifyContent: 'center' }}>
-            <div id="ad-banner-placeholder"></div>
-            <Script id="adsterra-banner-script" strategy="afterInteractive">
-              {`
-                (function() {
-                  const container = document.getElementById('ad-banner-placeholder');
-                  if (!container) return;
-                  
-                  window.atOptions = {
-                    'key' : '78700c452c631c6534cf7a201eb6cab5',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                  };
-                  
-                  const s = document.createElement('script');
-                  s.type = 'text/javascript';
-                  s.src = 'https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js';
-                  container.appendChild(s);
-                })();
-              `}
-            </Script>
+            <Script
+              id="adsterra-banner"
+              src="//www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
+              strategy="afterInteractive"
+              onReady={() => {
+                // @ts-ignore
+                window.atOptions = {
+                  'key' : '78700c452c631c6534cf7a201eb6cab5',
+                  'format' : 'iframe',
+                  'height' : 60,
+                  'width' : 468,
+                  'params' : {}
+                };
+              }}
+            />
           </div>
 
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
@@ -476,21 +469,11 @@ function Home() {
 
           {/* Native Ad */}
           <div className="ad-container native-ad" style={{ marginTop: '30px', width: '100%', maxWidth: '1200px' }}>
-            <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
-            <Script id="adsterra-native-script" strategy="afterInteractive">
-              {`
-                (function() {
-                  const container = document.getElementById('container-a6c0b501e723bd19d692eca38b289c7e');
-                  if (!container) return;
-                  
-                  const s = document.createElement('script');
-                  s.async = true;
-                  s.setAttribute('data-cfasync', 'false');
-                  s.src = 'https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js';
-                  container.appendChild(s);
-                })();
-              `}
-            </Script>
+            <Script
+              id="adsterra-native"
+              src="//pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
+              strategy="afterInteractive"
+            />
           </div>
         </div>
       </section>
