@@ -212,8 +212,8 @@ function Home() {
           
           if (expiresAt > new Date()) {
             setEmail(storedEmail);
+            setShowGenerator(true);
             setLoading(false);
-            fetchInbox();
             
             // Re-validate in background only
             checkExistingEmail(storedEmail).then((isValid) => {
@@ -221,6 +221,8 @@ function Home() {
                 localStorage.removeItem('tempEmail');
                 setEmail(null);
                 generateEmail();
+              } else {
+                fetchInbox();
               }
             });
             return;
