@@ -14,7 +14,7 @@ interface EmailGeneratorProps {
   email: Email | null;
   loading: boolean;
   timeLeft: string;
-  onGenerate: () => void;
+  onGenerate: (e?: React.MouseEvent, forceNew?: boolean) => void;
   onRefresh: () => void;
   onDelete: () => void;
   onShowQR: () => void;
@@ -76,7 +76,7 @@ const EmailGenerator = memo(({
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="5" y="5" width="3" height="3"></rect><rect x="16" y="5" width="3" height="3"></rect><rect x="16" y="16" width="3" height="3"></rect><rect x="5" y="16" width="3" height="3"></rect></svg>
           <span>QR Code</span>
         </button>
-        <button className="action-btn-new change-btn" onClick={onGenerate} disabled={loading} title="Generate new email" style={{ opacity: loading ? 0.6 : 1 }}>
+        <button className="action-btn-new change-btn" onClick={() => onGenerate(undefined, true)} disabled={loading} title="Generate new email" style={{ opacity: loading ? 0.6 : 1 }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }}><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           <span>{loading ? 'Generating...' : 'Change Email'}</span>
         </button>

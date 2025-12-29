@@ -84,7 +84,7 @@ function Home() {
     };
   }, [showQR]);
 
-  const generateEmail = useCallback(async (e?: React.MouseEvent) => {
+  const generateEmail = useCallback(async (e?: React.MouseEvent, forceNew: boolean = false) => {
     e?.preventDefault();
     e?.stopPropagation();
     
@@ -97,23 +97,29 @@ function Home() {
     
     try {
       // Check localStorage first - if valid email exists, return it (one per IP per 24h)
-      const storedEmail = localStorage.getItem('tempEmail');
-      if (storedEmail) {
-        try {
-          const email = JSON.parse(storedEmail);
-          const expiresAt = new Date(email.expiresAt);
-          if (expiresAt > new Date()) {
-            // Email still valid - return stored email instead of making API call
-            setEmail(email);
-            setMessages([]);
-            setSelectedMessage(null);
-            setShowGenerator(true);
-            setLoading(false);
-            return;
+      // Only skip if NOT forced
+      if (!forceNew) {
+        const storedEmail = localStorage.getItem('tempEmail');
+        if (storedEmail) {
+          try {
+            const email = JSON.parse(storedEmail);
+            const expiresAt = new Date(email.expiresAt);
+            if (expiresAt > new Date()) {
+              // Email still valid - return stored email instead of making API call
+              setEmail(email);
+              setMessages([]);
+              setSelectedMessage(null);
+              setShowGenerator(true);
+              setLoading(false);
+              return;
+            }
+          } catch {
+            localStorage.removeItem('tempEmail');
           }
-        } catch {
-          localStorage.removeItem('tempEmail');
         }
+      } else {
+        // If forced, clear existing first
+        localStorage.removeItem('tempEmail');
       }
       
       const controller = new AbortController();
