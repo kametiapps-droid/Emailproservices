@@ -204,7 +204,7 @@ function Home() {
 
   useEffect(() => {
     const init = async () => {
-      setLoading(true); // Ensure loading is true while checking storage
+      // Don't set loading yet, check storage first
       const stored = localStorage.getItem('tempEmail');
       if (stored) {
         try {
@@ -214,16 +214,16 @@ function Home() {
           if (expiresAt > new Date()) {
             setEmail(storedEmail);
             setShowGenerator(true);
-            setLoading(false); // Set to false only after setting email
+            setLoading(false);
             
-            // Re-validate in background only
+            // Re-validate and fetch in background
             checkExistingEmail(storedEmail).then((isValid) => {
-              if (!isValid) {
+              if (isValid) {
+                fetchInbox();
+              } else {
                 localStorage.removeItem('tempEmail');
                 setEmail(null);
                 generateEmail();
-              } else {
-                fetchInbox();
               }
             });
             return;
@@ -233,6 +233,8 @@ function Home() {
         }
       }
       
+      // No valid storage, show generator and start fresh
+      setLoading(true);
       setShowGenerator(true);
       generateEmail();
     };
