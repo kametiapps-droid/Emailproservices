@@ -74,7 +74,7 @@ const MessageViewer = memo(({ message }: MessageViewerProps) => {
       <iframe
         ref={iframeRef}
         className="message-content-iframe"
-        sandbox="allow-same-origin"
+        sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
         title={`Message from ${message.sender}`}
         style={{ width: '100%', border: 'none', background: 'white' }}
       />
