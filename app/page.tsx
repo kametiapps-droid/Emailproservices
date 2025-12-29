@@ -320,7 +320,8 @@ function Home() {
       setEmail(null);
       setMessages([]);
       setSelectedMessage(null);
-      setShowGenerator(false);
+      // Auto-generate new email instead of hiding the generator
+      generateEmail();
     } catch (error) {
       // Silently handle deletion errors
     }
