@@ -25,13 +25,15 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
     const configScript = document.createElement('script');
     configScript.type = 'text/javascript';
     configScript.innerHTML = `
-      atOptions = {
-        'key' : '${adKey}',
-        'format' : '${format}',
-        'height' : ${height},
-        'width' : ${width},
-        'params' : {}
-      };
+      if (typeof atOptions === 'undefined') {
+        atOptions = {
+          'key' : '${adKey}',
+          'format' : '${format}',
+          'height' : ${height},
+          'width' : ${width},
+          'params' : {}
+        };
+      }
     `;
     container.appendChild(configScript);
 

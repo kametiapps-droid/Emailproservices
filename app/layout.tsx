@@ -294,16 +294,6 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
         <Script
-          id="adsterra-native"
-          src="//www.highperformanceformat.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
-          strategy="lazyOnload"
-        />
-        <Script
-          id="adsterra-banner"
-          src="//www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
-          strategy="lazyOnload"
-        />
-        <Script
           id="json-ld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
