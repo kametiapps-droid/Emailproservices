@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 const AdsterraAd = dynamic(() => import('./components/AdsterraAd'), {
   ssr: false
 });
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import QRCode from 'qrcode';
