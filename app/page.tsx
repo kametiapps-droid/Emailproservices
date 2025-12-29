@@ -436,30 +436,23 @@ function Home() {
           </div>
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           
-          {/* Banner Ad */}
-          <div className="ad-container banner-ad" style={{ margin: '20px 0', minHeight: '90px', display: 'flex', justifyContent: 'center', width: '100%', overflow: 'hidden' }}>
-            <AdsterraAd adKey="78700c452c631c6534cf7a201eb6cab5" format="iframe" width={728} height={90} />
-          </div>
-
-          <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
-          <div className="hero-cta-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px', position: 'relative' }} suppressHydrationWarning>
-            {showGenerator && (
-              <EmailGenerator 
-                email={email}
-                loading={loading}
-                timeLeft={timeLeft}
-                onGenerate={generateEmail}
-                onRefresh={fetchInbox}
-                onDelete={() => deleteEmail()}
-                onShowQR={showQRCode}
-              />
-            )}
-          </div>
-
-          {/* Native Ad */}
-          <div className="ad-container native-ad" style={{ marginTop: '30px', width: '100%', maxWidth: '1200px', minHeight: '250px', display: 'flex', justifyContent: 'center' }}>
-            <AdsterraAd adKey="a6c0b501e723bd19d692eca38b289c7e" format="iframe" width={300} height={250} />
-          </div>
+        <div className="mt-8 flex justify-center">
+          <AdsterraAd adKey="78700c452c631c6534cf7a201eb6cab5" format="iframe" width={728} height={90} />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px', position: 'relative' }}>
+          <EmailGenerator 
+            email={email}
+            loading={loading}
+            timeLeft={timeLeft}
+            onGenerate={generateEmail}
+            onRefresh={fetchInbox}
+            onDelete={() => deleteEmail()}
+            onShowQR={showQRCode}
+          />
+        </div>
+        <div className="mt-8 flex justify-center">
+          <AdsterraAd adKey="a6c0b501e723bd19d692eca38b289c7e" format="iframe" width={300} height={250} />
+        </div>
         </div>
       </section>
 

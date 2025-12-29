@@ -25,21 +25,20 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
     const configScript = document.createElement('script');
     configScript.type = 'text/javascript';
     configScript.innerHTML = `
-      if (typeof atOptions === 'undefined') {
-        atOptions = {
-          'key' : '${adKey}',
-          'format' : '${format}',
-          'height' : ${height},
-          'width' : ${width},
-          'params' : {}
-        };
-      }
+      var atOptions = {
+        'key' : '${adKey}',
+        'format' : '${format}',
+        'height' : ${height},
+        'width' : ${width},
+        'params' : {}
+      };
     `;
     container.appendChild(configScript);
 
     const invokeScript = document.createElement('script');
     invokeScript.type = 'text/javascript';
     invokeScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
+    invokeScript.async = true;
     container.appendChild(invokeScript);
 
     return () => {
