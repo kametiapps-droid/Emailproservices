@@ -3,6 +3,10 @@
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import { useState, useEffect, useCallback, useRef, memo } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import QRCode from 'qrcode';
+import { blogPosts } from '../lib/blogData';
 
 // Lazy load components that are not critical for initial paint
 const MessageList = dynamic(() => import('./components/MessageList'), {
