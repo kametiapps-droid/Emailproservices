@@ -1111,11 +1111,17 @@ function Home() {
     </div>
   );
 }
+import Ads from "./components/Ads";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Welcome</h1>
-      <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
+    <main style={{ padding: "20px" }}>
+      <h1>Welcome My Website</h1>
+
+      {/* Yahan Ads Show Honge */}
+      <Ads />
+
     </main>
   );
 }
+
