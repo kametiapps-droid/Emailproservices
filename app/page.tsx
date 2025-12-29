@@ -1,7 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
+
+const AdsterraAd = dynamic(() => import('./components/AdsterraAd'), {
+  ssr: false
+});
 import { useState, useEffect, useCallback, useRef, memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -435,21 +438,7 @@ function Home() {
           
           {/* Banner Ad */}
           <div className="ad-container banner-ad" style={{ margin: '20px 0', minHeight: '60px', display: 'flex', justifyContent: 'center' }}>
-            <Script
-              id="adsterra-banner"
-              src="//www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
-              strategy="afterInteractive"
-              onReady={() => {
-                // @ts-ignore
-                window.atOptions = {
-                  'key' : '78700c452c631c6534cf7a201eb6cab5',
-                  'format' : 'iframe',
-                  'height' : 60,
-                  'width' : 468,
-                  'params' : {}
-                };
-              }}
-            />
+            <AdsterraAd adKey="78700c452c631c6534cf7a201eb6cab5" format="iframe" width={468} height={60} />
           </div>
 
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
@@ -469,11 +458,7 @@ function Home() {
 
           {/* Native Ad */}
           <div className="ad-container native-ad" style={{ marginTop: '30px', width: '100%', maxWidth: '1200px' }}>
-            <Script
-              id="adsterra-native"
-              src="//pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
-              strategy="afterInteractive"
-            />
+            <AdsterraAd adKey="a6c0b501e723bd19d692eca38b289c7e" format="iframe" width={300} height={250} />
           </div>
         </div>
       </section>
