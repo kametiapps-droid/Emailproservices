@@ -37,7 +37,7 @@ const AdsterraAd = ({ adKey, format = 'iframe', width = 300, height = 250 }: Ads
 
     const invokeScript = document.createElement('script');
     invokeScript.type = 'text/javascript';
-    invokeScript.src = `//www.highperformanceformat.com/${adKey}/invoke.js`;
+    invokeScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
     invokeScript.async = true;
     container.appendChild(invokeScript);
 
