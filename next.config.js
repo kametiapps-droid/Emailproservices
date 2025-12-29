@@ -21,7 +21,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.highperformanceformat.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://*.highperformanceformat.com; connect-src 'self' https://*.highperformanceformat.com; sandbox allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts;",
   },
   async headers() {
     return [
