@@ -1111,16 +1111,11 @@ function Home() {
     </div>
   );
 }
-// app/page.tsx
 export default function Home() {
   return (
-    <div>
-      <h1>Welcome to my site</h1>
-
-      {/* 👉 Yahan ad show hoga */}
+    <main>
+      <h1>Welcome</h1>
       <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
-    </div>
+    </main>
   );
 }
-
-export default memo(Home);
