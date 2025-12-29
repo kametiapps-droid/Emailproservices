@@ -450,6 +450,8 @@ function Home() {
               id="adsterra-banner-invoke"
               src="https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
               strategy="afterInteractive"
+              onLoad={() => console.log('Banner Ad Loaded')}
+              onError={(e) => console.error('Banner Ad Error:', e)}
             />
           </div>
 
@@ -462,7 +464,7 @@ function Home() {
                 timeLeft={timeLeft}
                 onGenerate={generateEmail}
                 onRefresh={fetchInbox}
-                onDelete={deleteEmail}
+                onDelete={() => deleteEmail()}
                 onShowQR={showQRCode}
               />
             )}
@@ -475,6 +477,8 @@ function Home() {
               id="adsterra-native"
               src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
               strategy="afterInteractive"
+              onLoad={() => console.log('Native Ad Loaded')}
+              onError={(e) => console.error('Native Ad Error:', e)}
             />
           </div>
         </div>
