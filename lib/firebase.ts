@@ -198,24 +198,15 @@ export function getDb(): FirebaseFirestore.Firestore {
 }
 
 export const EMAIL_DOMAINS = [
-  'giftofhope.online',
   'kameti.online',
-  'playgamesonline.space',
-  'mytoolhub.store',
+  'giftofhope.com',
   'khushboo-e-iram.com',
-  'cropimages.store',
   'globaljobpoint.com',
-  'tempmail.pro',
-  'mailpro.me',
+  'closetesting.online',
   'mytempmail.pro',
-  'temporarymail.top',
-  'temp-mail.pro',
-  'fast-mail.top',
-  'inbox-temp.com',
-  'secure-mail.pro',
-  'cloud-mail.net',
-  'quick-inbox.com',
-  'smart-temp.me'
+  'mytoolhub.store',
+  'playgamesonline.space',
+  'cropimages.store'
 ].filter(domain => domain && domain.trim() !== '');
 
 const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
