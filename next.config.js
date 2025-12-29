@@ -28,12 +28,11 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'X-Frame-Options', value: 'ALLOW-FROM https://*.highperformanceformat.com' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'no-referrer-when-downgrade' },
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=(), payment=()' },
-          { key: 'Content-Security-Policy', value: "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; frame-src 'self' https:; connect-src 'self' https:;" },
+          { key: 'Content-Security-Policy', value: "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data:; frame-src *; connect-src *;" },
         ],
       },
       {
