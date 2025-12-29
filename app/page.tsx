@@ -54,7 +54,7 @@ function Home() {
   const [copied, setCopied] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const [recentReviews, setRecentReviews] = useState<Feedback[]>([]);
-  const [showGenerator, setShowGenerator] = useState(false);
+  const [showGenerator, setShowGenerator] = useState(true);
   const [canGenerate, setCanGenerate] = useState(true);
   const qrButtonRef = useRef<HTMLButtonElement>(null);
   const isRunningRef = useRef(false);
