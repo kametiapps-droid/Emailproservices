@@ -386,6 +386,21 @@ function Home() {
 
   return (
     <div className="page-container" suppressHydrationWarning>
+      <div style={{
+        background: 'linear-gradient(90deg, #3B82F6 0%, #A855F7 100%)',
+        color: 'white',
+        textAlign: 'center',
+        padding: '10px 20px',
+        fontSize: '0.95rem',
+        fontWeight: '600',
+        letterSpacing: '0.5px',
+        boxShadow: '0 4px 15px rgba(59, 130, 246, 0.2)',
+        position: 'relative',
+        zIndex: 1000,
+        animation: 'slideDown 0.5s ease-out'
+      }}>
+        🚀 My Temp Mail Pro New Version Coming Soon with 10x Faster Experience!
+      </div>
       <section className="hero" style={{ minHeight: 'auto', padding: '60px 0 20px' }} suppressHydrationWarning>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', width: '100%' }} suppressHydrationWarning>
           <div className="privacy-badge-container" style={{ 
