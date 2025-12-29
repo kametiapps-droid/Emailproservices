@@ -161,8 +161,7 @@ export const EMAIL_DOMAINS = [
   'mytoolhub.store',
   'khushboo-e-iram.com',
   'cropimages.store',
-  'globaljobpoint.com',
-  'pakconstruction.work'
+  'globaljobpoint.com'
 ];
 
 const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
