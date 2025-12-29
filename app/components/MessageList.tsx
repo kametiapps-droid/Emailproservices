@@ -74,7 +74,7 @@ const MessageList = memo(({
             </button>
           </div>
           <div className="message-footer-row">
-            <div className="message-preview">{message.content.substring(0, 80)}{message.content.length > 80 ? '...' : ''}</div>
+            <div className="message-preview">{message.content.replace(/<[^>]*>?/gm, '').substring(0, 80)}{message.content.length > 80 ? '...' : ''}</div>
             <div className="message-time">{formatTime(message.receivedAt)}</div>
           </div>
         </div>
