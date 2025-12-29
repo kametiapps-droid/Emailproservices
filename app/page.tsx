@@ -449,7 +449,7 @@ function Home() {
             <Script 
               id="adsterra-banner-invoke"
               src="https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
           </div>
 
@@ -474,7 +474,7 @@ function Home() {
             <Script 
               id="adsterra-native"
               src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
           </div>
         </div>
