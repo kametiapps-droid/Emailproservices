@@ -16,6 +16,7 @@ export default function AdsterraAd({ adKey, format = 'iframe', width = 468, heig
     if (!container) return;
 
     const settings = document.createElement("script");
+    settings.type = "text/javascript";
     settings.innerHTML = `
       atOptions = {
         'key' : '${adKey}',
@@ -28,6 +29,7 @@ export default function AdsterraAd({ adKey, format = 'iframe', width = 468, heig
     container.appendChild(settings);
 
     const s = document.createElement("script");
+    s.type = "text/javascript";
     s.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
     s.async = true;
     container.appendChild(s);

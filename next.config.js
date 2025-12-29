@@ -32,7 +32,7 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'no-referrer-when-downgrade' },
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
           { key: 'Permissions-Policy', value: 'geolocation=(), microphone=(), camera=(), payment=()' },
-          { key: 'Content-Security-Policy', value: "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data:; frame-src *; connect-src *;" },
+          { key: 'Content-Security-Policy', value: "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data:; frame-src *; connect-src *; frame-ancestors *;" },
         ],
       },
       {
