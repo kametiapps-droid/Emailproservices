@@ -7,7 +7,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  allowedDevOrigins: ['*', '*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev', '*.vercel.app'],
+  allowedDevOrigins: ['*', '*.replit.dev', '*.repl.co', '*.replit.app', '*.pike.replit.dev', '*.spock.replit.dev', '*.kirk.replit.dev', '*.sisko.replit.dev', '*.vercel.app'],
   experimental: {
     scrollRestoration: true,
     serverActions: {

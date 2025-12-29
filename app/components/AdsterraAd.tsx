@@ -1,43 +1,45 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 
-export default function Ads() {
+interface AdsterraAdProps {
+  adKey: string;
+  format?: string;
+  width?: number;
+  height?: number;
+}
+
+export default function AdsterraAd({ adKey, format = 'iframe', width = 468, height = 60 }: AdsterraAdProps) {
+  const containerId = useId().replace(/:/g, '');
+  
   useEffect(() => {
-    // Script 1
-    const s1 = document.createElement("script");
-    s1.src = "https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js";
-    s1.async = true;
-    document.body.appendChild(s1);
+    const container = document.getElementById(`container-${containerId}`);
+    if (!container) return;
 
-    // AT options for next script
     const settings = document.createElement("script");
     settings.innerHTML = `
       atOptions = {
-        'key' : '78700c452c631c6534cf7a201eb6cab5',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
+        'key' : '${adKey}',
+        'format' : '${format}',
+        'height' : ${height},
+        'width' : ${width},
         'params' : {}
       };
     `;
-    document.body.appendChild(settings);
+    container.appendChild(settings);
 
-    // Script 2
-    const s2 = document.createElement("script");
-    s2.src = "https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js";
-    s2.async = true;
-    document.body.appendChild(s2);
+    const s = document.createElement("script");
+    s.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
+    s.async = true;
+    container.appendChild(s);
 
-    // Script 3
-    const s3 = document.createElement("script");
-    s3.src = "https://pl28355048.effectivegatecpm.com/4a/b4/ed/4ab4edfe9bfd89766697db1bf9b9a3ff.js";
-    s3.async = true;
-    document.body.appendChild(s3);
-  }, []);
+    return () => {
+      container.innerHTML = '';
+    };
+  }, [adKey, format, width, height, containerId]);
 
   return (
-    <div style={{ marginTop: "20px" }}>
-      <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
+    <div style={{ marginTop: "20px", width, height, overflow: 'hidden' }}>
+      <div id={`container-${containerId}`}></div>
     </div>
   );
 }
