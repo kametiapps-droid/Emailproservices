@@ -1,14 +1,16 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import { useState, useEffect, useCallback, useRef, memo } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import QRCode from 'qrcode';
-import { blogPosts } from '../lib/blogData';
-import MessageList from './components/MessageList';
-import MessageViewer from './components/MessageViewer';
-import EmailGenerator from './components/EmailGenerator';
+
+// Lazy load components that are not critical for initial paint
+const MessageList = dynamic(() => import('./components/MessageList'), {
+  loading: () => <div className="loading-placeholder">Loading inbox...</div>,
+  ssr: false
+});
+const MessageViewer = dynamic(() => import('./components/MessageViewer'), { ssr: false });
+const EmailGenerator = dynamic(() => import('./components/EmailGenerator'), { ssr: false });
 
 interface Email {
   id: string;

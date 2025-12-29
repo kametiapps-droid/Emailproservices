@@ -100,7 +100,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
 }
 
 .cta-card::before {
