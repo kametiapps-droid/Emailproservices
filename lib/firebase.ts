@@ -200,13 +200,10 @@ export function getDb(): FirebaseFirestore.Firestore {
 export const EMAIL_DOMAINS = [
   'kameti.online',
   'giftofhope.com',
-  'khushboo-e-iram.com',
-  'globaljobpoint.com',
   'closetesting.online',
   'mytempmail.pro',
   'mytoolhub.store',
-  'playgamesonline.space',
-  'cropimages.store'
+  'playgamesonline.space'
 ].filter(domain => domain && domain.trim() !== '');
 
 const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
