@@ -287,10 +287,9 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <Script
-          id="adsterra-social-bar"
-          src="https://pl28355048.effectivegatecpm.com/4a/b4/ed/4ab4edfe9bfd89766697db1bf9b9a3ff.js"
-        />
+        <div dangerouslySetInnerHTML={{ __html: `
+          <script src="https://pl28355048.effectivegatecpm.com/4a/b4/ed/4ab4edfe9bfd89766697db1bf9b9a3ff.js"></script>
+        `}} />
         <Script
           id="json-ld"
           type="application/ld+json"
