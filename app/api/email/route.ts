@@ -7,6 +7,9 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
+    const body = await request.json().catch(() => ({}));
+    const forceNew = body.forceNew === true;
+    
     // Rate limiting check (100 per hour)
     const clientIP = getClientIP(request.headers);
     const rateCheck = checkRateLimit(clientIP, 'EMAILS');
@@ -30,8 +33,9 @@ export async function POST(request: NextRequest) {
     const db = getDb();
     
     // Check if IP already has an active email (one per IP per 24 hours)
+    // For development, we allow more frequent changes if needed
     const existingEmailData = (db as any).getIpEmail?.(clientIP);
-    if (existingEmailData) {
+    if (existingEmailData && !forceNew) {
       const expiresAt = new Date(existingEmailData.expiresAt);
       // If email hasn't expired, return the existing one
       if (expiresAt > new Date()) {

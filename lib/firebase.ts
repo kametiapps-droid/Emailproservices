@@ -166,7 +166,7 @@ export const EMAIL_DOMAINS = [
   'mailpro.me',
   'mytempmail.pro',
   'temporarymail.top'
-];
+].filter(domain => domain && domain.trim() !== '');
 
 const ADJECTIVES = ['swift', 'bright', 'cool', 'fast', 'quick', 'smart', 'happy', 'brave', 'calm', 'eager', 'strong', 'light', 'dark', 'blue', 'green', 'red', 'gold', 'silver', 'sharp', 'kind'];
 const NOUNS = ['tiger', 'eagle', 'shark', 'lion', 'wolf', 'bear', 'hawk', 'fox', 'owl', 'lynx', 'panda', 'dragon', 'phoenix', 'swan', 'falcon', 'raven', 'horse', 'zebra', 'cheetah', 'panther'];
