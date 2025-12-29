@@ -1,5 +1,6 @@
 'use client';
 
+import Script from 'next/script';
 import { useState, useEffect, useCallback, useRef, memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
