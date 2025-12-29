@@ -435,18 +435,22 @@ function Home() {
           
           {/* Banner Ad */}
           <div className="ad-container banner-ad" style={{ margin: '20px 0', minHeight: '60px', display: 'flex', justifyContent: 'center' }}>
-            <div dangerouslySetInnerHTML={{ __html: `
-              <script type="text/javascript">
-                atOptions = {
+            <Script id="adsterra-banner-config" strategy="afterInteractive">
+              {`
+                window.atOptions = {
                   'key' : '78700c452c631c6534cf7a201eb6cab5',
                   'format' : 'iframe',
                   'height' : 60,
                   'width' : 468,
                   'params' : {}
                 };
-              </script>
-              <script type="text/javascript" src="https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"></script>
-            `}} />
+              `}
+            </Script>
+            <Script 
+              id="adsterra-banner-invoke"
+              src="https://www.highperformanceformat.com/78700c452c631c6534cf7a201eb6cab5/invoke.js"
+              strategy="lazyOnload"
+            />
           </div>
 
           <p style={{ textAlign: 'center', width: '100%', maxWidth: '800px', margin: '0 auto 12px' }} suppressHydrationWarning>Generate disposable email addresses in one click. Protect your real inbox from spam, phishing, and unwanted newsletters.</p>
@@ -467,9 +471,11 @@ function Home() {
           {/* Native Ad */}
           <div className="ad-container native-ad" style={{ marginTop: '30px', width: '100%', maxWidth: '1200px' }}>
             <div id="container-a6c0b501e723bd19d692eca38b289c7e"></div>
-            <div dangerouslySetInnerHTML={{ __html: `
-              <script async="async" data-cfasync="false" src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"></script>
-            `}} />
+            <Script 
+              id="adsterra-native"
+              src="https://pl28354949.effectivegatecpm.com/a6c0b501e723bd19d692eca38b289c7e/invoke.js"
+              strategy="lazyOnload"
+            />
           </div>
         </div>
       </section>
