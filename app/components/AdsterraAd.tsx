@@ -8,6 +8,12 @@ interface AdsterraAdProps {
   height?: number;
 }
 
+declare global {
+  interface Window {
+    atOptions: any;
+  }
+}
+
 export default function AdsterraAd({ adKey, format = 'iframe', width = 468, height = 60 }: AdsterraAdProps) {
   const containerId = useId().replace(/:/g, '');
   
@@ -32,6 +38,11 @@ export default function AdsterraAd({ adKey, format = 'iframe', width = 468, heig
     s.type = "text/javascript";
     s.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
     s.async = true;
+    
+    s.onerror = () => {
+      console.error(`Failed to load Adsterra script for key: ${adKey}`);
+    };
+    
     container.appendChild(s);
 
     return () => {

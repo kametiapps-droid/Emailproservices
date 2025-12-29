@@ -435,7 +435,7 @@ function Home() {
           </div>
           <h1 style={{ textAlign: 'center', width: '100%', marginBottom: '12px', background: 'linear-gradient(90deg, #1E293B 0%, #3B82F6 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: '800' }} suppressHydrationWarning>Your Privacy-First Temporary Email Solution</h1>
           
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center" style={{ minHeight: '90px' }}>
           <AdsterraAd adKey="78700c452c631c6534cf7a201eb6cab5" format="iframe" width={728} height={90} />
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', minHeight: 'auto', marginTop: '10px', position: 'relative' }}>
@@ -449,7 +449,7 @@ function Home() {
             onShowQR={showQRCode}
           />
         </div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center" style={{ minHeight: '250px' }}>
           <AdsterraAd adKey="a6c0b501e723bd19d692eca38b289c7e" format="iframe" width={300} height={250} />
         </div>
         </div>
